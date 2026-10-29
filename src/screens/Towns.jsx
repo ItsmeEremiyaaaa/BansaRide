@@ -3,6 +3,7 @@ import { useApp, BackButton, Icon, Tag, YHeader, Bus, Van } from '../components'
 import Transit from '../Transit'
 import TransitPop from '../TransitPop'
 import { useAuth } from '../auth'
+import { speak } from '../speech'
 import { towns, routes, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
 
 function TownRow({ town, onOpen, index }) {
@@ -68,7 +69,7 @@ export function TownsList() {
 
 // Other towns show distance, travel time and fare only. Maps and steps stay inside Bansalan.
 export function Town() {
-  const { go, params } = useApp()
+  const { go, params, say } = useApp()
   const tw = towns.find((x) => x.id === params.id) ?? towns[0]
   const [dir, setDir] = useState('out')
   const out = dir === 'out'
@@ -107,6 +108,7 @@ export function Town() {
         <section className="card ride-modes">
           <h2 className="sec">Ride by bus or van</h2>
           <Transit modes={transitModesForTown(tw.id)} km={tw.km} />
+          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
           <p className="hint">Hours are reported by riders. Fares are calculated from the Davao bus fare (₱140 to ₱200) and the Kapatagan mini bus fare (₱80 to ₱100 for a student), so they can be a little off. Ask the dispatcher.</p>
         </section>
 

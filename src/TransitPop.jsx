@@ -28,7 +28,7 @@ export default function TransitPop({ modes, name }) {
         return (
           <span className={'tpop-row' + (s.open ? ' open' : '')} key={id} style={{ '--n': n }}>
             <Art className={id === 'mini' ? 'm-mini' : ''} width={40} height={28} />
-            <span className="tpop-text"><b>{m.label}</b><em>{s.open ? `Running now · last ride ${m.lastText}` : `Not running · first ride ${m.firstText}`}</em></span>
+            <span className="tpop-text"><b>{m.label}</b><em>{s.ending ? `Last ride in ${s.left} min (${m.lastText})` : s.open ? `Running now · last ride ${m.lastText}` : `Not running · first ride ${m.firstText}`}</em></span>
             <i className="tpop-dot" aria-hidden="true" />
           </span>
         )

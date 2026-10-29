@@ -225,11 +225,12 @@ export function RouteRow({ route, onOpen, isSaved, index = 0 }) {
 
 // Yellow rounded header sheet used at the top of list screens (title, optional back button, search field).
 export function YHeader({ title, back, children }) {
+  const { t } = useApp()
   return (
     <header className="yhead">
       <div className="yhead-top">
         <span className="yhead-side">{back}</span>
-        <h1>{title}</h1>
+        <h1>{t(title)}</h1>
         <span className="yhead-side" />
       </div>
       {children}

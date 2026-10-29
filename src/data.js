@@ -149,6 +149,8 @@ export const stationById = (id) => stations.find((s) => s.id === id)
 // Where a stand is: its place, or its own exact position.
 export const stationPlace = (s) => (s.placeId ? placeById(s.placeId) : s.pos ? { id: s.id, name: s.name, kind: 'Waiting spot', note: s.landmark, lat: s.pos.lat, lon: s.pos.lon } : null)
 export const stationsAt = (placeId) => stations.filter((s) => s.placeId === placeId)
+// A group can confirm its own details: set `verified: true` on its station once a BTODA officer has checked them.
+export const stationVerified = (s) => s.verified === true
 export const stationConfirmed = (s) => (s.placeId === 'terminal' && s.type === 'toda') || s.confirmed === true // confirmed: the bus terminal and the motorcycles at the Public Market
 
 // The closest tricycle stand to any point (a street, a barangay...), with the distance in meters.
@@ -336,7 +338,8 @@ export function transitFare(mode, km) {
 export function transitStatus(m, now = new Date()) {
   const t = now.getHours() * 60 + now.getMinutes()
   const open = t >= m.first && t <= m.last
-  return { open, text: open ? `Running now · last ride ${m.lastText}` : `Not running · first ride ${m.firstText}` }
+  const left = open ? m.last - t : 0 // minutes until the last ride
+  return { open, left, ending: open && left <= 60, text: open ? `Running now · last ride ${m.lastText}` : `Not running · first ride ${m.firstText}` }
 }
 // Which towns and barangays a mini bus serves (rural, good road). Still to confirm with the drivers.
 export const MINI_TOWNS = ['kapatagan', 'magsaysay', 'digos', 'santa-cruz']

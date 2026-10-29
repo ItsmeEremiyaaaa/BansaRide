@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp, BackButton, Icon, RouteRow, Tag, YHeader, Trike, Moto } from '../components'
 import MapView from '../MapView'
 import Feedback from '../Feedback'
-import { stations, stationById, stationConfirmed, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
+import { stations, stationById, stationConfirmed, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
 import { fmtDist } from './RouteScreens'
 
 const kindLabel = (s) => (s.type === 'motor' ? 'Motorcycles' : 'Tricycle / pedicab')
@@ -123,6 +123,7 @@ export function Station() {
         <div>
           <div className="mapcard-tags">
             <Tag tone={s.type === 'motor' ? 'green' : 'gold'}>{kindLabel(s)}</Tag>
+            {stationVerified(s) && <Tag tone="green">Verified by BTODA</Tag>}
             {stationConfirmed(s) ? <Tag tone="green">Confirmed</Tag> : <Tag>To confirm</Tag>}
             {s.source === 'generated' && <Tag tone="grey">Group name to confirm</Tag>}
             {s.pos?.approx && <Tag tone="grey">Approximate position</Tag>}
@@ -182,6 +183,8 @@ export function Station() {
         </section>
 
         <Feedback scope={{ stationId: s.id }} />
+
+        <button className="btn secondary" onClick={() => go('poster', { id: s.id })}><Icon name="check" />Make a poster for this stand</button>
 
         <section className="contact-card">
           <h2 className="sec">Contact</h2>

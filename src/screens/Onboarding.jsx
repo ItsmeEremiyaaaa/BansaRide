@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Icon, Trike, Bus, Moto } from '../components'
 import { useAuth } from '../auth'
+import { translate } from '../i18n'
 
 export const ONBOARDED = 'bansaride.onboarded.v1'
 
@@ -65,11 +66,13 @@ function SceneNear() {
   )
 }
 
+const lang = (() => { try { return JSON.parse(localStorage.getItem('bansaride-lang')) || 'en' } catch { return 'en' } })()
+const tx = (s) => translate(lang, s)
 const SLIDES = [
-  { tone: 'gold', tag: 'Welcome', scene: <SceneWelcome />, title: 'Welcome to BansaRide', text: 'Your ride and fare guide for Bansalan, Davao del Sur. Tricycle, pedicab, motorcycle, bus and van, all in one place.' },
-  { tone: 'blue', tag: 'The map', scene: <SceneMap />, title: 'A real map of Bansalan', text: 'Real streets, barangays and roads from OpenStreetMap. Once you have opened it, the map keeps working with no signal.' },
-  { tone: 'coral', tag: 'Fares', scene: <SceneFares />, title: 'Know your fare first', text: 'See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.' },
-  { tone: 'green', tag: 'Near you', scene: <SceneNear />, title: 'Drivers near you, live', text: 'Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.' },
+  { tone: 'gold', tag: 'Welcome', scene: <SceneWelcome />, title: tx('Welcome to BansaRide'), text: tx('Your ride and fare guide for Bansalan, Davao del Sur. Tricycle, pedicab, motorcycle, bus and van, all in one place.') },
+  { tone: 'blue', tag: 'The map', scene: <SceneMap />, title: tx('A real map of Bansalan'), text: tx('Real streets, barangays and roads from OpenStreetMap. Once you have opened it, the map keeps working with no signal.') },
+  { tone: 'coral', tag: 'Fares', scene: <SceneFares />, title: tx('Know your fare first'), text: tx('See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.') },
+  { tone: 'green', tag: 'Near you', scene: <SceneNear />, title: tx('Drivers near you, live'), text: tx('Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.') },
 ]
 const LAST = SLIDES.length // the sign-in page
 
@@ -138,7 +141,10 @@ export default function Onboarding({ onDone }) {
     <div className={'onb tone-' + tone}>
       <div className="onb-top">
         <span className="onb-logo"><Trike width={34} height={24} />BansaRide</span>
-        {i < LAST && <button className="onb-skip" onClick={() => go(LAST)}>Skip</button>}
+        <span className="onb-lang" role="group" aria-label="Language">
+          {[['en', 'EN'], ['bis', 'BIS']].map(([id, label]) => <button key={id} aria-pressed={lang === id} onClick={() => { try { localStorage.setItem('bansaride-lang', JSON.stringify(id)) } catch { /* optional */ } window.location.reload() }}>{label}</button>)}
+        </span>
+        {i < LAST && <button className="onb-skip" onClick={() => go(LAST)}>{tx('Skip')}</button>}
       </div>
       <div className="onb-steps" aria-hidden="true">
         {[...SLIDES, null].map((_, n) => <i key={n} className={n < i ? 'done' : n === i ? 'on' : ''} />)}
@@ -172,7 +178,7 @@ export default function Onboarding({ onDone }) {
                 <button className="onb-btn" disabled={state === 'busy'}>{state === 'busy' ? 'Sending…' : 'Send me a sign-in link'}</button>
               </form>
             ))}
-            <button className={'onb-guest' + (state === 'sent' ? ' primary' : '')} onClick={finish}>{state === 'sent' ? 'Open the app' : 'Continue as guest'}</button>
+            <button className={'onb-guest' + (state === 'sent' ? ' primary' : '')} onClick={finish}>{state === 'sent' ? tx('Open the app') : tx('Continue as guest')}</button>
           </section>
         </div>
       </div>
@@ -180,7 +186,7 @@ export default function Onboarding({ onDone }) {
       <div className="onb-foot">
         <button className="onb-back" onClick={() => go(i - 1)} aria-label="Back" disabled={i === 0}><Icon name="chevron" /></button>
         {i < LAST
-          ? <button className="onb-next" onClick={() => go(i + 1)}>{i === LAST - 1 ? 'Sign in' : 'Next'}<Icon name="chevron" /></button>
+          ? <button className="onb-next" onClick={() => go(i + 1)}>{i === LAST - 1 ? tx('Sign in') : tx('Next')}<Icon name="chevron" /></button>
           : <span className="onb-hint">Swipe back to review</span>}
       </div>
     </div>

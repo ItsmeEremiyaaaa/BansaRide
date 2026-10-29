@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react'
 import { useApp, Trike, Moto, Icon, RouteRow, Tag } from '../components'
+import { useStored } from '../hooks'
 import MapView from '../MapView'
 import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
-import { places, placeById, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist } from '../data'
+import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist } from '../data'
 
 const TRY = ['rizal', 'market', 'dolo', 'libertad']
 const countBy = (f) => routes.filter(f).length
@@ -56,7 +57,8 @@ export default function Home() {
   const { go, t, lang, setLang, say, saved, recent, online, loc, retryLocation } = useApp()
   const [from, setFrom] = useState('me') // 'me' = where the person is now
   const [to, setTo] = useState(null)
-  const [picker, setPicker] = useState(null) // 'from' | 'to' | null
+  const [picker, setPicker] = useState(null) // 'from' | 'to' | 'slot:home' | 'slot:school' | 'slot:work' | null
+  const [mine, setMine] = useStored('bansaride-myplaces', {}) // the person's own Home, School and Work
   const [spin, setSpin] = useState(0)
   const [scope, setScope] = useState('bansalan') // inside Bansalan, or going to another town
   const here = loc.state === 'ok' ? loc.ll : null
@@ -94,6 +96,7 @@ export default function Home() {
   const pick = (id) => {
     const which = picker
     setPicker(null)
+    if (which?.startsWith('slot:')) { setMine((m) => ({ ...m, [which.slice(5)]: id })); say('Saved.'); return }
     if (which === 'from') { setFrom(id); if (to) openPair(id, to) } else { setTo(id); openPair(from, id) }
   }
   const quickPick = (id) => { setTo(id); openPair(from, id) }
@@ -182,6 +185,25 @@ export default function Home() {
           )}
         </section>
 
+        <section aria-label="My places">
+          <div className="mine">
+            {[['home', 'Home', 'home'], ['school', 'School', 'town'], ['work', 'Work', 'flag']].map(([slot, label, icon]) => {
+              const id = mine[slot]
+              const p = id && placeById(id)
+              return (
+                <div className={'mine-slot' + (p ? ' set' : '')} key={slot}>
+                  <button className="mine-go" onClick={() => (p ? quickPick(p.id) : setPicker('slot:' + slot))} aria-label={p ? `Go to ${label}: ${p.name}` : `Set your ${label}`}>
+                    <Icon name={icon} />
+                    <b>{label}</b>
+                    <span>{p ? shortName(p.id) : 'Tap to set'}</span>
+                  </button>
+                  {p && <button className="mine-x" onClick={() => setPicker('slot:' + slot)} aria-label={`Change ${label}`}><Icon name="repeat" /></button>}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
         <NearYou loc={loc} go={go} retry={retryLocation} />
 
         <section aria-label="Kinds of rides and places">
@@ -259,7 +281,7 @@ export default function Home() {
 
       {picker && (
         <Picker
-          title={picker === 'from' ? 'Choose pickup' : 'Choose destination'}
+          title={picker === 'from' ? 'Choose pickup' : picker.startsWith('slot:') ? `Choose your ${picker.slice(5)}` : 'Choose destination'}
           otherId={picker === 'from' ? to : (from === 'me' ? null : from)}
           selectedId={picker === 'from' ? from : to}
           allowMe={picker === 'from'}
