@@ -1,0 +1,543 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T19:38:20Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 6291265477,
+  "lat": 6.8290816,
+  "lon": 125.2479239,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "495",
+    "is_in:municipality": "Bansalan",
+    "name": "Sibayan",
+    "official_name": "Barangay Sibayan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100277,
+  "lat": 6.7317539,
+  "lon": 125.2197218,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "New Visayas",
+    "official_name": "Barangay New Visayas",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772859,
+  "lat": 6.8117099,
+  "lon": 125.2642132,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Tinongtongan",
+    "official_name": "Barangay Tinongtongan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12494424635,
+  "lat": 6.7685997,
+  "lon": 125.2059942,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Dos",
+    "is_in:municipality": "Bansalan",
+    "name": "Lower Nebrada",
+    "official_name": "Purok Lower Nebrada",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630024399,
+  "lat": 6.7948479,
+  "lon": 125.2013245,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Tubod",
+    "is_in:municipality": "Bansalan",
+    "name": "Ilang-Ilang",
+    "official_name": "Purok Ilang-Ilang",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "way",
+  "id": 157375107,
+  "center": {
+    "lat": 6.7503979,
+    "lon": 125.1488194
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "oneway": "no",
+    "sidewalk": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375109,
+  "center": {
+    "lat": 6.7502127,
+    "lon": 125.1483561
+  },
+  "tags": {
+    "bridge": "yes",
+    "hgv": "no",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "oneway": "no",
+    "sidewalk": "both",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378674,
+  "center": {
+    "lat": 6.7544372,
+    "lon": 125.1547854
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 636116834,
+  "center": {
+    "lat": 6.8491793,
+    "lon": 125.2520632
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 672027915,
+  "center": {
+    "lat": 6.7372965,
+    "lon": 125.2172111
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 867691477,
+  "center": {
+    "lat": 6.8342535,
+    "lon": 125.2482873
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 922791865,
+  "center": {
+    "lat": 6.7365836,
+    "lon": 125.2224596
+  },
+  "tags": {
+    "addr:barangay": "New Visayas",
+    "addr:city": "Matanao",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "New Visayas Elementary School",
+    "operator": "Matanao I District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "406",
+    "population:pupils:date": "2015",
+    "ref": "129020",
+    "start_date": "1957"
+  }
+},
+{
+  "type": "way",
+  "id": 946174821,
+  "center": {
+    "lat": 6.8363952,
+    "lon": 125.2507021
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Waling-Waling",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Sibayan Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "116",
+    "population:pupils:date": "2015",
+    "ref": "128820",
+    "start_date": "1960"
+  }
+},
+{
+  "type": "way",
+  "id": 946188275,
+  "center": {
+    "lat": 6.8129463,
+    "lon": 125.2594669
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Tinongtongan Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "183",
+    "population:pupils:date": "2015",
+    "ref": "128821",
+    "start_date": "1956"
+  }
+},
+{
+  "type": "way",
+  "id": 977746157,
+  "center": {
+    "lat": 6.8279883,
+    "lon": 125.2480128
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Daisy",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Sibayan Covered Court",
+    "operator": "Barangay Sibayan",
+    "operator:type": "government",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 1118026476,
+  "center": {
+    "lat": 6.7500959,
+    "lon": 125.1443626
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1118028185,
+  "center": {
+    "lat": 6.7519853,
+    "lon": 125.1511349
+  },
+  "tags": {
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Quirino Avenue",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230365421,
+  "center": {
+    "lat": 6.8113403,
+    "lon": 125.2643515
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Tinongtongan Covered Court",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 1230365422,
+  "center": {
+    "lat": 6.8111422,
+    "lon": 125.2643560
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Tinongtongan Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1232131575,
+  "center": {
+    "lat": 6.8259793,
+    "lon": 125.2484994
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232131581,
+  "center": {
+    "lat": 6.8113898,
+    "lon": 125.2636475
+  },
+  "tags": {
+    "bridge:structure": "truss",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "steel",
+    "name": "Tinongtongan Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160708,
+  "center": {
+    "lat": 6.8281697,
+    "lon": 125.2479711
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Daisy",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Sibayan Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160709,
+  "center": {
+    "lat": 6.8360638,
+    "lon": 125.2491617
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160710,
+  "center": {
+    "lat": 6.8368133,
+    "lon": 125.2502918
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160712,
+  "center": {
+    "lat": 6.8657769,
+    "lon": 125.2535210
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "horrible",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1364724148,
+  "center": {
+    "lat": 6.7507216,
+    "lon": 125.1493109
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "oneway": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364724149,
+  "center": {
+    "lat": 6.7504105,
+    "lon": 125.1473095
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "oneway": "no",
+    "sidewalk": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930736,
+  "center": {
+    "lat": 6.7402478,
+    "lon": 125.2136801
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "layer": "1",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary",
+    "sidewalk": "both"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930737,
+  "center": {
+    "lat": 6.7401935,
+    "lon": 125.2139266
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930738,
+  "center": {
+    "lat": 6.7427010,
+    "lon": 125.2104171
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary"
+  }
+}
+
+  ]
+}

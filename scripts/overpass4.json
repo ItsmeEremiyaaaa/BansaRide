@@ -1,0 +1,4610 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T19:12:42Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 30308985,
+  "center": {
+    "lat": 6.8474984,
+    "lon": 125.1658034
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bicycle": "yes",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 109082109,
+  "center": {
+    "lat": 6.8532171,
+    "lon": 125.1682666
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Mount Carmel Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 124006450,
+  "center": {
+    "lat": 6.7684850,
+    "lon": 125.2687826
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "San Vicente-Kibao Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 124006462,
+  "center": {
+    "lat": 6.7531042,
+    "lon": 125.2671155
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 124006465,
+  "center": {
+    "lat": 6.7539154,
+    "lon": 125.2604041
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128012895,
+  "center": {
+    "lat": 6.7551017,
+    "lon": 125.2783963
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128012952,
+  "center": {
+    "lat": 6.7538932,
+    "lon": 125.2578277
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "maxweight": "default",
+    "maxweight:conditional": "39 @ (axles>=6)",
+    "maxweight:signed": "yes",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128012953,
+  "center": {
+    "lat": 6.7536127,
+    "lon": 125.2534917
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128012954,
+  "center": {
+    "lat": 6.7598206,
+    "lon": 125.2341938
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128012955,
+  "center": {
+    "lat": 6.7532842,
+    "lon": 125.2491533
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128013038,
+  "center": {
+    "lat": 6.7692748,
+    "lon": 125.2239461
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "maxspeed": "80",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128013046,
+  "center": {
+    "lat": 6.7652670,
+    "lon": 125.2290944
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "maxweight": "default",
+    "maxweight:conditional": "39 @ (axles>=6)",
+    "maxweight:signed": "yes",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128027745,
+  "center": {
+    "lat": 6.7849250,
+    "lon": 125.2130608
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128027746,
+  "center": {
+    "lat": 6.7847352,
+    "lon": 125.2139610
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "source:maxspeed": "PH:rural",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128027901,
+  "center": {
+    "lat": 6.7976477,
+    "lon": 125.1999657
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128027902,
+  "center": {
+    "lat": 6.8190256,
+    "lon": 125.1857308
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128027903,
+  "center": {
+    "lat": 6.8005661,
+    "lon": 125.1980334
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128027904,
+  "center": {
+    "lat": 6.8044086,
+    "lon": 125.1954507
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128027984,
+  "center": {
+    "lat": 6.8377161,
+    "lon": 125.1722148
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128027986,
+  "center": {
+    "lat": 6.8351190,
+    "lon": 125.1744307
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128027987,
+  "center": {
+    "lat": 6.8402184,
+    "lon": 125.1700886
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128028042,
+  "center": {
+    "lat": 6.8610330,
+    "lon": 125.1625260
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bicycle": "yes",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128028047,
+  "center": {
+    "lat": 6.8547673,
+    "lon": 125.1652706
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 128028098,
+  "center": {
+    "lat": 6.8673614,
+    "lon": 125.1588730
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bicycle": "yes",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "lanes": "4",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 128028099,
+  "center": {
+    "lat": 6.8782664,
+    "lon": 125.1616687
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128076404,
+  "center": {
+    "lat": 6.8908693,
+    "lon": 125.1650401
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128076405,
+  "center": {
+    "lat": 6.8891445,
+    "lon": 125.1658047
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128077548,
+  "center": {
+    "lat": 6.8926431,
+    "lon": 125.1642346
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "bridge:ref": "75",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128077549,
+  "center": {
+    "lat": 6.8969423,
+    "lon": 125.1628975
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "foot": "yes",
+    "highway": "trunk",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128078006,
+  "center": {
+    "lat": 6.9011656,
+    "lon": 125.1614621
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "bridge:name": "Bulatukan Bridge",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 128078008,
+  "center": {
+    "lat": 6.9213754,
+    "lon": 125.1522006
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 129283926,
+  "center": {
+    "lat": 6.7715143,
+    "lon": 125.2571815
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 129284006,
+  "center": {
+    "lat": 6.7242617,
+    "lon": 125.2718497
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Sacub-Lanuro Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 131405216,
+  "center": {
+    "lat": 6.7390623,
+    "lon": 125.2819537
+  },
+  "tags": {
+    "designation": "barangay_road",
+    "highway": "unclassified",
+    "name": "Upper San Miguel Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 131405391,
+  "center": {
+    "lat": 6.7263844,
+    "lon": 125.2807447
+  },
+  "tags": {
+    "designation": "barangay_road",
+    "highway": "unclassified",
+    "name": "Fatima Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157248652,
+  "center": {
+    "lat": 6.9136493,
+    "lon": 125.1488860
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Kalapungot Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157258937,
+  "center": {
+    "lat": 6.8620088,
+    "lon": 125.1693346
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157258938,
+  "center": {
+    "lat": 6.8581755,
+    "lon": 125.1661280
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157259544,
+  "center": {
+    "lat": 6.8644419,
+    "lon": 125.1723058
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157259545,
+  "center": {
+    "lat": 6.8687928,
+    "lon": 125.1756810
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157261049,
+  "center": {
+    "lat": 6.8294494,
+    "lon": 125.1736289
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "ground"
+  }
+},
+{
+  "type": "way",
+  "id": 157261050,
+  "center": {
+    "lat": 6.8287147,
+    "lon": 125.1728203
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 157261052,
+  "center": {
+    "lat": 6.8202706,
+    "lon": 125.1624629
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157261053,
+  "center": {
+    "lat": 6.8671181,
+    "lon": 125.2066406
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157262584,
+  "center": {
+    "lat": 6.8173574,
+    "lon": 125.1780762
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "San Isidro Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157265257,
+  "center": {
+    "lat": 6.8204903,
+    "lon": 125.1952543
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157267483,
+  "center": {
+    "lat": 6.8145973,
+    "lon": 125.2120501
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 157267487,
+  "center": {
+    "lat": 6.7885315,
+    "lon": 125.2112062
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Via Aldi Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157267496,
+  "center": {
+    "lat": 6.8064640,
+    "lon": 125.2142468
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270228,
+  "center": {
+    "lat": 6.7969073,
+    "lon": 125.2189523
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Buenavista Road",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270252,
+  "center": {
+    "lat": 6.7849429,
+    "lon": 125.2132833
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Viacrucis Street",
+    "oneway": "yes",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270260,
+  "center": {
+    "lat": 6.7886605,
+    "lon": 125.2139252
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "maxweight": "25",
+    "name": "Via Aldi Street",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 157270264,
+  "center": {
+    "lat": 6.7827861,
+    "lon": 125.2117316
+  },
+  "tags": {
+    "highway": "residential",
+    "lanes": "2",
+    "name": "Dahlia Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157270268,
+  "center": {
+    "lat": 6.7864099,
+    "lon": 125.2145005
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Lily Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270269,
+  "center": {
+    "lat": 6.7818815,
+    "lon": 125.2132044
+  },
+  "tags": {
+    "highway": "residential",
+    "lanes": "2",
+    "name": "Dahlia Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157270272,
+  "center": {
+    "lat": 6.7849243,
+    "lon": 125.2134019
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Viacrucis Street",
+    "oneway": "yes",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270278,
+  "center": {
+    "lat": 6.7863594,
+    "lon": 125.2124352
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "J. P. Laurel Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270280,
+  "center": {
+    "lat": 6.7887513,
+    "lon": 125.2150570
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Via Aldi Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270282,
+  "center": {
+    "lat": 6.7850048,
+    "lon": 125.2086609
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Bonifacio Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157332879,
+  "center": {
+    "lat": 6.7905427,
+    "lon": 125.2136880
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Del Pilar Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157332881,
+  "center": {
+    "lat": 6.7897843,
+    "lon": 125.2122259
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Roxas Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157332963,
+  "center": {
+    "lat": 6.7865917,
+    "lon": 125.2136522
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "maxweight": "25",
+    "name": "Lily Street",
+    "sidewalk": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 157333722,
+  "center": {
+    "lat": 6.7841900,
+    "lon": 125.2202657
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Forget Me Not Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157333726,
+  "center": {
+    "lat": 6.7851551,
+    "lon": 125.2207791
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rosal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157333727,
+  "center": {
+    "lat": 6.7818926,
+    "lon": 125.2169300
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Lily Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157333742,
+  "center": {
+    "lat": 6.7827071,
+    "lon": 125.2174542
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Forget Me Not Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157333743,
+  "center": {
+    "lat": 6.7815177,
+    "lon": 125.2176037
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Camia Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337827,
+  "center": {
+    "lat": 6.7803514,
+    "lon": 125.2188386
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Sampaguita Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337828,
+  "center": {
+    "lat": 6.7752263,
+    "lon": 125.2150221
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Santol Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337829,
+  "center": {
+    "lat": 6.7732534,
+    "lon": 125.2157615
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Durian Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337832,
+  "center": {
+    "lat": 6.7781288,
+    "lon": 125.2142671
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Atis Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337835,
+  "center": {
+    "lat": 6.7783856,
+    "lon": 125.2176756
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "P. Gatmaitan Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337839,
+  "center": {
+    "lat": 6.7714468,
+    "lon": 125.2142310
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Dama de Noche Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337840,
+  "center": {
+    "lat": 6.7792780,
+    "lon": 125.2173400
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Atis Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157337854,
+  "center": {
+    "lat": 6.7747433,
+    "lon": 125.2140752
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Casoy Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157337855,
+  "center": {
+    "lat": 6.7745252,
+    "lon": 125.2134963
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Sampaloc Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157337856,
+  "center": {
+    "lat": 6.7742539,
+    "lon": 125.2153834
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Marang Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337860,
+  "center": {
+    "lat": 6.7749537,
+    "lon": 125.2146614
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Starapple Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157340017,
+  "center": {
+    "lat": 6.7202385,
+    "lon": 125.2182626
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157340019,
+  "center": {
+    "lat": 6.7532355,
+    "lon": 125.2381854
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "yes",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157340022,
+  "center": {
+    "lat": 6.7538860,
+    "lon": 125.2387309
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:right": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157340023,
+  "center": {
+    "lat": 6.7418591,
+    "lon": 125.2261564
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157363215,
+  "center": {
+    "lat": 6.7412212,
+    "lon": 125.2694841
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Lanuro-Cabligan Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157363742,
+  "center": {
+    "lat": 6.7187264,
+    "lon": 125.2271766
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "San Jose Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157375108,
+  "center": {
+    "lat": 6.7882021,
+    "lon": 125.1988040
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375110,
+  "center": {
+    "lat": 6.7760364,
+    "lon": 125.1778776
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Bansalan-Magsaysay Road",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375116,
+  "center": {
+    "lat": 6.7832757,
+    "lon": 125.1938641
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Bansalan-Magsaysay Road",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375117,
+  "center": {
+    "lat": 6.7805174,
+    "lon": 125.1858677
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375120,
+  "center": {
+    "lat": 6.7680999,
+    "lon": 125.1659049
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378673,
+  "center": {
+    "lat": 6.7522321,
+    "lon": 125.1525679
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Lopez Jaena Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378674,
+  "center": {
+    "lat": 6.7544372,
+    "lon": 125.1547854
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Quirino Avenue",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378675,
+  "center": {
+    "lat": 6.7542238,
+    "lon": 125.1515634
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Rizal Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157378680,
+  "center": {
+    "lat": 6.7535695,
+    "lon": 125.1523150
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "A. Bonifacion Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157378691,
+  "center": {
+    "lat": 6.7509901,
+    "lon": 125.1512384
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabini Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378693,
+  "center": {
+    "lat": 6.7531275,
+    "lon": 125.1497714
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378695,
+  "center": {
+    "lat": 6.7520860,
+    "lon": 125.1523980
+  },
+  "tags": {
+    "alt_name": "Roxas Street",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Roxas Boulevard",
+    "official_name": "Roxas Boulevard Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378697,
+  "center": {
+    "lat": 6.7521286,
+    "lon": 125.1498336
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Osmeña Street",
+    "oneway": "no",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378699,
+  "center": {
+    "lat": 6.7541318,
+    "lon": 125.1521633
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Burgos Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157391187,
+  "center": {
+    "lat": 6.7387373,
+    "lon": 125.1721301
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Poblacion-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 167600784,
+  "center": {
+    "lat": 6.7231626,
+    "lon": 125.2820805
+  },
+  "tags": {
+    "designation": "barangay_road",
+    "highway": "unclassified",
+    "name": "NIA Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 173466456,
+  "center": {
+    "lat": 6.7565269,
+    "lon": 125.1681624
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Dalawinon-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173466463,
+  "center": {
+    "lat": 6.7528117,
+    "lon": 125.1603591
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Poblacion-Kasuga Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 173466601,
+  "center": {
+    "lat": 6.7313530,
+    "lon": 125.1832568
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173545180,
+  "center": {
+    "lat": 6.7767079,
+    "lon": 125.1874176
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Mainit Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 173545181,
+  "center": {
+    "lat": 6.7544925,
+    "lon": 125.2029471
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173545184,
+  "center": {
+    "lat": 6.7838591,
+    "lon": 125.1814964
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Garbal Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 173545187,
+  "center": {
+    "lat": 6.7609002,
+    "lon": 125.2278501
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173545190,
+  "center": {
+    "lat": 6.7765698,
+    "lon": 125.2008023
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 291444033,
+  "center": {
+    "lat": 6.7953245,
+    "lon": 125.2017983
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 291445260,
+  "center": {
+    "lat": 6.7569218,
+    "lon": 125.1917731
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 361824458,
+  "center": {
+    "lat": 6.8318723,
+    "lon": 125.2802444
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Goma Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 363865519,
+  "center": {
+    "lat": 6.8255470,
+    "lon": 125.2712518
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Balabag Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 521087516,
+  "center": {
+    "lat": 6.9120327,
+    "lon": 125.1773486
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "New Israel Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 534160433,
+  "center": {
+    "lat": 6.8658919,
+    "lon": 125.1916176
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Alta Vista Road",
+    "source:maxspeed": "PH:rural"
+  }
+},
+{
+  "type": "way",
+  "id": 534160435,
+  "center": {
+    "lat": 6.8614002,
+    "lon": 125.1920957
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Alta Vista Road",
+    "source:maxspeed": "PH:rural"
+  }
+},
+{
+  "type": "way",
+  "id": 542743935,
+  "center": {
+    "lat": 6.7902615,
+    "lon": 125.2165199
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rose Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 636116832,
+  "center": {
+    "lat": 6.8613699,
+    "lon": 125.2784192
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "unclassified",
+    "maxspeed": "80",
+    "name": "Goma Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 636116834,
+  "center": {
+    "lat": 6.8491793,
+    "lon": 125.2520632
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 671831723,
+  "center": {
+    "lat": 6.8076544,
+    "lon": 125.2471301
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved",
+    "width": "3"
+  }
+},
+{
+  "type": "way",
+  "id": 672027915,
+  "center": {
+    "lat": 6.7372965,
+    "lon": 125.2172111
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 681651600,
+  "center": {
+    "lat": 6.7844224,
+    "lon": 125.2144488
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 681651602,
+  "center": {
+    "lat": 6.7891171,
+    "lon": 125.2078989
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "6",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 681651603,
+  "center": {
+    "lat": 6.7848795,
+    "lon": 125.2130171
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222095,
+  "center": {
+    "lat": 6.7696225,
+    "lon": 125.2093927
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "maxweight": "25",
+    "name": "Dama de Noche Street",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222098,
+  "center": {
+    "lat": 6.7639255,
+    "lon": 125.2300427
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222099,
+  "center": {
+    "lat": 6.7634466,
+    "lon": 125.2297052
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Mabuhay Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222111,
+  "center": {
+    "lat": 6.8697905,
+    "lon": 125.1961345
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Alta Vista Road",
+    "source:maxspeed": "PH:rural"
+  }
+},
+{
+  "type": "way",
+  "id": 700222121,
+  "center": {
+    "lat": 6.7820031,
+    "lon": 125.2148303
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Dahlia Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222123,
+  "center": {
+    "lat": 6.7861232,
+    "lon": 125.2134334
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Viacrucis Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222127,
+  "center": {
+    "lat": 6.7692630,
+    "lon": 125.1939688
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222129,
+  "center": {
+    "lat": 6.7420805,
+    "lon": 125.1908146
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222130,
+  "center": {
+    "lat": 6.7384427,
+    "lon": 125.1883287
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 700222131,
+  "center": {
+    "lat": 6.7455189,
+    "lon": 125.1934802
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222134,
+  "center": {
+    "lat": 6.7472831,
+    "lon": 125.1983587
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222135,
+  "center": {
+    "lat": 6.7471455,
+    "lon": 125.1981376
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222138,
+  "center": {
+    "lat": 6.7205907,
+    "lon": 125.2092738
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Filipe Lleses Sr. Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222156,
+  "center": {
+    "lat": 6.7843638,
+    "lon": 125.2144857
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222157,
+  "center": {
+    "lat": 6.7846311,
+    "lon": 125.2139540
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222168,
+  "center": {
+    "lat": 6.8217440,
+    "lon": 125.1805953
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222169,
+  "center": {
+    "lat": 6.8173328,
+    "lon": 125.1739271
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222171,
+  "center": {
+    "lat": 6.8324651,
+    "lon": 125.2170302
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 711148201,
+  "center": {
+    "lat": 6.7977643,
+    "lon": 125.2091626
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Tubod Road",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 738677707,
+  "center": {
+    "lat": 6.8606320,
+    "lon": 125.2481760
+  },
+  "tags": {
+    "designation": "national_tertiary_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Bansalan-Mount Apo National Park Road",
+    "nat_name": "Bansalan-Mount Apo National Park Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 738677719,
+  "center": {
+    "lat": 6.8482475,
+    "lon": 125.1662868
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Rambutan Street"
+  }
+},
+{
+  "type": "way",
+  "id": 778706757,
+  "center": {
+    "lat": 6.9229820,
+    "lon": 125.2802968
+  },
+  "tags": {
+    "designation": "national_tertiary_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Bansalan-Mount Apo National Park Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 783822260,
+  "center": {
+    "lat": 6.7271291,
+    "lon": 125.2769093
+  },
+  "tags": {
+    "designation": "barangay_road",
+    "highway": "residential",
+    "name": "Fatima Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 817729427,
+  "center": {
+    "lat": 6.9122434,
+    "lon": 125.2712983
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "national_tertiary_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Bansalan-Mount Apo National Park Road",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 864540209,
+  "center": {
+    "lat": 6.8091860,
+    "lon": 125.1752996
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Rasonabe Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 865210886,
+  "center": {
+    "lat": 6.7697694,
+    "lon": 125.1937116
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Mainit Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 865612383,
+  "center": {
+    "lat": 6.7975652,
+    "lon": 125.2679480
+  },
+  "tags": {
+    "highway": "tertiary",
+    "name": "San Vicente-Kibao Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 867691477,
+  "center": {
+    "lat": 6.8342535,
+    "lon": 125.2482873
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 878026387,
+  "center": {
+    "lat": 6.8403426,
+    "lon": 125.1820169
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 878026388,
+  "center": {
+    "lat": 6.8648315,
+    "lon": 125.2176069
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 879137674,
+  "center": {
+    "lat": 6.7537708,
+    "lon": 125.1508103
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 907198460,
+  "center": {
+    "lat": 6.9800126,
+    "lon": 125.1601177
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Buhay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 948387569,
+  "center": {
+    "lat": 6.7825431,
+    "lon": 125.2154314
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "6",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 955634300,
+  "center": {
+    "lat": 6.7536395,
+    "lon": 125.2639012
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955634301,
+  "center": {
+    "lat": 6.7531622,
+    "lon": 125.2671262
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955634305,
+  "center": {
+    "lat": 6.7534018,
+    "lon": 125.2651123
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955634306,
+  "center": {
+    "lat": 6.7536787,
+    "lon": 125.2639090
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955634307,
+  "center": {
+    "lat": 6.7534804,
+    "lon": 125.2651307
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955637505,
+  "center": {
+    "lat": 6.8050995,
+    "lon": 125.1950061
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955637506,
+  "center": {
+    "lat": 6.8038353,
+    "lon": 125.1958501
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955637509,
+  "center": {
+    "lat": 6.8044782,
+    "lon": 125.1955181
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "bridge": "yes",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955637510,
+  "center": {
+    "lat": 6.8038618,
+    "lon": 125.1958894
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 955637511,
+  "center": {
+    "lat": 6.8051425,
+    "lon": 125.1950341
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "2",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "oneway": "yes",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 977484694,
+  "center": {
+    "lat": 6.7976683,
+    "lon": 125.2247948
+  },
+  "tags": {
+    "designation": "national_tertiary_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Bansalan-Mount Apo National Park Road",
+    "nat_name": "Bansalan-Mount Apo National Park Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 999347742,
+  "center": {
+    "lat": 6.7537006,
+    "lon": 125.2637469
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1115112706,
+  "center": {
+    "lat": 6.7278089,
+    "lon": 125.2794720
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sinaragan-Kibuaya Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1115112707,
+  "center": {
+    "lat": 6.7230459,
+    "lon": 125.2771241
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sinaragan-Kibuaya Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1115240829,
+  "center": {
+    "lat": 6.7220558,
+    "lon": 125.2334931
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Matanao-Hagonoy Road",
+    "official_name": "New Visayas-Hagonoy Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1118023710,
+  "center": {
+    "lat": 6.7528961,
+    "lon": 125.1530192
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Luna Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1118024187,
+  "center": {
+    "lat": 6.7533935,
+    "lon": 125.1517559
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Lopez Jaena Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1118028185,
+  "center": {
+    "lat": 6.7519853,
+    "lon": 125.1511349
+  },
+  "tags": {
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Quirino Avenue",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1118028186,
+  "center": {
+    "lat": 6.7566224,
+    "lon": 125.1533342
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1120473901,
+  "center": {
+    "lat": 6.8336503,
+    "lon": 125.1757101
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1120473910,
+  "center": {
+    "lat": 6.7527876,
+    "lon": 125.2465860
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 1120473911,
+  "center": {
+    "lat": 6.7532769,
+    "lon": 125.2416693
+  },
+  "tags": {
+    "alt_name": "National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lanes": "4",
+    "name": "Davao-Cotabato National Highway",
+    "nat_name": "Davao-Cotabato Road",
+    "ref": "75",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530986,
+  "center": {
+    "lat": 6.7504993,
+    "lon": 125.2347283
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "yes",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530987,
+  "center": {
+    "lat": 6.7498542,
+    "lon": 125.2333047
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530989,
+  "center": {
+    "lat": 6.7525803,
+    "lon": 125.2376057
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530991,
+  "center": {
+    "lat": 6.7499289,
+    "lon": 125.2331606
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530992,
+  "center": {
+    "lat": 6.7515138,
+    "lon": 125.2363292
+  },
+  "tags": {
+    "access": "destination",
+    "check_date": "2025-11-03",
+    "construction": "minor",
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530993,
+  "center": {
+    "lat": 6.7274641,
+    "lon": 125.2193314
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530994,
+  "center": {
+    "lat": 6.7506169,
+    "lon": 125.2344669
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "yes",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1123530995,
+  "center": {
+    "lat": 6.7515831,
+    "lon": 125.2363720
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1125958884,
+  "center": {
+    "lat": 6.7835175,
+    "lon": 125.2166726
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rosal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1138368459,
+  "center": {
+    "lat": 6.7798491,
+    "lon": 125.1841305
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mainit Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1138379890,
+  "center": {
+    "lat": 6.7941526,
+    "lon": 125.2007687
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Green Manor Drive",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1138381135,
+  "center": {
+    "lat": 6.7748419,
+    "lon": 125.2198791
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Durian Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912283,
+  "center": {
+    "lat": 6.7483282,
+    "lon": 125.1990262
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912285,
+  "center": {
+    "lat": 6.7696905,
+    "lon": 125.1943678
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912290,
+  "center": {
+    "lat": 6.7645697,
+    "lon": 125.1897640
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912293,
+  "center": {
+    "lat": 6.7482623,
+    "lon": 125.1972845
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912295,
+  "center": {
+    "lat": 6.7691200,
+    "lon": 125.2080131
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Dama de Noche Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158076756,
+  "center": {
+    "lat": 6.7865806,
+    "lon": 125.2134260
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Lily Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158078236,
+  "center": {
+    "lat": 6.7756067,
+    "lon": 125.2194050
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Lily Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158078237,
+  "center": {
+    "lat": 6.7816395,
+    "lon": 125.2204837
+  },
+  "tags": {
+    "designation": "national_tertiary_road",
+    "highway": "secondary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "A. Metilla Street",
+    "nat_name": "Bansalan-Mount Apo National Park Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158082358,
+  "center": {
+    "lat": 6.7818312,
+    "lon": 125.2139758
+  },
+  "tags": {
+    "highway": "service",
+    "name": "Dahlia Street",
+    "service": "alley",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158082362,
+  "center": {
+    "lat": 6.7822486,
+    "lon": 125.2123705
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Dahlia Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230255569,
+  "center": {
+    "lat": 6.7742930,
+    "lon": 125.2129163
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Orange Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230259488,
+  "center": {
+    "lat": 6.7851564,
+    "lon": 125.2133877
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Viacrucis Street",
+    "oneway": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230259489,
+  "center": {
+    "lat": 6.7854750,
+    "lon": 125.2134414
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Viacrucis Street",
+    "oneway": "yes",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230261669,
+  "center": {
+    "lat": 6.8056148,
+    "lon": 125.2229630
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Buenavista Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:urban",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1230261670,
+  "center": {
+    "lat": 6.7875242,
+    "lon": 125.2156046
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rose Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1230261671,
+  "center": {
+    "lat": 6.7853865,
+    "lon": 125.2148930
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rose Street",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232061360,
+  "center": {
+    "lat": 6.7770872,
+    "lon": 125.2174572
+  },
+  "tags": {
+    "alt_name": "Davao-Cotabato Highway;National Highway",
+    "designation": "national_primary_road",
+    "highway": "trunk",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "maxspeed": "80",
+    "name": "R. Delos Cientos Street",
+    "name:etymology": "Ramon Delos Cientos Sr.",
+    "name:etymology:description": "Former mayor of Bansalan and first governor of Davao del Sur",
+    "nat_name": "Davao-Cotabato Road",
+    "official_name": "Ramon Delos Cientos Street",
+    "ref": "75",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232131575,
+  "center": {
+    "lat": 6.8259793,
+    "lon": 125.2484994
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232134332,
+  "center": {
+    "lat": 6.7885397,
+    "lon": 125.2655448
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "San Vicente-Kibao Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1232134334,
+  "center": {
+    "lat": 6.7927850,
+    "lon": 125.2642880
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "San Vicente-Kibao Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232134336,
+  "center": {
+    "lat": 6.7904656,
+    "lon": 125.2636447
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "San Vicente-Kibao Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1254933113,
+  "center": {
+    "lat": 6.7952473,
+    "lon": 125.2502588
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved",
+    "width": "3"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580078,
+  "center": {
+    "lat": 6.7565044,
+    "lon": 125.2246164
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580079,
+  "center": {
+    "lat": 6.7532266,
+    "lon": 125.2221968
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580080,
+  "center": {
+    "lat": 6.7497104,
+    "lon": 125.2196107
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580081,
+  "center": {
+    "lat": 6.7466771,
+    "lon": 125.2173753
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330537971,
+  "center": {
+    "lat": 6.8766589,
+    "lon": 125.2019568
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Alta Vista Road",
+    "source:maxspeed": "PH:rural"
+  }
+},
+{
+  "type": "way",
+  "id": 1330537973,
+  "center": {
+    "lat": 6.8843086,
+    "lon": 125.2057573
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Alta Vista Road",
+    "source:maxspeed": "PH:rural"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540475,
+  "center": {
+    "lat": 6.8333772,
+    "lon": 125.2017435
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540476,
+  "center": {
+    "lat": 6.8267020,
+    "lon": 125.1988551
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540479,
+  "center": {
+    "lat": 6.8180087,
+    "lon": 125.2123783
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540488,
+  "center": {
+    "lat": 6.8526540,
+    "lon": 125.1867699
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540491,
+  "center": {
+    "lat": 6.8714885,
+    "lon": 125.2207210
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330541563,
+  "center": {
+    "lat": 6.7997298,
+    "lon": 125.2122371
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Tubod Road",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330541564,
+  "center": {
+    "lat": 6.7957360,
+    "lon": 125.2060227
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Tubod Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330541569,
+  "center": {
+    "lat": 6.8125599,
+    "lon": 125.2128782
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160709,
+  "center": {
+    "lat": 6.8360638,
+    "lon": 125.2491617
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160710,
+  "center": {
+    "lat": 6.8368133,
+    "lon": 125.2502918
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160712,
+  "center": {
+    "lat": 6.8657769,
+    "lon": 125.2535210
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "horrible",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1331161539,
+  "center": {
+    "lat": 6.8445378,
+    "lon": 125.2623486
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Balabag Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331161540,
+  "center": {
+    "lat": 6.8493989,
+    "lon": 125.2632867
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Balabag Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1333105071,
+  "center": {
+    "lat": 6.7861619,
+    "lon": 125.2682879
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "San Vicente-Kibao Road",
+    "smoothness": "intermediate",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818602,
+  "center": {
+    "lat": 6.8165969,
+    "lon": 125.1893826
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818603,
+  "center": {
+    "lat": 6.8675247,
+    "lon": 125.2196783
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818604,
+  "center": {
+    "lat": 6.8619754,
+    "lon": 125.2158238
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete",
+    "width": "2"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818605,
+  "center": {
+    "lat": 6.8606402,
+    "lon": 125.2153001
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818606,
+  "center": {
+    "lat": 6.8595637,
+    "lon": 125.2144455
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818607,
+  "center": {
+    "lat": 6.8516241,
+    "lon": 125.2102097
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "horrible",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818612,
+  "center": {
+    "lat": 6.8404565,
+    "lon": 125.2049080
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818615,
+  "center": {
+    "lat": 6.8754713,
+    "lon": 125.2211876
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364222592,
+  "center": {
+    "lat": 6.7751686,
+    "lon": 125.2152595
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Mangga Street",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1364228809,
+  "center": {
+    "lat": 6.7534510,
+    "lon": 125.1502562
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "sidewalk": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 1364679865,
+  "center": {
+    "lat": 6.8592873,
+    "lon": 125.1668016
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364905260,
+  "center": {
+    "lat": 6.7643599,
+    "lon": 125.2068000
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364905261,
+  "center": {
+    "lat": 6.7475471,
+    "lon": 125.1987022
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364956258,
+  "center": {
+    "lat": 6.8197638,
+    "lon": 125.1775907
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364956280,
+  "center": {
+    "lat": 6.8129978,
+    "lon": 125.1727248
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Rasonabe Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364956286,
+  "center": {
+    "lat": 6.8135832,
+    "lon": 125.1806397
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "San Isidro Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1364960699,
+  "center": {
+    "lat": 6.8312388,
+    "lon": 125.1755473
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762272,
+  "center": {
+    "lat": 6.7491209,
+    "lon": 125.1962723
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762273,
+  "center": {
+    "lat": 6.7499969,
+    "lon": 125.1957186
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762275,
+  "center": {
+    "lat": 6.7711580,
+    "lon": 125.1932800
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Mainit Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762276,
+  "center": {
+    "lat": 6.7726815,
+    "lon": 125.1916612
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mainit Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762280,
+  "center": {
+    "lat": 6.7659242,
+    "lon": 125.1909596
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "oneway": "no",
+    "sidewalk": "both",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762281,
+  "center": {
+    "lat": 6.7675552,
+    "lon": 125.1924258
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366765784,
+  "center": {
+    "lat": 6.7412759,
+    "lon": 125.1803966
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Dalawinon-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1367261569,
+  "center": {
+    "lat": 6.8537606,
+    "lon": 125.2782368
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "unclassified",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Goma Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1447085756,
+  "center": {
+    "lat": 6.7511079,
+    "lon": 125.2356195
+  },
+  "tags": {
+    "check_date": "2025-11-03",
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "note": "temporary link",
+    "oneway": "yes",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1447085757,
+  "center": {
+    "lat": 6.7509160,
+    "lon": 125.2351058
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1447085758,
+  "center": {
+    "lat": 6.7508039,
+    "lon": 125.2351804
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1459383429,
+  "center": {
+    "lat": 6.7538649,
+    "lon": 125.2387544
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "dual_carriageway": "yes",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "yes",
+    "sidewalk:right": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1459383430,
+  "center": {
+    "lat": 6.7533137,
+    "lon": 125.2382534
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "primary",
+    "lane_markings": "yes",
+    "lanes": "4",
+    "maxspeed": "80",
+    "name": "Matanao Road",
+    "oneway": "no",
+    "sidewalk:both": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+}
+
+  ]
+}

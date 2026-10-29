@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 290" width="840" height="580"><rect width="420" height="290" fill="#FFF8E1"/>
+        <g stroke="#111" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+          <rect x="24" y="52" width="372" height="170" rx="26" fill="#F4B400" />
+          <rect x="24" y="150" width="372" height="26" fill="#E5322D" /><rect x="24" y="176" width="372" height="18" fill="#1F7A8C" />
+          <path d="M24 194 H396 V196 Q396 222 370 222 H50 Q24 222 24 196 Z" fill="#fff" />
+          <rect x="46" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="108" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="170" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="232" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="294" y="74" width="52" height="62" rx="6" fill="#bfe3ee" />
+          <path d="M338 70 H372 Q384 70 384 84 V136 H338 Z" fill="#bfe3ee" />
+          <polygon points="46,58 62,58 54,70" fill="#E5322D" /><polygon points="62,58 78,58 70,70" fill="#1F7A8C" /><polygon points="78,58 94,58 86,70" fill="#E5322D" />
+          <rect x="130" y="34" width="150" height="26" rx="8" fill="#fff" /><path d="M146 47 H264" stroke="#E5322D" stroke-width="6" fill="none" />
+          <rect x="378" y="190" width="22" height="14" rx="5" fill="#fff" />
+          <circle cx="110" cy="228" r="36" fill="#111" /><circle cx="110" cy="228" r="29" fill="#fff" stroke="none" /><circle cx="110" cy="228" r="17" fill="none" stroke="#E5322D" stroke-width="14" stroke-dasharray="8.9 8.9" /><circle cx="110" cy="228" r="17" fill="none" stroke="#F4B400" stroke-width="14" stroke-dasharray="8.9 8.9" stroke-dashoffset="8.9" /><circle cx="110" cy="228" r="8" fill="#1F7A8C" stroke-width="3" /><circle cx="310" cy="228" r="36" fill="#111" /><circle cx="310" cy="228" r="29" fill="#fff" stroke="none" /><circle cx="310" cy="228" r="17" fill="none" stroke="#E5322D" stroke-width="14" stroke-dasharray="8.9 8.9" /><circle cx="310" cy="228" r="17" fill="none" stroke="#F4B400" stroke-width="14" stroke-dasharray="8.9 8.9" stroke-dashoffset="8.9" /><circle cx="310" cy="228" r="8" fill="#1F7A8C" stroke-width="3" />
+        </g>
+      </svg>

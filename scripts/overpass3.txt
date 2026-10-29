@@ -1,0 +1,6 @@
+[out:json][timeout:90];
+(
+  nwr["amenity"~"college|university|school|kindergarten|place_of_worship"](6.72,125.15,6.99,125.28);
+  nwr["name"~"Salazar|Kapatagan|Balutakay|TODA|Habal"](6.60,125.10,7.10,125.40);
+);
+out center tags;

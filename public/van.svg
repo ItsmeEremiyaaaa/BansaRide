@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 290" width="840" height="580"><rect width="420" height="290" fill="#FFF8E1"/>
+        <g stroke="#111" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M26 206 V92 Q26 66 52 66 H262 Q286 66 300 88 L352 150 Q384 156 394 176 V206 Z" fill="#E5322D" />
+          <path d="M26 150 H394 V176 H26 Z" fill="#F4B400" /><path d="M26 176 H394 V192 H26 Z" fill="#1F7A8C" />
+          <rect x="46" y="84" width="62" height="52" rx="6" fill="#bfe3ee" /><rect x="118" y="84" width="62" height="52" rx="6" fill="#bfe3ee" /><rect x="190" y="84" width="62" height="52" rx="6" fill="#bfe3ee" />
+          <path d="M262 84 H284 L332 140 H262 Z" fill="#bfe3ee" />
+          <polygon points="46,70 62,70 54,82" fill="#fff" /><polygon points="62,70 78,70 70,82" fill="#F4B400" /><polygon points="78,70 94,70 86,82" fill="#fff" />
+          <rect x="376" y="168" width="22" height="16" rx="5" fill="#fff" />
+          <path d="M26 192 H394 V198 Q394 214 378 214 H42 Q26 214 26 198 Z" fill="#fff" />
+          <circle cx="110" cy="220" r="36" fill="#111" /><circle cx="110" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="110" cy="220" r="17" fill="none" stroke="#E5322D" stroke-width="14" stroke-dasharray="8.9 8.9" /><circle cx="110" cy="220" r="17" fill="none" stroke="#F4B400" stroke-width="14" stroke-dasharray="8.9 8.9" stroke-dashoffset="8.9" /><circle cx="110" cy="220" r="8" fill="#1F7A8C" stroke-width="3" /><circle cx="310" cy="220" r="36" fill="#111" /><circle cx="310" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="310" cy="220" r="17" fill="none" stroke="#E5322D" stroke-width="14" stroke-dasharray="8.9 8.9" /><circle cx="310" cy="220" r="17" fill="none" stroke="#F4B400" stroke-width="14" stroke-dasharray="8.9 8.9" stroke-dashoffset="8.9" /><circle cx="310" cy="220" r="8" fill="#1F7A8C" stroke-width="3" />
+        </g>
+      </svg>

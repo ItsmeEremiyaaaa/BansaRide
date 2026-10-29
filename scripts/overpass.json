@@ -1,0 +1,1115 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T17:10:26Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 5203039223,
+  "lat": 6.7868426,
+  "lon": 125.2113890,
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:town": "Bansalan",
+    "amenity": "bank",
+    "branch": "Bansalan",
+    "brand": "Landbank",
+    "brand:wikidata": "Q6483872",
+    "name": "Landbank"
+  }
+},
+{
+  "type": "node",
+  "id": 12483827102,
+  "lat": 6.7727461,
+  "lon": 125.1724354,
+  "tags": {
+    "amenity": "hospital",
+    "name": "Magsaysay Medical Healthcare Inc."
+  }
+},
+{
+  "type": "node",
+  "id": 12645248201,
+  "lat": 6.7870841,
+  "lon": 125.2120318,
+  "tags": {
+    "amenity": "pharmacy",
+    "name": "MD Drug"
+  }
+},
+{
+  "type": "node",
+  "id": 12645264801,
+  "lat": 6.7875170,
+  "lon": 125.2115880,
+  "tags": {
+    "amenity": "police",
+    "detention": "yes",
+    "name": "Bansalan Municipal Police Station"
+  }
+},
+{
+  "type": "node",
+  "id": 13182292558,
+  "lat": 6.7860416,
+  "lon": 125.2107189,
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:province": "Davao del Sur",
+    "addr:street": "R. Delos Cientos Street",
+    "amenity": "pharmacy",
+    "brand": "Mercury Drug",
+    "brand:wikidata": "Q6818610",
+    "dispensing": "yes",
+    "healthcare": "pharmacy",
+    "name": "Mercury Drug"
+  }
+},
+{
+  "type": "node",
+  "id": 13182354815,
+  "lat": 6.7878755,
+  "lon": 125.2113855,
+  "tags": {
+    "amenity": "fire_station",
+    "name": "Bansalan Fire Station"
+  }
+},
+{
+  "type": "node",
+  "id": 13182354816,
+  "lat": 6.7878913,
+  "lon": 125.2104711,
+  "tags": {
+    "name": "J&F Mall",
+    "shop": "mall"
+  }
+},
+{
+  "type": "node",
+  "id": 13277181844,
+  "lat": 6.7533449,
+  "lon": 125.2399799,
+  "tags": {
+    "amenity": "pharmacy",
+    "healthcare": "pharmacy",
+    "name": "CLY Life Pharmacy"
+  }
+},
+{
+  "type": "node",
+  "id": 13277881338,
+  "lat": 6.7861782,
+  "lon": 125.2115240,
+  "tags": {
+    "amenity": "bank",
+    "brand": "BPI",
+    "brand:wikidata": "Q2501256",
+    "name": "BPI",
+    "name:en": "BanKo",
+    "official_name": "Bank of the Philippine Islands"
+  }
+},
+{
+  "type": "node",
+  "id": 14184966875,
+  "lat": 6.7747325,
+  "lon": 125.2173498,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Lighthouse Bible Baptist Church",
+    "religion": "christian"
+  }
+},
+{
+  "type": "node",
+  "id": 14184966886,
+  "lat": 6.7772331,
+  "lon": 125.2170178,
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:province": "Davao del Sur",
+    "addr:street": "R. Delos Cientos Street",
+    "amenity": "place_of_worship",
+    "denomination": "seventh_day_adventist",
+    "name": "Seventh Day Adventist Church",
+    "religion": "christian"
+  }
+},
+{
+  "type": "node",
+  "id": 14184966893,
+  "lat": 6.7788834,
+  "lon": 125.2165061,
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Atis Street",
+    "amenity": "bank",
+    "name": "1st TruBank"
+  }
+},
+{
+  "type": "node",
+  "id": 14184966899,
+  "lat": 6.7863085,
+  "lon": 125.2151096,
+  "tags": {
+    "amenity": "place_of_worship",
+    "denomination": "roman_catholic",
+    "name": "GKK Birhen Sa Lourdes",
+    "religion": "christian"
+  }
+},
+{
+  "type": "way",
+  "id": 157265248,
+  "center": {
+    "lat": 6.8074491,
+    "lon": 125.1927410
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Dolo",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Dolo Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "584",
+    "population:pupils:date": "2015",
+    "ref": "128828",
+    "start_date": "1947"
+  }
+},
+{
+  "type": "way",
+  "id": 157270220,
+  "center": {
+    "lat": 6.7887620,
+    "lon": 125.2092743
+  },
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "church",
+    "denomination": "iglesia_ni_cristo",
+    "name": "Iglesia ni Cristo",
+    "religion": "christian",
+    "short_name": "INC"
+  }
+},
+{
+  "type": "way",
+  "id": 157333128,
+  "center": {
+    "lat": 6.7811481,
+    "lon": 125.2152909
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "R. Delos Cientos Street",
+    "amenity": "place_of_worship",
+    "building": "church",
+    "denomination": "roman_catholic",
+    "name": "Our Lady of Mary Mediatrix",
+    "religion": "christian"
+  }
+},
+{
+  "type": "way",
+  "id": 157333720,
+  "center": {
+    "lat": 6.7795782,
+    "lon": 125.2149929
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "R. Delos Cientos Street",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Bansalan Central Elementary School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "1973",
+    "population:pupils:date": "2015",
+    "ref": "128812",
+    "start_date": "1944"
+  }
+},
+{
+  "type": "way",
+  "id": 157339798,
+  "center": {
+    "lat": 6.7639999,
+    "lon": 125.2318923
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:neighbourhood": "Purok 2",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Mabuhay Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "282",
+    "population:pupils:date": "2015",
+    "ref": "128815",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 157340016,
+  "center": {
+    "lat": 6.7534629,
+    "lon": 125.2406865
+  },
+  "tags": {
+    "amenity": "hospital",
+    "building": "yes",
+    "healthcare": "hospital",
+    "name": "Sinawilan Clinic and Hospital"
+  }
+},
+{
+  "type": "way",
+  "id": 157363498,
+  "center": {
+    "lat": 6.7518825,
+    "lon": 125.2479519
+  },
+  "tags": {
+    "addr:barangay": "Sinawilan",
+    "addr:city": "Matanao",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Sinawilan Elementary School",
+    "operator": "Department of Education",
+    "operator:en": "Department of Education",
+    "operator:short": "DepEd",
+    "operator:tl": "Kagawaran ng Edukasyon",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "762",
+    "population:pupils:date": "2015",
+    "ref": "129026",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 291444034,
+  "center": {
+    "lat": 6.7871820,
+    "lon": 125.2107693
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Viacrucis Park",
+    "operator": "Municipality of Bansalan",
+    "operator:type": "government"
+  }
+},
+{
+  "type": "way",
+  "id": 291444035,
+  "center": {
+    "lat": 6.7871294,
+    "lon": 125.2129080
+  },
+  "tags": {
+    "amenity": "marketplace",
+    "landuse": "retail",
+    "name": "Bansalan Public Market"
+  }
+},
+{
+  "type": "way",
+  "id": 291446813,
+  "center": {
+    "lat": 6.7876550,
+    "lon": 125.2111986
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:town": "Bansalan",
+    "admin_level": "6",
+    "amenity": "townhall",
+    "building": "civic",
+    "name": "Bansalan Municipal Hall",
+    "townhall:type": "municipality"
+  }
+},
+{
+  "type": "way",
+  "id": 312711325,
+  "center": {
+    "lat": 6.7876888,
+    "lon": 125.2118267
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "bank",
+    "brand": "BDO Network Bank",
+    "brand:wikidata": "Q7093019",
+    "building": "commercial",
+    "building:levels": "1",
+    "name": "BDO Network Bank"
+  }
+},
+{
+  "type": "way",
+  "id": 315698502,
+  "center": {
+    "lat": 6.7805318,
+    "lon": 125.2165014
+  },
+  "tags": {
+    "amenity": "hospital",
+    "healthcare": "hospital",
+    "name": "Centeno Medical Specialist Hospital"
+  }
+},
+{
+  "type": "way",
+  "id": 315836700,
+  "center": {
+    "lat": 6.7864390,
+    "lon": 125.2101699
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Bonifacio Road",
+    "addr:town": "Bansalan",
+    "amenity": "hospital",
+    "building": "yes",
+    "emergency": "yes",
+    "healthcare": "hospital",
+    "name": "Mabama Doctors Hospital",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 315836701,
+  "center": {
+    "lat": 6.7875958,
+    "lon": 125.2101512
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "National Highway",
+    "addr:town": "Bansalan",
+    "amenity": "hospital",
+    "building": "hospital",
+    "healthcare": "hospital",
+    "name": "Viacrucis Medical Hospital"
+  }
+},
+{
+  "type": "way",
+  "id": 644389209,
+  "center": {
+    "lat": 6.7854629,
+    "lon": 125.2136321
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Viacrucis Street",
+    "building": "retail",
+    "name": "MD Square Garden",
+    "shop": "mall"
+  }
+},
+{
+  "type": "way",
+  "id": 644702620,
+  "center": {
+    "lat": 6.7861544,
+    "lon": 125.2091956
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Bonifacio Road",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Poblacion Dos Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 742340059,
+  "center": {
+    "lat": 6.7817418,
+    "lon": 125.2141888
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Dahlia Street",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Poblacion Uno Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 772358457,
+  "center": {
+    "lat": 6.7518658,
+    "lon": 125.1823935
+  },
+  "tags": {
+    "addr:barangay": "Dalawinon",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Dalawinon Elementary School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "349",
+    "population:pupils:date": "2015",
+    "ref": "128924",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 773673177,
+  "center": {
+    "lat": 6.7920784,
+    "lon": 125.2121759
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Villa Doneza Central Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1100",
+    "population:pupils:date": "2015",
+    "ref": "128836",
+    "start_date": "1968"
+  }
+},
+{
+  "type": "way",
+  "id": 773673670,
+  "center": {
+    "lat": 6.8095901,
+    "lon": 125.2119971
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Libertad Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "169",
+    "population:pupils:date": "2015",
+    "ref": "128831",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 773673883,
+  "center": {
+    "lat": 6.8192473,
+    "lon": 125.2244302
+  },
+  "tags": {
+    "addr:barangay": "Poblacio 2",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "President Roxas Street",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Anonang Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "218",
+    "population:pupils:date": "2015",
+    "ref": "128825",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 775664411,
+  "center": {
+    "lat": 6.7752179,
+    "lon": 125.2185526
+  },
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "evangelical",
+    "name": "The Wesleyan Church",
+    "religion": "christian"
+  }
+},
+{
+  "type": "way",
+  "id": 786373824,
+  "center": {
+    "lat": 6.7885839,
+    "lon": 125.2111142
+  },
+  "tags": {
+    "addr:postcode": "8005",
+    "addr:street": "Via Aldi Street",
+    "addr:town": "Bansalan",
+    "amenity": "clinic",
+    "healthcare": "clinic",
+    "name": "Pazzu Medical Clinic",
+    "operator": "Senecio A. Agra Jr.",
+    "previously": "node 3226265075"
+  }
+},
+{
+  "type": "way",
+  "id": 840816490,
+  "center": {
+    "lat": 6.8011329,
+    "lon": 125.2205785
+  },
+  "tags": {
+    "addr:barangay": "Buenavista",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok 2",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Buenavista Elementary School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "228",
+    "population:pupils:date": "2015",
+    "ref": "128814",
+    "start_date": "1956"
+  }
+},
+{
+  "type": "way",
+  "id": 932680358,
+  "center": {
+    "lat": 6.7459096,
+    "lon": 125.2003613
+  },
+  "tags": {
+    "addr:barangay": "New Clarin",
+    "addr:city": "Bansalan",
+    "addr:place": "Santa Cruz A",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2",
+    "name": "New Clarin National High School",
+    "old_name": "Marber Interior Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "ref": "316006"
+  }
+},
+{
+  "type": "way",
+  "id": 932686601,
+  "center": {
+    "lat": 6.7498741,
+    "lon": 125.1966761
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "New Clarin",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "New Clarin Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "678",
+    "population:pupils:date": "2015",
+    "ref": "128818",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 933083026,
+  "center": {
+    "lat": 6.7825671,
+    "lon": 125.1720299
+  },
+  "tags": {
+    "addr:barangay": "Barayong",
+    "addr:city": "Magsaysay",
+    "addr:neighbourhood": "Purok 6",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Barayong National High School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1375",
+    "population:pupils:date": "2015",
+    "ref": "304265",
+    "specialized_education": "special_needs",
+    "start_date": "1967"
+  }
+},
+{
+  "type": "way",
+  "id": 945358220,
+  "center": {
+    "lat": 6.7860104,
+    "lon": 125.2407481
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Mabunga",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Mabunga Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "253",
+    "population:pupils:date": "2015",
+    "ref": "128816",
+    "start_date": "1952"
+  }
+},
+{
+  "type": "way",
+  "id": 947613257,
+  "center": {
+    "lat": 6.8222008,
+    "lon": 125.1803928
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Santo Niño",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Vicente Duterte Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "277",
+    "population:pupils:date": "2015",
+    "ref": "128835",
+    "short_name": "V. Duterte Elementary School",
+    "start_date": "1968"
+  }
+},
+{
+  "type": "way",
+  "id": 948387570,
+  "center": {
+    "lat": 6.7747684,
+    "lon": 125.2175266
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Davao-Cotabato National Highway",
+    "amenity": "clinic",
+    "building": "yes",
+    "healthcare": "clinic",
+    "name": "Zarsona Medical Clinic",
+    "previously": "node 1415728231"
+  }
+},
+{
+  "type": "way",
+  "id": 948387571,
+  "center": {
+    "lat": 6.7817208,
+    "lon": 125.2151386
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Rizal Park",
+    "name:etymology:wikidata": "Q1500",
+    "operator": "Municipality of Bansalan",
+    "operator:type": "government",
+    "operator:wikidata": "Q314778"
+  }
+},
+{
+  "type": "way",
+  "id": 953675844,
+  "center": {
+    "lat": 6.7987294,
+    "lon": 125.2447083
+  },
+  "tags": {
+    "addr:barangay": "Bonifacio",
+    "addr:city": "Bansalan",
+    "addr:place": "Rose",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Bonifacio Elementary School",
+    "old_name": "Bonifacio Primary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "45",
+    "population:pupils:date": "2015",
+    "ref": "128813",
+    "start_date": "1998"
+  }
+},
+{
+  "type": "way",
+  "id": 955375927,
+  "center": {
+    "lat": 6.7837415,
+    "lon": 125.1922756
+  },
+  "tags": {
+    "addr:barangay": "Rizal",
+    "addr:city": "Bansalan",
+    "addr:place": "Maypalad",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Rizal Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "460",
+    "population:pupils:date": "2015",
+    "ref": "128819",
+    "start_date": "1954"
+  }
+},
+{
+  "type": "way",
+  "id": 961272446,
+  "center": {
+    "lat": 6.7817875,
+    "lon": 125.1712052
+  },
+  "tags": {
+    "addr:barangay": "Barayong",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Barayong Central Elementary School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1106",
+    "population:pupils:date": "2015",
+    "ref": "128923",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 961672888,
+  "center": {
+    "lat": 6.7510854,
+    "lon": 125.2471648
+  },
+  "tags": {
+    "addr:barangay": "Sinawilan",
+    "addr:city": "Matanao",
+    "addr:place": "Km 70",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Sinawilan National High School",
+    "operator": "Department of Education",
+    "operator:en": "Department of Education",
+    "operator:short": "DepEd",
+    "operator:tl": "Kagawaran ng Edukasyon",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "539",
+    "population:pupils:date": "2015",
+    "ref": "304290",
+    "start_date": "2000"
+  }
+},
+{
+  "type": "way",
+  "id": 961674317,
+  "center": {
+    "lat": 6.8149772,
+    "lon": 125.2364266
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Pedro A. Arches National High School",
+    "old_name": "Managa National High School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "949",
+    "population:pupils:date": "2015",
+    "ref": "304285",
+    "start_date": "2000"
+  }
+},
+{
+  "type": "way",
+  "id": 961674318,
+  "center": {
+    "lat": 6.8197714,
+    "lon": 125.2368422
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Managa Elementary School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "273",
+    "population:pupils:date": "2015",
+    "ref": "128817",
+    "start_date": "1952"
+  }
+},
+{
+  "type": "way",
+  "id": 977484695,
+  "center": {
+    "lat": 6.8206727,
+    "lon": 125.2373008
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Managa Barangay Hall",
+    "operator": "Barangay Managa",
+    "operator:type": "government",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 977732997,
+  "center": {
+    "lat": 6.7991795,
+    "lon": 125.2348937
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Union",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Union Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "110",
+    "population:pupils:date": "2015",
+    "ref": "128822",
+    "start_date": "1968"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160708,
+  "center": {
+    "lat": 6.8281697,
+    "lon": 125.2479711
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Daisy",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Sibayan Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1363550280,
+  "center": {
+    "lat": 6.7639142,
+    "lon": 125.2302545
+  },
+  "tags": {
+    "addr:barangay": "Mabuhay",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "building:levels": "1",
+    "name": "Mabuhay Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1363599694,
+  "center": {
+    "lat": 6.8081257,
+    "lon": 125.1934136
+  },
+  "tags": {
+    "addr:barangay": "Dolo",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Dolo Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1376617657,
+  "center": {
+    "lat": 6.7873241,
+    "lon": 125.2121806
+  },
+  "tags": {
+    "amenity": "bus_station",
+    "building": "transportation",
+    "bus": "yes",
+    "name": "Bansalan Bus Terminal",
+    "public_transport": "station"
+  }
+},
+{
+  "type": "way",
+  "id": 1381031340,
+  "center": {
+    "lat": 6.7776922,
+    "lon": 125.2159115
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "education": "school",
+    "name": "Nazareth High School of Bansalan"
+  }
+},
+{
+  "type": "way",
+  "id": 1559311932,
+  "center": {
+    "lat": 6.7758277,
+    "lon": 125.2175028
+  },
+  "tags": {
+    "amenity": "bank",
+    "building": "yes",
+    "name": "Bansalan Coop",
+    "office": "cooperative"
+  }
+}
+
+  ]
+}
