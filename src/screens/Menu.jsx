@@ -3,7 +3,7 @@ import { places, routes, stations, towns } from '../data'
 
 // The full menu: every part of the app with what is inside it, plus how the data works.
 export default function Menu() {
-  const { go, lang, setLang, online, textSize, setTextSize } = useApp()
+  const { go, lang, setLang, online, textSize, setTextSize, t } = useApp()
   const tric = routes.filter((r) => r.vehicle !== 'Motor').length
   const moto = routes.filter((r) => r.vehicle === 'Motor').length
   const streets = places.filter((p) => p.kind === 'Street').length
@@ -26,10 +26,12 @@ export default function Menu() {
       { icon: 'plus', tone: 'green', name: 'Add a waiting spot', detail: 'Mark the exact place on the map and send it so everyone can see it', to: ['map'] },
     ] },
     { title: 'You', rows: [
+      { icon: 'town', tone: 'green', name: 'Visiting Bansalan', detail: 'First time here? Where to arrive, where tricycles wait and what to expect', to: ['visitor'] },
       { icon: 'alert', tone: 'red', name: 'Report a problem', detail: 'Wrong fare, place, time or number? Tell us so we can fix it', to: ['report'] },
       { icon: 'drivers', tone: 'blue', name: 'Account and discount', detail: 'Students, seniors and PWD: sign in to see your own fare everywhere', to: ['account'] },
     ] },
     { title: 'Tools', rows: [
+      { icon: 'ruler', tone: 'coral', name: 'Fare list', detail: 'Common fares on one page. Works offline. Print it or save it as a PDF', to: ['farelist'] },
       { icon: 'calc', tone: 'coral', name: 'Fare check', detail: 'Estimate a fare, split it between riders and check a price', to: ['fares'] },
       { icon: 'search', tone: 'blue', name: 'Find on the map', detail: 'Search any street, barangay or place and see the nearest drivers', to: ['map'] },
     ] },
@@ -41,12 +43,12 @@ export default function Menu() {
       <div className="body">
         {items.map((g) => (
           <section key={g.title}>
-            <h2 className="sec">{g.title}</h2>
+            <h2 className="sec">{t(g.title)}</h2>
             <div className="list">
               {g.rows.map((r, i) => (
                 <button key={r.name} className="row-item menu-row rise" style={{ '--i': i }} onClick={() => go(...r.to)}>
                   <span className={'ico ' + r.tone}><Icon name={r.icon} /></span>
-                  <span className="row-main"><span className="row-title">{r.name}</span><span className="row-sub">{r.detail}</span></span>
+                  <span className="row-main"><span className="row-title">{t(r.name)}</span><span className="row-sub">{r.detail}</span></span>
                   <Icon name="chevron" className="chev" />
                 </button>
               ))}

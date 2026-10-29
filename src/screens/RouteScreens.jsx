@@ -4,6 +4,10 @@ import MapView from '../MapView'
 import Picker from '../Picker'
 import Transit from '../Transit'
 import TransitPop from '../TransitPop'
+import { shareText, speak } from '../speech'
+import { track } from '../track'
+import { useStored } from '../hooks'
+import { routeBetween } from '../data'
 import Feedback from '../Feedback'
 import { useAuth } from '../auth'
 import { MINI_PLACES, refineRoute, routeColor } from '../data'
@@ -17,7 +21,7 @@ const isRural = (p) => p.kind === 'Barangay' || p.kind === 'Sitio'
 const standFor = (placeId, vehicle) => stationsAt(placeId).find((s) => s.type === (vehicle === 'Motor' ? 'motor' : 'toda'))
 
 export function RouteScreen() {
-  const { go, say, saved, toggleSaved, remember, params, loc } = useApp()
+  const { go, say, saved, toggleSaved, remember, params, loc, t } = useApp()
   const r = routes.find((x) => x.id === params.id) ?? routes[0]
   const [rev, setRev] = useState(Boolean(params.rev))
   const isSaved = saved.includes(r.id)
@@ -46,7 +50,7 @@ export function RouteScreen() {
     { id: a.id, lat: a.lat, lon: a.lon, kind: 'start', label: 'Pickup', title: a.name },
     { id: b.id, lat: b.lat, lon: b.lon, kind: 'end', label: 'Drop-off', title: b.name },
   ], [a, b])
-  useEffect(() => { remember(r.id) }, [r.id, remember])
+  useEffect(() => { remember(r.id); track('route_open', r.id) }, [r.id, remember])
 
   return (
     <>
@@ -67,13 +71,19 @@ export function RouteScreen() {
         <div className="grab" aria-hidden="true" />
         <div className="sheet-head">
           <h2 className="sheet-title">Your ride</h2>
-          <button className="pill action" onClick={() => setRev((v) => !v)} aria-label="Switch to the return trip"><Icon name="repeat" />Return trip</button>
+          <button className="pill action" onClick={() => setRev((v) => !v)} aria-label="Switch to the return trip"><Icon name="repeat" />{t('Return trip')}</button>
         </div>
         <div className="ride-row selected">
           <span className="ride-art">{motor ? <Moto width={78} height={54} /> : <Trike width={78} height={54} />}</span>
           <span className="ride-main"><b>{vehicleLabel(r.vehicle)}</b><span className="row-sub">{motor ? 'For the mountain roads. Ask the driver for the fare' : 'Same as a pedicab'}</span></span>
           <span className="ride-price"><span className="row-sub">{r.km} km</span></span>
         </div>
+
+        <div className="cta-row">
+          <button className="btn secondary" onClick={() => shareText('BansaRide', `BansaRide: ${a.name} to ${b.name}. ${r.km} km, about ${r.minutes} min by ${vehicleLabel(r.vehicle).toLowerCase()}. Fare: ${r.fare === null ? 'ask the driver' : fareText(r)}.${shown ? ` Wait at: ${shown.name}.` : ''} ${window.location.origin}/#/route/${r.id}`, say)}><Icon name="drivers" />{t('Share this ride')}</button>
+          <button className="btn secondary" onClick={() => speak(`From ${a.name} to ${b.name}. ${r.km} kilometers, about ${r.minutes} minutes by ${vehicleLabel(r.vehicle).toLowerCase()}. ${r.fare === null ? 'Ask the driver for the fare.' : `An adult pays ${fareFor(r.km, 'adult')} pesos. A student pays ${fareFor(r.km, 'elementary')} to ${fareFor(r.km, 'college')} pesos.`}`, say)}><Icon name="info" />{t('Read aloud')}</button>
+        </div>
+        {motor && <div className="note static"><Icon name="alert" /><span><b>Rain and mud</b><span className="row-sub">Mountain roads can be slippery or blocked after rain. Ask the driver if the road is passable before you go.</span></span></div>}
 
         {toPickup !== null && (
           <div className={'note live-note' + (toPickup <= 60 ? ' here' : '')} role="status">
@@ -361,6 +371,29 @@ export function MapScreen() {
   )
 }
 
+// For students: what a ride costs from the school, and a one-tap way home.
+function SchoolCard({ school, go, nearest }) {
+  const [mine] = useStored('bansaride-myplaces', {})
+  const toTerminal = routeBetween(school.id, 'terminal')
+  const km = toTerminal?.route.km
+  const home = mine.home && mine.home !== school.id ? routeBetween(school.id, mine.home) : null
+  return (
+    <section className="card glass school-card">
+      <h2 className="sec">For students</h2>
+      {km ? (
+        <div className="paid-sum">
+          {PASSENGERS.filter((x) => ['elementary', 'highschool', 'college'].includes(x.id)).map((x) => <span className="paid-chip" key={x.id}><b>{x.short}</b>₱{fareFor(km, x.id)}</span>)}
+        </div>
+      ) : null}
+      <p className="row-sub">Student fare from this school to the Bus Terminal{km ? ` (${km} km)` : ''}. Ask the driver to confirm.</p>
+      <div className="cta-row">
+        {nearest && <button className="btn secondary" onClick={() => go('station', { id: nearest.id })}><Icon name="vehicle" />Nearest stand</button>}
+        <button className="btn" onClick={() => (home ? go('route', home.reversed ? { id: home.route.id, rev: true } : { id: home.route.id }) : go('home'))}><Icon name="home" />{home ? 'Going home' : 'Set my Home on Home'}</button>
+      </div>
+    </section>
+  )
+}
+
 export function Place() {
   const { go, params } = useApp()
   const p = placeById(params.id) ?? places[0]
@@ -413,6 +446,7 @@ export function Place() {
             </button>
           </section>
         )}
+        {p.kind === 'School' && <SchoolCard school={p} go={go} nearest={here[0] ?? nb?.station} />}
         <Feedback scope={{ placeId: p.id }} />
         <section>
           <h2 className="sec">Rides</h2>

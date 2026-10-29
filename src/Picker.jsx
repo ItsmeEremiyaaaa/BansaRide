@@ -1,3 +1,4 @@
+import { track } from './track'
 import { useEffect, useRef, useState } from 'react'
 import { Icon } from './components'
 import { places, routeBetween, fareText } from './data'
@@ -44,6 +45,7 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
             </button>
           )}
           {groups.length === 0 && <p className="hint">Nothing found for “{q}”.</p>}
+          {groups.length === 0 && term.length >= 3 && (track('search_empty', term), null)}
           {groups.map(([name, items]) => (
             <section key={name}>
               <h3 className="sec">{name}</h3>

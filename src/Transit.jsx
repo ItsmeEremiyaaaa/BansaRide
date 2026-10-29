@@ -22,6 +22,7 @@ export default function Transit({ modes, km }) {
               <b>{m.label}</b>
               <span className="row-sub">{m.where}</span>
               <span className="row-sub"><Icon name="clock" className="inline" /> {m.firstText} to {m.lastText}</span>
+              {s.ending && <span className="transit-warn">Last ride in {s.left} min</span>}
               <span className={'transit-state' + (s.open ? ' open' : '')}>{s.open ? `${t('runningNow')} · ${t('lastRide')} ${m.lastText}` : `${t('notRunning')} · ${t('firstRide')} ${m.firstText}`}</span>
             </div>
             <div className="transit-fare">

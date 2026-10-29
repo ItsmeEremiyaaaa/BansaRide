@@ -10,9 +10,10 @@ import { DriversList, Station } from './screens/Drivers'
 import Menu from './screens/Menu'
 import Account from './screens/Account'
 import Report from './screens/Report'
+import { FareSheet, Visitor, Poster } from './screens/Sheets'
 import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
-const SCREENS = { home: Home, routes: RoutesList, route: RouteScreen, map: MapScreen, place: Place, town: Town, towns: TownsList, fares: Fares, drivers: DriversList, station: Station, menu: Menu, account: Account, report: Report }
+const SCREENS = { home: Home, routes: RoutesList, route: RouteScreen, map: MapScreen, place: Place, town: Town, towns: TownsList, fares: Fares, drivers: DriversList, station: Station, menu: Menu, account: Account, report: Report, farelist: FareSheet, visitor: Visitor, poster: Poster }
 const TABS = [
   { key: 'home', icon: 'home' },
   { key: 'routes', icon: 'routes' },
@@ -20,7 +21,7 @@ const TABS = [
   { key: 'drivers', icon: 'drivers' },
   { key: 'fares', icon: 'calc' },
 ]
-const TAB_OF = { menu: 'home', account: 'home', report: 'home', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
+const TAB_OF = { menu: 'home', account: 'home', report: 'home', farelist: 'fares', visitor: 'home', poster: 'drivers', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
 
 // Screens live in the address (#/route/terminal-rizal), so links and the phone's back button work.
 const parse = () => {
@@ -34,7 +35,7 @@ export default function App() {
   const [seen, setSeen] = useState(() => { try { return !!localStorage.getItem(ONBOARDED) || /[?&]code=/.test(window.location.search) } catch { return true } }) // first run shows the intro
   const [dir, setDir] = useState('tab') // how the next screen should arrive: fwd, back or tab
   const [lang, setLang] = useStored('bansaride-lang', 'en')
-  const [textSize, setTextSize] = useStored('bansaride-text', 'normal') // normal | large | xlarge
+  const [textSize, setTextSize] = useStored('bansaride-text', (() => { const px = parseFloat(getComputedStyle(document.documentElement).fontSize); return px >= 20 ? 'xlarge' : px >= 18 ? 'large' : 'normal' })()) // normal | large | xlarge
   useEffect(() => { document.documentElement.dataset.text = textSize }, [textSize])
   const [saved, setSaved] = useStored('bansaride-saved', [])
   const [recent, setRecent] = useStored('bansaride-recent', [])
