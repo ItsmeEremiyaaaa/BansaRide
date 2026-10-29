@@ -1,0 +1,8 @@
+[out:json][timeout:90];
+(
+  nwr["amenity"~"taxi|bus_station|ferry_terminal"](6.72,125.15,6.99,125.28);
+  nwr["public_transport"](6.72,125.15,6.99,125.28);
+  nwr["highway"="bus_stop"](6.72,125.15,6.99,125.28);
+  nwr["name"~"TODA|Tricycle|Pedicab|Habal|Terminal|Stand|Parking"](6.72,125.15,6.99,125.28);
+);
+out center tags;

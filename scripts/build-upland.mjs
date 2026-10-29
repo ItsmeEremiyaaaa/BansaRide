@@ -1,0 +1,75 @@
+// Builds src/uplandData.js: upland places and roads that need a motorcycle (from the Public Market), plus a few extra
+// places. Real positions come from OpenStreetMap where it has them; the rest are marked `approx` (exact point to confirm).
+// Needs internet for the routes. Run: node scripts/build-upland.mjs   (uses scripts/overpass4.json from build-streets)
+import { readFileSync, writeFileSync } from 'node:fs'
+import { boundary } from '../src/boundary.js'
+
+const UA = { 'User-Agent': 'BansaRide-dev/0.1 (local project)' }
+const MARKET = { lat: 6.78713, lon: 125.21291 }
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+const inside = (pt, ring) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [yi, xi] = ring[i], [yj, xj] = ring[j]; if ((yi > pt[0]) !== (yj > pt[0]) && pt[1] < ((xj - xi) * (pt[0] - yi)) / (yj - yi) + xi) c = !c } return c }
+const dist = (a, b) => Math.hypot((a.lat - b.lat) * 111, (a.lon - b.lon) * 110)
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+// the deepest (farthest from town) segment of each named road, inside the border
+const els = JSON.parse(readFileSync(new URL('./overpass4.json', import.meta.url), 'utf8')).elements
+const far = new Map()
+for (const e of els) {
+  const c = { lat: e.center.lat, lon: e.center.lon }
+  if (!inside([c.lat, c.lon], boundary[0])) continue
+  const d = dist(c, MARKET)
+  if (!far.has(e.tags.name) || d > far.get(e.tags.name).d) far.set(e.tags.name, { ...c, d })
+}
+const ROADS = [
+  ['Bansalan-Mount Apo National Park Road', 'Upland route toward the Mount Apo side'],
+  ['Eman-Alegre Road', 'Rural route between Eman and Alegre'],
+  ['Libertad-Bitaug Road', 'Rural route through the barangays'],
+  ['Linawan-Alegre Road', 'Rural connector'],
+  ['Camanchiles-Bonifacio Road', 'Rural route toward Bonifacio'],
+  ['Marber-Mabini Road', 'Rural route on the Marber side'],
+  ['Sibayan Road', 'Tinongtongan–Sibayan route: rural connecting road and interior puroks'],
+]
+const roadPlaces = ROADS.filter(([n]) => far.has(n)).map(([n, note]) => ({
+  id: `up-${slug(n)}`, name: `${n.replace('-', '–')} (upland end)`, kind: 'Street', also: '', lat: Number(far.get(n).lat.toFixed(5)), lon: Number(far.get(n).lon.toFixed(5)), note,
+}))
+const missing = ROADS.filter(([n]) => !far.has(n)).map(([n]) => n)
+if (missing.length) console.log('NOT FOUND in OSM:', missing)
+
+const fixed = [
+  { id: 'balutakay-school', name: 'Balutakay Elementary School', kind: 'School', lat: 6.91388, lon: 125.27068, note: 'Balutakay upland' },
+  { id: 'managa', name: 'Managa', kind: 'Barangay', lat: 6.82039, lon: 125.23724, note: 'Upland sitio and access road' },
+  { id: 'kinuskusan-school', name: 'Kinuskusan Elementary School', kind: 'School', lat: 6.8582, lon: 125.16511, note: 'Kinuskusan upland roads' },
+  { id: 'tinongtongan', name: 'Tinongtongan', kind: 'Barangay', lat: 6.81171, lon: 125.26421, note: 'Rural connecting road and interior puroks' },
+  // not in OpenStreetMap: placed inside their barangay, exact point to confirm
+  { id: 'andres-awe', name: 'Andres Awe Road', kind: 'Street', approx: true, lat: 6.86867, lon: 125.17594, note: 'Inside Darapuay · exact point to confirm' },
+  { id: 'andagberang', name: 'Andagberang Road', kind: 'Street', approx: true, lat: 6.86905, lon: 125.17640, note: 'Inside Darapuay · exact point to confirm' },
+  { id: 'andangan', name: 'Andangan Road', kind: 'Street', approx: true, lat: 6.8774, lon: 125.2031, note: 'Inside Alta Vista · exact point to confirm' },
+  { id: 'ilang-ilang-street', name: 'Ilang-Ilang Street', kind: 'Street', approx: true, lat: 6.79485, lon: 125.20132, note: 'Ilang-Ilang area · exact road to confirm' },
+]
+const places = [...fixed, ...roadPlaces]
+const motorIds = places.filter((p) => p.id !== 'ilang-ilang-street').map((p) => p.id)
+
+const routes = []
+for (const p of places) {
+  const motor = motorIds.includes(p.id)
+  const from = motor ? { id: 'market', ...MARKET } : { id: 'terminal', lat: 6.78732, lon: 125.21218 }
+  const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${p.lon},${p.lat}?overview=full&geometries=geojson`
+  let j
+  for (let i = 0; i < 3 && !j; i++) {
+    try { const x = await (await fetch(url, { headers: UA })).json(); if (x.code === 'Ok') j = x } catch { /* retry */ }
+    if (!j) await sleep(2500)
+  }
+  if (!j) { console.log('NO ROUTE', p.name); continue }
+  const leg = j.routes[0]
+  const km = Math.round(leg.distance / 100) / 10
+  routes.push({
+    id: `${from.id}-${p.id}`, from: from.id, to: p.id, vehicle: motor ? 'Motor' : 'Tricycle', km,
+    minutes: Math.max(2, Math.round((km / (motor ? 25 : 20)) * 60) + 1),
+    path: leg.geometry.coordinates.map(([lon, lat]) => [Number(lat.toFixed(4)), Number(lon.toFixed(4))]),
+  })
+  console.log(p.name.padEnd(46), String(km).padStart(5), 'km', motor ? 'motor' : 'tricycle')
+  await sleep(1100)
+}
+writeFileSync(new URL('../src/uplandData.js', import.meta.url),
+  `// GENERATED by scripts/build-upland.mjs. Positions © OpenStreetMap contributors (ODbL), routes from OSRM.\n// Places marked approx are not in OpenStreetMap: their exact point still needs confirming.\nexport const geoUpland = ${JSON.stringify(places, null, 1)}\n\nexport const geoUplandRoutes = ${JSON.stringify(routes)}\n`)
+console.log('wrote', places.length, 'places,', routes.length, 'routes')

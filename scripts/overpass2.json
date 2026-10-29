@@ -1,0 +1,6474 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T17:41:05Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 198499696,
+  "lat": 6.7517369,
+  "lon": 125.1504638,
+  "tags": {
+    "admin_level": "6",
+    "admin_subdivisions": "22 barangays",
+    "admin_type:PH": "municipality",
+    "alt_name": "Kialeg",
+    "contact:phone": "+63 910 885 8406",
+    "contact:website": "https://magsaysay.gov.ph/",
+    "ele": "100",
+    "is_in:province": "Davao del Sur",
+    "name": "Magsaysay",
+    "official_name": "Municipality of Magsaysay",
+    "official_name:ceb": "Lungsod ng Magsaysay",
+    "official_name:tl": "Bayan ng Magsaysay",
+    "old_ref": "112407000",
+    "place": "town",
+    "population": "56263",
+    "population:date": "2020-05-01",
+    "postal_code": "8004",
+    "ref": "1102407000",
+    "related_law": "Republic Act No. 4976",
+    "start_date": "1967-06-17",
+    "was_in:municipality": "Bansalan",
+    "wikidata": "Q314864",
+    "wikimedia_commons": "Category:Magsaysay, Davao del Sur",
+    "wikipedia": "en:Magsaysay, Davao del Sur"
+  }
+},
+{
+  "type": "node",
+  "id": 681234904,
+  "lat": 6.8135851,
+  "lon": 125.2777313,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "270",
+    "is_in:city": "Digos",
+    "name": "Balabag",
+    "official_name": "Barangay Balabag",
+    "place": "village",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 1418831426,
+  "lat": 6.8483784,
+  "lon": 125.1557638,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "New Opon",
+    "official_name": "Barangay New Opon",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 1418831429,
+  "lat": 6.7765285,
+  "lon": 125.2174222,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Acacia",
+    "official_name": "Purok Acacia",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 1418831430,
+  "lat": 6.7809387,
+  "lon": 125.2158229,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Mother Ignacia",
+    "official_name": "Purok Mother Ignacia",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 2134536057,
+  "lat": 6.7295196,
+  "lon": 125.2680406,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "60",
+    "is_in:municipality": "Hagonoy",
+    "name": "Lanuro",
+    "name:etymology": "Lamosa Nuñez Rodillas",
+    "name:etymology:description": "Acronym derived from family names of original settlers from Marinduque",
+    "official_name": "Barangay Lanuro",
+    "old_name": "Upper Sacub",
+    "place": "village",
+    "postal_code": "8006",
+    "start_date": "1953-05-28"
+  }
+},
+{
+  "type": "node",
+  "id": 3421964438,
+  "lat": 6.9225878,
+  "lon": 125.1552786,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "510",
+    "is_in:municipality": "Makilala",
+    "name": "Kisante",
+    "official_name": "Barangay Kisante",
+    "place": "village",
+    "population": "5162",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707016"
+  }
+},
+{
+  "type": "node",
+  "id": 3826644857,
+  "lat": 6.9437885,
+  "lon": 125.1666934,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 5",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3826650240,
+  "lat": 6.9582295,
+  "lon": 125.1678451,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 9",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3826686765,
+  "lat": 6.9504416,
+  "lon": 125.1567377,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3826999347,
+  "lat": 6.9438926,
+  "lon": 125.1549058,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 8",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3828616734,
+  "lat": 6.9351296,
+  "lon": 125.1691758,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "590",
+    "is_in:municipality": "Makilala",
+    "name": "Biangan",
+    "official_name": "Barangay Biangan",
+    "place": "village",
+    "population": "1458",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707003"
+  }
+},
+{
+  "type": "node",
+  "id": 3828616987,
+  "lat": 6.9462089,
+  "lon": 125.1594584,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "500",
+    "is_in:municipality": "Makilala",
+    "name": "Batasan",
+    "official_name": "Barangay Batasan",
+    "old_name": "Tubon",
+    "place": "village",
+    "population": "3084",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707001"
+  }
+},
+{
+  "type": "node",
+  "id": 3828618894,
+  "lat": 6.9277363,
+  "lon": 125.1812076,
+  "tags": {
+    "admin_level": "11",
+    "alt_name": "New Sitio Lukatong",
+    "is_in:province": "Cotabato",
+    "is_in:town": "Makilala",
+    "is_in:village": "Biangan",
+    "name": "Lukatong",
+    "place": "hamlet",
+    "place:PH": "sitio"
+  }
+},
+{
+  "type": "node",
+  "id": 3828618946,
+  "lat": 6.9229339,
+  "lon": 125.1909858,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "800",
+    "is_in:municipality": "Makilala",
+    "name": "New Israel",
+    "official_name": "Barangay New Israel",
+    "place": "village",
+    "population": "1962",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707038",
+    "start_date": "1975-09-26",
+    "was_in:barangay": "Old Bulatukan"
+  }
+},
+{
+  "type": "node",
+  "id": 3828646315,
+  "lat": 6.8595824,
+  "lon": 125.1679835,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Kinuskusan",
+    "official_name": "Barangay Kinuskusan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 3828648714,
+  "lat": 6.9668127,
+  "lon": 125.1559911,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "590",
+    "is_in:municipality": "Makilala",
+    "name": "Buena Vida",
+    "official_name": "Barangay Buena Vida",
+    "place": "village",
+    "population": "1401",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707004"
+  }
+},
+{
+  "type": "node",
+  "id": 3830196553,
+  "lat": 6.9492864,
+  "lon": 125.1651591,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 4",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3838825506,
+  "lat": 6.9476396,
+  "lon": 125.2323404,
+  "tags": {
+    "alt_name": "Sitio Makalangit",
+    "ele": "1920",
+    "is_in:barangay": "New Israel",
+    "is_in:municipality": "Makilala",
+    "name": "Makalangit",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 3868563124,
+  "lat": 6.9552263,
+  "lon": 125.1838614,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 6",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 3883196221,
+  "lat": 6.9856981,
+  "lon": 125.1648675,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "820",
+    "is_in:municipality": "Makilala",
+    "name": "Buhay",
+    "official_name": "Barangay Buhay",
+    "place": "village",
+    "population": "2002",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707005"
+  }
+},
+{
+  "type": "node",
+  "id": 3883196363,
+  "lat": 6.9803981,
+  "lon": 125.1701558,
+  "tags": {
+    "is_in:village": "Buhay",
+    "name": "Marang",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075068,
+  "lat": 6.9004680,
+  "lon": 125.1617477,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "470",
+    "is_in:municipality": "Makilala",
+    "name": "New Bulatukan",
+    "official_name": "Barangay New Bulatukan",
+    "place": "village",
+    "population": "2215",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707026"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075069,
+  "lat": 6.8841994,
+  "lon": 125.1638142,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "420",
+    "is_in:municipality": "Makilala",
+    "name": "Old Bulatukan",
+    "official_name": "Barangay Old Bulatukan",
+    "place": "village",
+    "population": "2850",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707028"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075070,
+  "lat": 6.8940414,
+  "lon": 125.1581549,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "400",
+    "is_in:municipality": "Makilala",
+    "name": "Rodero",
+    "official_name": "Barangay Rodero",
+    "place": "village",
+    "population": "1339",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707030"
+  }
+},
+{
+  "type": "node",
+  "id": 4625661030,
+  "lat": 6.7869881,
+  "lon": 125.2107273,
+  "tags": {
+    "admin_level": "6",
+    "admin_subdivisions": "25 barangays",
+    "admin_type:PH": "municipality",
+    "ele": "160",
+    "is_in:province": "Davao del Sur",
+    "name": "Bansalan",
+    "official_name": "Municipality of Bansalan",
+    "old_name": "Miral",
+    "old_ref": "112401000",
+    "place": "town",
+    "population": "62737",
+    "population:date": "2020-05-01",
+    "postal_code": "8005",
+    "ref": "1102401000",
+    "related_law": "Executive Order No. 506 s. 1952",
+    "start_date": "1952-06-06",
+    "was_in:municipality": "Digos",
+    "wikidata": "Q314778",
+    "wikimedia_commons": "Category:Bansalan",
+    "wikipedia": "en:Bansalan"
+  }
+},
+{
+  "type": "node",
+  "id": 5999078207,
+  "lat": 6.7915786,
+  "lon": 125.2762655,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "195",
+    "is_in:city": "Digos",
+    "name": "Lungag",
+    "official_name": "Barangay Lungag",
+    "place": "village",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265320,
+  "lat": 6.7997218,
+  "lon": 125.2350694,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Union",
+    "official_name": "Barangay Union",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265321,
+  "lat": 6.7847616,
+  "lon": 125.2416261,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "155",
+    "is_in:municipality": "Bansalan",
+    "name": "Mabunga",
+    "official_name": "Barangay Mabunga",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265474,
+  "lat": 6.8203943,
+  "lon": 125.2372393,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Managa",
+    "official_name": "Barangay Managa",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265475,
+  "lat": 6.8366716,
+  "lon": 125.2392858,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265476,
+  "lat": 6.8477268,
+  "lon": 125.2429839,
+  "tags": {
+    "alt_name": "Sitio Pananag",
+    "ele": "670",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Pananag",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265477,
+  "lat": 6.8290816,
+  "lon": 125.2479239,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "495",
+    "is_in:municipality": "Bansalan",
+    "name": "Sibayan",
+    "official_name": "Barangay Sibayan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265478,
+  "lat": 6.9092233,
+  "lon": 125.2702573,
+  "tags": {
+    "alt_name": "Sitio Balutakay",
+    "ele": "1300",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Balutakay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265508,
+  "lat": 6.9163726,
+  "lon": 125.2736610,
+  "tags": {
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 6293289775,
+  "lat": 6.7522774,
+  "lon": 125.2448836,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "Sinawilan",
+    "official_name": "Barangay Sinawilan",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6293289776,
+  "lat": 6.7529780,
+  "lon": 125.2704960,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "alt_name": "Managa",
+    "ele": "70",
+    "is_in:municipality": "Matanao",
+    "name": "Cabligan",
+    "official_name": "Barangay Cabligan",
+    "old_name": "Barangay Managa",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6293290607,
+  "lat": 6.7633232,
+  "lon": 125.2309549,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Mabuhay",
+    "official_name": "Barangay Mabuhay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6474270286,
+  "lat": 6.8016686,
+  "lon": 125.2208479,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Buenavista",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6485044115,
+  "lat": 6.9269087,
+  "lon": 125.2229775,
+  "tags": {
+    "alt_name": "Sitio Malumpini",
+    "ele": "1250",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Malumpini",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081151,
+  "lat": 6.9157516,
+  "lon": 125.2032349,
+  "tags": {
+    "alt_name": "Sitio Kamandag",
+    "ele": "900",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Kamandag",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081152,
+  "lat": 6.8994119,
+  "lon": 125.1896913,
+  "tags": {
+    "alt_name": "Sitio Diansig",
+    "ele": "660",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Diansig",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081153,
+  "lat": 6.8963978,
+  "lon": 125.1771096,
+  "tags": {
+    "alt_name": "Sitio Tombo",
+    "ele": "530",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Tombo",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6842683204,
+  "lat": 6.8686676,
+  "lon": 125.1759401,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Darapuay",
+    "official_name": "Barangay Darapuay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315867,
+  "lat": 6.8079835,
+  "lon": 125.1602062,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "contact:website": "https://magsaysay.gov.ph/list-of-barangays/barangay-mabini",
+    "ele": "170",
+    "is_in:municipality": "Magsaysay",
+    "name": "Mabini",
+    "name:etymology": "Apolinario Mabini",
+    "name:etymology:wikidata": "Q318481",
+    "official_name": "Barangay Mabini",
+    "old_name": "Sitio Mabini",
+    "place": "village",
+    "postal_code": "8004",
+    "was_in:barangay": "Barayong",
+    "was_in:municipality": "Bansalan"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315873,
+  "lat": 6.8343547,
+  "lon": 125.1756692,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Marber",
+    "official_name": "Barangay Marber",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315874,
+  "lat": 6.8345890,
+  "lon": 125.1573229,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Kanapulo",
+    "official_name": "Barangay Kanapulo",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316500,
+  "lat": 6.8087238,
+  "lon": 125.1930928,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Dolo",
+    "official_name": "Barangay Dolo",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316523,
+  "lat": 6.7524292,
+  "lon": 125.1832008,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Dalawinon",
+    "official_name": "Barangay Dalawinon",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316524,
+  "lat": 6.7301215,
+  "lon": 125.1828272,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Kasuga",
+    "official_name": "Barangay Kasuga",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316596,
+  "lat": 6.7526675,
+  "lon": 125.1519142,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "alt_name": "Kialeg",
+    "ele": "100",
+    "is_in:municipality": "Magsaysay",
+    "name": "Poblacion",
+    "official_name": "Barangay Poblacion",
+    "old_name": "Barangay Kialeg",
+    "place": "quarter",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6917099841,
+  "lat": 6.7246737,
+  "lon": 125.2047229,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "Lower Marber",
+    "official_name": "Barangay Lower Marber",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100275,
+  "lat": 6.7930128,
+  "lon": 125.2643311,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "215",
+    "is_in:municipality": "Matanao",
+    "name": "Kibao",
+    "official_name": "Barangay Kibao",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100276,
+  "lat": 6.7759962,
+  "lon": 125.2680740,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "San Vicente",
+    "official_name": "Barangay San Vicente",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100277,
+  "lat": 6.7317539,
+  "lon": 125.2197218,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "New Visayas",
+    "official_name": "Barangay New Visayas",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100286,
+  "lat": 6.7537823,
+  "lon": 125.2602446,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "60",
+    "is_in:municipality": "Matanao",
+    "name": "Camanchiles",
+    "official_name": "Barangay Camanchiles",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100287,
+  "lat": 6.7269112,
+  "lon": 125.2331087,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "San Jose",
+    "official_name": "Barangay San Jose",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 8175101119,
+  "lat": 6.9832438,
+  "lon": 125.2308306,
+  "tags": {
+    "name": "Timuddus",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 8175101219,
+  "lat": 6.9882800,
+  "lon": 125.2329087,
+  "tags": {
+    "name": "Kaumahun",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848242,
+  "lat": 6.8093204,
+  "lon": 125.2113104,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Libertad",
+    "official_name": "Barangay Libertad",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848243,
+  "lat": 6.8200587,
+  "lon": 125.2238524,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Anonang",
+    "official_name": "Barangay Anonang",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848244,
+  "lat": 6.8420778,
+  "lon": 125.2276182,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848245,
+  "lat": 6.8438780,
+  "lon": 125.2321350,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848246,
+  "lat": 6.8581493,
+  "lon": 125.2353014,
+  "tags": {
+    "alt_name": "Sitio Malupo",
+    "ele": "780",
+    "is_in:barangay": "Anonang",
+    "is_in:municipality": "Bansalan",
+    "name": "Malupo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848472,
+  "lat": 6.8906184,
+  "lon": 125.2603573,
+  "tags": {
+    "alt_name": "Sitio New Bohol",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "New Bohol",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848473,
+  "lat": 6.8721060,
+  "lon": 125.2621865,
+  "tags": {
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848565,
+  "lat": 6.8798764,
+  "lon": 125.2587855,
+  "tags": {
+    "alt_name": "Balagunon",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Balagonon",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8778627022,
+  "lat": 6.7818238,
+  "lon": 125.2165836,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Poblacion Uno",
+    "official_name": "Barangay Poblacion Uno",
+    "place": "quarter",
+    "postal_code": "8005",
+    "short_name": "Uno"
+  }
+},
+{
+  "type": "node",
+  "id": 8778627023,
+  "lat": 6.7892974,
+  "lon": 125.2104306,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Poblacion Dos",
+    "official_name": "Barangay Poblacion Dos",
+    "place": "quarter",
+    "postal_code": "8005",
+    "short_name": "Dos"
+  }
+},
+{
+  "type": "node",
+  "id": 8838212090,
+  "lat": 6.7817599,
+  "lon": 125.1721723,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Barayong",
+    "official_name": "Barangay Barayong",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 9009708872,
+  "lat": 6.8482774,
+  "lon": 125.1822674,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Eman",
+    "official_name": "Barangay Eman",
+    "old_name": "Iman",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009771884,
+  "lat": 6.7457675,
+  "lon": 125.2165970,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009771918,
+  "lat": 6.7480169,
+  "lon": 125.2065589,
+  "tags": {
+    "alt_name": "Sitio Santo Niño",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Santo Niño",
+    "place": "quarter",
+    "postal_code": "8005",
+    "short_name": "Sto. Niño"
+  }
+},
+{
+  "type": "node",
+  "id": 9009771953,
+  "lat": 6.7457541,
+  "lon": 125.2013272,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Sitio Santa Cruz A",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Santa Cruz A",
+    "official_name": "Purok Santa Cruz A",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009771982,
+  "lat": 6.7506201,
+  "lon": 125.1957674,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "New Clarin",
+    "official_name": "Barangay New Clarin",
+    "old_name": "Miral",
+    "old_official_name": "Barangay Miral",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009804149,
+  "lat": 6.8774026,
+  "lon": 125.2031042,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Alta Vista",
+    "official_name": "Barangay Alta Vista",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9044776505,
+  "lat": 6.8173169,
+  "lon": 125.2312674,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9044781658,
+  "lat": 6.8168948,
+  "lon": 125.2364319,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Malipayon",
+    "official_name": "Purok Malipayon",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046817256,
+  "lat": 6.7979067,
+  "lon": 125.2456601,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Bonifacio",
+    "official_name": "Barangay Bonifacio",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046817277,
+  "lat": 6.7986551,
+  "lon": 125.2450955,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Bonifacio",
+    "is_in:municipality": "Bansalan",
+    "name": "Rose",
+    "official_name": "Purok Rose",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046836130,
+  "lat": 6.7845246,
+  "lon": 125.1914218,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Rizal",
+    "official_name": "Barangay Rizal",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046836135,
+  "lat": 6.7843887,
+  "lon": 125.1927656,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Maypalad",
+    "official_name": "Purok Maypalad",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046941927,
+  "lat": 6.8362762,
+  "lon": 125.2494098,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sibayan",
+    "is_in:municipality": "Bansalan",
+    "name": "Waling-Waling",
+    "official_name": "Purok Waling-Waling",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9047076322,
+  "lat": 6.7229822,
+  "lon": 125.2319232,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "San Jose",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 5",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 9054778456,
+  "lat": 6.7281950,
+  "lon": 125.1874720,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 7",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 9054778457,
+  "lat": 6.7312500,
+  "lon": 125.1832027,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 9055069718,
+  "lat": 6.8217474,
+  "lon": 125.1807309,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Santo Niño",
+    "official_name": "Barangay Santo Niño",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9055069719,
+  "lat": 6.8232290,
+  "lon": 125.1826362,
+  "tags": {
+    "is_in:barangay": "Santo Niño",
+    "is_in:municipality": "Bansalan",
+    "name": "Km 81",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 9057487648,
+  "lat": 6.8270279,
+  "lon": 125.2049772,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9057487687,
+  "lat": 6.8307480,
+  "lon": 125.2008471,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Linawan",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 7",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9057487688,
+  "lat": 6.8295011,
+  "lon": 125.2004816,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Linawan",
+    "official_name": "Barangay Linawan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9103393989,
+  "lat": 6.9255535,
+  "lon": 125.2656519,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9103394096,
+  "lat": 6.9369202,
+  "lon": 125.2619478,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9776635117,
+  "lat": 6.7660160,
+  "lon": 125.2443122,
+  "tags": {
+    "name": "Melody Area Sinawilan Bugak",
+    "tourism": "apartment"
+  }
+},
+{
+  "type": "node",
+  "id": 10198635035,
+  "lat": 6.7271163,
+  "lon": 125.2783656,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kibuaya",
+    "is_in:municipality": "Hagonoy",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8006"
+  }
+},
+{
+  "type": "node",
+  "id": 10198723167,
+  "lat": 6.7288371,
+  "lon": 125.2672425,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Lanuro",
+    "is_in:municipality": "Hagonoy",
+    "name": "Purok 1",
+    "place": "neighbourhood",
+    "postal_code": "8006"
+  }
+},
+{
+  "type": "node",
+  "id": 10198734798,
+  "lat": 6.8769898,
+  "lon": 125.2213365,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "845",
+    "is_in:municipality": "Bansalan",
+    "name": "Alegre",
+    "official_name": "Barangay Alegre",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772858,
+  "lat": 6.7990150,
+  "lon": 125.2112751,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Tubod",
+    "official_name": "Barangay Tubod",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772859,
+  "lat": 6.8117099,
+  "lon": 125.2642132,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Tinongtongan",
+    "official_name": "Barangay Tinongtongan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772860,
+  "lat": 6.8012422,
+  "lon": 125.2199359,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Buenavista",
+    "official_name": "Barangay Buenavista",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772861,
+  "lat": 6.8470486,
+  "lon": 125.2190479,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Bitaug",
+    "official_name": "Barangay Bitaug",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10261529138,
+  "lat": 6.7829851,
+  "lon": 125.1944742,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Makikasama B",
+    "official_name": "Purok Makikasama B",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10261529139,
+  "lat": 6.7750586,
+  "lon": 125.1832062,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Liwayway",
+    "official_name": "Purok Liwayway",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10261529140,
+  "lat": 6.7791737,
+  "lon": 125.1790246,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Magsasaka",
+    "official_name": "Purok Magsasaka",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10261541396,
+  "lat": 6.7529193,
+  "lon": 125.1604772,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 16;Purok Ecoland",
+    "is_in:barangay": "Poblacion",
+    "is_in:municipality": "Magsaysay",
+    "name": "Ecoland",
+    "official_name": "Purok 16 Ecoland",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 10261541397,
+  "lat": 6.7637414,
+  "lon": 125.1520014,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 10;Purok Baryo Bunot",
+    "is_in:barangay": "Poblacion",
+    "is_in:municipality": "Magsaysay",
+    "name": "Baryo Bunot",
+    "official_name": "Purok 10 Baryo Bunot",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 10261541823,
+  "lat": 6.7750213,
+  "lon": 125.1765382,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Barayong",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 10261541824,
+  "lat": 6.7700087,
+  "lon": 125.1687705,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 1",
+    "is_in:barangay": "Barayong",
+    "is_in:municipality": "Magsaysay",
+    "name": "Kapehan",
+    "official_name": "Purok 1 Kapehan",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 10744682507,
+  "lat": 6.9084484,
+  "lon": 125.2701044,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Balutakay",
+    "is_in:municipality": "Bansalan",
+    "name": "Mercury",
+    "official_name": "Purok Mercury",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10744682508,
+  "lat": 6.9124745,
+  "lon": 125.2741143,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Balutakay",
+    "is_in:municipality": "Bansalan",
+    "name": "Neptune",
+    "official_name": "Purok Neptune",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10770128822,
+  "lat": 6.7805907,
+  "lon": 125.2210361,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Malipayon",
+    "official_name": "Purok Malipayon",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10770158373,
+  "lat": 6.9466004,
+  "lon": 125.1607724,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 2A",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 10770167624,
+  "lat": 6.8803903,
+  "lon": 125.1611477,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Durian",
+    "official_name": "Purok Durian",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 11410075123,
+  "lat": 6.8067850,
+  "lon": 125.2662635,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Tinongtongan",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 1",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665763780,
+  "lat": 6.8190387,
+  "lon": 125.2493736,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sibayan",
+    "is_in:municipality": "Bansalan",
+    "name": "Everlasting",
+    "official_name": "Purok Everlasting",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665771167,
+  "lat": 6.8143833,
+  "lon": 125.2451317,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Pilipinhon",
+    "official_name": "Purok Pilipinhon",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665771168,
+  "lat": 6.8188070,
+  "lon": 125.2339214,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Escalante",
+    "official_name": "Purok Escalante",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665774311,
+  "lat": 6.8142168,
+  "lon": 125.2281426,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Buenavista",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 5",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665777269,
+  "lat": 6.8123546,
+  "lon": 125.2453389,
+  "tags": {
+    "alt_name": "Sitio Cogon",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Cogon",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681602649,
+  "lat": 6.7692655,
+  "lon": 125.2231282,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Banahaw",
+    "official_name": "Purok Banahaw",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681648494,
+  "lat": 6.8042122,
+  "lon": 125.2288306,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Union",
+    "is_in:municipality": "Bansalan",
+    "name": "Madasigon",
+    "official_name": "Purok Madasigon",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681674216,
+  "lat": 6.7532203,
+  "lon": 125.2220687,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Mabuhay",
+    "is_in:municipality": "Bansalan",
+    "name": "San Roque",
+    "official_name": "Purok San Roque",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681674217,
+  "lat": 6.7602654,
+  "lon": 125.2275968,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Mabuhay",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 5-B",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681797304,
+  "lat": 6.7526596,
+  "lon": 125.2479105,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Dahil Sayo",
+    "official_name": "Purok Dahil Sayo",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 11681823993,
+  "lat": 6.7408943,
+  "lon": 125.2456172,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 22",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 11681828538,
+  "lat": 6.7519350,
+  "lon": 125.2446315,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Pag-Ibig",
+    "official_name": "Purok Pag-Ibig",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 11681828539,
+  "lat": 6.7516554,
+  "lon": 125.2425608,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Mahogany",
+    "official_name": "Purok Mahogany",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 11681851156,
+  "lat": 6.7538089,
+  "lon": 125.2743691,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Cabligan",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 5",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 11904480233,
+  "lat": 6.8678420,
+  "lon": 125.1580977,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Marang",
+    "official_name": "Purok Marang",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 11906509656,
+  "lat": 6.8147181,
+  "lon": 125.1882804,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 7",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906509657,
+  "lat": 6.8095603,
+  "lon": 125.1917547,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 6",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537515,
+  "lat": 6.7871921,
+  "lon": 125.1985994,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Bayanihan",
+    "official_name": "Purok Bayanihan",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537516,
+  "lat": 6.7687343,
+  "lon": 125.1930753,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Kaunlaran",
+    "official_name": "Purok Kaunlaran",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537517,
+  "lat": 6.7637582,
+  "lon": 125.1885151,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Pag-Ibig",
+    "official_name": "Purok Pag-Ibig",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537518,
+  "lat": 6.7966819,
+  "lon": 125.2009437,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Tubod",
+    "is_in:municipality": "Bansalan",
+    "name": "Sunflower",
+    "official_name": "Purok Sunflower",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537519,
+  "lat": 6.7699312,
+  "lon": 125.1950926,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Rizal",
+    "is_in:municipality": "Bansalan",
+    "name": "Dike",
+    "official_name": "Purok Dike",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906537520,
+  "lat": 6.7602655,
+  "lon": 125.1896064,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Pag-Asa",
+    "official_name": "Purok Pag-Asa",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906709776,
+  "lat": 6.7200647,
+  "lon": 125.1762058,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 4;Purok Pagkakaisa",
+    "is_in:barangay": "Blocon",
+    "is_in:municipality": "Magsaysay",
+    "name": "Pagkakaisa",
+    "official_name": "Purok 4 Pagkakaisa",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 11906727028,
+  "lat": 6.7245095,
+  "lon": 125.1932304,
+  "tags": {
+    "alt_name": "Sitio Magsongsong",
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Magsongsong",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 11906967582,
+  "lat": 6.7238433,
+  "lon": 125.2716554,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Lanuro",
+    "is_in:municipality": "Hagonoy",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8006"
+  }
+},
+{
+  "type": "node",
+  "id": 12316533801,
+  "lat": 6.8314092,
+  "lon": 125.2477992,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sibayan",
+    "is_in:municipality": "Bansalan",
+    "name": "Daisy",
+    "official_name": "Purok Daisy",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12330923008,
+  "lat": 6.7891030,
+  "lon": 125.2631280,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kibao",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12330923013,
+  "lat": 6.7853182,
+  "lon": 125.2684307,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kibao",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 1",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12330923014,
+  "lat": 6.7880482,
+  "lon": 125.2673605,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kibao",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12330923015,
+  "lat": 6.7921885,
+  "lon": 125.2636604,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kibao",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 4",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12483827102,
+  "lat": 6.7727461,
+  "lon": 125.1724354,
+  "tags": {
+    "amenity": "hospital",
+    "name": "Magsaysay Medical Healthcare Inc."
+  }
+},
+{
+  "type": "node",
+  "id": 12494424635,
+  "lat": 6.7685997,
+  "lon": 125.2059942,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Dos",
+    "is_in:municipality": "Bansalan",
+    "name": "Lower Nebrada",
+    "official_name": "Purok Lower Nebrada",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12494424636,
+  "lat": 6.7703176,
+  "lon": 125.2129894,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Mahogany",
+    "official_name": "Purok Mahogany",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513221276,
+  "lat": 6.8805781,
+  "lon": 125.2240442,
+  "tags": {
+    "alt_name": "Sitio Gagpang",
+    "ele": "900",
+    "fixme": "confirm location",
+    "is_in:barangay": "Alegre",
+    "is_in:municipality": "Bansalan",
+    "name": "Gagpang",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513238310,
+  "lat": 6.8384293,
+  "lon": 125.1721394,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Marber",
+    "is_in:municipality": "Bansalan",
+    "name": "Santan",
+    "official_name": "Purok Santan",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513238970,
+  "lat": 6.8588617,
+  "lon": 125.1644468,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kinuskusan",
+    "is_in:municipality": "Bansalan",
+    "name": "Tambis",
+    "official_name": "Purok Tambis",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513243204,
+  "lat": 6.8716719,
+  "lon": 125.2208269,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 4;Purok Boholano",
+    "is_in:barangay": "Alegre",
+    "is_in:municipality": "Bansalan",
+    "name": "Boholano",
+    "official_name": "Purok 4 Boholano",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513249385,
+  "lat": 6.8570894,
+  "lon": 125.1922519,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Eman",
+    "is_in:municipality": "Bansalan",
+    "name": "Dancing Lady",
+    "official_name": "Purok Dancing Lady",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513280239,
+  "lat": 6.8598284,
+  "lon": 125.2145451,
+  "tags": {
+    "alt_name": "Sitio Lacyo",
+    "ele": "620",
+    "is_in:barangay": "Alegre",
+    "is_in:municipality": "Bansalan",
+    "name": "Lacyo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12625370949,
+  "lat": 6.7530525,
+  "lon": 125.2543384,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Grasya",
+    "official_name": "Purok Grasya",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625370950,
+  "lat": 6.7547092,
+  "lon": 125.2529222,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Kawayan",
+    "official_name": "Purok Kawayan",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625410377,
+  "lat": 6.7376460,
+  "lon": 125.2215028,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "New Visayas",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625410378,
+  "lat": 6.7292260,
+  "lon": 125.2189949,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "New Visayas",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416168,
+  "lat": 6.7660027,
+  "lon": 125.2433681,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Sitio Bugak",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Bugak",
+    "official_name": "Purok Bugak",
+    "place": "hamlet",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416169,
+  "lat": 6.7503782,
+  "lon": 125.2440897,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Kabuhayan",
+    "official_name": "Purok Kabuhayan",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416170,
+  "lat": 6.7550528,
+  "lon": 125.2394602,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Panaghiusa",
+    "official_name": "Purok Panaghiusa",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416171,
+  "lat": 6.7532443,
+  "lon": 125.2392992,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Bayanihan",
+    "official_name": "Purok Bayanihan",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416172,
+  "lat": 6.7498139,
+  "lon": 125.2340093,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Everlasting",
+    "official_name": "Purok Everlasting",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625423335,
+  "lat": 6.7645458,
+  "lon": 125.2326688,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Mabuhay",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12625423739,
+  "lat": 6.7810514,
+  "lon": 125.2179810,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Poblacion Uno",
+    "is_in:municipality": "Bansalan",
+    "name": "Pag-Asa",
+    "official_name": "Purok Pag-Asa",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12625814218,
+  "lat": 6.7903361,
+  "lon": 125.1665819,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Mabini",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12625829652,
+  "lat": 6.7731409,
+  "lon": 125.1559764,
+  "tags": {
+    "alt_name": "Sitio Bob",
+    "is_in:barangay": "Barayong",
+    "is_in:municipality": "Magsaysay",
+    "name": "Bob",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12625829810,
+  "lat": 6.7831396,
+  "lon": 125.1730379,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Barayong",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 6",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12629849357,
+  "lat": 6.9064940,
+  "lon": 125.1579130,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kisante",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 6-B",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629941927,
+  "lat": 6.9127274,
+  "lon": 125.1508453,
+  "tags": {
+    "alt_name": "Sitio Kalapungot",
+    "ele": "490",
+    "is_in:barangay": "Kisante",
+    "is_in:municipality": "Makilala",
+    "name": "Kalapungot",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629950802,
+  "lat": 6.8769126,
+  "lon": 125.1597047,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Rambutan",
+    "official_name": "Purok Rambutan",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629950803,
+  "lat": 6.8863605,
+  "lon": 125.1643074,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Camote",
+    "official_name": "Purok Camote",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629950804,
+  "lat": 6.8904799,
+  "lon": 125.1645997,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Talisay",
+    "official_name": "Purok Talisay",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629950805,
+  "lat": 6.8959760,
+  "lon": 125.1629555,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "New Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Avocado",
+    "official_name": "Purok Avocado",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629951018,
+  "lat": 6.8549617,
+  "lon": 125.1661581,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kinuskusan",
+    "is_in:municipality": "Makilala",
+    "name": "Marang",
+    "official_name": "Purok Marang",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12629977677,
+  "lat": 6.8039192,
+  "lon": 125.1863766,
+  "tags": {
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Lower Dolo",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12629986673,
+  "lat": 6.8007232,
+  "lon": 125.1812375,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 5;Purok Pag-Asa",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Pag-Asa",
+    "official_name": "Purok 5 Pag-Asa",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630013474,
+  "lat": 6.7507351,
+  "lon": 125.1997903,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Sitio New Talisay",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "New Talisay",
+    "official_name": "Purok New Talisay",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630013475,
+  "lat": 6.7583131,
+  "lon": 125.2051735,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Sitio Santa Cruz B",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Santa Cruz B",
+    "official_name": "Purok Santa Cruz B",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630013542,
+  "lat": 6.7538888,
+  "lon": 125.1522267,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 2;Purok Liwayway",
+    "is_in:barangay": "Poblacion",
+    "is_in:municipality": "Magsaysay",
+    "name": "Liwayway",
+    "official_name": "Purok 2 Liwayway",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12630017113,
+  "lat": 6.8292254,
+  "lon": 125.1798964,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Marber",
+    "is_in:municipality": "Bansalan",
+    "name": "Gumamela",
+    "official_name": "Purok Gumamela",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630017114,
+  "lat": 6.8323600,
+  "lon": 125.1771739,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Marber",
+    "is_in:municipality": "Bansalan",
+    "name": "Bougainvillea",
+    "official_name": "Purok Bougainvillea",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630023894,
+  "lat": 6.7460578,
+  "lon": 125.1938009,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Pag-Ibig",
+    "official_name": "Purok Pag-Ibig",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630024399,
+  "lat": 6.7948479,
+  "lon": 125.2013245,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Tubod",
+    "is_in:municipality": "Bansalan",
+    "name": "Ilang-Ilang",
+    "official_name": "Purok Ilang-Ilang",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12630024400,
+  "lat": 6.7355044,
+  "lon": 125.1858428,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12630031420,
+  "lat": 6.7579721,
+  "lon": 125.1681295,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Purok 4;Purok Madasigon",
+    "is_in:barangay": "Dalawinon",
+    "is_in:municipality": "Magsaysay",
+    "name": "Madasigon",
+    "official_name": "Purok 4 Madasigon",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12630031421,
+  "lat": 6.7509109,
+  "lon": 125.1741725,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Dalawinon",
+    "is_in:municipality": "Magsaysay",
+    "name": "Purok 6",
+    "place": "neighbourhood",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12630130498,
+  "lat": 6.8901471,
+  "lon": 125.1894772,
+  "tags": {
+    "alt_name": "Sitio Alo",
+    "ele": "600",
+    "fixme": "confirm location",
+    "is_in:barangay": "Darapuay",
+    "is_in:municipality": "Bansalan",
+    "name": "Alo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12642687743,
+  "lat": 6.7650678,
+  "lon": 125.1974782,
+  "tags": {
+    "alt_name": "Sitio New Cebu",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "New Cebu",
+    "place": "quarter",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12642687744,
+  "lat": 6.7620926,
+  "lon": 125.1890856,
+  "tags": {
+    "alt_name": "Sitio Pulang Lupa",
+    "is_in:barangay": "New Clarin",
+    "is_in:municipality": "Bansalan",
+    "name": "Pulang Lupa",
+    "place": "quarter",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12643098781,
+  "lat": 6.7970345,
+  "lon": 125.1919797,
+  "tags": {
+    "alt_name": "Sitio Satar",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Satar",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12745791662,
+  "lat": 6.8474332,
+  "lon": 125.2774429,
+  "tags": {
+    "alt_name": "Sitio Kamalig",
+    "ele": "630",
+    "is_in:barangay": "Goma",
+    "is_in:city": "Digos",
+    "name": "Kamalig",
+    "place": "hamlet",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 12745791663,
+  "lat": 6.8240588,
+  "lon": 125.2791783,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Goma",
+    "is_in:city": "Digos",
+    "name": "Gemelina",
+    "official_name": "Purok Gemelina",
+    "place": "neighbourhood",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 12795361838,
+  "lat": 6.7346723,
+  "lon": 125.1715393,
+  "tags": {
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Upper Kasuga",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12923589915,
+  "lat": 6.9849112,
+  "lon": 125.1699245,
+  "tags": {
+    "is_in:municipality": "Makilala",
+    "is_in:village": "Buhay",
+    "name": "Lanzones",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 12925253593,
+  "lat": 6.9528412,
+  "lon": 125.1685777,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 4B",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12925253594,
+  "lat": 6.9376435,
+  "lon": 125.1506670,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 11",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12925253595,
+  "lat": 6.9436845,
+  "lon": 125.1568558,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Batasan",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 12",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12953426620,
+  "lat": 6.8714656,
+  "lon": 125.2737690,
+  "tags": {
+    "alt_name": "Sitio Bagong Silang",
+    "ele": "840",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Bagong Silang",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 13185474316,
+  "lat": 6.9862152,
+  "lon": 125.2734303,
+  "tags": {
+    "alt_name": "87 Degrees",
+    "name": "87°",
+    "place": "locality",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 13188702491,
+  "lat": 6.9859686,
+  "lon": 125.2757294,
+  "tags": {
+    "name": "Boulder Face",
+    "place": "locality",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 13401464351,
+  "lat": 6.9452956,
+  "lon": 125.1586660,
+  "tags": {
+    "name": "Purok 2B",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13401464352,
+  "lat": 6.9326699,
+  "lon": 125.1527006,
+  "tags": {
+    "is_in:municipality": "Makilala",
+    "is_in:province": "Cotabato",
+    "is_in:village": "Batasan",
+    "name": "Purok 10",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 13731481402,
+  "lat": 6.7817841,
+  "lon": 125.2152714,
+  "tags": {
+    "historic": "memorial",
+    "name": "Jose Rizal"
+  }
+},
+{
+  "type": "node",
+  "id": 13763361836,
+  "lat": 6.7526230,
+  "lon": 125.2568394,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:municipality": "Matanao",
+    "name": "Sambag",
+    "official_name": "Purok Sambag",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 13763361837,
+  "lat": 6.7525807,
+  "lon": 125.2717744,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Cabligan",
+    "is_in:municipality": "Matanao",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 13907278454,
+  "lat": 6.7708035,
+  "lon": 125.2246332,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 3",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 13987012022,
+  "lat": 6.9168379,
+  "lon": 125.1573782,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Kisante",
+    "is_in:municipality": "Makilala",
+    "name": "Purok 5-A",
+    "place": "neighbourhood",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 13987029530,
+  "lat": 6.8038079,
+  "lon": 125.2029148,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "name": "Purok 2",
+    "place": "neighbourhood",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "way",
+  "id": 49743212,
+  "center": {
+    "lat": 6.9400730,
+    "lon": 125.2402369
+  },
+  "tags": {
+    "name": "Darapuay River",
+    "waterway": "stream",
+    "wikidata": "Q32721724"
+  }
+},
+{
+  "type": "way",
+  "id": 124006446,
+  "center": {
+    "lat": 6.8401571,
+    "lon": 125.2482055
+  },
+  "tags": {
+    "alt_name": "Managa Creek",
+    "intermittent": "yes",
+    "name": "Managa River",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 129283926,
+  "center": {
+    "lat": 6.7715143,
+    "lon": 125.2571815
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157258930,
+  "center": {
+    "lat": 6.8582050,
+    "lon": 125.1651133
+  },
+  "tags": {
+    "addr:barangay": "Kinuskusan",
+    "addr:city": "Bansalan",
+    "addr:neighbourhood": "Km. 86",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Kinuskusan Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "292",
+    "population:pupils:date": "2015",
+    "ref": "128830",
+    "start_date": "1952"
+  }
+},
+{
+  "type": "way",
+  "id": 157258937,
+  "center": {
+    "lat": 6.8620088,
+    "lon": 125.1693346
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157258938,
+  "center": {
+    "lat": 6.8581755,
+    "lon": 125.1661280
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157259482,
+  "center": {
+    "lat": 6.8675400,
+    "lon": 125.1754581
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Darapuay",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Darapuay Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "296",
+    "population:pupils:date": "2015",
+    "ref": "128827",
+    "start_date": "1959"
+  }
+},
+{
+  "type": "way",
+  "id": 157259544,
+  "center": {
+    "lat": 6.8644419,
+    "lon": 125.1723058
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157259545,
+  "center": {
+    "lat": 6.8687928,
+    "lon": 125.1756810
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157259867,
+  "center": {
+    "lat": 6.8395492,
+    "lon": 125.1719840
+  },
+  "tags": {
+    "addr:barangay": "Marber",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Santan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Marber National High School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1109",
+    "population:pupils:date": "2015",
+    "ref": "304286",
+    "specialized_education": "special_needs",
+    "start_date": "1992"
+  }
+},
+{
+  "type": "way",
+  "id": 157261048,
+  "center": {
+    "lat": 6.8332017,
+    "lon": 125.1770657
+  },
+  "tags": {
+    "addr:barangay": "Marber",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Marber Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "317",
+    "population:pupils:date": "2015",
+    "ref": "128834",
+    "start_date": "1944"
+  }
+},
+{
+  "type": "way",
+  "id": 157261049,
+  "center": {
+    "lat": 6.8294494,
+    "lon": 125.1736289
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "ground"
+  }
+},
+{
+  "type": "way",
+  "id": 157261050,
+  "center": {
+    "lat": 6.8287147,
+    "lon": 125.1728203
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 157261052,
+  "center": {
+    "lat": 6.8202706,
+    "lon": 125.1624629
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157261053,
+  "center": {
+    "lat": 6.8671181,
+    "lon": 125.2066406
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157265247,
+  "center": {
+    "lat": 6.8079509,
+    "lon": 125.1933396
+  },
+  "tags": {
+    "addr:barangay": "Dolo",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "leisure": "sports_hall",
+    "name": "Dolo Covered Court",
+    "operator": "Barangay Dolo",
+    "operator:type": "government",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 157265248,
+  "center": {
+    "lat": 6.8074491,
+    "lon": 125.1927410
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Dolo",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Dolo Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "584",
+    "population:pupils:date": "2015",
+    "ref": "128828",
+    "start_date": "1947"
+  }
+},
+{
+  "type": "way",
+  "id": 157265257,
+  "center": {
+    "lat": 6.8204903,
+    "lon": 125.1952543
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 157267483,
+  "center": {
+    "lat": 6.8145973,
+    "lon": 125.2120501
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "tertiary",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "paved"
+  }
+},
+{
+  "type": "way",
+  "id": 157267496,
+  "center": {
+    "lat": 6.8064640,
+    "lon": 125.2142468
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270228,
+  "center": {
+    "lat": 6.7969073,
+    "lon": 125.2189523
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Buenavista Road",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157270282,
+  "center": {
+    "lat": 6.7850048,
+    "lon": 125.2086609
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Bonifacio Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157337828,
+  "center": {
+    "lat": 6.7752263,
+    "lon": 125.2150221
+  },
+  "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Santol Street",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157339798,
+  "center": {
+    "lat": 6.7639999,
+    "lon": 125.2318923
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:neighbourhood": "Purok 2",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Mabuhay Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "282",
+    "population:pupils:date": "2015",
+    "ref": "128815",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 157340016,
+  "center": {
+    "lat": 6.7534629,
+    "lon": 125.2406865
+  },
+  "tags": {
+    "amenity": "hospital",
+    "building": "yes",
+    "healthcare": "hospital",
+    "name": "Sinawilan Clinic and Hospital"
+  }
+},
+{
+  "type": "way",
+  "id": 157363498,
+  "center": {
+    "lat": 6.7518825,
+    "lon": 125.2479519
+  },
+  "tags": {
+    "addr:barangay": "Sinawilan",
+    "addr:city": "Matanao",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Sinawilan Elementary School",
+    "operator": "Department of Education",
+    "operator:en": "Department of Education",
+    "operator:short": "DepEd",
+    "operator:tl": "Kagawaran ng Edukasyon",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "762",
+    "population:pupils:date": "2015",
+    "ref": "129026",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 157375108,
+  "center": {
+    "lat": 6.7882021,
+    "lon": 125.1988040
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375110,
+  "center": {
+    "lat": 6.7760364,
+    "lon": 125.1778776
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Bansalan-Magsaysay Road",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375116,
+  "center": {
+    "lat": 6.7832757,
+    "lon": 125.1938641
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Bansalan-Magsaysay Road",
+    "sidewalk": "both",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375117,
+  "center": {
+    "lat": 6.7805174,
+    "lon": 125.1858677
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157375120,
+  "center": {
+    "lat": 6.7680999,
+    "lon": 125.1659049
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157378675,
+  "center": {
+    "lat": 6.7542238,
+    "lon": 125.1515634
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "Rizal Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157378680,
+  "center": {
+    "lat": 6.7535695,
+    "lon": 125.1523150
+  },
+  "tags": {
+    "highway": "residential",
+    "name": "A. Bonifacion Street"
+  }
+},
+{
+  "type": "way",
+  "id": 157378693,
+  "center": {
+    "lat": 6.7531275,
+    "lon": 125.1497714
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 157391187,
+  "center": {
+    "lat": 6.7387373,
+    "lon": 125.1721301
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Poblacion-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173466456,
+  "center": {
+    "lat": 6.7565269,
+    "lon": 125.1681624
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Dalawinon-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173466463,
+  "center": {
+    "lat": 6.7528117,
+    "lon": 125.1603591
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Poblacion-Kasuga Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 173545181,
+  "center": {
+    "lat": 6.7544925,
+    "lon": 125.2029471
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173545187,
+  "center": {
+    "lat": 6.7609002,
+    "lon": 125.2278501
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 173545190,
+  "center": {
+    "lat": 6.7765698,
+    "lon": 125.2008023
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 291445260,
+  "center": {
+    "lat": 6.7569218,
+    "lon": 125.1917731
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 556895318,
+  "center": {
+    "lat": 6.7534335,
+    "lon": 125.1543185
+  },
+  "tags": {
+    "addr:barangay": "Poblacion",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "admin_level": "6",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Magsaysay Municipal Hall",
+    "townhall:type": "municipality"
+  }
+},
+{
+  "type": "way",
+  "id": 636116834,
+  "center": {
+    "lat": 6.8491793,
+    "lon": 125.2520632
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 644702620,
+  "center": {
+    "lat": 6.7861544,
+    "lon": 125.2091956
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Dos",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Bonifacio Road",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Poblacion Dos Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 671831723,
+  "center": {
+    "lat": 6.8076544,
+    "lon": 125.2471301
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved",
+    "width": "3"
+  }
+},
+{
+  "type": "way",
+  "id": 672027915,
+  "center": {
+    "lat": 6.7372965,
+    "lon": 125.2172111
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222098,
+  "center": {
+    "lat": 6.7639255,
+    "lon": 125.2300427
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222099,
+  "center": {
+    "lat": 6.7634466,
+    "lon": 125.2297052
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "name": "Mabuhay Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222100,
+  "center": {
+    "lat": 6.8821468,
+    "lon": 125.1778250
+  },
+  "tags": {
+    "name": "Darapuay River",
+    "waterway": "river",
+    "wikidata": "Q32721724"
+  }
+},
+{
+  "type": "way",
+  "id": 700222127,
+  "center": {
+    "lat": 6.7692630,
+    "lon": 125.1939688
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222129,
+  "center": {
+    "lat": 6.7420805,
+    "lon": 125.1908146
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222130,
+  "center": {
+    "lat": 6.7384427,
+    "lon": 125.1883287
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 700222131,
+  "center": {
+    "lat": 6.7455189,
+    "lon": 125.1934802
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222134,
+  "center": {
+    "lat": 6.7472831,
+    "lon": 125.1983587
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "sidewalk": "no",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 700222135,
+  "center": {
+    "lat": 6.7471455,
+    "lon": 125.1981376
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222158,
+  "center": {
+    "lat": 6.7619110,
+    "lon": 125.2040282
+  },
+  "tags": {
+    "alt_name": "Marber Creek",
+    "name": "Marber River",
+    "waterway": "river"
+  }
+},
+{
+  "type": "way",
+  "id": 700222168,
+  "center": {
+    "lat": 6.8217440,
+    "lon": 125.1805953
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222169,
+  "center": {
+    "lat": 6.8173328,
+    "lon": 125.1739271
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 700222171,
+  "center": {
+    "lat": 6.8324651,
+    "lon": 125.2170302
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 742340059,
+  "center": {
+    "lat": 6.7817418,
+    "lon": 125.2141888
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Dahlia Street",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Poblacion Uno Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 772358457,
+  "center": {
+    "lat": 6.7518658,
+    "lon": 125.1823935
+  },
+  "tags": {
+    "addr:barangay": "Dalawinon",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Dalawinon Elementary School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "349",
+    "population:pupils:date": "2015",
+    "ref": "128924",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 773673177,
+  "center": {
+    "lat": 6.7920784,
+    "lon": 125.2121759
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Villa Doneza Central Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1100",
+    "population:pupils:date": "2015",
+    "ref": "128836",
+    "start_date": "1968"
+  }
+},
+{
+  "type": "way",
+  "id": 773673670,
+  "center": {
+    "lat": 6.8095901,
+    "lon": 125.2119971
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Libertad Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "169",
+    "population:pupils:date": "2015",
+    "ref": "128831",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 773673883,
+  "center": {
+    "lat": 6.8192473,
+    "lon": 125.2244302
+  },
+  "tags": {
+    "addr:barangay": "Poblacio 2",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "President Roxas Street",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Anonang Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "218",
+    "population:pupils:date": "2015",
+    "ref": "128825",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 840816482,
+  "center": {
+    "lat": 6.8010411,
+    "lon": 125.2202226
+  },
+  "tags": {
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Buenavista Elementary Gymnasium",
+    "sport": "multi"
+  }
+},
+{
+  "type": "way",
+  "id": 840816490,
+  "center": {
+    "lat": 6.8011329,
+    "lon": 125.2205785
+  },
+  "tags": {
+    "addr:barangay": "Buenavista",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok 2",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Buenavista Elementary School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "228",
+    "population:pupils:date": "2015",
+    "ref": "128814",
+    "start_date": "1956"
+  }
+},
+{
+  "type": "way",
+  "id": 867691477,
+  "center": {
+    "lat": 6.8342535,
+    "lon": 125.2482873
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 878026387,
+  "center": {
+    "lat": 6.8403426,
+    "lon": 125.1820169
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 878026388,
+  "center": {
+    "lat": 6.8648315,
+    "lon": 125.2176069
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 879137674,
+  "center": {
+    "lat": 6.7537708,
+    "lon": 125.1508103
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 899084921,
+  "center": {
+    "lat": 6.9465084,
+    "lon": 125.1601241
+  },
+  "tags": {
+    "addr:place": "Purok 2",
+    "amenity": "place_of_worship",
+    "denomination": "roman_catholic",
+    "name": "GKK Señor Santo Niño",
+    "religion": "christian"
+  }
+},
+{
+  "type": "way",
+  "id": 922398097,
+  "center": {
+    "lat": 6.7528753,
+    "lon": 125.1509905
+  },
+  "tags": {
+    "addr:barangay": "Poblacion",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Quirino Avenue",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Magsaysay Central Elementary School",
+    "operator": "Magsaysay South District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1287",
+    "population:pupils:date": "2015",
+    "ref": "128936",
+    "start_date": "1949"
+  }
+},
+{
+  "type": "way",
+  "id": 931891530,
+  "center": {
+    "lat": 6.8498905,
+    "lon": 125.1829386
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Eman",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Eman Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "276",
+    "population:pupils:date": "2015",
+    "ref": "128829",
+    "start_date": "1947"
+  }
+},
+{
+  "type": "way",
+  "id": 932680358,
+  "center": {
+    "lat": 6.7459096,
+    "lon": 125.2003613
+  },
+  "tags": {
+    "addr:barangay": "New Clarin",
+    "addr:city": "Bansalan",
+    "addr:place": "Santa Cruz A",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2",
+    "name": "New Clarin National High School",
+    "old_name": "Marber Interior Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "ref": "316006"
+  }
+},
+{
+  "type": "way",
+  "id": 932686601,
+  "center": {
+    "lat": 6.7498741,
+    "lon": 125.1966761
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "New Clarin",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "New Clarin Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "678",
+    "population:pupils:date": "2015",
+    "ref": "128818",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 933083026,
+  "center": {
+    "lat": 6.7825671,
+    "lon": 125.1720299
+  },
+  "tags": {
+    "addr:barangay": "Barayong",
+    "addr:city": "Magsaysay",
+    "addr:neighbourhood": "Purok 6",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Barayong National High School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1375",
+    "population:pupils:date": "2015",
+    "ref": "304265",
+    "specialized_education": "special_needs",
+    "start_date": "1967"
+  }
+},
+{
+  "type": "way",
+  "id": 945358220,
+  "center": {
+    "lat": 6.7860104,
+    "lon": 125.2407481
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Mabunga",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Mabunga Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "253",
+    "population:pupils:date": "2015",
+    "ref": "128816",
+    "start_date": "1952"
+  }
+},
+{
+  "type": "way",
+  "id": 946174821,
+  "center": {
+    "lat": 6.8363952,
+    "lon": 125.2507021
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Waling-Waling",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Sibayan Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "116",
+    "population:pupils:date": "2015",
+    "ref": "128820",
+    "start_date": "1960"
+  }
+},
+{
+  "type": "way",
+  "id": 946188275,
+  "center": {
+    "lat": 6.8129463,
+    "lon": 125.2594669
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Tinongtongan Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "183",
+    "population:pupils:date": "2015",
+    "ref": "128821",
+    "start_date": "1956"
+  }
+},
+{
+  "type": "way",
+  "id": 948387571,
+  "center": {
+    "lat": 6.7817208,
+    "lon": 125.2151386
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Rizal Park",
+    "name:etymology:wikidata": "Q1500",
+    "operator": "Municipality of Bansalan",
+    "operator:type": "government",
+    "operator:wikidata": "Q314778"
+  }
+},
+{
+  "type": "way",
+  "id": 953675844,
+  "center": {
+    "lat": 6.7987294,
+    "lon": 125.2447083
+  },
+  "tags": {
+    "addr:barangay": "Bonifacio",
+    "addr:city": "Bansalan",
+    "addr:place": "Rose",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Bonifacio Elementary School",
+    "old_name": "Bonifacio Primary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "45",
+    "population:pupils:date": "2015",
+    "ref": "128813",
+    "start_date": "1998"
+  }
+},
+{
+  "type": "way",
+  "id": 955375927,
+  "center": {
+    "lat": 6.7837415,
+    "lon": 125.1922756
+  },
+  "tags": {
+    "addr:barangay": "Rizal",
+    "addr:city": "Bansalan",
+    "addr:place": "Maypalad",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Rizal Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "460",
+    "population:pupils:date": "2015",
+    "ref": "128819",
+    "start_date": "1954"
+  }
+},
+{
+  "type": "way",
+  "id": 955637507,
+  "center": {
+    "lat": 6.8044086,
+    "lon": 125.1954507
+  },
+  "tags": {
+    "alt_name": "Marber Bridge 1",
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Marber Bridge I"
+  }
+},
+{
+  "type": "way",
+  "id": 955637508,
+  "center": {
+    "lat": 6.8044781,
+    "lon": 125.1955181
+  },
+  "tags": {
+    "alt_name": "Marber Bridge 2",
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Marber Bridge II"
+  }
+},
+{
+  "type": "way",
+  "id": 961272446,
+  "center": {
+    "lat": 6.7817875,
+    "lon": 125.1712052
+  },
+  "tags": {
+    "addr:barangay": "Barayong",
+    "addr:city": "Magsaysay",
+    "addr:postcode": "8004",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Barayong Central Elementary School",
+    "operator": "Magsaysay North District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "1106",
+    "population:pupils:date": "2015",
+    "ref": "128923",
+    "start_date": "1955"
+  }
+},
+{
+  "type": "way",
+  "id": 961670845,
+  "center": {
+    "lat": 6.7564512,
+    "lon": 125.2618368
+  },
+  "tags": {
+    "addr:barangay": "Camanchiles",
+    "addr:city": "Matanao",
+    "addr:neighbourhood": "Km. 68",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Camanchiles Elementary School",
+    "operator": "Matanao I District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "206",
+    "population:pupils:date": "2015",
+    "ref": "129014",
+    "start_date": "1964"
+  }
+},
+{
+  "type": "way",
+  "id": 961672888,
+  "center": {
+    "lat": 6.7510854,
+    "lon": 125.2471648
+  },
+  "tags": {
+    "addr:barangay": "Sinawilan",
+    "addr:city": "Matanao",
+    "addr:place": "Km 70",
+    "addr:postcode": "8003",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "2;3",
+    "name": "Sinawilan National High School",
+    "operator": "Department of Education",
+    "operator:en": "Department of Education",
+    "operator:short": "DepEd",
+    "operator:tl": "Kagawaran ng Edukasyon",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "539",
+    "population:pupils:date": "2015",
+    "ref": "304290",
+    "start_date": "2000"
+  }
+},
+{
+  "type": "way",
+  "id": 961674318,
+  "center": {
+    "lat": 6.8197714,
+    "lon": 125.2368422
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Managa Elementary School",
+    "operator": "Bansalan East District",
+    "operator:type": "government",
+    "operator:wikidata": "Q130490863",
+    "population:pupils": "273",
+    "population:pupils:date": "2015",
+    "ref": "128817",
+    "start_date": "1952"
+  }
+},
+{
+  "type": "way",
+  "id": 965918752,
+  "center": {
+    "lat": 6.8468678,
+    "lon": 125.2198331
+  },
+  "tags": {
+    "addr:barangay": "Bitaug",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Bitaug Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "127",
+    "population:pupils:date": "2015",
+    "ref": "128826",
+    "start_date": "1965"
+  }
+},
+{
+  "type": "way",
+  "id": 966156151,
+  "center": {
+    "lat": 6.9191974,
+    "lon": 125.2139850
+  },
+  "tags": {
+    "name": "Darapuay River",
+    "waterway": "stream",
+    "wikidata": "Q32721724"
+  }
+},
+{
+  "type": "way",
+  "id": 973478304,
+  "center": {
+    "lat": 6.7472831,
+    "lon": 125.1983587
+  },
+  "tags": {
+    "bridge:structure": "truss",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "steel",
+    "name": "New Clarin Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 973481838,
+  "center": {
+    "lat": 6.8686913,
+    "lon": 125.1757740
+  },
+  "tags": {
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Darapuay Covered Court",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 973484760,
+  "center": {
+    "lat": 6.7809906,
+    "lon": 125.2417186
+  },
+  "tags": {
+    "name": "Sinawilan Creek",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 977484695,
+  "center": {
+    "lat": 6.8206727,
+    "lon": 125.2373008
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Managa Barangay Hall",
+    "operator": "Barangay Managa",
+    "operator:type": "government",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 977484696,
+  "center": {
+    "lat": 6.8208203,
+    "lon": 125.2372740
+  },
+  "tags": {
+    "addr:barangay": "Managa",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Malipayon",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "building:levels": "1",
+    "height": "8",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Managa Covered Court",
+    "operator": "Barangay Managa",
+    "operator:type": "government",
+    "roof:shape": "gabled",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 977732997,
+  "center": {
+    "lat": 6.7991795,
+    "lon": 125.2348937
+  },
+  "tags": {
+    "addr:city": "Bansalan",
+    "addr:place": "Union",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Union Elementary School",
+    "operator": "Bansalan East District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "110",
+    "population:pupils:date": "2015",
+    "ref": "128822",
+    "start_date": "1968"
+  }
+},
+{
+  "type": "way",
+  "id": 977737237,
+  "center": {
+    "lat": 6.7832757,
+    "lon": 125.1938641
+  },
+  "tags": {
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Rizal Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 977746157,
+  "center": {
+    "lat": 6.8279883,
+    "lon": 125.2480128
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Daisy",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Sibayan Covered Court",
+    "operator": "Barangay Sibayan",
+    "operator:type": "government",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 978613718,
+  "center": {
+    "lat": 6.8217183,
+    "lon": 125.1809137
+  },
+  "tags": {
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Santo Niño Covered Court",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 978884541,
+  "center": {
+    "lat": 6.8310794,
+    "lon": 125.2014875
+  },
+  "tags": {
+    "addr:barangay": "Linawan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok 7",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "amenity": "school",
+    "isced:level": "0;1",
+    "name": "Linawan Elementary School",
+    "operator": "Bansalan West District of Davao del Sur Schools Division, DepEd",
+    "operator:type": "government",
+    "operator:wikidata": "Q3550346",
+    "population:pupils": "141",
+    "population:pupils:date": "2015",
+    "ref": "128832",
+    "start_date": "2002"
+  }
+},
+{
+  "type": "way",
+  "id": 999347742,
+  "center": {
+    "lat": 6.7537006,
+    "lon": 125.2637469
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 999607985,
+  "center": {
+    "lat": 6.7558622,
+    "lon": 125.2547933
+  },
+  "tags": {
+    "is_in:municipality": "Matanao",
+    "landuse": "residential",
+    "name": "Oakland Residences",
+    "place": "neighbourhood",
+    "residential": "rural"
+  }
+},
+{
+  "type": "way",
+  "id": 999615570,
+  "center": {
+    "lat": 6.7532842,
+    "lon": 125.2491533
+  },
+  "tags": {
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Sinawilan Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1044742622,
+  "center": {
+    "lat": 6.8547673,
+    "lon": 125.1652706
+  },
+  "tags": {
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Kinuskusan Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1065098314,
+  "center": {
+    "lat": 6.8597788,
+    "lon": 125.1577614
+  },
+  "tags": {
+    "name": "Darapuay River",
+    "waterway": "river",
+    "wikidata": "Q32721724"
+  }
+},
+{
+  "type": "way",
+  "id": 1068866579,
+  "center": {
+    "lat": 6.4799266,
+    "lon": 125.2206146
+  },
+  "tags": {
+    "cables": "3",
+    "name": "General Santos - Matanao 2",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "power": "line",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1068866580,
+  "center": {
+    "lat": 6.4797432,
+    "lon": 125.2296477
+  },
+  "tags": {
+    "cables": "3",
+    "name": "General Santos - Matanao 1",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "power": "line",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1115123516,
+  "center": {
+    "lat": 6.7661998,
+    "lon": 125.2430892
+  },
+  "tags": {
+    "layer": "-1",
+    "name": "Sinawilan Creek",
+    "tunnel": "culvert",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1115123517,
+  "center": {
+    "lat": 6.7503281,
+    "lon": 125.2507978
+  },
+  "tags": {
+    "name": "Sinawilan Creek",
+    "waterway": "river"
+  }
+},
+{
+  "type": "way",
+  "id": 1115123519,
+  "center": {
+    "lat": 6.7517961,
+    "lon": 125.2641365
+  },
+  "tags": {
+    "alt_name": "Managa Creek",
+    "intermittent": "yes",
+    "name": "Managa River",
+    "waterway": "river"
+  }
+},
+{
+  "type": "way",
+  "id": 1118028182,
+  "center": {
+    "lat": 6.7760364,
+    "lon": 125.1778776
+  },
+  "tags": {
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "reinforced_concrete",
+    "name": "Barayong Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1118028186,
+  "center": {
+    "lat": 6.7566224,
+    "lon": 125.1533342
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Bansalan-Magsaysay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912283,
+  "center": {
+    "lat": 6.7483282,
+    "lon": 125.1990262
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912285,
+  "center": {
+    "lat": 6.7696905,
+    "lon": 125.1943678
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912290,
+  "center": {
+    "lat": 6.7645697,
+    "lon": 125.1897640
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1149912293,
+  "center": {
+    "lat": 6.7482623,
+    "lon": 125.1972845
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1158081062,
+  "center": {
+    "lat": 6.7929609,
+    "lon": 125.2068620
+  },
+  "tags": {
+    "alt_name": "Monte de Oro Homes",
+    "is_in:municipality": "Bansalan",
+    "landuse": "residential",
+    "name": "Monte de Oro",
+    "place": "neighbourhood",
+    "postal_code": "8005",
+    "residential": "rural"
+  }
+},
+{
+  "type": "way",
+  "id": 1158082359,
+  "center": {
+    "lat": 6.7817521,
+    "lon": 125.2145074
+  },
+  "tags": {
+    "addr:barangay": "Poblacion Uno",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "addr:street": "Dahlia Street",
+    "building": "roof",
+    "building:levels": "1",
+    "height": "8",
+    "hoops": "2",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Barangay Poblacion Uno Covered Court",
+    "operator": "Barangay Poblacion Uno",
+    "operator:type": "government",
+    "pitch:surface": "concrete",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 1230261669,
+  "center": {
+    "lat": 6.8056148,
+    "lon": 125.2229630
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "Buenavista Road",
+    "smoothness": "bad",
+    "source:maxspeed": "PH:urban",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1230365421,
+  "center": {
+    "lat": 6.8113403,
+    "lon": 125.2643515
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Tinongtongan Covered Court",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 1230365422,
+  "center": {
+    "lat": 6.8111422,
+    "lon": 125.2643560
+  },
+  "tags": {
+    "addr:barangay": "Tinongtongan",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Tinongtongan Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1232131575,
+  "center": {
+    "lat": 6.8259793,
+    "lon": 125.2484994
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1232131581,
+  "center": {
+    "lat": 6.8113898,
+    "lon": 125.2636475
+  },
+  "tags": {
+    "bridge:structure": "truss",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "steel",
+    "name": "Tinongtongan Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1232213265,
+  "center": {
+    "lat": 6.7932531,
+    "lon": 125.2553800
+  },
+  "tags": {
+    "alt_name": "Managa Creek",
+    "intermittent": "yes",
+    "name": "Managa River",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1232213266,
+  "center": {
+    "lat": 6.7644153,
+    "lon": 125.2444919
+  },
+  "tags": {
+    "name": "Sinawilan Creek",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1254933113,
+  "center": {
+    "lat": 6.7952473,
+    "lon": 125.2502588
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Camanchiles-Bonifacio Road",
+    "smoothness": "very_bad",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved",
+    "width": "3"
+  }
+},
+{
+  "type": "way",
+  "id": 1254935480,
+  "center": {
+    "lat": 6.7958134,
+    "lon": 125.2415090
+  },
+  "tags": {
+    "layer": "-1",
+    "name": "Sinawilan Creek",
+    "tunnel": "culvert",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1254935481,
+  "center": {
+    "lat": 6.8013651,
+    "lon": 125.2418702
+  },
+  "tags": {
+    "name": "Sinawilan Creek",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580075,
+  "center": {
+    "lat": 6.7634466,
+    "lon": 125.2297052
+  },
+  "tags": {
+    "bridge:structure": "beam",
+    "layer": "1",
+    "man_made": "bridge",
+    "material": "steel",
+    "name": "Mabuhay Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580078,
+  "center": {
+    "lat": 6.7565044,
+    "lon": 125.2246164
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580079,
+  "center": {
+    "lat": 6.7532266,
+    "lon": 125.2221968
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580080,
+  "center": {
+    "lat": 6.7497104,
+    "lon": 125.2196107
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1256580081,
+  "center": {
+    "lat": 6.7466771,
+    "lon": 125.2173753
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Mabuhay Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1256597856,
+  "center": {
+    "lat": 6.7518885,
+    "lon": 125.2661179
+  },
+  "tags": {
+    "developer": "IndPhil Homes Development Corporation",
+    "developer:type": "private",
+    "is_in:barangay": "Cabligan",
+    "is_in:municipality": "Matanao",
+    "landuse": "residential",
+    "name": "IndPhil Homes",
+    "place": "neighbourhood",
+    "postal_code": "8003",
+    "residential": "rural"
+  }
+},
+{
+  "type": "way",
+  "id": 1316456503,
+  "center": {
+    "lat": 6.9054262,
+    "lon": 125.1985296
+  },
+  "tags": {
+    "name": "Darapuay River",
+    "waterway": "stream",
+    "wikidata": "Q32721724"
+  }
+},
+{
+  "type": "way",
+  "id": 1316458972,
+  "center": {
+    "lat": 6.8197784,
+    "lon": 125.1901303
+  },
+  "tags": {
+    "alt_name": "Marber Creek",
+    "name": "Marber River",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1316458976,
+  "center": {
+    "lat": 6.8105907,
+    "lon": 125.1929982
+  },
+  "tags": {
+    "alt_name": "Marber Creek",
+    "name": "Marber River",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1316458977,
+  "center": {
+    "lat": 6.8172363,
+    "lon": 125.1903522
+  },
+  "tags": {
+    "alt_name": "Marber Creek",
+    "layer": "-1",
+    "name": "Marber River",
+    "tunnel": "culvert",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1316458978,
+  "center": {
+    "lat": 6.8331388,
+    "lon": 125.1973334
+  },
+  "tags": {
+    "alt_name": "Marber Creek",
+    "name": "Marber River",
+    "waterway": "stream"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540475,
+  "center": {
+    "lat": 6.8333772,
+    "lon": 125.2017435
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540476,
+  "center": {
+    "lat": 6.8267020,
+    "lon": 125.1988551
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540479,
+  "center": {
+    "lat": 6.8180087,
+    "lon": 125.2123783
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540488,
+  "center": {
+    "lat": 6.8526540,
+    "lon": 125.1867699
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Eman-Alegre Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1330540491,
+  "center": {
+    "lat": 6.8714885,
+    "lon": 125.2207210
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1330541569,
+  "center": {
+    "lat": 6.8125599,
+    "lon": 125.2128782
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Libertad-Bitaug Road",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160708,
+  "center": {
+    "lat": 6.8281697,
+    "lon": 125.2479711
+  },
+  "tags": {
+    "addr:barangay": "Sibayan",
+    "addr:city": "Bansalan",
+    "addr:place": "Purok Daisy",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Sibayan Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160709,
+  "center": {
+    "lat": 6.8360638,
+    "lon": 125.2491617
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160710,
+  "center": {
+    "lat": 6.8368133,
+    "lon": 125.2502918
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Sibayan Road",
+    "smoothness": "bad",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1331160712,
+  "center": {
+    "lat": 6.8657769,
+    "lon": 125.2535210
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Sibayan Road",
+    "smoothness": "horrible",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818602,
+  "center": {
+    "lat": 6.8165969,
+    "lon": 125.1893826
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818603,
+  "center": {
+    "lat": 6.8675247,
+    "lon": 125.2196783
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818604,
+  "center": {
+    "lat": 6.8619754,
+    "lon": 125.2158238
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete",
+    "width": "2"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818605,
+  "center": {
+    "lat": 6.8606402,
+    "lon": 125.2153001
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "very_bad",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818606,
+  "center": {
+    "lat": 6.8595637,
+    "lon": 125.2144455
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "surface": "unpaved"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818607,
+  "center": {
+    "lat": 6.8516241,
+    "lon": 125.2102097
+  },
+  "tags": {
+    "highway": "unclassified",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "horrible",
+    "surface": "unpaved",
+    "width": "2.5"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818612,
+  "center": {
+    "lat": 6.8404565,
+    "lon": 125.2049080
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1352818615,
+  "center": {
+    "lat": 6.8754713,
+    "lon": 125.2211876
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "name": "Linawan-Alegre Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1363550280,
+  "center": {
+    "lat": 6.7639142,
+    "lon": 125.2302545
+  },
+  "tags": {
+    "addr:barangay": "Mabuhay",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "building:levels": "1",
+    "name": "Mabuhay Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1363599694,
+  "center": {
+    "lat": 6.8081257,
+    "lon": 125.1934136
+  },
+  "tags": {
+    "addr:barangay": "Dolo",
+    "addr:city": "Bansalan",
+    "addr:postcode": "8005",
+    "addr:province": "Davao del Sur",
+    "admin_level": "10",
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Dolo Barangay Hall",
+    "townhall:type": "barangay"
+  }
+},
+{
+  "type": "way",
+  "id": 1364228809,
+  "center": {
+    "lat": 6.7534510,
+    "lon": 125.1502562
+  },
+  "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "lane_markings": "no",
+    "lanes": "2",
+    "layer": "1",
+    "maxspeed": "40",
+    "name": "Rizal Street",
+    "sidewalk": "no",
+    "source:maxspeed": "PH:urban",
+    "surface": "metal"
+  }
+},
+{
+  "type": "way",
+  "id": 1364679855,
+  "center": {
+    "lat": 6.8598489,
+    "lon": 125.1683604
+  },
+  "tags": {
+    "building": "roof",
+    "layer": "1",
+    "leisure": "sports_hall",
+    "name": "Kinuskusan Covered Court",
+    "sport": "basketball"
+  }
+},
+{
+  "type": "way",
+  "id": 1364679865,
+  "center": {
+    "lat": 6.8592873,
+    "lon": 125.1668016
+  },
+  "tags": {
+    "highway": "tertiary",
+    "lanes": "2",
+    "name": "Kinuskusan-Darapuay Road",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364905260,
+  "center": {
+    "lat": 6.7643599,
+    "lon": 125.2068000
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364905261,
+  "center": {
+    "lat": 6.7475471,
+    "lon": 125.1987022
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930736,
+  "center": {
+    "lat": 6.7402478,
+    "lon": 125.2136801
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "layer": "1",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary",
+    "sidewalk": "both"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930737,
+  "center": {
+    "lat": 6.7401935,
+    "lon": 125.2139266
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary"
+  }
+},
+{
+  "type": "way",
+  "id": 1364930738,
+  "center": {
+    "lat": 6.7427010,
+    "lon": 125.2104171
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "proposed",
+    "lanes": "2",
+    "name": "New Visayas-New Clarin Road",
+    "proposed": "tertiary"
+  }
+},
+{
+  "type": "way",
+  "id": 1364956258,
+  "center": {
+    "lat": 6.8197638,
+    "lon": 125.1775907
+  },
+  "tags": {
+    "highway": "unclassified",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "name": "Santo Niño Road",
+    "short_name": "Sto. Niño Road",
+    "smoothness": "good",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1364960699,
+  "center": {
+    "lat": 6.8312388,
+    "lon": 125.1755473
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Marber-Mabini Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762272,
+  "center": {
+    "lat": 6.7491209,
+    "lon": 125.1962723
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762273,
+  "center": {
+    "lat": 6.7499969,
+    "lon": 125.1957186
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "40",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:urban",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762280,
+  "center": {
+    "lat": 6.7659242,
+    "lon": 125.1909596
+  },
+  "tags": {
+    "bridge": "yes",
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "no",
+    "lanes": "1",
+    "layer": "1",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "oneway": "no",
+    "sidewalk": "both",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366762281,
+  "center": {
+    "lat": 6.7675552,
+    "lon": 125.1924258
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "New Clarin Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1366765784,
+  "center": {
+    "lat": 6.7412759,
+    "lon": 125.1803966
+  },
+  "tags": {
+    "designation": "provincial_road",
+    "highway": "tertiary",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "maxspeed": "80",
+    "name": "Dalawinon-Kasuga Road",
+    "smoothness": "good",
+    "source:maxspeed": "PH:rural",
+    "surface": "concrete"
+  }
+},
+{
+  "type": "way",
+  "id": 1447084179,
+  "center": {
+    "lat": 6.7534404,
+    "lon": 125.2651135
+  },
+  "tags": {
+    "layer": "1",
+    "man_made": "bridge",
+    "name": "Managa Bridge"
+  }
+},
+{
+  "type": "way",
+  "id": 1525782532,
+  "center": {
+    "lat": 6.7550019,
+    "lon": 125.2649919
+  },
+  "tags": {
+    "construction": "residential",
+    "is_in:barangay": "Camanchiles",
+    "is_in:municipality": "Matanao",
+    "landuse": "construction",
+    "name": "Citta di Oro",
+    "place": "neighbourhood",
+    "postal_code": "8003",
+    "residential": "single_family"
+  }
+},
+{
+  "type": "way",
+  "id": 1535082927,
+  "center": {
+    "lat": 6.8032502,
+    "lon": 125.2007131
+  },
+  "tags": {
+    "alt_name": "A&N Heights Subdivision",
+    "developer": "A&N Sepe Land Development",
+    "developer:short": "Anland",
+    "developer:type": "private",
+    "is_in:barangay": "Dolo",
+    "is_in:municipality": "Bansalan",
+    "is_in:purok": "Purok 2",
+    "landuse": "residential",
+    "name": "A&N Heights",
+    "place": "neighbourhood",
+    "postal_code": "8005",
+    "residential": "rural"
+  }
+},
+{
+  "type": "relation",
+  "id": 14907246,
+  "center": {
+    "lat": 6.7703955,
+    "lon": 125.1249539
+  },
+  "tags": {
+    "admin_level": "6",
+    "admin_subdivisions": "22 barangays",
+    "admin_type:PH": "municipality",
+    "alt_name": "Kialeg",
+    "boundary": "administrative",
+    "contact:phone": "+63 910 885 8406",
+    "contact:website": "https://magsaysay.gov.ph/",
+    "is_in:province": "Davao del Sur",
+    "name": "Magsaysay",
+    "official_name": "Municipality of Magsaysay",
+    "official_name:ceb": "Lungsod ng Magsaysay",
+    "official_name:tl": "Bayan ng Magsaysay",
+    "old_ref": "112407000",
+    "population": "56263",
+    "population:date": "2020-05-01",
+    "postal_code": "8004",
+    "ref": "1102407000",
+    "related_law": "Republic Act No. 4976",
+    "start_date": "1967-06-17",
+    "type": "boundary",
+    "was_in:municipality": "Bansalan",
+    "wikidata": "Q314864",
+    "wikipedia": "en:Magsaysay, Davao del Sur"
+  }
+},
+{
+  "type": "relation",
+  "id": 17270702,
+  "center": {
+    "lat": 6.7985648,
+    "lon": 125.2550760
+  },
+  "tags": {
+    "alt_name": "Managa Creek",
+    "destination": "Sacub River",
+    "name": "Managa River",
+    "type": "waterway",
+    "waterway": "river"
+  }
+},
+{
+  "type": "relation",
+  "id": 18772781,
+  "center": {
+    "lat": 6.9039337,
+    "lon": 125.2044948
+  },
+  "tags": {
+    "destination": "Bulatukan River",
+    "name": "Darapuay River",
+    "type": "waterway",
+    "waterway": "river",
+    "wikidata": "Q32721724"
+  }
+}
+
+  ]
+}

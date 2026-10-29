@@ -1,0 +1,87 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T19:17:49Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 10250842502,
+  "lat": 6.9230842,
+  "lon": 125.1914901,
+  "tags": {
+    "amenity": "parking",
+    "name": "Tourist Parking Area",
+    "parking": "surface"
+  }
+},
+{
+  "type": "node",
+  "id": 12506113001,
+  "lat": 6.7543946,
+  "lon": 125.2390217,
+  "tags": {
+    "amenity": "taxi",
+    "taxi_vehicle": "auto_rickshaw"
+  }
+},
+{
+  "type": "node",
+  "id": 13179876380,
+  "lat": 6.7529045,
+  "lon": 125.2695790,
+  "tags": {
+    "amenity": "taxi",
+    "taxi_vehicle": "auto_rickshaw"
+  }
+},
+{
+  "type": "node",
+  "id": 13179876381,
+  "lat": 6.7532772,
+  "lon": 125.2692959,
+  "tags": {
+    "amenity": "taxi",
+    "taxi_vehicle": "cycle_rickshaw"
+  }
+},
+{
+  "type": "node",
+  "id": 13182292552,
+  "lat": 6.7867897,
+  "lon": 125.2101535,
+  "tags": {
+    "amenity": "taxi",
+    "taxi_vehicle": "motorcycle"
+  }
+},
+{
+  "type": "node",
+  "id": 13731482502,
+  "lat": 6.7865928,
+  "lon": 125.2108166,
+  "tags": {
+    "amenity": "taxi"
+  }
+},
+{
+  "type": "way",
+  "id": 1376617657,
+  "center": {
+    "lat": 6.7873241,
+    "lon": 125.2121806
+  },
+  "tags": {
+    "amenity": "bus_station",
+    "building": "transportation",
+    "bus": "yes",
+    "name": "Bansalan Bus Terminal",
+    "public_transport": "station"
+  }
+}
+
+  ]
+}

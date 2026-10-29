@@ -1,0 +1,6 @@
+[out:json][timeout:60];
+(
+  nwr["place"~"village|hamlet|suburb|neighbourhood|locality|town|quarter"](6.72,125.15,6.99,125.28);
+  nwr["name"~"Curvada|Rizal|Poblacion|Clib|Darapuay|Eman|Linawan|Libertad|Dolo|Managa|Marber|Mabuhay|Sinawilan|Anonang|Bitaug|Buenavista|Camanchiles|Kinuskusan|Union|Tinongtongan|Sibayan|Santo|Villa Doneza|Barayong|Mabunga|New Clarin|Bonifacio|Dalawinon|Dumapalan|Magsaysay"](6.72,125.15,6.99,125.28);
+);
+out center tags;

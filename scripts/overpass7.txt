@@ -1,0 +1,7 @@
+[out:json][timeout:90];
+(
+  node["place"~"hamlet|village|locality|isolated_dwelling"](6.72,125.15,6.99,125.28);
+  nwr["name"~"Kaileg|Kailag|Kailug|Kaylag|Kayleg"](6.5,125.0,7.2,125.5);
+  node["natural"~"peak|saddle"]["name"](6.72,125.15,6.99,125.28);
+);
+out center tags;

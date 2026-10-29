@@ -1,0 +1,11 @@
+[out:json][timeout:60];
+(
+  nwr["amenity"~"marketplace|townhall|bus_station|hospital|clinic|police|fire_station|pharmacy|bank"](6.74,125.17,6.83,125.25);
+  nwr["amenity"="school"](6.74,125.17,6.83,125.25);
+  nwr["amenity"="place_of_worship"]["name"](6.77,125.19,6.81,125.23);
+  nwr["public_transport"~"station|platform|stop_position"](6.74,125.17,6.83,125.25);
+  nwr["highway"="bus_stop"](6.74,125.17,6.83,125.25);
+  nwr["leisure"="park"]["name"](6.77,125.19,6.81,125.23);
+  nwr["shop"="mall"](6.74,125.17,6.83,125.25);
+);
+out center tags;

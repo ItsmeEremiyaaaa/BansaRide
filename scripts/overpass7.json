@@ -1,0 +1,1383 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-29T19:19:42Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 681234904,
+  "lat": 6.8135851,
+  "lon": 125.2777313,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "270",
+    "is_in:city": "Digos",
+    "name": "Balabag",
+    "official_name": "Barangay Balabag",
+    "place": "village",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 1418831426,
+  "lat": 6.8483784,
+  "lon": 125.1557638,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "New Opon",
+    "official_name": "Barangay New Opon",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 2134536057,
+  "lat": 6.7295196,
+  "lon": 125.2680406,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "60",
+    "is_in:municipality": "Hagonoy",
+    "name": "Lanuro",
+    "name:etymology": "Lamosa Nuñez Rodillas",
+    "name:etymology:description": "Acronym derived from family names of original settlers from Marinduque",
+    "official_name": "Barangay Lanuro",
+    "old_name": "Upper Sacub",
+    "place": "village",
+    "postal_code": "8006",
+    "start_date": "1953-05-28"
+  }
+},
+{
+  "type": "node",
+  "id": 2810481125,
+  "lat": 6.9857821,
+  "lon": 125.2718272,
+  "tags": {
+    "alt_name": "Red Peak;Kapatagan Peak",
+    "ele:signed": "no",
+    "name": "Digos Peak",
+    "name:signed": "yes",
+    "natural": "peak",
+    "official_name": "Digos City Peak"
+  }
+},
+{
+  "type": "node",
+  "id": 3421964438,
+  "lat": 6.9225878,
+  "lon": 125.1552786,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "510",
+    "is_in:municipality": "Makilala",
+    "name": "Kisante",
+    "official_name": "Barangay Kisante",
+    "place": "village",
+    "population": "5162",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707016"
+  }
+},
+{
+  "type": "node",
+  "id": 3828616734,
+  "lat": 6.9351296,
+  "lon": 125.1691758,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "590",
+    "is_in:municipality": "Makilala",
+    "name": "Biangan",
+    "official_name": "Barangay Biangan",
+    "place": "village",
+    "population": "1458",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707003"
+  }
+},
+{
+  "type": "node",
+  "id": 3828616987,
+  "lat": 6.9462089,
+  "lon": 125.1594584,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "500",
+    "is_in:municipality": "Makilala",
+    "name": "Batasan",
+    "official_name": "Barangay Batasan",
+    "old_name": "Tubon",
+    "place": "village",
+    "population": "3084",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707001"
+  }
+},
+{
+  "type": "node",
+  "id": 3828618894,
+  "lat": 6.9277363,
+  "lon": 125.1812076,
+  "tags": {
+    "admin_level": "11",
+    "alt_name": "New Sitio Lukatong",
+    "is_in:province": "Cotabato",
+    "is_in:town": "Makilala",
+    "is_in:village": "Biangan",
+    "name": "Lukatong",
+    "place": "hamlet",
+    "place:PH": "sitio"
+  }
+},
+{
+  "type": "node",
+  "id": 3828618946,
+  "lat": 6.9229339,
+  "lon": 125.1909858,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "800",
+    "is_in:municipality": "Makilala",
+    "name": "New Israel",
+    "official_name": "Barangay New Israel",
+    "place": "village",
+    "population": "1962",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707038",
+    "start_date": "1975-09-26",
+    "was_in:barangay": "Old Bulatukan"
+  }
+},
+{
+  "type": "node",
+  "id": 3828646315,
+  "lat": 6.8595824,
+  "lon": 125.1679835,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Kinuskusan",
+    "official_name": "Barangay Kinuskusan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 3828648714,
+  "lat": 6.9668127,
+  "lon": 125.1559911,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "590",
+    "is_in:municipality": "Makilala",
+    "name": "Buena Vida",
+    "official_name": "Barangay Buena Vida",
+    "place": "village",
+    "population": "1401",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707004"
+  }
+},
+{
+  "type": "node",
+  "id": 3838825506,
+  "lat": 6.9476396,
+  "lon": 125.2323404,
+  "tags": {
+    "alt_name": "Sitio Makalangit",
+    "ele": "1920",
+    "is_in:barangay": "New Israel",
+    "is_in:municipality": "Makilala",
+    "name": "Makalangit",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 3883196221,
+  "lat": 6.9856981,
+  "lon": 125.1648675,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "820",
+    "is_in:municipality": "Makilala",
+    "name": "Buhay",
+    "official_name": "Barangay Buhay",
+    "place": "village",
+    "population": "2002",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707005"
+  }
+},
+{
+  "type": "node",
+  "id": 3883196363,
+  "lat": 6.9803981,
+  "lon": 125.1701558,
+  "tags": {
+    "is_in:village": "Buhay",
+    "name": "Marang",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075068,
+  "lat": 6.9004680,
+  "lon": 125.1617477,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "470",
+    "is_in:municipality": "Makilala",
+    "name": "New Bulatukan",
+    "official_name": "Barangay New Bulatukan",
+    "place": "village",
+    "population": "2215",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707026"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075069,
+  "lat": 6.8841994,
+  "lon": 125.1638142,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "420",
+    "is_in:municipality": "Makilala",
+    "name": "Old Bulatukan",
+    "official_name": "Barangay Old Bulatukan",
+    "place": "village",
+    "population": "2850",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707028"
+  }
+},
+{
+  "type": "node",
+  "id": 3918075070,
+  "lat": 6.8940414,
+  "lon": 125.1581549,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "400",
+    "is_in:municipality": "Makilala",
+    "name": "Rodero",
+    "official_name": "Barangay Rodero",
+    "place": "village",
+    "population": "1339",
+    "population:date": "2024-07-01",
+    "postal_code": "9401",
+    "ref": "1204707030"
+  }
+},
+{
+  "type": "node",
+  "id": 5999078207,
+  "lat": 6.7915786,
+  "lon": 125.2762655,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "195",
+    "is_in:city": "Digos",
+    "name": "Lungag",
+    "official_name": "Barangay Lungag",
+    "place": "village",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 6057637037,
+  "lat": 6.9876950,
+  "lon": 125.2690979,
+  "tags": {
+    "alt_name": "Mandarangan Peak",
+    "ele:signed": "no",
+    "name": "Kidapawan Peak",
+    "name:signed": "no",
+    "natural": "peak"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265320,
+  "lat": 6.7997218,
+  "lon": 125.2350694,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Union",
+    "official_name": "Barangay Union",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265321,
+  "lat": 6.7847616,
+  "lon": 125.2416261,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "155",
+    "is_in:municipality": "Bansalan",
+    "name": "Mabunga",
+    "official_name": "Barangay Mabunga",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265474,
+  "lat": 6.8203943,
+  "lon": 125.2372393,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Managa",
+    "official_name": "Barangay Managa",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265475,
+  "lat": 6.8366716,
+  "lon": 125.2392858,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265476,
+  "lat": 6.8477268,
+  "lon": 125.2429839,
+  "tags": {
+    "alt_name": "Sitio Pananag",
+    "ele": "670",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Pananag",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265477,
+  "lat": 6.8290816,
+  "lon": 125.2479239,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "495",
+    "is_in:municipality": "Bansalan",
+    "name": "Sibayan",
+    "official_name": "Barangay Sibayan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265478,
+  "lat": 6.9092233,
+  "lon": 125.2702573,
+  "tags": {
+    "alt_name": "Sitio Balutakay",
+    "ele": "1300",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Balutakay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6291265508,
+  "lat": 6.9163726,
+  "lon": 125.2736610,
+  "tags": {
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 6293289775,
+  "lat": 6.7522774,
+  "lon": 125.2448836,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "Sinawilan",
+    "official_name": "Barangay Sinawilan",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6293289776,
+  "lat": 6.7529780,
+  "lon": 125.2704960,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "alt_name": "Managa",
+    "ele": "70",
+    "is_in:municipality": "Matanao",
+    "name": "Cabligan",
+    "official_name": "Barangay Cabligan",
+    "old_name": "Barangay Managa",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6293290607,
+  "lat": 6.7633232,
+  "lon": 125.2309549,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Mabuhay",
+    "official_name": "Barangay Mabuhay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6485044115,
+  "lat": 6.9269087,
+  "lon": 125.2229775,
+  "tags": {
+    "alt_name": "Sitio Malumpini",
+    "ele": "1250",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Malumpini",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081151,
+  "lat": 6.9157516,
+  "lon": 125.2032349,
+  "tags": {
+    "alt_name": "Sitio Kamandag",
+    "ele": "900",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Kamandag",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081152,
+  "lat": 6.8994119,
+  "lon": 125.1896913,
+  "tags": {
+    "alt_name": "Sitio Diansig",
+    "ele": "660",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Diansig",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6485081153,
+  "lat": 6.8963978,
+  "lon": 125.1771096,
+  "tags": {
+    "alt_name": "Sitio Tombo",
+    "ele": "530",
+    "is_in:barangay": "Old Bulatukan",
+    "is_in:municipality": "Makilala",
+    "name": "Tombo",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 6505534805,
+  "lat": 6.9680043,
+  "lon": 125.2464277,
+  "tags": {
+    "ele": "2600",
+    "name": "Mount Zion",
+    "natural": "peak"
+  }
+},
+{
+  "type": "node",
+  "id": 6842683204,
+  "lat": 6.8686676,
+  "lon": 125.1759401,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Darapuay",
+    "official_name": "Barangay Darapuay",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315867,
+  "lat": 6.8079835,
+  "lon": 125.1602062,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "contact:website": "https://magsaysay.gov.ph/list-of-barangays/barangay-mabini",
+    "ele": "170",
+    "is_in:municipality": "Magsaysay",
+    "name": "Mabini",
+    "name:etymology": "Apolinario Mabini",
+    "name:etymology:wikidata": "Q318481",
+    "official_name": "Barangay Mabini",
+    "old_name": "Sitio Mabini",
+    "place": "village",
+    "postal_code": "8004",
+    "was_in:barangay": "Barayong",
+    "was_in:municipality": "Bansalan"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315873,
+  "lat": 6.8343547,
+  "lon": 125.1756692,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Marber",
+    "official_name": "Barangay Marber",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914315874,
+  "lat": 6.8345890,
+  "lon": 125.1573229,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Kanapulo",
+    "official_name": "Barangay Kanapulo",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316500,
+  "lat": 6.8087238,
+  "lon": 125.1930928,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Dolo",
+    "official_name": "Barangay Dolo",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316523,
+  "lat": 6.7524292,
+  "lon": 125.1832008,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Dalawinon",
+    "official_name": "Barangay Dalawinon",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6914316524,
+  "lat": 6.7301215,
+  "lon": 125.1828272,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Kasuga",
+    "official_name": "Barangay Kasuga",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 6917099841,
+  "lat": 6.7246737,
+  "lon": 125.2047229,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "Lower Marber",
+    "official_name": "Barangay Lower Marber",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100275,
+  "lat": 6.7930128,
+  "lon": 125.2643311,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "215",
+    "is_in:municipality": "Matanao",
+    "name": "Kibao",
+    "official_name": "Barangay Kibao",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100276,
+  "lat": 6.7759962,
+  "lon": 125.2680740,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "San Vicente",
+    "official_name": "Barangay San Vicente",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100277,
+  "lat": 6.7317539,
+  "lon": 125.2197218,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "New Visayas",
+    "official_name": "Barangay New Visayas",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100286,
+  "lat": 6.7537823,
+  "lon": 125.2602446,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "60",
+    "is_in:municipality": "Matanao",
+    "name": "Camanchiles",
+    "official_name": "Barangay Camanchiles",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 6917100287,
+  "lat": 6.7269112,
+  "lon": 125.2331087,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Matanao",
+    "name": "San Jose",
+    "official_name": "Barangay San Jose",
+    "place": "village",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 8175101119,
+  "lat": 6.9832438,
+  "lon": 125.2308306,
+  "tags": {
+    "name": "Timuddus",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 8175101219,
+  "lat": 6.9882800,
+  "lon": 125.2329087,
+  "tags": {
+    "name": "Kaumahun",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848242,
+  "lat": 6.8093204,
+  "lon": 125.2113104,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Libertad",
+    "official_name": "Barangay Libertad",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848243,
+  "lat": 6.8200587,
+  "lon": 125.2238524,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Anonang",
+    "official_name": "Barangay Anonang",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848244,
+  "lat": 6.8420778,
+  "lon": 125.2276182,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848245,
+  "lat": 6.8438780,
+  "lon": 125.2321350,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848246,
+  "lat": 6.8581493,
+  "lon": 125.2353014,
+  "tags": {
+    "alt_name": "Sitio Malupo",
+    "ele": "780",
+    "is_in:barangay": "Anonang",
+    "is_in:municipality": "Bansalan",
+    "name": "Malupo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848472,
+  "lat": 6.8906184,
+  "lon": 125.2603573,
+  "tags": {
+    "alt_name": "Sitio New Bohol",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "New Bohol",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848473,
+  "lat": 6.8721060,
+  "lon": 125.2621865,
+  "tags": {
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8281848565,
+  "lat": 6.8798764,
+  "lon": 125.2587855,
+  "tags": {
+    "alt_name": "Balagunon",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Balagonon",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 8838212090,
+  "lat": 6.7817599,
+  "lon": 125.1721723,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Magsaysay",
+    "name": "Barayong",
+    "official_name": "Barangay Barayong",
+    "place": "village",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 9009708872,
+  "lat": 6.8482774,
+  "lon": 125.1822674,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Eman",
+    "official_name": "Barangay Eman",
+    "old_name": "Iman",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009771982,
+  "lat": 6.7506201,
+  "lon": 125.1957674,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "New Clarin",
+    "official_name": "Barangay New Clarin",
+    "old_name": "Miral",
+    "old_official_name": "Barangay Miral",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9009804149,
+  "lat": 6.8774026,
+  "lon": 125.2031042,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Alta Vista",
+    "official_name": "Barangay Alta Vista",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046817256,
+  "lat": 6.7979067,
+  "lon": 125.2456601,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Bonifacio",
+    "official_name": "Barangay Bonifacio",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9046836130,
+  "lat": 6.7845246,
+  "lon": 125.1914218,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Rizal",
+    "official_name": "Barangay Rizal",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9055069718,
+  "lat": 6.8217474,
+  "lon": 125.1807309,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Santo Niño",
+    "official_name": "Barangay Santo Niño",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9055069719,
+  "lat": 6.8232290,
+  "lon": 125.1826362,
+  "tags": {
+    "is_in:barangay": "Santo Niño",
+    "is_in:municipality": "Bansalan",
+    "name": "Km 81",
+    "place": "locality"
+  }
+},
+{
+  "type": "node",
+  "id": 9057487688,
+  "lat": 6.8295011,
+  "lon": 125.2004816,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Linawan",
+    "official_name": "Barangay Linawan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9103393989,
+  "lat": 6.9255535,
+  "lon": 125.2656519,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 9103394096,
+  "lat": 6.9369202,
+  "lon": 125.2619478,
+  "tags": {
+    "is_in:municipality": "Bansalan",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198734798,
+  "lat": 6.8769898,
+  "lon": 125.2213365,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "ele": "845",
+    "is_in:municipality": "Bansalan",
+    "name": "Alegre",
+    "official_name": "Barangay Alegre",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772858,
+  "lat": 6.7990150,
+  "lon": 125.2112751,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Tubod",
+    "official_name": "Barangay Tubod",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772859,
+  "lat": 6.8117099,
+  "lon": 125.2642132,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Tinongtongan",
+    "official_name": "Barangay Tinongtongan",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772860,
+  "lat": 6.8012422,
+  "lon": 125.2199359,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Buenavista",
+    "official_name": "Barangay Buenavista",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 10198772861,
+  "lat": 6.8470486,
+  "lon": 125.2190479,
+  "tags": {
+    "admin_level": "10",
+    "admin_type:PH": "barangay",
+    "is_in:municipality": "Bansalan",
+    "name": "Bitaug",
+    "official_name": "Barangay Bitaug",
+    "place": "village",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11665777269,
+  "lat": 6.8123546,
+  "lon": 125.2453389,
+  "tags": {
+    "alt_name": "Sitio Cogon",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Cogon",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11681674216,
+  "lat": 6.7532203,
+  "lon": 125.2220687,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "is_in:barangay": "Mabuhay",
+    "is_in:municipality": "Bansalan",
+    "name": "San Roque",
+    "official_name": "Purok San Roque",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 11906727028,
+  "lat": 6.7245095,
+  "lon": 125.1932304,
+  "tags": {
+    "alt_name": "Sitio Magsongsong",
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Magsongsong",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12513221276,
+  "lat": 6.8805781,
+  "lon": 125.2240442,
+  "tags": {
+    "alt_name": "Sitio Gagpang",
+    "ele": "900",
+    "fixme": "confirm location",
+    "is_in:barangay": "Alegre",
+    "is_in:municipality": "Bansalan",
+    "name": "Gagpang",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12513280239,
+  "lat": 6.8598284,
+  "lon": 125.2145451,
+  "tags": {
+    "alt_name": "Sitio Lacyo",
+    "ele": "620",
+    "is_in:barangay": "Alegre",
+    "is_in:municipality": "Bansalan",
+    "name": "Lacyo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12625416168,
+  "lat": 6.7660027,
+  "lon": 125.2433681,
+  "tags": {
+    "admin_level": "11",
+    "admin_type:PH": "purok",
+    "alt_name": "Sitio Bugak",
+    "is_in:barangay": "Sinawilan",
+    "is_in:municipality": "Matanao",
+    "name": "Bugak",
+    "official_name": "Purok Bugak",
+    "place": "hamlet",
+    "postal_code": "8003"
+  }
+},
+{
+  "type": "node",
+  "id": 12625829652,
+  "lat": 6.7731409,
+  "lon": 125.1559764,
+  "tags": {
+    "alt_name": "Sitio Bob",
+    "is_in:barangay": "Barayong",
+    "is_in:municipality": "Magsaysay",
+    "name": "Bob",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12629941927,
+  "lat": 6.9127274,
+  "lon": 125.1508453,
+  "tags": {
+    "alt_name": "Sitio Kalapungot",
+    "ele": "490",
+    "is_in:barangay": "Kisante",
+    "is_in:municipality": "Makilala",
+    "name": "Kalapungot",
+    "place": "hamlet",
+    "postal_code": "9401"
+  }
+},
+{
+  "type": "node",
+  "id": 12630130498,
+  "lat": 6.8901471,
+  "lon": 125.1894772,
+  "tags": {
+    "alt_name": "Sitio Alo",
+    "ele": "600",
+    "fixme": "confirm location",
+    "is_in:barangay": "Darapuay",
+    "is_in:municipality": "Bansalan",
+    "name": "Alo",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 12745791662,
+  "lat": 6.8474332,
+  "lon": 125.2774429,
+  "tags": {
+    "alt_name": "Sitio Kamalig",
+    "ele": "630",
+    "is_in:barangay": "Goma",
+    "is_in:city": "Digos",
+    "name": "Kamalig",
+    "place": "hamlet",
+    "postal_code": "8002"
+  }
+},
+{
+  "type": "node",
+  "id": 12795361838,
+  "lat": 6.7346723,
+  "lon": 125.1715393,
+  "tags": {
+    "is_in:barangay": "Kasuga",
+    "is_in:municipality": "Magsaysay",
+    "name": "Upper Kasuga",
+    "place": "hamlet",
+    "postal_code": "8004"
+  }
+},
+{
+  "type": "node",
+  "id": 12923589915,
+  "lat": 6.9849112,
+  "lon": 125.1699245,
+  "tags": {
+    "is_in:municipality": "Makilala",
+    "is_in:village": "Buhay",
+    "name": "Lanzones",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 12953426620,
+  "lat": 6.8714656,
+  "lon": 125.2737690,
+  "tags": {
+    "alt_name": "Sitio Bagong Silang",
+    "ele": "840",
+    "is_in:barangay": "Managa",
+    "is_in:municipality": "Bansalan",
+    "name": "Bagong Silang",
+    "place": "hamlet",
+    "postal_code": "8005"
+  }
+},
+{
+  "type": "node",
+  "id": 13185474316,
+  "lat": 6.9862152,
+  "lon": 125.2734303,
+  "tags": {
+    "alt_name": "87 Degrees",
+    "name": "87°",
+    "place": "locality",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 13188702491,
+  "lat": 6.9859686,
+  "lon": 125.2757294,
+  "tags": {
+    "name": "Boulder Face",
+    "place": "locality",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 14014931379,
+  "lat": 6.9879776,
+  "lon": 125.2725452,
+  "tags": {
+    "alt_name": "Davao City Peak",
+    "ele:signed": "no",
+    "name": "Davao Peak",
+    "name:signed": "no",
+    "natural": "peak"
+  }
+},
+{
+  "type": "node",
+  "id": 14014931380,
+  "lat": 6.9868608,
+  "lon": 125.2699140,
+  "tags": {
+    "ele:signed": "no",
+    "name": "Bansalan Peak",
+    "name:signed": "no",
+    "natural": "peak"
+  }
+},
+{
+  "type": "node",
+  "id": 14014931381,
+  "lat": 6.9871955,
+  "lon": 125.2731997,
+  "tags": {
+    "ele:signed": "no",
+    "name": "Santa Cruz Peak",
+    "name:signed": "no",
+    "natural": "peak"
+  }
+}
+
+  ]
+}

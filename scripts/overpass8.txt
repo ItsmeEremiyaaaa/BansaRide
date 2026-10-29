@@ -1,0 +1,5 @@
+[out:json][timeout:90];
+(
+  nwr["name"~"Nazareno|Jackfruit|Azucena|Quir|Recto|Awe|Andagberang|Andangan|Ilang|Microtel|Angging|Tinongtongan|Nebrada|Sibayan|Visayas"](6.70,125.14,7.00,125.30);
+);
+out center tags;

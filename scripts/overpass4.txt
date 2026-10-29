@@ -1,0 +1,5 @@
+[out:json][timeout:120];
+(
+  way["highway"~"^(primary|secondary|tertiary|unclassified|residential|living_street|service|trunk)$"]["name"](6.72,125.15,6.99,125.28);
+);
+out center tags;
