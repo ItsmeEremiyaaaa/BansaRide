@@ -13,7 +13,7 @@ import { boundary, bounds, barangays } from './boundary'
 const PAD = 0.012
 const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
-const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - 0.06], [bounds[1][0] + 0.06, bounds[1][1] + 0.06]) // a little of the neighbouring land can be seen
+const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.16, bounds[0][1] - 0.16], [bounds[1][0] + 0.16, bounds[1][1] + 0.16]) // a little of the neighbouring land can be seen
 const EDGE_COLOR = { dawn: '#ffd66b', morning: '#f4b400', day: '#f4b400', golden: '#e08a1e', evening: '#ffb13b', night: '#ffd66b' }
 // (kept for reference) Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
 // stars at night) and a golden dotted border like the app's signboards, so the edge looks designed, not blank.
@@ -97,9 +97,25 @@ function paintSurround(m, poly, edgeLine, mood) {
   poly._pat.getElement()?.setAttribute('fill', 'url(#bansa-pat)')
 }
 
+// Brings a set of points (the route, and where you are) into the free part of the map above the card: the zoom and centre are
+// worked out here, so the near end of a long trip is never left behind the card.
+function fitAbove(m, pts, coverPx) {
+  if (!pts.length) return
+  const b = L.latLngBounds(pts)
+  const size = m.getSize(), top = 84, bottom = size.y - coverPx - 40
+  const regH = Math.max(120, bottom - top), regW = size.x - 72
+  const n = b.getNorth(), so = b.getSouth(), e = b.getEast(), w = b.getWest()
+  const cosl = Math.cos(((n + so) / 2) * Math.PI / 180)
+  const mpp = (Math.max(((n - so) * 111000) / regH, ((e - w) * 110500) / regW) || 1) * 1.08
+  const z = Math.min(17, Math.max(m.getMinZoom(), Math.log2((156543.034 * cosl) / mpp)))
+  const per = (156543.034 * cosl) / 2 ** z
+  const shift = size.y / 2 - (top + bottom) / 2
+  m.setView([(n + so) / 2 - (shift * per) / 111000, (e + w) / 2], Math.floor(z * 4) / 4, { animate: true })
+}
+
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
-export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null }) {
+export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null, selGlyph = null }) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
@@ -116,11 +132,13 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     offsetRef.current = offsetY
     if (!delta || !map.current) return
     // the card grew or shrank: refit the route above it, or slide the map so the place stays visible
-    if (fitRoute && routeRef.current?.length > 1) map.current.fitBounds(L.latLngBounds(routeRef.current), { paddingTopLeft: [36, 84], paddingBottomRight: [36, offsetY * 2 + 28], maxZoom: 17, animate: true })
+    if (fitRoute && routeRef.current?.length > 1) fitAbove(map.current, [...routeRef.current, ...(meRef.current ? [meRef.current] : [])], offsetY * 2)
     else map.current.panBy([0, delta], { animate: true, duration: 0.35 })
   }, [offsetY])
   const routeFit = useRef('') // which route the view was last fitted to
   const routeRef = useRef(null) // the route now drawn
+  const meRef = useRef(me)
+  meRef.current = me
   const moodRef = useRef(mood)
   const pickRef = useRef(onPick)
   pickRef.current = onPick
@@ -141,7 +159,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   useEffect(() => {
     // `preview` makes a quiet picture-only map (used behind the Home header)
     const still = preview ? { dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false } : {}
-    const m = L.map(el.current, { zoomControl: false, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
+    const m = L.map(el.current, { zoomControl: false, zoomSnap: 0.25, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
     // keep the place in the part of the map you can see, above the card
     if (offsetRef.current) m.setView(above(m, center ?? [6.7875, 125.2118], zoom, offsetRef.current), zoom, { animate: false })
     map.current = m
@@ -199,7 +217,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     pts.push(...pts2)
     // the picked place: one bigger pin drawn over the normal one
     const picked = selId && markers.find((k) => k.id === selId)
-    if (picked) { const big = L.marker([picked.lat, picked.lon], { icon: pin('sel', picked.label || picked.title || '', 0, picked.glyph ?? (picked.kind === 'spot' ? 'vehicle' : null), TONES[picked.glyph]), keyboard: false, zIndexOffset: 900 }).addTo(layer.current); big.on('click', () => pickRef.current?.(picked.id)) }
+    if (picked) { const big = L.marker([picked.lat, picked.lon], { icon: pin('sel', picked.label || picked.title || '', 0, selGlyph ?? picked.glyph ?? (picked.kind === 'spot' ? 'vehicle' : null), TONES[selGlyph ?? picked.glyph]), keyboard: false, zIndexOffset: 900 }).addTo(layer.current); big.on('click', () => pickRef.current?.(picked.id)) }
     if (me) {
       L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
       if (fit) pts.push(me)
@@ -209,7 +227,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     const routeKey = route?.length ? `${route.length}|${route[0]}|${route[route.length - 1]}` : ''
     if (fitRoute && routeKey && routeFit.current !== routeKey) {
       routeFit.current = routeKey
-      m.fitBounds(L.latLngBounds(route), { paddingTopLeft: [36, 84], paddingBottomRight: [36, offsetRef.current * 2 + 28], maxZoom: 17, animate: true })
+      fitAbove(m, [...route, ...(me ? [me] : [])], offsetRef.current * 2)
     }
     if (!routeKey) routeFit.current = ''
     // Fit the view only when the set of things on the map changes, not on every selection.
