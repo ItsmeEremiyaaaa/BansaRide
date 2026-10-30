@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useApp, BackButton, Icon, RouteRow, Tag, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
 import Picker from '../Picker'
@@ -11,7 +11,7 @@ import { routeBetween } from '../data'
 import Feedback from '../Feedback'
 import { useAuth } from '../auth'
 import { MINI_PLACES, refineRoute, routeColor } from '../data'
-import { places, placeById, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
+import { places, placeById, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
 
 const metersBetween = (a, b) => Math.round(Math.hypot((a[0] - b[0]) * 111000, (a[1] - b[1]) * 110000))
 export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m} m`)
@@ -206,7 +206,7 @@ export function RoutesList() {
 
 export function MapScreen() {
   const { go, say, params, loc, retryLocation } = useApp()
-  const [sel, setSel] = useState(params.id ?? 'terminal')
+  const [sel, setSel] = useState(params.id ?? null) // null = nothing picked yet: the map starts on where you are
   const me = loc.state === 'ok' ? loc.ll : null // live
   const [focusPt, setFocusPt] = useState(null)
   const [cardH, setCardH] = useState(0) // the card's real height, so the place can be centred in the part of the map you can see
@@ -220,7 +220,7 @@ export function MapScreen() {
   const [finding, setFinding] = useState(false) // the search picker
   const [adding, setAdding] = useState(false) // "add a waiting spot" mode
   const [draft, setDraft] = useState(null)
-  const p = placeById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null) ?? placeById('terminal')
+  const p = (sel && (placeById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null))) || placeById('terminal') // only a stand-in until something is picked
   const from = routes.filter((r) => r.from === p.id)
   const here = stationsAt(p.id)
   const spot = waitingSpots[p.id]
@@ -240,7 +240,11 @@ export function MapScreen() {
     })),
     ...stations.filter((s) => !s.placeId && s.pos).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle' })),
   ], [sel])
-  const focus = useMemo(() => focusPt ?? [p.lat, p.lon], [p, focusPt])
+  const focus = useMemo(() => focusPt ?? (sel ? [p.lat, p.lon] : null), [p, focusPt, sel])
+  // the first time your location arrives (and nothing is picked), the map moves to you once
+  const movedToMe = useRef(false)
+  useEffect(() => { if (!sel && me && !movedToMe.current) { movedToMe.current = true; setFocusPt([me[0], me[1]]) } }, [sel, me])
+  const hereNear = me && !sel ? nearestPlace(me[0], me[1]) : null
   const nearMe = me ? nearestStands(me, 1)[0] : null
   // dashed lines: from a street to its nearest stand, and from you to the stand nearest to you
   const links = useMemo(() => {
@@ -281,7 +285,7 @@ export function MapScreen() {
       <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft}
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
-        <Icon name="search" /><span className={sel === 'terminal' && !params.id ? 'ph' : ''}>{params.id || sel !== 'terminal' ? p.name : 'Search a street or place'}</span>
+        <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
       <div className="float r col">
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
@@ -304,6 +308,20 @@ export function MapScreen() {
             <button className="btn" disabled={!draft} onClick={copyDraft}><Icon name="check" />Copy details</button>
           </div>
           <p className="hint">Send the copied details to the app maker. The exact spot is then added to the map for everyone.</p>
+        </section>
+      ) : !sel && hereNear && nearMe ? (
+        <section className="mapcard" aria-live="polite" key="here" ref={cardRef}>
+          <div className="mapcard-top">
+            <div>
+              <h1 className="mapcard-title">You are here</h1>
+              <p className="row-sub">Near {hereNear.place.name}</p>
+            </div>
+          </div>
+          <button className="stand-card compact live" onClick={() => go('station', { id: nearMe.station.id })}>
+            <span className="ico gold"><Icon name={nearMe.station.type === 'motor' ? 'moto' : 'vehicle'} /></span>
+            <span className="row-main"><span className="tl-k">Nearest to you · live</span><b>{nearMe.station.name}</b><span className="row-sub">{fmtDist(nearMe.meters)} {compassName(nearMe.bearing)} · about {walkMinutes(nearMe.meters)} min walk</span></span>
+            <Icon name="chevron" className="chev" />
+          </button>
         </section>
       ) : card && (
         <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef}>
@@ -329,15 +347,6 @@ export function MapScreen() {
               <span className="row-main"><span className="tl-k">Nearest to you · live</span><b>{nearMe.station.name}</b><span className="row-sub">{fmtDist(nearMe.meters)} {compassName(nearMe.bearing)} · about {walkMinutes(nearMe.meters)} min walk</span></span>
               <Icon name="chevron" className="chev" />
             </button>
-          )}
-          {here.length > 0 && (
-            <div className="stand-chips" role="group" aria-label="Driver groups waiting here">
-              {here.map((s) => (
-                <button key={s.id} className={'stand-chip ' + s.type} onClick={() => go('station', { id: s.id })}>
-                  <Icon name={s.type === 'motor' ? 'moto' : 'vehicle'} />{s.type === 'motor' ? 'Motorcycles' : s.name}
-                </button>
-              ))}
-            </div>
           )}
           {nb && (
             <button className="stand-card compact" onClick={() => go('station', { id: nb.station.id })}>

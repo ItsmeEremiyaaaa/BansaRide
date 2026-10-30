@@ -987,8 +987,9 @@ svg.ico-art { width: 34px; height: 24px; max-width: none; flex: none; }
 .install-x svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; }
 
 /* text size (Menu): the screens grow, the map screen stays as it is */
-html[data-text='large'] .view:not(.map) { zoom: 1.12; }
-html[data-text='xlarge'] .view:not(.map) { zoom: 1.25; }
+/* bigger text: each screen is drawn in a narrower box and scaled up by the same amount, so it fills the screen exactly */
+html[data-text='large'] .view:not(.map) { inset: 0 auto auto 0; width: calc(100% / 1.12); height: calc(100% / 1.12); scale: 1.12; transform-origin: 0 0; }
+html[data-text='xlarge'] .view:not(.map) { inset: 0 auto auto 0; width: calc(100% / 1.25); height: calc(100% / 1.25); scale: 1.25; transform-origin: 0 0; }
 .lang.size { margin-bottom: 8px; }
 
 /* map card starts small */
@@ -1063,3 +1064,24 @@ html[data-text='xlarge'] .view:not(.map) { zoom: 1.25; }
 .ftable { table-layout: fixed; }
 .ftable thead th { font-size: 11px; white-space: nowrap; }
 .ftable th:first-child { width: 14%; }
+
+/* larger text: the badges and titles grow with their text instead of being clipped */
+.where-chip { height: auto; min-height: 30px; padding-top: 4px; padding-bottom: 4px; white-space: nowrap; }
+html[data-text='large'] .where-title, html[data-text='xlarge'] .where-title { white-space: normal; font-size: 24px; }
+html[data-text='xlarge'] .hero2-actions { gap: 4px; }
+html[data-text='xlarge'] .lang button, html[data-text='large'] .lang button { min-width: 36px; padding: 0 8px; }
+
+/* nothing may be wider than its box when the screen is drawn narrower for bigger text */
+.list { grid-template-columns: minmax(0, 1fr); }
+.row-main { min-width: 0; }
+.row-item > .tag, .row-item > .row-right, .row-item > .chev { flex: none; }
+html[data-text='large'] .hero2-bar, html[data-text='xlarge'] .hero2-bar { gap: 6px; }
+html[data-text='large'] .hero2-bar .brand, html[data-text='xlarge'] .hero2-bar .brand { padding-right: 12px; }
+html[data-text='xlarge'] .hero2-bar .brand b, html[data-text='xlarge'] .hero2-bar .brand span { font-size: 17px; }
+html[data-text='large'] .hero2-actions .langglass, html[data-text='xlarge'] .hero2-actions .langglass { padding: 3px; }
+html[data-text='xlarge'] .hero2-bar .brand { font-size: 17px; gap: 6px; padding: 6px 12px 6px 6px; }
+html[data-text='large'] .hero2-bar .brand, html[data-text='xlarge'] .hero2-bar .brand { min-width: 0; flex: 0 1 auto; }
+html[data-text='xlarge'] .hero2-actions .circ-btn, html[data-text='xlarge'] .hero2-actions .icon-btn { width: 40px; height: 40px; }
+html[data-text='large'] .row-item, html[data-text='xlarge'] .row-item { flex-wrap: wrap; }
+html[data-text='large'] .row-main, html[data-text='xlarge'] .row-main { flex: 1 1 150px; }
+html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .tag { margin-left: 56px; }
