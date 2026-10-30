@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BackButton, Icon, YHeader, useApp } from '../components'
 import { placeById, routes, shortName } from '../data'
+import { sendToInbox } from '../admin'
 
 const KINDS = ['Missing place or waiting spot', 'Real fare I paid', 'Wrong fare', 'Wrong place or waiting spot', 'Wrong time or hours', 'Wrong driver or contact', 'Something else']
 
@@ -17,6 +18,8 @@ export default function Report() {
   const text = ['BansaRide problem report', `Type: ${kind}`, `About: ${where || '(not said)'}`, `What is wrong / what is right: ${what || '(not said)'}`, `Page: ${window.location.href}`].join('\n')
   const send = async () => {
     if (what.trim().length < 3) { say('Tell us what is wrong.'); return }
+    // saved for the BansaRide team; with no connection it falls back to sharing the text
+    if (await sendToInbox({ kind: 'problem', topic: kind, about: where.slice(0, 80) || null, body: what.trim().slice(0, 300), page: window.location.hash.slice(0, 200) })) { say('Sent to the BansaRide team. Thank you.'); setWhat(''); return }
     try {
       if (navigator.share) { await navigator.share({ title: 'BansaRide problem report', text }); return }
       await navigator.clipboard.writeText(text)
@@ -41,8 +44,8 @@ export default function Report() {
             <label className="lbl" htmlFor="rt">What is wrong, and what is right?</label>
             <textarea id="rt" className="boxed input" rows="4" maxLength="300" placeholder="For example: the student fare is 20, not 30" value={what} onChange={(e) => setWhat(e.target.value)} />
           </div>
-          <button className="btn" onClick={send}><Icon name="check" />{navigator.share ? 'Share this report' : 'Copy this report'}</button>
-          <p className="hint">Do not add anyone's private details. The report has no name, only what you type.</p>
+          <button className="btn" onClick={send}><Icon name="check" />Send report</button>
+          <p className="hint">Do not add anyone's private details. The report has no name or account, only what you type.</p>
         </section>
       </div>
     </>

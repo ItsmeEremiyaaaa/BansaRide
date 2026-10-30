@@ -27,12 +27,15 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(readLocal)
   const [ready, setReady] = useState(!supabase)
+  const [isAdmin, setIsAdmin] = useState(false) // shows the Admin menu row; the database still checks every admin call
 
   useEffect(() => {
     if (!supabase) return
     const sync = async (session) => {
       const u = session?.user ?? null
       setUser(u)
+      if (!u) setIsAdmin(false)
+      else supabase.rpc('is_admin').then(({ data, error }) => setIsAdmin(!error && data === true), () => setIsAdmin(false))
       if (u) {
         const { data } = await supabase.from('profiles').select('*').eq('user_id', u.id).maybeSingle()
         if (data) { const p = { passenger: data.passenger, school: data.school ?? '', idType: data.id_type ?? '', displayName: data.display_name ?? '' }; setProfile(p); writeLocal(p) }
@@ -68,7 +71,7 @@ export function AuthProvider({ children }) {
   const complete = !!kind && (!kind.student || !!profile?.school) && (!kind.needsId || !!profile?.idType)
   // With accounts switched on, the discount needs a verified sign-in. Without them (testing), it applies from the phone.
   const discount = complete && (supabase ? verified : true) && kind.id !== 'regular' ? kind.id : null
-  const value = useMemo(() => ({ user, profile, ready, verified, kind, complete, discount, configured: !!supabase, sendLink, signOut, saveProfile }),
-    [user, profile, ready, verified, kind, complete, discount, sendLink, signOut, saveProfile])
+  const value = useMemo(() => ({ user, profile, ready, verified, kind, complete, discount, configured: !!supabase, isAdmin, sendLink, signOut, saveProfile }),
+    [user, profile, ready, verified, kind, complete, discount, isAdmin, sendLink, signOut, saveProfile])
   return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>
 }

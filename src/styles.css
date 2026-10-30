@@ -1737,3 +1737,70 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .clock-line time b { font-family: var(--display); font-size: 30px; font-weight: 800; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
 .clock-line time span { font-size: 14px; font-weight: 800; color: var(--ink2); }
 .clock-wx { flex: none; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 10px 0 6px; border-radius: 99px; background: var(--primary-soft); font-weight: 900; font-size: 15px; color: var(--ink); }
+
+/* ---- Admin: the app's signboard look (yellow header, ink outlines, hard shadows, the green road-sign boards) ---- */
+.adm { display: grid; gap: 14px; }
+.adm-tabs { margin-top: 2px; }
+.adm-tabs button { font-size: 13px; padding: 0 4px; }
+.adm-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.adm-stat { position: relative; display: grid; gap: 2px; padding: 14px 14px 12px; background: #1f7a5a; color: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 4px 0 var(--ink); }
+.adm-stat::before { content: ''; position: absolute; inset: 4px; border: 2px solid rgba(255, 255, 255, .75); border-radius: 12px; pointer-events: none; }
+.adm-stat span { font-size: 13px; font-weight: 800; opacity: .92; }
+.adm-stat b { font-family: var(--display); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.adm-stat em { font-style: normal; font-size: 12px; font-weight: 700; opacity: .88; }
+.adm-card { display: grid; gap: 10px; padding: 14px 16px; background: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 4px 0 var(--ink); }
+.adm-card .sec { margin: 0; display: flex; align-items: center; gap: 8px; }
+.adm-card .sec::before { content: ''; width: 5px; height: 16px; border-radius: 3px; background: #1f7a5a; }
+.adm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.adm-chips span { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 2.5px solid var(--ink); border-radius: 99px; font-weight: 800; font-size: 13px; }
+.adm-chips b { font-family: var(--display); font-size: 16px; }
+.adm-rank { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; counter-reset: r; }
+.adm-rank li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; background: var(--brand-soft); font-weight: 700; counter-increment: r; }
+.adm-rank li::before { content: counter(r); width: 24px; height: 24px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; font-size: 12px; font-weight: 900; }
+.adm-rank li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-rank li b { font-family: var(--display); font-size: 18px; font-variant-numeric: tabular-nums; }
+.adm-list { display: grid; gap: 12px; }
+.adm-item { display: grid; gap: 6px; padding: 14px 16px; background: #fff; border: 2.5px solid var(--ink); border-left: 10px solid #1f7a5a; border-radius: 16px; box-shadow: 0 3px 0 var(--ink); }
+.adm-item.off { border-left-color: #98a2b3; background: #f5f6f8; }
+.adm-item header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.adm-item header b { font-family: var(--display); font-size: 17px; min-width: 0; overflow-wrap: anywhere; }
+.adm-item header span { flex: none; font-size: 12px; font-weight: 700; color: var(--ink3); }
+.adm-about { margin: 0; font-size: 13px; font-weight: 800; color: var(--ink2); }
+.adm-body { margin: 0; font-size: 15px; overflow-wrap: anywhere; }
+.adm-meta { margin: 0; font-size: 12px; color: var(--ink3); }
+.adm-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: var(--primary-ink); }
+.adm-link svg { width: 16px; height: 16px; }
+.adm-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.adm-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 99px; font-size: 12px; font-weight: 900; background: #d1fadf; color: #05603a; }
+.adm-tag.hidden, .adm-tag.removed { background: #e4e7ec; color: var(--ink2); }
+.adm-tag.warn { background: #fee4e2; color: #b42318; }
+.adm-tag.admin { background: #1f7a5a; color: #fff; }
+.adm-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.btn.sm { min-height: 40px; padding: 0 14px; font-size: 14px; border-width: 2.5px; box-shadow: 0 3px 0 var(--ink); }
+.btn.danger { background: #fee4e2; color: #b42318; }
+.adm-empty { display: grid; gap: 6px; justify-items: center; text-align: center; padding: 22px 18px; background: #fff; border: 3px dashed var(--ink); border-radius: 18px; margin: 0; }
+.adm-empty b { font-family: var(--display); font-size: 19px; }
+.adm-empty span { color: var(--ink2); font-size: 14px; max-width: 36ch; }
+.adm-empty .btn { margin-top: 6px; }
+.adm-add-row { display: flex; gap: 8px; }
+.adm-add-row .input { flex: 1; min-width: 0; }
+.adm-check { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--ink2); }
+.adm-check input { width: 18px; height: 18px; accent-color: #1f7a5a; }
+.adm-words { display: flex; flex-wrap: wrap; gap: 8px; }
+.adm-word { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 4px 0 12px; background: #fff; border: 2.5px solid var(--ink); border-radius: 99px; font-weight: 800; font-size: 14px; }
+.adm-word em { font-style: normal; font-size: 11px; color: var(--ink3); }
+.adm-word button { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; }
+.adm-word button svg { width: 14px; height: 14px; }
+/* admin: buttons sit in a row, keep the ink outline, and the word box gets the room */
+.adm .adm-actions .btn { width: auto; flex: 1 1 0; min-width: 96px; }
+.adm .btn.sm { border: 2.5px solid var(--ink) !important; box-shadow: 0 3px 0 var(--ink) !important; }
+.adm .btn.sm:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink) !important; }
+.adm-add-row .input { flex: 1 1 auto; width: auto; min-width: 0; min-height: 44px; }
+.adm-add-row .btn { flex: none; width: auto; padding: 0 22px; }
+.adm-card > * { min-width: 0; }
+.adm-add-row { min-width: 0; }
+.adm-add-row .input { width: 0; flex: 1 1 0; }
+.adm-check { align-items: flex-start; }
+.adm-check input { flex: none; margin-top: 1px; }
+.adm-word button { color: var(--ink); background: #f1f4f9; }
+.adm-word button svg, .adm-link svg, .adm-empty .btn svg { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }

@@ -13,6 +13,7 @@ import CloudOverlay from '../CloudOverlay'
 import { useLook } from '../mood'
 import WeatherChip from '../WeatherChip'
 import { useExclusive } from '../popover'
+import { sendToInbox } from '../admin'
 import WeatherIcon from '../WeatherIcon'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
@@ -339,7 +340,10 @@ export function MapScreen() {
   const nearestOf = (ll, test) => places.filter(test).map((x) => ({ x, m: metersBetween(ll, [x.lat, x.lon]) })).sort((u, v) => u.m - v.m)[0]
   const draftStreet = draft && nearestOf(draft, (x) => x.kind === 'Street')
   const draftPlace = draft && nearestOf(draft, (x) => x.kind !== 'Street' && x.kind !== 'Sitio')
-  const copyDraft = () => {
+  const copyDraft = async () => {
+    // saved for the BansaRide team; with no connection it falls back to copying the details
+    const near = [draftStreet ? `near ${draftStreet.x.name}` : '', draftPlace ? `${draftPlace.x.name} ${draftPlace.m} m away` : ''].filter(Boolean).join(' · ')
+    if (await sendToInbox({ kind: 'spot', about: near.slice(0, 80) || null, lat: draft[0], lon: draft[1], page: window.location.hash.slice(0, 200) })) { say('Sent to the BansaRide team. Thank you.'); setAdding(false); setDraft(null); return }
     const [la, lo] = draft.map((n) => n.toFixed(6))
     const text = [
       'BansaRide waiting spot',
@@ -404,7 +408,7 @@ export function MapScreen() {
           {draft && <p className="row-sub">{draftStreet ? `Near ${draftStreet.x.name} · about ${fmtDist(draftStreet.m)}` : ''}{draftPlace ? ` · ${draftPlace.x.name} ${fmtDist(draftPlace.m)} away` : ''}</p>}
           <div className="cta-row">
             <button className="btn secondary" onClick={() => (me ? setDraft(me) : locate())}><Icon name="locate" />Use my location</button>
-            <button className="btn" disabled={!draft} onClick={copyDraft}><Icon name="check" />Copy details</button>
+            <button className="btn" disabled={!draft} onClick={copyDraft}><Icon name="check" />Send this spot</button>
           </div>
           <p className="hint">Send the copied details to the app maker. The exact spot is then added to the map for everyone.</p>
         </section>
