@@ -343,7 +343,7 @@ export function MapScreen() {
                 {spot && spot.status !== 'confirmed' && <StatusTag status={spot.status} />}
               </div>
               <h1 className="mapcard-title">{p.name}</h1>
-              <p className="row-sub">{p.note}{dist !== null ? ` · ${fmtDist(dist)} from you` : ''}</p>
+              <p className="row-sub">{[p.note || (isPoi && p.sub ? p.sub.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()) : ''), dist !== null ? `${fmtDist(dist)} from you` : ''].filter(Boolean).join(' · ')}</p>
             </div>
             <span className="mapcard-btns">
               {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => go('place', { id: p.id })}><Icon name="info" /></button>}
