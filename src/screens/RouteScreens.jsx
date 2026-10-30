@@ -5,6 +5,8 @@ import Picker from '../Picker'
 import Transit from '../Transit'
 import TransitPop from '../TransitPop'
 import { shareText, speak } from '../speech'
+import FromYou from '../FromYou'
+import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
 import { useStored } from '../hooks'
 import { routeBetween } from '../data'
@@ -240,7 +242,8 @@ export function MapScreen() {
     })),
     ...stations.filter((s) => !s.placeId && s.pos).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle' })),
   ], [sel])
-  const focus = useMemo(() => focusPt ?? (sel ? [p.lat, p.lon] : null), [p, focusPt, sel])
+  const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
+  const focus = useMemo(() => (ride?.path?.length ? null : focusPt ?? (sel ? [p.lat, p.lon] : null)), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
   // the first time your location arrives (and nothing is picked), the map moves to you once
   const movedToMe = useRef(false)
   useEffect(() => { if (!sel && me && !movedToMe.current) { movedToMe.current = true; setFocusPt([me[0], me[1]]) } }, [sel, me])
@@ -282,7 +285,7 @@ export function MapScreen() {
 
   return (
     <div className="mapfill">
-      <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft}
+      <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
@@ -339,6 +342,7 @@ export function MapScreen() {
               <button className="icon-btn flat" aria-label="Close" onClick={() => setCard(false)}><Icon name="close" /></button>
             </span>
           </div>
+          {me && <FromYou ride={ride} />}
           <button className="mapcard-more" aria-expanded={more} onClick={() => setMore((v) => !v)}>{more ? 'Hide rides and drivers' : 'Show rides and drivers'}<Icon name="chevron" className={more ? 'up' : 'down'} /></button>
           {more && (<>
           {nearMe && (
@@ -380,6 +384,10 @@ export function MapScreen() {
   )
 }
 
+function PlaceFromYou({ me, place }) {
+  return <FromYou ride={useRideFromMe(me, place)} />
+}
+
 // For students: what a ride costs from the school, and a one-tap way home.
 function SchoolCard({ school, go, nearest }) {
   const [mine] = useStored('bansaride-myplaces', {})
@@ -404,7 +412,7 @@ function SchoolCard({ school, go, nearest }) {
 }
 
 export function Place() {
-  const { go, params } = useApp()
+  const { go, params, loc } = useApp()
   const p = placeById(params.id) ?? places[0]
   const ways = routes.filter((r) => r.to === p.id || r.from === p.id)
   const here = stationsAt(p.id)
@@ -455,6 +463,7 @@ export function Place() {
             </button>
           </section>
         )}
+        {loc.state === 'ok' && <PlaceFromYou me={loc.ll} place={p} />}
         {p.kind === 'School' && <SchoolCard school={p} go={go} nearest={here[0] ?? nb?.station} />}
         <Feedback scope={{ placeId: p.id }} />
         <section>

@@ -8,7 +8,9 @@ import { boundary, bounds, barangays } from './boundary'
 // The map is limited to Bansalan, Davao del Sur: it cannot be panned away, and everything outside the
 // real municipal border is dimmed. Barangay names show from zoom 13.
 const PAD = 0.012
-const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD])
+const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
+// the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
+const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD])
 const WORLD = [[-85, -180], [-85, 180], [85, 180], [85, -180]]
 
 // A real OpenStreetMap map. Pins and the route line are drawn by us, so they still
@@ -50,7 +52,7 @@ const pin = (cls, label, i, glyph, tone) => {
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
-export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false }) {
+export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false }) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
@@ -59,18 +61,24 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   useEffect(() => {
     const delta = offsetY - offsetRef.current
     offsetRef.current = offsetY
-    if (delta && map.current) map.current.panBy([0, delta], { animate: true, duration: 0.35 }) // the card grew or shrank
+    if (!delta || !map.current) return
+    // the card grew or shrank: refit the route above it, or slide the map so the place stays visible
+    if (fitRoute && routeRef.current?.length > 1) map.current.fitBounds(L.latLngBounds(routeRef.current), { paddingTopLeft: [36, 84], paddingBottomRight: [36, offsetY * 2 + 28], maxZoom: 17, animate: true })
+    else map.current.panBy([0, delta], { animate: true, duration: 0.35 })
   }, [offsetY])
+  const routeFit = useRef('') // which route the view was last fitted to
+  const routeRef = useRef(null) // the route now drawn
   const clickRef = useRef(onMapClick)
   useEffect(() => { clickRef.current = onMapClick }, [onMapClick])
 
   useEffect(() => {
     // `preview` makes a quiet picture-only map (used behind the Home header)
     const still = preview ? { dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false } : {}
-    const m = L.map(el.current, { zoomControl: false, attributionControl: !preview, maxBounds: LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
+    const m = L.map(el.current, { zoomControl: false, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
     // keep the place in the part of the map you can see, above the card
     if (offsetRef.current) m.setView(above(m, center ?? [6.7875, 125.2118], zoom, offsetRef.current), zoom, { animate: false })
     map.current = m
+    if (import.meta.env.DEV) window.__bansaMap = m // for testing in the browser
     // dim everything outside Bansalan, then outline the border
     L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: '#0b1020', fillOpacity: 0.42, interactive: false }).addTo(m)
     L.polygon(boundary[0], { color: '#f4b400', weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
@@ -125,6 +133,14 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
       L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
       if (fit) pts.push(me)
     }
+    // a route that is given with fitRoute is brought fully into the part of the map above the card
+    routeRef.current = route ?? null
+    const routeKey = route?.length ? `${route.length}|${route[0]}|${route[route.length - 1]}` : ''
+    if (fitRoute && routeKey && routeFit.current !== routeKey) {
+      routeFit.current = routeKey
+      m.fitBounds(L.latLngBounds(route), { paddingTopLeft: [36, 84], paddingBottomRight: [36, offsetRef.current * 2 + 28], maxZoom: 17, animate: true })
+    }
+    if (!routeKey) routeFit.current = ''
     // Fit the view only when the set of things on the map changes, not on every selection.
     const key = `${route?.length ?? 0}|${fit ? markers.map((k) => k.id).join() : ''}|${me ? 'me' : ''}`
     if (key !== fitted.current) {
