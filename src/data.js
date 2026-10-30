@@ -473,7 +473,6 @@ const nightStations = [
 }))
 stations.push(...nightStations)
 
-const CENTER = () => placeById('market')
 // state: 'open' | 'few' | 'closed' | 'unknown'
 export function standNow(s, h = bansalanClock()) {
   const s0 = { state: 'open', label: 'Drivers are around' }

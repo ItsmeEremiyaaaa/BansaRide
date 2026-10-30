@@ -1,6 +1,6 @@
 import { Icon, useApp } from './components'
 import { useAuth } from './auth'
-import { motorPossible, pesoRange, PASSENGERS, fareFor, walkMinutes, vehicleLabel, fmtDist, nearestStands, compassName, routes, stationsAt, stationConfirmed, placeById, shortName } from './data'
+import { motorPossible, pesoRange, PASSENGERS, fareFor, walkMinutes, fmtDist, nearestStands, compassName, routes, stationsAt, stationConfirmed, placeById, shortName } from './data'
 
 
 // Motorcycles have no fixed fare. This says where to ask: the motorcycle stand nearest to you, and the route they take.
