@@ -1568,3 +1568,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .place-sign .stand-pill.open { background: #d1fadf; }
 .place-sign .stand-pill.few { background: #fff1c7; }
 .place-sign .stand-pill.closed, .place-sign .stand-pill.unknown { background: #e4e7ec; }
+
+/* smoother sideways sliding: gentle snapping, no scroll chaining, no text selection or accidental image drag while dragging */
+.hscroll, .chips { scroll-snap-type: x proximity; scroll-padding-inline: 16px; overscroll-behavior-x: contain; scroll-behavior: auto; -webkit-overflow-scrolling: touch; }
+.hscroll.dragging, .chips.dragging { cursor: grabbing; user-select: none; -webkit-user-select: none; }
+.hscroll.dragging *, .chips.dragging * { pointer-events: none; }
+.hscroll .town-card, .hscroll .board { transform: translateZ(0); backface-visibility: hidden; }
+.hscroll .town-card:active { transform: scale(.97); }
+.hscroll .rise { animation-fill-mode: backwards; } /* the entrance animation never replays or jumps while sliding */

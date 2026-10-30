@@ -138,16 +138,39 @@ export default function App() {
   }, [setRecent])
   useEffect(() => () => clearTimeout(timer.current), [])
 
-  // With a mouse, rows of chips and cards can be dragged sideways (touch screens already swipe).
+  // With a mouse, rows of chips and cards can be dragged sideways (touch screens already swipe). The snapping is switched off while
+  // dragging (it fights the hand) and the row glides on after you let go, then settles on a card.
   useEffect(() => {
-    let row = null, startX = 0, startLeft = 0, moved = false
-    const down = (e) => { if (e.pointerType !== 'mouse' || e.button !== 0) return; row = e.target.closest('.chips, .hscroll'); if (!row) return; startX = e.clientX; startLeft = row.scrollLeft; moved = false }
-    const move = (e) => { if (!row) return; const dx = e.clientX - startX; if (Math.abs(dx) > 4) moved = true; if (moved) row.scrollLeft = startLeft - dx }
-    const up = () => { row = null }
+    let row = null, startX = 0, startLeft = 0, moved = false, lastX = 0, lastT = 0, vel = 0, raf = 0
+    const glide = (r) => {
+      cancelAnimationFrame(raf)
+      const step = () => { vel *= 0.94; r.scrollLeft -= vel; if (Math.abs(vel) > 0.4) raf = requestAnimationFrame(step); else r.style.scrollSnapType = '' }
+      raf = requestAnimationFrame(step)
+    }
+    const down = (e) => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return
+      row = e.target.closest('.chips, .hscroll'); if (!row) return
+      cancelAnimationFrame(raf)
+      startX = lastX = e.clientX; startLeft = row.scrollLeft; moved = false; vel = 0; lastT = performance.now()
+    }
+    const move = (e) => {
+      if (!row) return
+      const dx = e.clientX - startX
+      if (Math.abs(dx) > 4 && !moved) { moved = true; row.style.scrollSnapType = 'none'; row.classList.add('dragging') }
+      if (!moved) return
+      row.scrollLeft = startLeft - dx
+      const now = performance.now(); const dt = Math.max(1, now - lastT)
+      vel = 0.8 * vel + 0.2 * ((e.clientX - lastX) / dt) * 16; lastX = e.clientX; lastT = now
+    }
+    const up = () => {
+      if (!row) return
+      const r = row; row = null; r.classList.remove('dragging')
+      if (moved) { if (Math.abs(vel) > 1.5) glide(r); else r.style.scrollSnapType = '' }
+    }
     const click = (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false } }
     document.addEventListener('pointerdown', down); document.addEventListener('pointermove', move)
-    document.addEventListener('pointerup', up); document.addEventListener('click', click, true)
-    return () => { document.removeEventListener('pointerdown', down); document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); document.removeEventListener('click', click, true) }
+    document.addEventListener('pointerup', up); document.addEventListener('pointercancel', up); document.addEventListener('click', click, true)
+    return () => { cancelAnimationFrame(raf); document.removeEventListener('pointerdown', down); document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); document.removeEventListener('pointercancel', up); document.removeEventListener('click', click, true) }
   }, [])
 
   const t = (key) => translate(lang, key)
