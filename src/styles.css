@@ -2239,3 +2239,10 @@ body.aw-body .aw-toast { background: var(--a-ink); border-left: 4px solid var(--
 body.aw-body .aw-content, body.aw-body .aw-content.aw-overview { grid-template-columns: minmax(0, 1fr); align-items: stretch; }
 .awx-field.pct input { max-width: 160px; font-weight: 700; }
 .aw-content > .awx-tabs { justify-self: start; }
+
+/* admin map: posting an announcement on the map */
+.awm-hint { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 1200; padding: 8px 14px; border-radius: 99px; background: var(--ink); color: #fff; font-weight: 800; font-size: 13px; box-shadow: 0 4px 14px rgba(16, 24, 40, .25); }
+.awm-notice-btn.on { background: #c9282a !important; color: #fff; }
+.awm-form { gap: 10px; }
+.awm-form .awx-tone label { padding: 8px 10px; font-size: 13px; }
+.awm-panel .awb { justify-self: start; }
