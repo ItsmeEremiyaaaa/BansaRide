@@ -53,7 +53,11 @@ const GLYPHS = {
 const TONES = { Hotel: '#7c4dff', Food: '#e8590c', Bank: '#0b7285', Pharmacy: '#e03131', Gas: '#495057', moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
 // Waiting spots and terminals use the real vehicle drawings (from the app's art sheet), with no circle behind them.
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van' }
-const pin = (cls, label, i, glyph, tone) => {
+// The pins drop in once when the map opens. After that, redrawing them (closing a card, picking a place) must not replay the drop,
+// or every icon seems to vanish and come back.
+let settled = false
+const pin = (cls0, label, i, glyph, tone) => {
+  const cls = settled ? cls0 + ' still' : cls0
   if (ART[glyph]) {
     return L.divIcon({
       className: 'pin-wrap',
@@ -138,6 +142,8 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     // keep the place in the part of the map you can see, above the card
     if (offsetRef.current) m.setView(above(m, center ?? [6.7875, 125.2118], zoom, offsetRef.current), zoom, { animate: false })
     map.current = m
+    settled = false
+    setTimeout(() => { settled = true }, 1600)
     if (import.meta.env.DEV) window.__bansaMap = m // for testing in the browser
     // Only Bansalan is shown: everything outside the border is a plain blank color (no map, no grey overlay, no dotted barrier),
     // with just a thin soft edge so you can see where the municipality ends.
