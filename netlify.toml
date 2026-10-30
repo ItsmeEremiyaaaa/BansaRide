@@ -1,0 +1,38 @@
+# Build settings for Netlify, so a new site needs no typing: connect the repo and deploy.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# the app uses #/ links, so every address already lands on index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# the service worker must always be fetched fresh, so updates reach phones
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/push-sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# the file that lets the Android app open without a browser bar (added after the APK is built)
+[[headers]]
+  for = "/.well-known/assetlinks.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(self), camera=(), microphone=()"

@@ -14,8 +14,19 @@ export default defineConfig({
         description: 'Ride and fare guide for Bansalan, Davao del Sur',
         theme_color: '#F4B400',
         background_color: '#F2F2F6',
-        display: 'standalone',
+        id: '/',
+        scope: '/',
         start_url: '/',
+        display: 'standalone',
+        orientation: 'portrait',
+        lang: 'en-PH',
+        categories: ['travel', 'navigation', 'transportation'],
+        // long-press the app icon for quick links
+        shortcuts: [
+          { name: 'Map', short_name: 'Map', url: '/#/map', icons: [{ src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
+          { name: 'Routes', short_name: 'Routes', url: '/#/routes', icons: [{ src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
+          { name: 'Fare list', short_name: 'Fares', url: '/#/farelist', icons: [{ src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
+        ],
         icons: [
           { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
