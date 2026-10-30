@@ -1158,3 +1158,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .filter-clear { min-height: 32px; padding: 0 10px; font-weight: 900; font-size: 13px; color: var(--primary); border-radius: 10px; }
 .filter-row { grid-template-columns: minmax(0, 1fr) auto; padding: 8px 12px; box-shadow: 0 2px 0 var(--ink); }
 .filter-row .alert-text b { font-size: 16px; }
+
+/* filter is now an icon in the right-hand button column */
+.filter-panel { left: auto; right: 68px; top: calc(76px + env(safe-area-inset-top, 0px)); }
+.float.r .icon-btn { position: relative; }
+.icon-badge { position: absolute; right: -6px; top: -6px; min-width: 20px; height: 20px; padding: 0 5px; display: grid; place-items: center; border-radius: 99px; background: var(--ink); color: #fff; border: 2px solid #fff; font-style: normal; font-size: 11px; font-weight: 900; }

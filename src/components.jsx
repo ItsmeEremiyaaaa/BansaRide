@@ -166,6 +166,7 @@ const ICONS = {
   search: <><circle className="duo" cx="11" cy="11" r="7" /><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></>,
   repeat: <path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  filter: <><path d="M4 6h16M7 12h10M10 18h4" /></>,
   minus: <path d="M5 12h14" />,
 }
 
