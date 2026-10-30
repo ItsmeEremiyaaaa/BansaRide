@@ -31,14 +31,22 @@ function StationRow({ s, onOpen, index }) {
 
 // Driver groups (BTODA) and motorcycles stands.
 export function DriversList() {
-  const { go } = useApp()
+  const { go, loc } = useApp()
+  const me = loc?.state === 'ok' ? loc.ll : null
   const [q, setQ] = useState('')
   const [kind, setKind] = useState('All')
   const term = q.trim().toLowerCase()
   const match = (s) => !term || s.name.toLowerCase().includes(term) || (s.alias && s.alias.toLowerCase().includes(term)) || (s.contact && s.contact.name.toLowerCase().includes(term)) || (stationPlace(s)?.name.toLowerCase().includes(term))
-  const toda = stations.filter((s) => s.type === 'toda' && !s.streetSpot && match(s))
-  const streetSpots = stations.filter((s) => s.streetSpot && match(s))
-  const motor = stations.filter((s) => s.type === 'motor' && match(s))
+  // the ones with drivers around come first, nearest first when we know where you are
+  const dist = (s) => { const p = stationPlace(s); return me && p ? metersBetween(me, [p.lat, p.lon]) : Infinity }
+  const avail = (s) => (standNow(s).state !== 'closed' ? 1 : 0)
+  const rank = (list) => [...list].sort((a, b) => avail(b) - avail(a) || (me ? dist(a) - dist(b) : 0))
+  // everything with drivers around right now goes in one list at the top, the nearest first
+  const openNow = kind === 'All' && !term ? rank(stations.filter((s) => avail(s))) : []
+  const skip = new Set(openNow.map((s) => s.id))
+  const toda = rank(stations.filter((s) => s.type === 'toda' && !s.streetSpot && match(s) && !skip.has(s.id)))
+  const streetSpots = rank(stations.filter((s) => s.streetSpot && match(s) && !skip.has(s.id)))
+  const motor = rank(stations.filter((s) => s.type === 'motor' && match(s) && !skip.has(s.id)))
   const open = (id) => go('station', { id })
   const showToda = (kind === 'All' || kind === 'Tricycle') && toda.length > 0
   const showStreets = (kind === 'All' || kind === 'Streets') && streetSpots.length > 0
@@ -58,7 +66,13 @@ export function DriversList() {
             <button key={k} className="chip" aria-pressed={kind === k} onClick={() => setKind(k)}>{label}</button>
           ))}
         </div>
-        {!showToda && !showStreets && !showMotor && <p className="hint">No group matches “{q}”.</p>}
+        {!showToda && !showStreets && !showMotor && !openNow.length && <p className="hint">No group matches “{q}”.</p>}
+        {openNow.length > 0 && (
+          <section>
+            <h2 className="sec">Drivers around now · {openNow.length}</h2>
+            <div className="list">{openNow.map((s, i) => <StationRow key={s.id} s={s} onOpen={open} index={i} />)}</div>
+          </section>
+        )}
         {showToda && (
           <section>
             <h2 className="sec">Tricycle and pedicab · BTODA groups</h2>
