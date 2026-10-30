@@ -12,6 +12,7 @@ import Account from './screens/Account'
 import Report from './screens/Report'
 import Notifications from './screens/Notifications'
 import RideAlertPop from './TransitPop'
+import { clearMapMemo } from './mapMemo'
 import { FareSheet, Visitor, Poster } from './screens/Sheets'
 import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
@@ -167,7 +168,7 @@ export default function App() {
         </main>
         <nav className="tabs" aria-label="Main" style={{ '--i': Math.max(tabIndex, 0) }}>
           {TABS.map((tab) => (
-            <button key={tab.key} className="tab" aria-label={t(tab.key)} aria-current={activeTab === tab.key ? 'page' : undefined} onClick={() => go(tab.key, {}, true)}>
+            <button key={tab.key} className="tab" aria-label={t(tab.key)} aria-current={activeTab === tab.key ? 'page' : undefined} onClick={() => { clearMapMemo(); go(tab.key, {}, true) }}>
               <Icon name={tab.icon} />
               <span>{t(tab.key)}</span>
             </button>

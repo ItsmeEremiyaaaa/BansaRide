@@ -5,6 +5,7 @@ import Picker from '../Picker'
 import Transit from '../Transit'
 import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
+import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
 import { useStored } from '../hooks'
@@ -207,7 +208,8 @@ export function RoutesList() {
 
 export function MapScreen() {
   const { go, say, params, loc, retryLocation } = useApp()
-  const [sel, setSel] = useState(params.id ?? null) // null = nothing picked yet: the map starts on where you are
+  const memo = useMemo(() => recallMap(), []) // what you had open before you left for a detail page (Back brings it back)
+  const [sel, setSel] = useState(params.id ?? memo?.sel ?? null) // null = nothing picked yet: the map starts on where you are
   const me = loc.state === 'ok' ? loc.ll : null // live
   const [focusPt, setFocusPt] = useState(null)
   const [cardH, setCardH] = useState(0) // the card's real height, so the place can be centred in the part of the map you can see
@@ -216,11 +218,12 @@ export function MapScreen() {
     setCardH(el.offsetHeight)
     new ResizeObserver(() => setCardH(el.offsetHeight)).observe(el)
   }, [])
-  const [poiKinds, setPoiKinds] = useState([]) // shops, hotels... switched on for the map
+  const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
+  const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
-  const [card, setCard] = useState(!!params.id) // the details card opens only when a place is chosen, and can be closed
+  const [card, setCard] = useState(!!params.id || !!memo?.sel) // the details card opens only when a place is chosen, and can be closed
   const [finding, setFinding] = useState(false) // the search picker
   const [adding, setAdding] = useState(false) // "add a waiting spot" mode
   const [draft, setDraft] = useState(null)
@@ -267,7 +270,7 @@ export function MapScreen() {
     return out
   }, [p, me, sel])
 
-  const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else go('station', { id }) }
+  const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else goFromMap('station', { id }) }
   const locate = () => { if (me) setFocusPt([me[0] + 1e-9 * (Date.now() % 7), me[1]]); // a new value each press, so the map moves every time
      else { retryLocation(); say('Looking for your location…') } }
 
@@ -334,12 +337,16 @@ export function MapScreen() {
           <p className="hint">Send the copied details to the app maker. The exact spot is then added to the map for everyone.</p>
         </section>
       ) : !sel && hereNear ? (
-        <section className="mapcard slim" aria-live="polite" key="here" ref={cardRef}>
+        <section className="mapcard slim here" aria-live="polite" key="here" ref={cardRef}>
           <div className="mapcard-top">
+            <span className="here-pulse" aria-hidden="true"><i /></span>
             <div>
               <h1 className="mapcard-title">You are here</h1>
               <p className="row-sub">Near {hereNear.place.name}</p>
+              <p className="here-hint">Tap a pin or search to see rides and fares</p>
+              {loc.accuracy ? <span className="here-chip">GPS · within {loc.accuracy} m</span> : null}
             </div>
+            <Trike className="here-trike" width={86} height={59} />
           </div>
         </section>
       ) : card && (
@@ -354,7 +361,7 @@ export function MapScreen() {
               <p className="row-sub">{[p.note || (isPoi && p.sub ? p.sub.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()) : ''), dist !== null ? `${fmtDist(dist)} from you` : ''].filter(Boolean).join(' · ')}</p>
             </div>
             <span className="mapcard-btns">
-              {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => go('place', { id: p.id })}><Icon name="info" /></button>}
+              {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => goFromMap('place', { id: p.id })}><Icon name="info" /></button>}
               <button className="icon-btn flat" aria-label="Close" onClick={() => setCard(false)}><Icon name="close" /></button>
             </span>
           </div>
@@ -362,14 +369,14 @@ export function MapScreen() {
           <button className="mapcard-more" aria-expanded={more} onClick={() => setMore((v) => !v)}>{more ? 'Hide rides and drivers' : 'Show rides and drivers'}<Icon name="chevron" className={more ? 'up' : 'down'} /></button>
           {more && (<>
           {nearMe && (
-            <button className="stand-card compact live" onClick={() => go('station', { id: nearMe.station.id })}>
+            <button className="stand-card compact live" onClick={() => goFromMap('station', { id: nearMe.station.id })}>
               <span className="ico gold"><Icon name={nearMe.station.type === 'motor' ? 'moto' : 'vehicle'} /></span>
               <span className="row-main"><span className="tl-k">Nearest to you · live</span><b>{nearMe.station.name}</b><span className="row-sub">{fmtDist(nearMe.meters)} {compassName(nearMe.bearing)} · about {walkMinutes(nearMe.meters)} min walk</span></span>
               <Icon name="chevron" className="chev" />
             </button>
           )}
           {nb && (
-            <button className="stand-card compact" onClick={() => go('station', { id: nb.station.id })}>
+            <button className="stand-card compact" onClick={() => goFromMap('station', { id: nb.station.id })}>
               <span className="ico gold"><Icon name="vehicle" /></span>
               <span className="row-main"><span className="tl-k">Nearest drivers' stand</span><b>{nb.station.name}</b><span className="row-sub">{fmtDist(nb.meters)} from this street</span></span>
               <Icon name="chevron" className="chev" />
