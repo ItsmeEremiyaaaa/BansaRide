@@ -166,7 +166,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   useEffect(() => {
     if (focus && map.current) {
       const z = Math.max(map.current.getZoom(), 16)
-      map.current.flyTo(above(map.current, focus, z, offsetRef.current), z, { duration: 0.6 })
+      map.current.setView(above(map.current, focus, z, offsetRef.current), z, { animate: true, duration: 0.5 }) // a straight glide: flyTo swings out and back in
     }
   }, [focus])
 
