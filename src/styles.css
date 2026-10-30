@@ -1395,3 +1395,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .near-row, .view-home .near-row { border: 1px solid transparent !important; box-shadow: 0 4px 16px rgba(50, 70, 130, .10) !important; background: #fff !important; }
 .near-row:active { transform: scale(.985) !important; box-shadow: 0 2px 8px rgba(50, 70, 130, .12) !important; }
 .cat-art svg .duo { fill-opacity: .25; }
+
+/* the fare, time and distance box: each column centred */
+.stats3 { text-align: center; }
+.stats3 > div { justify-items: center; text-align: center; align-content: center; }
+.stats3 .stat-v, .stats3 .stat-k, .stats3 .row-sub { text-align: center; }
