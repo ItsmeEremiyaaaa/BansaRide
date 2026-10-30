@@ -3,7 +3,7 @@
     <clipPath id="cabin"><path d="M98 80 H262 V212 H74 V160 Z"/></clipPath>
     <clipPath id="cab2"><path d="M262 80 L318 76 L342 172 V212 H262 Z"/></clipPath>
   </defs>
-  <rect width="512" height="512" fill="#F4B400"/>
+  <rect width="512" height="512" fill="#FFFFFF"/>
   <g transform="translate(60 132) scale(.9)" stroke="#111" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
     <g transform="translate(26 74)">
       <path d="M26 0 C 48 22 54 62 26 100 C -2 62 4 22 26 0 Z" fill="#E5322D"/>
@@ -21,9 +21,9 @@
     <circle cx="338" cy="238" r="19" fill="none" stroke="#F4B400" stroke-width="12" stroke-dasharray="7 7.1"/>
     <circle cx="338" cy="238" r="10" fill="#1F7A8C" stroke-width="3"/>
     <g clip-path="url(#cabin)" stroke="none">
-      <rect x="70" y="76" width="200" height="136" fill="#F4B400"/>
-      <circle cx="160" cy="118" r="30" fill="#E5322D"/><circle cx="160" cy="118" r="22" fill="#F4B400"/>
-      <circle cx="160" cy="118" r="14" fill="#E5322D"/><circle cx="160" cy="118" r="6" fill="#F4B400"/>
+      <rect x="70" y="76" width="200" height="136" fill="#FFFFFF"/>
+      <circle cx="160" cy="118" r="30" fill="#E5322D"/><circle cx="160" cy="118" r="22" fill="#FFFFFF"/>
+      <circle cx="160" cy="118" r="14" fill="#E5322D"/><circle cx="160" cy="118" r="6" fill="#FFFFFF"/>
       <polygon points="98,80 114,80 106,96" fill="#1F7A8C"/><polygon points="114,80 130,80 122,96" fill="#E5322D"/>
       <polygon points="130,80 146,80 138,96" fill="#1F7A8C"/><polygon points="178,80 194,80 186,96" fill="#E5322D"/>
       <polygon points="194,80 210,80 202,96" fill="#1F7A8C"/>

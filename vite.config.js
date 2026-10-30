@@ -27,6 +27,11 @@ export default defineConfig({
           { name: 'Routes', short_name: 'Routes', url: '/#/routes', icons: [{ src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
           { name: 'Fare list', short_name: 'Fares', url: '/#/farelist', icons: [{ src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
         ],
+        screenshots: [
+          { src: 'screenshots/home.png', sizes: '720x1280', type: 'image/png', form_factor: 'narrow', label: 'Where to? Pick a start and a destination' },
+          { src: 'screenshots/map.png', sizes: '720x1280', type: 'image/png', form_factor: 'narrow', label: 'The map of Bansalan with waiting spots' },
+          { src: 'screenshots/fares.png', sizes: '720x1280', type: 'image/png', form_factor: 'narrow', label: 'Fares for students, seniors and adults' },
+        ],
         icons: [
           { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
