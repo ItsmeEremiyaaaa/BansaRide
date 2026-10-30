@@ -255,10 +255,22 @@ export function MapScreen() {
   const [view3d, setView3dRaw] = useState(() => sessionStorage.getItem('bansaride.view3d') === '1') // stays 3D when you come back from a stand or place page
   const setView3d = (f) => setView3dRaw((v) => { const n = typeof f === 'function' ? f(v) : f; try { sessionStorage.setItem('bansaride.view3d', n ? '1' : '0') } catch { /* optional */ } return n })
   const look = useLook()
-  // the flat map stays on screen until the 3D map has drawn its first picture, then the 3D map fades in over it (no white flash)
-  const [ready3dFor, setReady3dFor] = useState(null)
+  // Switching 2D <-> 3D is a crossfade: the map being left stays under the new one until the fade is finished, so nothing blank shows.
+  const [ready3dFor, setReady3dFor] = useState(null) // the 3D map has drawn its first picture
+  const [done3d, setDone3d] = useState(false) // ...and has finished fading in, so the flat map can go
+  const [shown3d, setShown3d] = useState(view3d) // 3D stays mounted while it fades out and the flat map takes over
   const ready3d = view3d && ready3dFor === look.mood
-  useEffect(() => { if (!view3d) setReady3dFor(null) }, [view3d])
+  useEffect(() => {
+    if (!ready3d) { setDone3d(false); return }
+    const t = setTimeout(() => setDone3d(true), 750)
+    return () => clearTimeout(t)
+  }, [ready3d])
+  useEffect(() => {
+    if (view3d) { setShown3d(true); return }
+    setReady3dFor(null)
+    const t = setTimeout(() => setShown3d(false), 1500)
+    return () => clearTimeout(t)
+  }, [view3d])
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
@@ -347,12 +359,12 @@ export function MapScreen() {
       <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />
       <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
-      {view3d && (
+      {(view3d || shown3d) && (
         <Suspense fallback={null}>
-          <Map3D mood={look.mood} key={look.mood} onReady={() => setReady3dFor(look.mood)} selKind={rideMoto ? 'moto' : 'vehicle'} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
+          <Map3D leaving={!view3d} mood={look.mood} key={look.mood} onReady={() => setReady3dFor(look.mood)} selKind={rideMoto ? 'moto' : 'vehicle'} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
         </Suspense>
       )}
-      {(!view3d || !ready3d) && (
+      {(!view3d || !done3d) && (
       <MapView mood={look.mood} selId={sel} selGlyph={rideMoto ? 'moto' : null} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
