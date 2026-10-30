@@ -215,6 +215,12 @@ const ICONS = {
   search: <><circle className="duo" cx="11" cy="11" r="7" /><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></>,
   repeat: <path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  // the tab bar's own icons: each has a soft filled shape (duo) under a clean outline
+  tabHome: <><path className="duo" d="M4 11.2 12 4l8 7.2V20a1 1 0 0 1-1 1h-4.5v-5.5h-5V21H5a1 1 0 0 1-1-1z" /><path d="M3 11.5 12 3.5l9 8" /><path d="M5.5 10.2V20.2a.8.8 0 0 0 .8.8h3.2v-5.5h5V21h3.2a.8.8 0 0 0 .8-.8V10.2" /><path d="M16.5 5.5V3.2h2.3v4.4" /></>,
+  tabRoutes: <><circle className="duo" cx="6.5" cy="17.5" r="3" /><circle cx="6.5" cy="17.5" r="3" /><path className="duo" d="M17.5 3.2a3.6 3.6 0 0 1 3.6 3.6c0 2.8-3.6 6.4-3.6 6.4s-3.6-3.6-3.6-6.4a3.6 3.6 0 0 1 3.6-3.6z" /><path d="M17.5 3.2a3.6 3.6 0 0 1 3.6 3.6c0 2.8-3.6 6.4-3.6 6.4s-3.6-3.6-3.6-6.4a3.6 3.6 0 0 1 3.6-3.6z" /><circle cx="17.5" cy="6.8" r="1.2" /><path d="M9.5 17.5h4.2a3 3 0 0 0 0-6h-1.5" strokeDasharray="1.2 3" /></>,
+  tabMap: <><path className="duo" d="M9 5 3.5 7v12.5L9 17.5l6 2 5.5-2V5L15 7z" /><path d="M9 5 3.5 7v12.5L9 17.5l6 2 5.5-2V5L15 7z" /><path d="M9 5v12.5M15 7v12.5" /><circle cx="12" cy="10.5" r="1.6" /></>,
+  tabTrike: <><path className="duo" d="M5 8.5h8.5a2 2 0 0 1 2 2V15H4v-4.5a2 2 0 0 1 2-2z" /><path d="M4.5 15V10a2 2 0 0 1 2-2H13a2 2 0 0 1 2 2v5" /><path d="M2.5 15h15.5l2 1.2" /><path d="M15 8.5l2.3-3H20" /><circle cx="7" cy="18" r="2.2" /><circle cx="18.5" cy="18" r="2.2" /><path d="M7.5 8.5V5.5h4" /></>,
+  tabFare: <><circle className="duo" cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="9" /><path d="M9.3 17V7.3h3.4a2.5 2.5 0 0 1 0 5H9.3M7.6 9.2h6.9M7.6 11.2h6.9" /></>,
   sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" /></>,
   filter: <><path d="M4 6h16M7 12h10M10 18h4" /></>,
   minus: <path d="M5 12h14" />,

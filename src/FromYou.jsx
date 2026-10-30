@@ -1,6 +1,6 @@
 import { Icon, useApp } from './components'
 import { useAuth } from './auth'
-import { PASSENGERS, fareFor, walkMinutes, vehicleLabel, fmtDist, nearestStands, compassName, routes, stationsAt, stationConfirmed, placeById, shortName } from './data'
+import { pesoRange, PASSENGERS, fareFor, walkMinutes, vehicleLabel, fmtDist, nearestStands, compassName, routes, stationsAt, stationConfirmed, placeById, shortName } from './data'
 
 
 // Motorcycles have no fixed fare. This says where to ask: the motorcycle stand nearest to you, and the route they take.
@@ -62,7 +62,7 @@ export default function FromYou({ ride, me, destId, compact }) {
         <div className="fy-fare">
           {mine && <span className="fy-chip mine"><em>Your fare</em>₱{fare(mine.id)}</span>}
           <span className="fy-chip"><em>Adult</em>₱{fare('adult')}</span>
-          <span className="fy-chip"><em>Student</em>₱{fare('elementary')}–{fare('college')}</span>
+          <span className="fy-chip"><em>Student</em>{pesoRange(fare('elementary'), fare('college'))}</span>
         </div>
       )}
       {!ride.exact && !online && <p className="fy-note">No signal: estimated from the routes saved in the app.</p>}
