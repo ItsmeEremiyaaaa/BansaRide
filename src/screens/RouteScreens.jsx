@@ -10,6 +10,7 @@ import FromYou from '../FromYou'
 import RainOverlay from '../RainOverlay'
 import { useLook } from '../mood'
 import WeatherChip from '../WeatherChip'
+import WeatherIcon from '../WeatherIcon'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
@@ -91,7 +92,7 @@ export function RouteScreen() {
           <button className="btn secondary" onClick={() => shareText('BansaRide', `BansaRide: ${a.name} to ${b.name}. ${r.km} km, about ${r.minutes} min by ${vehicleLabel(r.vehicle).toLowerCase()}. Fare: ${r.fare === null ? 'ask the driver' : fareText(r)}.${shown ? ` Wait at: ${shown.name}.` : ''} ${window.location.origin}/#/route/${r.id}`, say)}><Icon name="drivers" />{t('Share this ride')}</button>
           <button className="btn secondary" onClick={() => speak(`From ${a.name} to ${b.name}. ${r.km} kilometers, about ${r.minutes} minutes by ${vehicleLabel(r.vehicle).toLowerCase()}. ${r.fare === null ? 'Ask the driver for the fare.' : `An adult pays ${fareFor(r.km, 'adult')} pesos. A student pays ${fareFor(r.km, 'elementary')} to ${fareFor(r.km, 'college')} pesos.`}`, say)}><Icon name="info" />{t('Read aloud')}</button>
         </div>
-        {motor && <div className={'note static' + (look.rain ? ' warn' : '')}><Icon name="alert" /><span><b>{look.rain ? (look.thunder ? 'Thunderstorm now: do not travel up the mountain' : look.level >= 2 ? 'Heavy rain now: ask first' : 'It is raining now: ask first') : 'Rain and mud'}</b><span className="row-sub">Mountain roads can be slippery or blocked after rain. Ask the driver if the road is passable before you go.</span></span></div>}
+        {motor && <div className={'note static' + (look.rain ? ' warn' : '')}>{look.rain && look.weather ? <WeatherIcon code={look.weather.code} size={28} /> : <Icon name="alert" />}<span><b>{look.rain ? (look.thunder ? 'Thunderstorm now: do not travel up the mountain' : look.level >= 2 ? 'Heavy rain now: ask first' : 'It is raining now: ask first') : 'Rain and mud'}</b><span className="row-sub">Mountain roads can be slippery or blocked after rain. Ask the driver if the road is passable before you go.</span></span></div>}
 
         {toPickup !== null && (
           <div className={'note live-note' + (toPickup <= 60 ? ' here' : '')} role="status">
