@@ -342,7 +342,7 @@ export function MapScreen() {
               <button className="icon-btn flat" aria-label="Close" onClick={() => setCard(false)}><Icon name="close" /></button>
             </span>
           </div>
-          {me && <FromYou ride={ride} />}
+          {me && <FromYou ride={ride} me={me} destId={p.id} />}
           <button className="mapcard-more" aria-expanded={more} onClick={() => setMore((v) => !v)}>{more ? 'Hide rides and drivers' : 'Show rides and drivers'}<Icon name="chevron" className={more ? 'up' : 'down'} /></button>
           {more && (<>
           {nearMe && (
@@ -385,7 +385,7 @@ export function MapScreen() {
 }
 
 function PlaceFromYou({ me, place }) {
-  return <FromYou ride={useRideFromMe(me, place)} />
+  return <FromYou ride={useRideFromMe(me, place)} me={me} destId={place.id} />
 }
 
 // For students: what a ride costs from the school, and a one-tap way home.
