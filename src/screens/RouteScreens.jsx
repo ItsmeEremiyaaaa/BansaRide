@@ -13,7 +13,7 @@ import { routeBetween } from '../data'
 import Feedback from '../Feedback'
 import { useAuth } from '../auth'
 import { MINI_PLACES, refineRoute, routeColor } from '../data'
-import { places, placeById, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
+import { places, placeById, poiById, pois, POI_KINDS, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
 
 const metersBetween = (a, b) => Math.round(Math.hypot((a[0] - b[0]) * 111000, (a[1] - b[1]) * 110000))
 export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m} m`)
@@ -217,19 +217,21 @@ export function MapScreen() {
     setCardH(el.offsetHeight)
     new ResizeObserver(() => setCardH(el.offsetHeight)).observe(el)
   }, [])
+  const [poiKinds, setPoiKinds] = useState([]) // shops, hotels... switched on for the map
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
   const [card, setCard] = useState(!!params.id) // the details card opens only when a place is chosen, and can be closed
   const [finding, setFinding] = useState(false) // the search picker
   const [adding, setAdding] = useState(false) // "add a waiting spot" mode
   const [draft, setDraft] = useState(null)
-  const p = (sel && (placeById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null))) || placeById('terminal') // only a stand-in until something is picked
+  const p = (sel && (placeById(sel) ?? poiById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null))) || placeById('terminal') // only a stand-in until something is picked
   const from = routes.filter((r) => r.from === p.id)
   const here = stationsAt(p.id)
   const spot = waitingSpots[p.id]
   const dist = me ? metersBetween(me, [p.lat, p.lon]) : null
   const start = useMemo(() => [p.lat, p.lon], []) // eslint-disable-line react-hooks/exhaustive-deps
   const isStreet = p.kind === 'Street'
-  const nb = isStreet ? nearestStand(p.lat, p.lon) : null
+  const isPoi = !!poiById(p.id) // a shop, hotel...: no group of its own, so show the nearest stand
+  const nb = isStreet || isPoi ? nearestStand(p.lat, p.lon) : null
 
   // Every waiting spot is a pin: places with a group, and stands with their own exact position.
   const markers = useMemo(() => [
@@ -240,8 +242,9 @@ export function MapScreen() {
       glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? 'mini' : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind,
       label: x.id === sel && x.kind !== 'Barangay' && x.kind !== 'Sitio' ? shortName(x.id) : '',
     })),
+    ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: x.id === sel ? 'sel' : 'place', label: x.id === sel ? x.name : '', glyph: x.kind })),
     ...stations.filter((s) => !s.placeId && s.pos).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle' })),
-  ], [sel])
+  ], [sel, poiKinds])
   const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
   const focus = useMemo(() => (ride?.path?.length ? null : focusPt ?? (sel ? [p.lat, p.lon] : null)), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
   // the first time your location arrives (and nothing is picked), the map moves to you once
@@ -262,7 +265,7 @@ export function MapScreen() {
     return out
   }, [p, me])
 
-  const onPick = (id) => { setFocusPt(null); if (placeById(id)) { setSel(id); setCard(true); setMore(false) } else go('station', { id }) }
+  const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else go('station', { id }) }
   const locate = () => { if (me) setFocusPt([me[0], me[1]]); else { retryLocation(); say('Looking for your location…') } }
 
   // helper to share an exact stand position
@@ -290,6 +293,11 @@ export function MapScreen() {
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
+      <div className="poi-chips chips" role="group" aria-label="Show shops, hotels and more on the map">
+        {Object.entries(POI_KINDS).map(([k, m]) => (
+          <button key={k} className="chip small" aria-pressed={poiKinds.includes(k)} onClick={() => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))}>{m.label}</button>
+        ))}
+      </div>
       <div className="float r col">
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>
@@ -338,7 +346,7 @@ export function MapScreen() {
               <p className="row-sub">{p.note}{dist !== null ? ` · ${fmtDist(dist)} from you` : ''}</p>
             </div>
             <span className="mapcard-btns">
-              <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => go('place', { id: p.id })}><Icon name="info" /></button>
+              {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => go('place', { id: p.id })}><Icon name="info" /></button>}
               <button className="icon-btn flat" aria-label="Close" onClick={() => setCard(false)}><Icon name="close" /></button>
             </span>
           </div>
@@ -379,7 +387,7 @@ export function MapScreen() {
         </section>
       )}
 
-      {finding && <Picker title="Find on the map" selectedId={sel} onPick={(id) => { setFinding(false); onPick(id) }} onClose={() => setFinding(false)} />}
+      {finding && <Picker withPois title="Find on the map" selectedId={sel} onPick={(id) => { setFinding(false); onPick(id) }} onClose={() => setFinding(false)} />}
     </div>
   )
 }

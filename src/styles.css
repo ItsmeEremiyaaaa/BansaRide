@@ -1137,3 +1137,9 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .fare-row.mine { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .fare-row.mine span { min-width: 0; }
 .bigstats .range, .big .range { font-size: 30px; white-space: nowrap; letter-spacing: -.02em; }
+
+/* shops, hotels and more on the map */
+.poi-chips { position: absolute; z-index: 1100; top: calc(68px + env(safe-area-inset-top, 0px)); left: 68px; right: 68px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px 2px 6px; }
+.poi-chips::-webkit-scrollbar { display: none; }
+.poi-chips .chip.small { height: 34px; flex: none; box-shadow: 0 2px 0 var(--ink); }
+.poi-chips .chip[aria-pressed='true'] { background: var(--brand); color: var(--ink); }
