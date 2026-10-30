@@ -22,7 +22,11 @@ export const PASSENGERS = [
   { id: 'adult', label: 'Adult', short: 'Adult', base: 20 },
 ]
 const PER_KM = 20 / 2.7 // pesos for each km after the first (about ₱7.4), fitted to the Rizal example
+// A very short ride (a few steps, under about 500 m) costs the minimum of ₱10 for everyone. Change SHORT_RIDE_KM to move it.
+export const SHORT_RIDE_KM = 0.5
+export const SHORT_RIDE_FARE = 10
 export const fareFor = (km, id) => {
+  if (km < SHORT_RIDE_KM) return SHORT_RIDE_FARE
   const { base } = PASSENGERS.find((p) => p.id === id)
   return Math.max(base, Math.round((base + PER_KM * Math.max(0, km - 1)) / 5) * 5)
 }
