@@ -26,9 +26,13 @@ const TABS = [
 ]
 const TAB_OF = { menu: 'home', account: 'home', report: 'home', notify: 'home', howto: 'home', farelist: 'fares', visitor: 'home', poster: 'drivers', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
 
+// The app always opens on the map: a plain start (no screen in the address) or a start on Home goes to the map.
+// A link to a particular screen (a station, a route) still opens that screen.
+if (typeof window !== 'undefined' && ['', '#', '#/', '#/home'].includes(window.location.hash)) window.history.replaceState(window.history.state, '', '#/map')
+
 // Screens live in the address (#/route/terminal-rizal), so links and the phone's back button work.
 const parse = () => {
-  const [, name = 'home', id, flag] = window.location.hash.replace(/^#/, '').split('/')
+  const [, name = 'map', id, flag] = window.location.hash.replace(/^#/, '').split('/')
   return SCREENS[name] ? { name, params: { ...(id ? { id } : {}), ...(flag === 'r' ? { rev: true } : {}) } } : { name: 'home', params: {} }
 }
 const hashOf = (name, params) => `#/${name}${params.id ? `/${params.id}` : ''}${params.id && params.rev ? '/r' : ''}`
