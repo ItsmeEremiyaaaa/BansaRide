@@ -1394,3 +1394,4 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 /* the three nearby stands on the dashboard: soft rows, no black border */
 .near-row, .view-home .near-row { border: 1px solid transparent !important; box-shadow: 0 4px 16px rgba(50, 70, 130, .10) !important; background: #fff !important; }
 .near-row:active { transform: scale(.985) !important; box-shadow: 0 2px 8px rgba(50, 70, 130, .12) !important; }
+.cat-art svg .duo { fill-opacity: .25; }
