@@ -1380,3 +1380,17 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 /* Recently viewed / Saved on the dashboard: plain soft rows, no signboard design */
 .recent-list .row-item, .recent-list .row-item.line { border: 1px solid transparent !important; box-shadow: 0 6px 22px rgba(50, 70, 130, .10) !important; background: #fff !important; }
 .recent-list .row-item:active { transform: scale(.985) !important; box-shadow: 0 3px 12px rgba(50, 70, 130, .12) !important; }
+
+/* the category cards show the map's own pedicab and motorcycle drawings */
+.cat-art { opacity: .9; width: 96px; height: 66px; right: 6px; top: 8px; }
+.cat-art svg { width: 92px; height: 64px; }
+.cat-art svg.m-vehicle, .cat-art svg.m-moto { stroke: none; }
+.cat-art { top: auto !important; bottom: 8px; right: 8px; width: 70px !important; height: 48px !important; opacity: .5 !important; }
+.cat-art svg { width: 66px !important; height: 46px !important; }
+.cat-art svg.road, .cat-art svg:not(.m-vehicle):not(.m-moto) { stroke-width: 1.6; }
+.cat .cat-eg { padding-right: 58px; }
+.cat-art { opacity: .85 !important; }
+
+/* the three nearby stands on the dashboard: soft rows, no black border */
+.near-row, .view-home .near-row { border: 1px solid transparent !important; box-shadow: 0 4px 16px rgba(50, 70, 130, .10) !important; background: #fff !important; }
+.near-row:active { transform: scale(.985) !important; box-shadow: 0 2px 8px rgba(50, 70, 130, .12) !important; }
