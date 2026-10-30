@@ -51,6 +51,8 @@ export function AuthProvider({ children }) {
   const sendLink = useCallback(async (email) => {
     if (!supabase) return { error: 'Sign-in is not switched on yet.' }
     const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + window.location.pathname } })
+    // Supabase sends only a few sign-in emails an hour; say so plainly instead of its technical message
+    if (error && /rate limit|too many/i.test(error.message)) return { error: 'Too many sign-in emails were sent just now. Use the link already in your email, or try again in about an hour.' }
     return { error: error?.message ?? null }
   }, [])
   const signOut = useCallback(async () => { if (supabase) await supabase.auth.signOut(); setUser(null) }, [])
