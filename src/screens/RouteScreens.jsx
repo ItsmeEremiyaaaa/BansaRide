@@ -217,6 +217,8 @@ export function MapScreen() {
     new ResizeObserver(() => setCardH(el.offsetHeight)).observe(el)
   }, [])
   const [poiKinds, setPoiKinds] = useState([]) // shops, hotels... switched on for the map
+  const [filterOpen, setFilterOpen] = useState(false)
+  const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
   const [card, setCard] = useState(!!params.id) // the details card opens only when a place is chosen, and can be closed
   const [finding, setFinding] = useState(false) // the search picker
@@ -292,11 +294,23 @@ export function MapScreen() {
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
-      <div className="poi-chips chips" role="group" aria-label="Show shops, hotels and more on the map">
-        {Object.entries(POI_KINDS).map(([k, m]) => (
-          <button key={k} className="chip small" aria-pressed={poiKinds.includes(k)} onClick={() => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))}>{m.label}</button>
-        ))}
-      </div>
+      <button className={'filter-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" onClick={() => setFilterOpen((v) => !v)}>
+        <Icon name="search" />Filter{poiKinds.length ? ` · ${poiKinds.length}` : ''}
+      </button>
+      {filterOpen && (
+        <>
+          <button className="filter-scrim" aria-label="Close the filter" onClick={() => setFilterOpen(false)} tabIndex={-1} />
+          <div className="filter-panel" role="dialog" aria-label="Show on the map">
+            <div className="filter-head"><b>Show on the map</b>{poiKinds.length > 0 && <button className="filter-clear" onClick={() => setPoiKinds([])}>Clear</button>}</div>
+            {Object.entries(POI_KINDS).map(([k, m]) => (
+              <button key={k} className="alert-row filter-row" aria-pressed={poiKinds.includes(k)} onClick={() => toggleKind(k)}>
+                <span className="alert-text"><b>{m.label}</b><span className="row-sub">{pois.filter((x) => x.kind === k).length} places</span></span>
+                <span className="switch" aria-hidden="true"><i /></span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       <div className="float r col">
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>
