@@ -1,11 +1,11 @@
 import { track } from './track'
 import { useEffect, useRef, useState } from 'react'
 import { Icon, useApp } from './components'
-import { places, pois, POI_KINDS, routeBetween, fareText, metersBetween, fmtDist, fareFor } from './data'
+import { places, pois, towns, transitFare, POI_KINDS, routeBetween, fareText, metersBetween, fmtDist, fareFor } from './data'
 import { offlineRide } from './rideFromMe'
 
 // A full-screen list to pick a pickup point or a destination. Type to search.
-export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe, withPois }) {
+export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe, withPois, withTowns }) {
   const [q, setQ] = useState('')
   const { loc } = useApp()
   const me = loc.state === 'ok' ? loc.ll : null // when we know where you are, the nearest places come first
@@ -28,6 +28,8 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
     ['Barangays and sitios', byNear(list.filter((p) => p.kind === 'Barangay' || p.kind === 'Sitio'))],
     ['Places', byNear(list.filter((p) => p.kind !== 'Barangay' && p.kind !== 'Sitio' && p.kind !== 'Street'))],
     ['Streets', byNear(list.filter((p) => p.kind === 'Street'))],
+    // towns and cities outside Bansalan (Digos, Kapatagan, Davao...) open their own page with the bus, van and mini bus fares
+    ...(withTowns && term.length >= 2 ? [['Other towns and cities', towns.filter((x) => x.name.toLowerCase().includes(term)).map((x) => ({ id: 'town:' + x.id, name: x.name, kind: 'Town', km: x.km, lat: x.lat, lon: x.lon }))]] : []),
     // shops, hotels, food and more show up when you type (they can be a destination for a fare check)
     ...(withPois && term.length >= 2 ? [['Shops, hotels and more', byNear(pois.filter((x) => [x.name, x.kind, x.sub ?? '', POI_KINDS[x.kind]?.label ?? ''].some((t) => t.toLowerCase().includes(term)))).slice(0, 30)]] : []),
   ].filter(([, items]) => items.length > 0)
@@ -60,14 +62,15 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
               <h3 className="sec">{name}</h3>
               {items.map((p, i) => {
                 const same = p.id === otherId
-                const isPoi = p.sub !== undefined
+                const isTown = p.kind === 'Town'
+                const isPoi = p.sub !== undefined || isTown
                 const hit = otherId && !isPoi ? routeBetween(p.id, otherId) : null
                 const disabled = same
                 return (
                   <button key={p.id} className="pick-row rise" style={{ '--i': i }} disabled={disabled} aria-current={p.id === selectedId ? 'true' : undefined} onClick={() => onPick(p.id)}>
                     <span className={'ico ' + (p.kind === 'Barangay' || p.kind === 'Sitio' ? 'gold' : 'blue')}><Icon name={p.kind === 'Barangay' || p.kind === 'Sitio' ? 'town' : p.kind === 'Street' ? 'road' : 'pin'} /></span>
-                    <span className="row-main"><span className="row-title">{p.name}</span><span className="row-sub">{p.kind}{me ? ` · ${fmtDist(dist(p))} from you` : ''}{p.also ? ` · also ${p.also}` : ''}</span></span>
-                    {(!otherId || otherId === 'me') && me && (() => { const r = offlineRide(me, p); return r.vehicle === 'Motor' ? <span className="row-sub">Ask driver</span> : <span className="price small">₱{fareFor(r.km, 'elementary')}–{fareFor(r.km, 'adult')}</span> })()}
+                    <span className="row-main"><span className="row-title">{p.name}</span><span className="row-sub">{isTown ? `${p.km} km from Bansalan · bus ₱${transitFare('bus', p.km).student}–${transitFare('bus', p.km).adult}` : <>{p.kind}{me ? ` · ${fmtDist(dist(p))} from you` : ''}{p.also ? ` · also ${p.also}` : ''}</>}</span></span>
+                    {(!otherId || otherId === 'me') && me && !isTown && (() => { const r = offlineRide(me, p); return r.vehicle === 'Motor' ? <span className="row-sub">Ask driver</span> : <span className="price small">₱{fareFor(r.km, 'elementary')}–{fareFor(r.km, 'adult')}</span> })()}
                     {otherId && otherId !== 'me' && !same && !isPoi && (hit ? (hit.route.fare === null ? <span className="row-sub">Ask driver</span> : <span className="price small">{fareText(hit.route)}</span>) : <span className="row-sub">No route yet</span>)}
                     {p.id === selectedId && <Icon name="check" className="chev" />}
                   </button>

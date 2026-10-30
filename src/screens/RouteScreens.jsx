@@ -387,7 +387,7 @@ export function MapScreen() {
         </section>
       )}
 
-      {finding && <Picker withPois title="Find on the map" selectedId={sel} onPick={(id) => { setFinding(false); onPick(id) }} onClose={() => setFinding(false)} />}
+      {finding && <Picker withPois withTowns title="Find on the map" selectedId={sel} onPick={(id) => { setFinding(false); if (id.startsWith('town:')) go('town', { id: id.slice(5) }); else onPick(id) }} onClose={() => setFinding(false)} />}
     </div>
   )
 }

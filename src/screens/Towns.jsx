@@ -137,7 +137,7 @@ export function Town() {
 }
 
 export function Fares() {
-  const { params, loc } = useApp()
+  const { params, loc, go } = useApp()
   const fromRoute = routes.find((x) => x.id === params.id) // opened from a route page: start with that trip
   const [fromId, setFromId] = useState(fromRoute ? fromRoute.from : 'me') // 'me' = where you are now
   const [toId, setToId] = useState(fromRoute ? fromRoute.to : 'rizal')
@@ -219,11 +219,12 @@ export function Fares() {
         {picker && (
           <Picker
             withPois={picker === 'to'}
+            withTowns={picker === 'to'}
             title={picker === 'from' ? 'Choose pickup' : 'Choose destination'}
             otherId={picker === 'from' ? toId : fromId === 'me' ? null : fromId}
             selectedId={picker === 'from' ? fromId : toId}
             allowMe={picker === 'from'}
-            onPick={(id) => { if (picker === 'from') setFromId(id); else setToId(id); setPicker(null) }}
+            onPick={(id) => { if (id.startsWith('town:')) { setPicker(null); go('town', { id: id.slice(5) }); return } if (picker === 'from') setFromId(id); else setToId(id); setPicker(null) }}
             onClose={() => setPicker(null)}
           />
         )}
