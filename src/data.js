@@ -34,6 +34,9 @@ export const fareFor = (km, id) => {
 }
 // "₱15" when both ends are the same, "₱15–25" when they differ (never "₱15–15").
 export const pesoRange = (a, b) => (a === b ? `₱${a}` : `₱${Math.min(a, b)}–${Math.max(a, b)}`)
+// Farm motorcycles have no fixed fare. This is only a guide for the possible price, worked out like the tricycle fare
+// (by distance), so the driver may well ask for more on a rough mountain road. Always ask first.
+export const motorPossible = (km) => pesoRange(fareFor(km, 'elementary'), fareFor(km, 'adult'))
 export const estimateFare = (km) => fareFor(km, 'adult')
 export const FARE_NOTE = 'Near Bansalan the base fares are reported by riders. Farther rides cost more: Rizal is ₱30 to ₱40 (riders say up to ₱50 at times). Confirm at the terminal.'
 // "₱30–50" (cheapest to adult), "₱10" when they are the same, "Ask driver" for motorcycles.

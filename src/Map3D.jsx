@@ -64,8 +64,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       version: 8,
       sources: { p: { type: 'vector', url: `pmtiles://${FILE()}`, maxzoom: 15 } },
       layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
-        // evening and night: the houses glow (a soft warm layer over the buildings)
-        ...(latest.current.mood === 'night' || latest.current.mood === 'evening' ? [{ id: 'lit', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-color': '#ffd66b', 'fill-opacity': latest.current.mood === 'night' ? 0.22 : 0.1 } }] : [])],
+      ],
     }
     const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, attributionControl: false })
     mapRef.current = map
@@ -77,6 +76,14 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       map.addSource('route', { type: 'geojson', data: line(null) })
       map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 11 } })
       map.addLayer({ id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': latest.current.routeColor, 'line-width': 6 } })
+      // evening and night: houses with lights on, the same little warm windows as the flat map
+      if (latest.current.mood === 'night' || latest.current.mood === 'evening') {
+        const c = document.createElement('canvas'); c.width = c.height = 48
+        const x = c.getContext('2d'); x.fillStyle = 'rgba(255,214,107,.98)'; for (const [a, b] of [[8, 10], [30, 28], [34, 8]]) x.fillRect(a, b, 6, 6); x.fillStyle = 'rgba(255,214,107,.45)'; x.fillRect(26, 40, 4, 4)
+        map.addImage('lit-pattern', x.getImageData(0, 0, 48, 48), { pixelRatio: 2 })
+        map.addLayer({ id: 'lit', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-pattern': 'lit-pattern', 'fill-opacity': latest.current.mood === 'night' ? 1 : 0.6 } }, 'route-casing')
+        map.addLayer({ id: 'glow', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-color': '#ffb13b', 'fill-opacity': latest.current.mood === 'night' ? 0.14 : 0.06 } }, 'lit')
+      }
       for (const k of Object.keys(ART)) { const img = await vehicleImage(k); if (img && !map.hasImage('v-' + k)) map.addImage('v-' + k, img, { pixelRatio: 2 }) }
       map.addSource('spots', { type: 'geojson', data: geo(latest.current.markers) })
       map.addLayer({ id: 'dots', type: 'circle', source: 'spots', filter: ['==', ['get', 'kind'], 'dot'], paint: { 'circle-radius': 6, 'circle-color': '#98a2b3', 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' } })
@@ -84,9 +91,10 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         id: 'icons', type: 'symbol', source: 'spots', filter: ['!=', ['get', 'kind'], 'dot'],
         layout: {
           'icon-image': ['concat', 'v-', ['case', ['==', ['get', 'kind'], 'sel'], 'vehicle', ['get', 'kind']]],
-          'icon-size': ['case', ['get', 'sel'], 0.8, 0.55], 'icon-opacity': ['case', ['get', 'closed'], 0.35, 1], 'icon-allow-overlap': false, 'icon-padding': 2,
+          'icon-size': ['case', ['get', 'sel'], 1.05, 0.8], 'icon-allow-overlap': false, 'icon-padding': 2,
           'symbol-sort-key': ['case', ['get', 'sel'], 0, 1],
         },
+        paint: { 'icon-opacity': ['case', ['get', 'closed'], 0.7, 1] },
       })
       for (const l of ['icons', 'dots']) {
         map.on('click', l, (e) => { const id = e.features?.[0]?.properties?.id; if (id) latest.current.onPick?.(id) })
