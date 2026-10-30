@@ -186,21 +186,9 @@ export const moodRules = (mood = 'day', lang = 'en') => {
   const isDefaultRoad = (x) => x.dataLayer === 'roads' && x.symbolizer instanceof LineSymbolizer && x.symbolizer.color?.get?.(10) === flavor.major && !x.symbolizer.dash
   const first = base.findIndex(isDefaultRoad)
   const kept = base.filter((x) => !isDefaultRoad(x))
+  // evening and night: only the houses with lights on (no lamps along the roads)
+  const lamps = P.lamps ? [{ dataLayer: 'buildings', symbolizer: new PolygonSymbolizer({ pattern: LIT }), minzoom: 15 }] : []
   const night = []
-  if (P.lamps) {
-    const glow = P.dark ? 'rgba(255,200,90,.16)' : 'rgba(255,190,90,.12)'
-    night.push(
-      // a soft warm glow under the roads
-      { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: glow, width: (z, f) => W.major(z, f) + 9 }), filter: roadKinds('major_road', 'highway'), minzoom: 14 },
-      { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: glow, width: (z, f) => W.minor(z, f) + 6 }), filter: roadKinds('minor_road'), minzoom: 15 },
-    )
-  }
-  const lamps = P.lamps ? [
-    // street lamps: a dotted line of warm points along the roads
-    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: '#ffd66b', width: 3.2, dash: [0.1, 15], lineCap: 'round' }), filter: roadKinds('major_road', 'highway'), minzoom: 15 },
-    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: '#ffd66b', width: 2.6, dash: [0.1, 22], lineCap: 'round' }), filter: roadKinds('minor_road'), minzoom: 16 },
-    { dataLayer: 'buildings', symbolizer: new PolygonSymbolizer({ pattern: LIT }), minzoom: 15 },
-  ] : []
   const at = first < 0 ? kept.length : first
   return { paintRules: [...kept.slice(0, at), ...night, ...mapRoads, ...lamps, ...kept.slice(at)], labelRules: labelRules(flavor, lang), backgroundColor: flavor.background }
 }
