@@ -219,7 +219,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     const picked = selId && markers.find((k) => k.id === selId)
     if (picked) { const big = L.marker([picked.lat, picked.lon], { icon: pin('sel', picked.label || picked.title || '', 0, selGlyph ?? picked.glyph ?? (picked.kind === 'spot' ? 'vehicle' : null), TONES[selGlyph ?? picked.glyph]), keyboard: false, zIndexOffset: 900 }).addTo(layer.current); big.on('click', () => pickRef.current?.(picked.id)) }
     if (me) {
-      L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
+      L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i><svg viewBox="0 0 40 52" width="38" height="49" aria-hidden="true"><path d="M20 50C20 50 3 31 3 19a17 17 0 0 1 34 0c0 12-17 31-17 31Z" fill="#1560f0" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="15" r="5.2" fill="#fff"/><path d="M10.5 29c0-5.6 4.2-9 9.5-9s9.5 3.4 9.5 9c-2.4 1.9-5.7 3-9.5 3s-7.1-1.1-9.5-3Z" fill="#fff"/></svg></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
       if (fit) pts.push(me)
     }
     // a route that is given with fitRoute is brought fully into the part of the map above the card

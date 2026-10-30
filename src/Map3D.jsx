@@ -111,7 +111,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     mapRef.current = map
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: false }), 'top-right')
     let youDot
-    if (me) { const e = document.createElement('div'); e.className = 'you-pin'; e.innerHTML = '<i></i>'; youDot = new maplibregl.Marker({ element: e }).setLngLat([me[1], me[0]]).addTo(map) }
+    if (me) { const e = document.createElement('div'); e.className = 'you-pin'; e.innerHTML = '<i></i><svg viewBox="0 0 40 52" width="38" height="49" aria-hidden="true"><path d="M20 50C20 50 3 31 3 19a17 17 0 0 1 34 0c0 12-17 31-17 31Z" fill="#1560f0" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="15" r="5.2" fill="#fff"/><path d="M10.5 29c0-5.6 4.2-9 9.5-9s9.5 3.4 9.5 9c-2.4 1.9-5.7 3-9.5 3s-7.1-1.1-9.5-3Z" fill="#fff"/></svg>'; youDot = new maplibregl.Marker({ element: e, anchor: 'center' }).setLngLat([me[1], me[0]]).addTo(map) }
 
     map.on('load', async () => {
       map.addSource('route', { type: 'geojson', data: line(null) })
