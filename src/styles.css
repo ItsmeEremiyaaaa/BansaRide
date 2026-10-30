@@ -1563,3 +1563,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .station-sheet .sec::before { content: ''; width: 5px; height: 16px; border-radius: 3px; background: #1f7a5a; }
 .view .station-sheet .nav-card { border: 2.5px solid var(--ink) !important; box-shadow: 0 4px 0 var(--ink) !important; }
 .view .station-sheet .btn:not(.secondary) { border: 2.5px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+/* the status pill on the green board: solid light background and dark text so it reads clearly */
+.place-sign .stand-pill { color: var(--ink); font-weight: 900; border: 2px solid var(--ink); box-shadow: 0 2px 0 var(--ink); }
+.place-sign .stand-pill.open { background: #d1fadf; }
+.place-sign .stand-pill.few { background: #fff1c7; }
+.place-sign .stand-pill.closed, .place-sign .stand-pill.unknown { background: #e4e7ec; }
