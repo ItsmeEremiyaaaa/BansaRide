@@ -137,20 +137,21 @@ export function Station() {
       )}
       <div className="sheet station-sheet">
         <div className="grab" aria-hidden="true" />
-        <div>
-          <div className="mapcard-tags">
-            <Tag tone={s.type === 'motor' ? 'green' : 'gold'}>{kindLabel(s)}</Tag>
-            {stationVerified(s) && <Tag tone="green">Verified by BTODA</Tag>}
-            <StatusTag status={stationStatus(s)} />
-            {s.source === 'generated' && <Tag tone="grey">Group name to confirm</Tag>}
-            {s.pos?.approx && <Tag tone="grey">Approximate position</Tag>}
+        <div className="place-sign station-sign">
+          <span className="place-ico" aria-hidden="true">{s.type === 'motor' ? <Moto width={46} height={32} /> : <Trike width={46} height={32} />}</span>
+          <div className="place-sign-text">
+            <div className="sign-tags">
+              <span className="place-kind">{kindLabel(s)}</span>
+              {stationVerified(s) && <span className="place-kind ok">Verified by BTODA</span>}
+              <StatusTag status={stationStatus(s)} />
+              {s.source === 'generated' && <span className="place-kind">Group name to confirm</span>}
+              {s.pos?.approx && <span className="place-kind">Approximate position</span>}
+            </div>
+            <h1 className="route-title">{s.name}</h1>
+            <div className="sign-pill"><StandPill s={s} /></div>
+            {s.alias && <p className="row-sub">Also called {s.alias}</p>}
+            <p className="row-sub">{p ? `Waits at ${p.name}${s.landmark ? ` · ${s.landmark}` : ''}` : 'Waiting spot not on the map yet'}</p>
           </div>
-          <div className="st-hero">
-            <span className="st-badge">{s.type === 'motor' ? <Moto width={64} height={44} /> : <Trike width={64} height={44} />}</span>
-            <div className="st-titles"><h1 className="route-title">{s.name}</h1><StandPill s={s} /></div>
-          </div>
-          {s.alias && <p className="row-sub">Also called {s.alias}</p>}
-          <p className="row-sub">{p ? `Waits at ${p.name}${s.landmark ? ` · ${s.landmark}` : ''}` : 'Waiting spot not on the map yet'}</p>
         </div>
 
         <ClosedNotice now={now} near={nearOpen} onNear={() => nearOpen && go('station', { id: nearOpen.station.id })} />

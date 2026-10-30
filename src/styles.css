@@ -1552,3 +1552,14 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .place-sheet > .btn:last-child, .place-sheet .btn.primary { box-shadow: 0 4px 0 var(--ink); border: 2.5px solid var(--ink); }
 .view .place-sheet .stand-card { border: 2.5px solid var(--ink) !important; box-shadow: 0 3px 0 var(--ink) !important; }
 .view .place-sheet > .btn:last-child { border: 2.5px solid var(--ink) !important; box-shadow: 0 4px 0 var(--ink) !important; }
+
+/* Station page: same green sign board as the place page */
+.station-sign .place-ico { width: 64px; height: 56px; }
+.station-sign .place-ico svg { width: 46px; height: 32px; }
+.sign-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.place-kind.ok { background: #d1fadf; color: #05603a; }
+.sign-pill { margin-top: 4px; justify-self: start; }
+.station-sheet .sec { display: flex; align-items: center; gap: 8px; }
+.station-sheet .sec::before { content: ''; width: 5px; height: 16px; border-radius: 3px; background: #1f7a5a; }
+.view .station-sheet .nav-card { border: 2.5px solid var(--ink) !important; box-shadow: 0 4px 0 var(--ink) !important; }
+.view .station-sheet .btn:not(.secondary) { border: 2.5px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
