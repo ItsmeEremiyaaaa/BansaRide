@@ -292,7 +292,17 @@ export function MapScreen() {
     ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
   ], [selPoiKey, poiKinds, look.tick, rideMoto]) // eslint-disable-line react-hooks/exhaustive-deps
   // pressing the location button always wins, even while a route is shown
-  const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
+  // The map makes ONE move to a picked place. It waits (up to 4 seconds) while your location or the real road is still coming,
+  // so it never zooms in on the place and then back out when the whole trip is framed.
+  const [settledFor, setSettledFor] = useState(null) // the picked place the map may now move to
+  const settled = settledFor === sel
+  const waiting = !!(sel && ((!me && loc.state === 'finding') || (me && ride && !ride.path?.length && ride.straight > 150 && navigator.onLine)))
+  useEffect(() => {
+    if (!waiting) { setSettledFor(sel); return }
+    const t = setTimeout(() => setSettledFor(sel), 4000)
+    return () => clearTimeout(t)
+  }, [waiting, sel])
+  const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel && settled ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length, settled]) // the route fits the view itself
   // the first time your location arrives (and nothing is picked), the map moves to you once
   const movedToMe = useRef(false)
   useEffect(() => { if (!sel && me && !movedToMe.current) { movedToMe.current = true; setFocusPt([me[0], me[1]]) } }, [sel, me])
