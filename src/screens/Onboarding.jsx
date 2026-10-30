@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Icon, Trike, Bus, Moto } from '../components'
+import { Icon, Trike, Bus } from '../components'
 import { useAuth } from '../auth'
 import { translate } from '../i18n'
 import { fareFor } from '../data'
@@ -60,8 +60,7 @@ function SceneNear() {
   return (
     <div className="scene s-near" aria-hidden="true">
       <span className="ring r1" /><span className="ring r2" /><span className="ring r3" />
-      <span className="me" />
-      <Moto className="moto" width={120} height={82} />
+      <span className="hero-spot" />
       <span className="drop d1"><Icon name="pin" /><em>75 m</em></span>
       <span className="drop d2"><Icon name="pin" /><em>210 m</em></span>
       <span className="drop d3"><Icon name="pin" /><em>340 m</em></span>
@@ -105,13 +104,13 @@ export default function Onboarding({ onDone }) {
       const w = view.offsetWidth
       const offs = (el) => { let x = 0, y = 0; while (el && el !== view) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent } return el === view ? { x, y } : null }
       const slides = view.querySelectorAll('.onb-slide')
-      const a = slides[0]?.querySelector('.hero-spot'), m = slides[1]?.querySelector('.s-map'), c = slides[2]?.querySelector('.hero-spot')
-      const pa = a && offs(a), pm = m && offs(m), pc = c && offs(c)
-      if (!pa || !pm || !pc) return
+      const a = slides[0]?.querySelector('.hero-spot'), m = slides[1]?.querySelector('.s-map'), c = slides[2]?.querySelector('.hero-spot'), d = slides[3]?.querySelector('.hero-spot')
+      const pa = a && offs(a), pm = m && offs(m), pc = c && offs(c), pd = d && offs(d)
+      if (!pa || !pm || !pc || !pd) return
       const sc = Math.min(m.offsetWidth / 260, m.offsetHeight / 220) // the map drawing is 260 x 220, scaled to fit
       const ox = pm.x - w + (m.offsetWidth - 260 * sc) / 2, oy = pm.y + (m.offsetHeight - 220 * sc) / 2
       const route = [[70, 176], [140, 176], [140, 120], [200, 120], [200, 86]].map(([x, y]) => ({ x: ox + x * sc, y: oy + y * sc + 4, s: 0.34, o: 1 }))
-      setSpots({ w, welcome: { x: pa.x, y: pa.y, s: 1, o: 1 }, route, fares: { x: pc.x - 2 * w, y: pc.y, s: 0.52, o: 1 } })
+      setSpots({ w, welcome: { x: pa.x, y: pa.y, s: 1, o: 1 }, route, fares: { x: pc.x - 2 * w, y: pc.y, s: 0.52, o: 1 }, near: { x: pd.x - 3 * w, y: pd.y, s: 0.7, o: 1 } })
     }
     measure()
     const ro = new ResizeObserver(measure)
@@ -126,7 +125,7 @@ export default function Onboarding({ onDone }) {
     el.style.transform = `translate(-50%, -100%) scale(${q.s})`
     cur.current = q
   }
-  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : n === 2 ? spots.fares : { ...spots.fares, x: spots.w + 90, o: 0 })
+  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : n === 2 ? spots.fares : n === 3 ? spots.near : { ...spots.near, x: spots.w + 120, o: 0 }) // the bus takes over on the last slide
   // settle on the current slide (and on the map slide, drive the route)
   useEffect(() => {
     if (!spots || dragging) return
@@ -216,11 +215,6 @@ export default function Onboarding({ onDone }) {
           {[['en', 'EN'], ['bis', 'BIS']].map(([id, label]) => <button key={id} aria-pressed={lang === id} onClick={() => { try { localStorage.setItem('bansaride-lang', JSON.stringify(id)) } catch { /* optional */ } window.location.reload() }}>{label}</button>)}
         </span>
         {i < LAST ? <button className="onb-skip" onClick={() => go(LAST)}>{tx('Skip')}</button> : <span className="onb-skip ghost" aria-hidden="true" />}
-      </div>
-      <div className="onb-road" aria-hidden="true" style={{ '--at': i / LAST, '--drag': -p / LAST }}>
-        <span className="onb-line" />
-        {[...SLIDES, null].map((_, n) => <i key={n} className={n <= i ? 'done' : ''} style={{ left: (n / LAST) * 100 + '%' }} />)}
-        <span className="onb-car"><Trike width={46} height={32} /></span>
       </div>
 
       <div className={'onb-view' + (dragging ? ' dragging' : '')} ref={box} onPointerDown={down} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
