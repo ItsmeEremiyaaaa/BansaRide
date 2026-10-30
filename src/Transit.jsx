@@ -1,10 +1,9 @@
 import { Bus, Van, Icon, useApp } from './components'
 import { useAuth } from './auth'
-import { TRANSIT, TOWN_RIDES, transitFare, transitStatus, transitKind } from './data'
+import { TRANSIT, miniPossible, transitFare, transitStatus, transitKind } from './data'
 
 // Bus, van and mini bus for a trip of `km`: hours, whether it runs now, and the fare for a regular rider and a student.
 export default function Transit({ modes, km, townId }) {
-  const rule = TOWN_RIDES[townId]
   const { discount } = useAuth()
   const { t } = useApp()
   const mine = discount ? transitKind(discount) : null
@@ -26,10 +25,10 @@ export default function Transit({ modes, km, townId }) {
               {s.ending && <span className="transit-warn">Last ride in {s.left} min</span>}
               <span className={'transit-state' + (s.open ? ' open' : '')}>{s.open ? `${t('runningNow')} · ${t('lastRide')} ${m.lastText}` : `${t('notRunning')} · ${t('firstRide')} ${m.firstText}`}</span>
             </div>
-            {rule?.ask ? (
+            {id === 'mini' ? (
               <div className="transit-fare ask">
                 <b>Ask</b><span className="row-sub">the conductor</span>
-                {rule.guide && <span className="row-sub">Students about ₱{rule.guide.student[0]}–{rule.guide.student[1]}</span>}
+                <span className="row-sub possible">Possible: {miniPossible(townId, km).text}</span>
               </div>
             ) : (
             <div className="transit-fare">

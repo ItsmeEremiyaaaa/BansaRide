@@ -390,9 +390,16 @@ export const transitModesForTown = (id) => {
   return id === 'digos' ? ['bus', 'van', 'mini'] : ['bus', 'van']
 }
 // A short text for the main fare of a town: "₱65–90", or "Ask the conductor" where the fare is not fixed.
+// A mini bus fare is never fixed, so it always says "ask the conductor". The possible fare is only a guide:
+// the reported ₱80 to ₱100 for students to Kapatagan, and an estimate scaled from it for the other towns.
+export const miniPossible = (townId, km) => {
+  const g = TOWN_RIDES[townId]?.guide
+  const f = transitFare('mini', km)
+  return { student: g ? g.student : [f.student, f.student], regular: f.adult, text: g ? `students ₱${g.student[0]}–${g.student[1]}` : `₱${f.student}–${f.adult}` }
+}
 export const townFareText = (t) => {
-  if (townAsksFare(t.id)) return 'Ask the conductor'
-  const f = transitFare(isCity(t) ? 'bus' : 'mini', t.km)
+  if (!isCity(t)) return 'Ask the conductor'
+  const f = transitFare('bus', t.km)
   return `₱${f.student}–${f.adult}`
 }
 
