@@ -9,6 +9,7 @@ import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
 import RainOverlay from '../RainOverlay'
 import { useLook } from '../mood'
+import WeatherChip from '../WeatherChip'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
@@ -329,6 +330,7 @@ export function MapScreen() {
 
   return (
     <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' + (look.level >= 2 ? ' strong' : '') : '')}>
+      <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
