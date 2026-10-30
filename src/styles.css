@@ -1702,3 +1702,16 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .onb-slide { justify-content: flex-start; }
 .onb-slide > :first-child { margin-top: auto; }
 .onb-slide > :last-child { margin-bottom: auto; }
+
+/* the travelling pedicab: one pedicab above the slides that goes from the welcome road onto the map */
+.onb-view { position: relative; }
+.onb-hero { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; transform-origin: 50% 100%; opacity: 0; will-change: left, top, transform; }
+.onb-hero svg { display: block; width: 150px; height: auto; filter: drop-shadow(0 4px 0 rgba(23, 10, 53, .22)); }
+.s-welcome .hero-spot { position: absolute; left: 50%; bottom: 34px; width: 0; height: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .onb-hero.bob .onb-hero-in { animation: onb-float 3.2s ease-in-out infinite; }
+  /* the route draws under the pedicab and the pin drops as it arrives */
+  .onb-slide.on .s-map .route.solid { animation: onb-draw 2.2s .65s linear both; }
+  .onb-slide.on .s-map .pin { animation-delay: 2.75s; }
+}
+.onb-art.board .chip-float.b { left: auto; right: 12px; bottom: 10px; }
