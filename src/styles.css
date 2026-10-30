@@ -1326,3 +1326,6 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 /* nav bar: no black outline, soft shadow, like the rest */
 .tabs { border: 1px solid rgba(16, 24, 40, .06) !important; background: rgba(255, 255, 255, .96) !important; box-shadow: 0 10px 30px rgba(16, 24, 40, .16) !important; }
 .tab[aria-current='page'] { border: 0 !important; box-shadow: 0 6px 16px rgba(21, 96, 240, .28) !important; }
+
+/* no coloured stub on the route rows */
+.row-item.line { border-left: 1px solid transparent !important; }
