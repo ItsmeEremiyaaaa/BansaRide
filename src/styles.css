@@ -1481,3 +1481,13 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* The "You are here" card keeps the black signboard outline, like the other cards. */
 .view:not(.view-home) .mapcard.slim.here { border-color: var(--ink) !important; box-shadow: 0 6px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25) !important; }
+
+/* The map cards use the green road-sign look of the "Other towns" cards: green board, white inner line, black outline. */
+.mapcard-top, .mapcard.slim { background: #1f7a5a; color: #fff; }
+.mapcard-top { box-shadow: inset 0 0 0 4px #1f7a5a, inset 0 0 0 6px rgba(255, 255, 255, .8); }
+.mapcard-top::before, .mapcard-top::after { background: #fff; opacity: .9; }
+.mapcard-title, .mapcard-top .row-sub, .mapcard.slim .here-hint { color: #fff; }
+.mapcard-top .row-sub { opacity: .92; }
+.mapcard.slim.here .here-pulse { background: rgba(255, 255, 255, .25); }
+.view:not(.view-home) .mapcard.slim.here { border-color: var(--ink) !important; }
+.mapcard .here-chip, .mapcard-top .tag { color: var(--ink); }
