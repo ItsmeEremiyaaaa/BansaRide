@@ -1258,6 +1258,13 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .mapfill.rainy.strong .leaflet-tile-pane { filter: saturate(.55) brightness(.82); }
 .mapfill.mood-night.rainy.strong::after { background: linear-gradient(180deg, rgba(3, 6, 20, .5), rgba(14, 22, 48, .32)); }
 
+.cluster.closed { opacity: .45; filter: grayscale(1); }
+.cluster.closed b { background: #667085; }
+.tpop.night { background: #151c30; color: #fff; border-color: #ffd66b; }
+.tpop.night .tpop-title { color: #ffd66b; }
+.tpop.night .tpop-text em { color: #dbe3f7; font-size: 13px; white-space: normal; }
+.tpop-moon { width: 44px; text-align: center; font-size: 30px; color: #ffd66b; }
+
 /* when drivers are around, and a clear closed state */
 .stand-pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 99px; border: 1.5px solid var(--ink); font-size: 12px; font-weight: 900; white-space: nowrap; background: #fff; width: fit-content; }
 .stand-pill i { width: 9px; height: 9px; border-radius: 50%; background: #98a2b3; }

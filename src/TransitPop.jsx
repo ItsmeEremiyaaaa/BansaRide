@@ -28,32 +28,57 @@ const due = () => {
   return out
 }
 
+// "At night most pedicabs are not around": shown once each evening or night when the app is opened (8 PM to 4 AM).
+const nightDue = () => {
+  const d = new Date(nowMs() + 8 * 3600 * 1000)
+  const h = d.getUTCHours()
+  if (!(h >= 20 || h < 4)) return null
+  const day = d.toISOString().slice(0, 10)
+  const key = `${day}|night|notice`
+  return read()[key] ? null : { key, night: true }
+}
+
 export default function RideAlertPop() {
   const [alert, setAlert] = useState(null)
   const [leaving, setLeaving] = useState(false)
-  const timers = useRef([])
+  const closeTimer = useRef(null)
+  const goneTimer = useRef(null)
 
   const hide = () => {
     setLeaving(true)
-    timers.current.push(setTimeout(() => setAlert(null), 350))
+    clearTimeout(closeTimer.current); clearTimeout(goneTimer.current)
+    goneTimer.current = setTimeout(() => setAlert(null), 350)
   }
   useEffect(() => {
     const check = () => {
       if (alert) return
-      const next = due()[0]
+      const next = due()[0] ?? nightDue()
       if (!next) return
       const seen = read(); seen[next.key] = true // shown once
       try { localStorage.setItem(SEEN, JSON.stringify(seen)) } catch { /* optional */ }
       setLeaving(false); setAlert(next)
       // it closes itself after about 4 to 5 seconds
-      timers.current.push(setTimeout(() => setLeaving(true), 4200), setTimeout(() => setAlert(null), 4600))
+      clearTimeout(closeTimer.current); clearTimeout(goneTimer.current)
+      closeTimer.current = setTimeout(() => setLeaving(true), next.night ? 5200 : 4200)
+      goneTimer.current = setTimeout(() => setAlert(null), next.night ? 5600 : 4600)
     }
     check()
     const id = setInterval(check, 20000)
-    return () => { clearInterval(id); timers.current.forEach(clearTimeout); timers.current = [] }
+    return () => clearInterval(id) // the close timers are kept apart, so changing the alert never cancels them
   }, [alert])
 
   if (!alert) return null
+  if (alert.night) {
+    return (
+      <button className={'tpop night' + (leaving ? ' leaving' : '')} onClick={hide} role="alert" aria-label="Night notice. Tap to close.">
+        <span className="tpop-title">Night notice</span>
+        <span className="tpop-row">
+          <span className="tpop-moon" aria-hidden="true">☾</span>
+          <span className="tpop-text"><b>Most pedicabs are not around now</b><em>After 8 PM the BTODA go home. Only a few stay at the 7-Eleven and a hotel until 4 AM. Be careful and plan your ride.</em></span>
+        </span>
+      </button>
+    )
+  }
   const { m, kind } = alert
   const Art = m.id === 'van' ? Van : Bus
   const text = kind === 'first'
