@@ -6,6 +6,7 @@ import { geoPlaces, geoRoutes } from './geo'
 import { geoTowns } from './townsData'
 import { geoStreets, geoStreetRoutes } from './streetsData'
 import { geoUpland, geoUplandRoutes } from './uplandData'
+import { geoPois } from './poiData'
 
 // ---------- Fares ----------
 // REPORTED by riders: the usual base fare near Bansalan for each kind of passenger.
@@ -32,6 +33,18 @@ export const fareText = (r) => (r.fare === null ? 'Ask driver' : r.fareMin === r
 
 // Places, barangays and every named street inside Bansalan.
 export const places = [...geoPlaces, ...geoStreets, ...geoUpland]
+// Shops, hotels, food places, banks, pharmacies and gas stations (OpenStreetMap). They are not routes or stands:
+// they show on the map when you switch them on, and any of them can be the end of a fare check.
+export const pois = geoPois
+export const POI_KINDS = {
+  Store: { label: 'Shops', plural: 'Shops and groceries' },
+  Hotel: { label: 'Hotels', plural: 'Hotels and lodging' },
+  Food: { label: 'Food', plural: 'Restaurants and cafes' },
+  Bank: { label: 'Banks', plural: 'Banks and ATMs' },
+  Pharmacy: { label: 'Pharmacy', plural: 'Pharmacies' },
+  Gas: { label: 'Gas', plural: 'Gas stations' },
+}
+export const poiById = (id) => pois.find((p) => p.id === id)
 export const placeById = (id) => places.find((p) => p.id === id)
 export const shortName = (id) => (placeById(id)?.name ?? id).replace('Bansalan ', '')
 

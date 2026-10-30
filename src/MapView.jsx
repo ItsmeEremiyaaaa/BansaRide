@@ -25,10 +25,15 @@ const GLYPHS = {
   Government: '<path d="M3 10l9-6 9 6" /><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18" />',
   Terminal: '<rect x="4" y="4" width="16" height="12" rx="2" /><path d="M4 11h16M7 19v-3M17 19v-3" />',
   Store: '<path d="M5 8h14l-1 12H6z" /><path d="M9 8V6a3 3 0 0 1 6 0v2" />',
+  Hotel: '<path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5" /><circle cx="7" cy="11" r="1.6" />',
+  Food: '<path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v6M9 3v6M17 3c-2 1-3 4-3 7h3v11" />',
+  Bank: '<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18" /><circle cx="12" cy="13" r="1" />',
+  Pharmacy: '<path d="M12 5v14M5 12h14" />',
+  Gas: '<path d="M5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15M3 20h13M14 10h2a2 2 0 0 1 2 2v4a1.5 1.5 0 0 0 3 0V9l-3-3" /><path d="M7 8h5" />',
   Barangay: '<path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10" />',
   Sitio: '<path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10" />',
 }
-const TONES = { moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
+const TONES = { Hotel: '#7c4dff', Food: '#e8590c', Bank: '#0b7285', Pharmacy: '#e03131', Gas: '#495057', moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
 // Waiting spots and terminals use the real vehicle drawings (from the app's art sheet), with no circle behind them.
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van' }
 const pin = (cls, label, i, glyph, tone) => {

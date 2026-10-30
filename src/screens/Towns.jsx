@@ -7,7 +7,8 @@ import Transit from '../Transit'
 import TransitPop from '../TransitPop'
 import { useAuth } from '../auth'
 import { speak } from '../speech'
-import { towns, routes, placeById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
+import { offlineRide } from '../rideFromMe'
+import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
 
 function TownRow({ town, onOpen, index }) {
   return (
@@ -145,12 +146,16 @@ export function Fares() {
 
   // the trip: from your location (real road when online, saved routes when offline), or between two places
   const me = loc.state === 'ok' ? loc.ll : null
-  const dest = placeById(toId)
+  const dest = placeById(toId) ?? poiById(toId)
+  const destIsPoi = !!poiById(toId)
   const fromMe = useRideFromMe(fromId === 'me' ? me : null, dest)
-  const between = fromId !== 'me' && fromId !== toId ? routeBetween(fromId, toId) : null
+  const between = fromId !== 'me' && fromId !== toId && !destIsPoi ? routeBetween(fromId, toId) : null
+  const fromPlace = fromId !== 'me' ? placeById(fromId) : null
+  const poiTrip = destIsPoi && fromPlace && fromId !== toId ? offlineRide([fromPlace.lat, fromPlace.lon], dest) : null // a shop or hotel: estimate from the pickup place
   const fallback = fromId === 'me' && !me ? routeBetween('terminal', toId) : null // no location yet: show it from the Bus Terminal
   const trip = fromId === 'me'
     ? (me ? fromMe : fallback && { km: fallback.route.km, minutes: fallback.route.minutes, vehicle: fallback.route.vehicle, exact: true, fallback: true })
+    : poiTrip ? { km: poiTrip.km, minutes: poiTrip.minutes, vehicle: poiTrip.vehicle, exact: false }
     : between && { km: between.route.km, minutes: between.route.minutes, vehicle: between.route.vehicle, exact: !between.route.via || between.route.exact }
   const motor = trip?.vehicle === 'Motor'
   const km = trip?.km ?? 0
@@ -210,6 +215,7 @@ export function Fares() {
 
         {picker && (
           <Picker
+            withPois={picker === 'to'}
             title={picker === 'from' ? 'Choose pickup' : 'Choose destination'}
             otherId={picker === 'from' ? toId : fromId === 'me' ? null : fromId}
             selectedId={picker === 'from' ? fromId : toId}
