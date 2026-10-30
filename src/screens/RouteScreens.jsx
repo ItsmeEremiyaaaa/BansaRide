@@ -299,7 +299,7 @@ export function MapScreen() {
     <div className="mapfill">
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} onPick={onPick} />
+          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
