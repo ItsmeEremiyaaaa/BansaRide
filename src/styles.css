@@ -1376,3 +1376,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* no coloured stub on the route rows */
 .view:not(.view-home) .row-item.line { border-left: 1px solid transparent !important; }
+
+/* Recently viewed / Saved on the dashboard: plain soft rows, no signboard design */
+.recent-list .row-item, .recent-list .row-item.line { border: 1px solid transparent !important; box-shadow: 0 6px 22px rgba(50, 70, 130, .10) !important; background: #fff !important; }
+.recent-list .row-item:active { transform: scale(.985) !important; box-shadow: 0 3px 12px rgba(50, 70, 130, .12) !important; }
