@@ -18,6 +18,7 @@ const dict = {
     noRoute: 'Wala pay ruta niining duha. Nagdugang pa mi.',
     quickMap: 'Mapa', quickRoutes: 'Ruta', quickFares: 'Plete', quickTowns: 'Lungsod',
     seeAll: 'Tan-awa ang tanang ruta', seeAllTowns: 'Tan-awa ang tanang lungsod',
+    'Motorcycle': 'Motorsiklo', 'Mini bus': 'Mini bus', '61 streets': '61 ka dalan', '24 barangays and sitios': '24 ka barangay ug sitio', 'Works offline': 'Molihok bisan walay signal', 'Student −20%': 'Estudyante −20%', 'Senior −20%': 'Senior −20%', 'PWD −20%': 'PWD −20%',
     'Riding tonight?': 'Mosakay ka karong gabii?', 'Most pedicabs are gone. Nearest with drivers': 'Wala nay pedikab. Labing duol nga naay drayber', 'Most pedicabs are gone after 8 PM. See who is still around.': 'Wala nay pedikab human sa 8 PM. Tan-awa kinsay naa pa.',
     'Drivers waiting here': 'Mga drayber nga naghulat dinhi', 'Getting there': 'Pag-adto', 'Where they go': 'Asa sila moadto', 'What riders say': 'Unsay ingon sa mga sakay', 'Rides': 'Mga biyahe', 'See on the map': 'Tan-awa sa mapa',
     'How far from you': 'Pila ka layo gikan nimo', 'Show on map': 'Ipakita sa mapa', 'Directions': 'Direksyon', 'Contact': 'Kontak', "Nearest drivers' stand": 'Labing duol nga hulaton sa drayber', 'Ask the driver': 'Pangutan-a ang drayber', 'Possible fare': 'Posibleng plete', 'You are here': 'Naa ka dinhi',

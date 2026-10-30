@@ -69,10 +69,10 @@ function SceneNear() {
 const lang = (() => { try { return JSON.parse(localStorage.getItem('bansaride-lang')) || 'en' } catch { return 'en' } })()
 const tx = (s) => translate(lang, s)
 const SLIDES = [
-  { tone: 'gold', tag: 'Welcome', scene: <SceneWelcome />, title: tx('Welcome to BansaRide'), text: tx('Your ride and fare guide for Bansalan, Davao del Sur. Tricycle, pedicab, motorcycle, bus and van, all in one place.') },
-  { tone: 'blue', tag: 'The map', scene: <SceneMap />, title: tx('A real map of Bansalan'), text: tx('Real streets, barangays and roads from OpenStreetMap. Once you have opened it, the map keeps working with no signal.') },
-  { tone: 'coral', tag: 'Fares', scene: <SceneFares />, title: tx('Know your fare first'), text: tx('See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.') },
-  { tone: 'green', tag: 'Near you', scene: <SceneNear />, title: tx('Drivers near you, live'), text: tx('Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.') },
+  { tone: 'gold', tag: 'Welcome', facts: [['#E8A100', 'Tricycle'], ['#067647', 'Motorcycle'], ['#E5322D', 'Bus'], ['#1560F0', 'Van'], ['#1F7A8C', 'Mini bus']], scene: <SceneWelcome />, title: tx('Welcome to BansaRide'), text: tx('Your ride and fare guide for Bansalan, Davao del Sur. Tricycle, pedicab, motorcycle, bus and van, all in one place.') },
+  { tone: 'blue', tag: 'The map', facts: [['#1560F0', '61 streets'], ['#E5322D', '24 barangays and sitios'], ['#067647', 'Works offline']], scene: <SceneMap />, title: tx('A real map of Bansalan'), text: tx('Real streets, barangays and roads from OpenStreetMap. Once you have opened it, the map keeps working with no signal.') },
+  { tone: 'coral', tag: 'Fares', facts: [['#F4B400', 'Student −20%'], ['#1560F0', 'Senior −20%'], ['#E5322D', 'PWD −20%']], scene: <SceneFares />, title: tx('Know your fare first'), text: tx('See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.') },
+  { tone: 'green', tag: 'Near you', facts: [['#12b76a', 'Drivers around'], ['#f79009', 'A few around'], ['#98a2b3', 'Closed now']], scene: <SceneNear />, title: tx('Drivers near you, live'), text: tx('Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.') },
 ]
 const LAST = SLIDES.length // the sign-in page
 
@@ -162,6 +162,7 @@ export default function Onboarding({ onDone }) {
               </div>
               <h1>{s.title}</h1>
               <p>{s.text}</p>
+              {s.facts && <ul className="onb-facts">{s.facts.map(([c, label], k) => <li key={label} style={{ '--k': k }}><i style={{ background: c }} />{tx(label)}</li>)}</ul>}
             </section>
           ))}
           <section className={'onb-slide login' + (i === LAST ? ' on' : '')} aria-hidden={i !== LAST} aria-label="Sign in">
