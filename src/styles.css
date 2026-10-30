@@ -1329,13 +1329,3 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* no coloured stub on the route rows */
 .row-item.line { border-left: 1px solid transparent !important; }
-
-/* a colour for each tab: its icon, and its pill when selected */
-.tab[data-tab='home'] { --tc: #1560f0; } .tab[data-tab='routes'] { --tc: #f08a1a; } .tab[data-tab='map'] { --tc: #12a05c; }
-.tab[data-tab='drivers'] { --tc: #e8a100; } .tab[data-tab='fares'] { --tc: #e5322d; }
-.tab:not([aria-current='page']) { color: var(--tc); }
-.tab:not([aria-current='page']) svg .duo { fill-opacity: .28; }
-.tab[aria-current='page'] { background: var(--tc) !important; color: #fff !important; box-shadow: 0 6px 16px color-mix(in srgb, var(--tc) 45%, transparent) !important; }
-.tab[aria-current='page'] svg .duo { fill: #fff !important; fill-opacity: .35 !important; }
-/* only the icons are coloured: the selected pill stays blue with a white icon */
-.tab[aria-current='page'] { background: var(--primary) !important; box-shadow: 0 6px 16px rgba(21, 96, 240, .28) !important; }
