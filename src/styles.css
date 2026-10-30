@@ -1146,3 +1146,15 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* the floating tab bar sits over the bottom of the sheet, so leave room for it: short result lists stay visible */
 .picker-panel { padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px)); min-height: 340px; }
+
+/* map filter: one button and a small panel instead of a row of pills */
+.filter-btn { position: absolute; z-index: 1100; top: calc(68px + env(safe-area-inset-top, 0px)); left: 68px; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; background: #fff; border: 2.5px solid var(--ink); border-radius: 99px; box-shadow: 0 3px 0 var(--ink); font-weight: 900; font-size: 14px; }
+.filter-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.4; }
+.filter-btn.on { background: var(--brand); }
+.filter-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.filter-scrim { position: absolute; inset: 0; z-index: 1090; background: transparent; cursor: default; }
+.filter-panel { position: absolute; z-index: 1110; top: calc(114px + env(safe-area-inset-top, 0px)); left: 68px; width: min(300px, calc(100% - 136px)); display: grid; gap: 8px; padding: 12px; background: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 5px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25); }
+.filter-head { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); font-size: 17px; }
+.filter-clear { min-height: 32px; padding: 0 10px; font-weight: 900; font-size: 13px; color: var(--primary); border-radius: 10px; }
+.filter-row { grid-template-columns: minmax(0, 1fr) auto; padding: 8px 12px; box-shadow: 0 2px 0 var(--ink); }
+.filter-row .alert-text b { font-size: 16px; }
