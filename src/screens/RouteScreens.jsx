@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
+import { lazy, Suspense } from 'react'
+const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
 import Picker from '../Picker'
 import Transit from '../Transit'
 import { shareText, speak } from '../speech'
@@ -220,6 +222,7 @@ export function MapScreen() {
   }, [])
   const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
+  const [view3d, setView3d] = useState(false)
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
@@ -294,8 +297,15 @@ export function MapScreen() {
 
   return (
     <div className="mapfill">
+      {view3d && (
+        <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
+          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} onPick={(id) => { onPick(id); setView3d(false) }} />
+        </Suspense>
+      )}
+      {!view3d && (
       <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
+      )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
@@ -314,6 +324,7 @@ export function MapScreen() {
         </>
       )}
       <div className="float r col">
+        <button className={'icon-btn view-btn' + (view3d ? ' on' : '')} aria-pressed={view3d} aria-label={view3d ? 'Back to the flat map' : 'Show the 3D map'} onClick={() => setView3d((v) => !v)}>{view3d ? '2D' : '3D'}</button>
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" aria-label={`Filter: show shops, hotels and more${poiKinds.length ? `, ${poiKinds.length} on` : ''}`} onClick={() => setFilterOpen((v) => !v)}><Icon name="filter" />{poiKinds.length > 0 && <i className="icon-badge">{poiKinds.length}</i>}</button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>
