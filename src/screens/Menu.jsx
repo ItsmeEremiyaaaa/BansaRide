@@ -1,9 +1,11 @@
 import { useApp, BackButton, Icon, Trike, YHeader } from '../components'
 import { places, routes, stations, towns } from '../data'
+import { useAuth } from '../auth'
 
 // The full menu: every part of the app with what is inside it, plus how the data works.
 export default function Menu() {
   const { go, lang, setLang, online, textSize, setTextSize, t } = useApp()
+  const { isAdmin } = useAuth()
   const tric = routes.filter((r) => r.vehicle !== 'Motor').length
   const moto = routes.filter((r) => r.vehicle === 'Motor').length
   const streets = places.filter((p) => p.kind === 'Street').length
@@ -12,6 +14,7 @@ export default function Menu() {
   const streetSpots = stations.filter((s) => s.streetSpot).length
 
   const items = [
+    ...(isAdmin ? [{ title: 'Admin', rows: [{ icon: 'drivers', tone: 'green', name: 'Admin', detail: 'Overview, reported posts, inbox, accounts and blocked words', to: ['admin'] }] }] : []),
     { title: 'Rides and places', rows: [
       { icon: 'routes', tone: 'blue', name: 'All routes', detail: `${routes.length} real road routes: ${tric} by tricycle or pedicab, ${moto} by motorcycle`, to: ['routes'] },
       { icon: 'vehicle', tone: 'gold', name: 'Tricycle and pedicab', detail: 'The same ride here. Fares are estimates by distance', to: ['routes', { id: 'Tricycle' }] },
