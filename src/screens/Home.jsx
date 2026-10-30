@@ -4,7 +4,7 @@ import { useStored } from '../hooks'
 import MapView from '../MapView'
 import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
-import { WeatherPill } from '../WeatherChip'
+import Clock from '../Clock'
 import { useLook } from '../mood'
 import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist, bansalanClock } from '../data'
 
@@ -164,9 +164,9 @@ export default function Home() {
         <section className="card glass where" aria-label="Plan a ride">
           <div className="where-top">
             <span className="where-chip">{t('whereTo')}</span>
-            <WeatherPill />
             <span className={'live ' + (online ? 'on' : 'off')} role="status"><i aria-hidden="true" />{online ? 'Ready offline' : 'Offline mode'}</span>
           </div>
+          <Clock lang={lang} />
           <div className="seg scope" role="tablist" aria-label="Where are you going">
             <button role="tab" aria-selected={scope === 'bansalan'} onClick={() => setScope('bansalan')}>{t('inBansalan')}</button>
             <button role="tab" aria-selected={scope === 'towns'} onClick={() => setScope('towns')}>{t('otherTowns')}</button>
