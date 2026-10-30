@@ -11,7 +11,7 @@ import { bansalanTiles } from './localTiles'
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
 let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href
-const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van' }
+const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 const TINT = { vehicle: '#E8A100', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
