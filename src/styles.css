@@ -2,7 +2,7 @@
    Jeepney-signboard boards use the logo's thick ink outline. Spacing: 4 / 8 / 12 / 16 / 24. Radii: 12 / 16 / 24.
    Touch targets are at least 44px. Motion respects prefers-reduced-motion. */
 :root {
-  --bg: #eef1fb; --surface: #ffffff; --ink: #170a35; /* ink and outlines are the deep indigo of the Bansalan seal */ --ink2: #475467; --ink3: #667085; --line: #e4e7ec;
+  --bg: #eef2fa; --surface: #ffffff; --ink: #101828; --ink2: #475467; --ink3: #667085; --line: #e4e7ec;
   --primary: #1560f0; --primary-soft: #e8f0fe; --primary-ink: #0b3fa8;
   --brand: #ffffff; --brand-soft: #f1f4f9; --brand-ink: #475467; /* white, like the body of a Bansalan pedicab */
   --green: #067647; --green-soft: #e7f6ec; --red: #b42318; --red-soft: #feeceb; --teal: #1f7a8c;
@@ -1476,18 +1476,3 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .ask-possible span { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: var(--green); }
 .ask-possible b { font-family: var(--display); font-size: 20px; }
 .ask-possible em { grid-column: 1 / -1; font-style: normal; font-size: 12px; color: var(--ink3); }
-
-/* The "You are here" card: the signboard look again, a black outline and a soft black halftone texture. */
-.view:not(.view-home) .mapcard.slim.here { border-color: var(--ink) !important; box-shadow: 0 6px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25) !important;
-  background-color: var(--surface); background-image: radial-gradient(rgba(23, 10, 53, .16) 1.1px, transparent 1.4px), radial-gradient(rgba(23, 10, 53, .1) 1px, transparent 1.3px); background-size: 9px 9px, 9px 9px; background-position: 0 0, 4.5px 4.5px; }
-.mapcard.slim.here .mapcard-top { background-color: transparent; }
-
-/* Not all white: the colors of the Bansalan seal (gold ring, red lettering, blue field, deep indigo rim) run as a band along the
-   bottom of the white signboards and cards, and a gold ring sits inside the indigo outline of the cards. */
-:root { --seal-gold: #ffd100; --seal-red: #d9181c; --seal-blue: #1493e6; --seal-indigo: #170a35;
-  --livery: linear-gradient(to bottom, #ffd100 0 34%, #d9181c 34% 56%, #1493e6 56% 82%, #170a35 82% 100%); }
-.mapcard-top, .yhead { background-image: var(--livery); background-size: 100% 12px; background-position: bottom; background-repeat: no-repeat; }
-.mapcard-top { padding-bottom: 22px; }
-.yhead { padding-bottom: 26px; }
-
-.view:not(.view-home) .mapcard.slim.here { box-shadow: inset 0 0 0 4px var(--seal-gold), 0 6px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25) !important; }
