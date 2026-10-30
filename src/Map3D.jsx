@@ -37,7 +37,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
   const mapRef = useRef(null)
   const ready = useRef(false)
   const latest = useRef({})
-  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links }
+  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center }
 
   const apply = () => {
     const map = mapRef.current
@@ -47,10 +47,18 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     map.getSource('route')?.setData(line(rt))
     map.getSource('links')?.setData({ type: 'FeatureCollection', features: (latest.current.links ?? []).map((l) => line(l)) })
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
+  }
+
+  // One camera move at a time. A far place used to start a pan at street zoom and then a fit-to-route (zoom out, then in),
+  // so the move waits a moment and only the final target decides it.
+  const camera = () => {
+    const map = mapRef.current
+    if (!map || !ready.current) return
+    const { route: rt, offsetY: oy, center: c } = latest.current
     if (rt?.length > 1) {
       const b = rt.reduce((bb, [la, lo]) => bb.extend([lo, la]), new maplibregl.LngLatBounds())
-      map.fitBounds(b, { padding: { top: 90, left: 40, right: 40, bottom: latest.current.offsetY * 2 + 30 }, maxZoom: 17, pitch, bearing: 0, duration: 800 })
-    }
+      map.fitBounds(b, { padding: { top: 90, left: 40, right: 40, bottom: oy * 2 + 30 }, maxZoom: 17, pitch, bearing: 0, duration: 900 })
+    } else map.easeTo({ center: [c[1], c[0]], pitch, offset: [0, -oy], duration: 700 })
   }
 
   useEffect(() => {
@@ -107,14 +115,19 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       }
       ready.current = true
       apply()
+      camera()
     })
     if (import.meta.env.DEV) window.__map3d = map
     return () => { ready.current = false; youDot?.remove(); map.remove(); mapRef.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(apply, [markers, route, routeColor, offsetY, links]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(apply, [markers, route, routeColor, links]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
-  useEffect(() => { if (!route?.length) mapRef.current?.easeTo({ center: [center[1], center[0]], pitch, offset: [0, -latest.current.offsetY], duration: 700 }) }, [key, pitch]) // eslint-disable-line react-hooks/exhaustive-deps
+  const routeSig = route?.length > 1 ? route.length + ':' + route[0] + ':' + route[route.length - 1] : ''
+  useEffect(() => {
+    const t = setTimeout(camera, 80)
+    return () => clearTimeout(t)
+  }, [key, routeSig, pitch, offsetY > 0]) // eslint-disable-line react-hooks/exhaustive-deps
   // the sky at the horizon: a gradient in the colours of the moment, drawn over the far edge of the tilted map
   return (
     <>
