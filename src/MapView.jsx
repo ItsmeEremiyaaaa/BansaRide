@@ -13,8 +13,9 @@ import { boundary, bounds, barangays } from './boundary'
 const PAD = 0.012
 const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
-const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD])
-// Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
+const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - 0.06], [bounds[1][0] + 0.06, bounds[1][1] + 0.06]) // a little of the neighbouring land can be seen
+const EDGE_COLOR = { morning: '#f4b400', day: '#f4b400', evening: '#ffb13b', night: '#ffd66b' }
+// (kept for reference) Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
 // stars at night) and a golden dotted border like the app's signboards, so the edge looks designed, not blank.
 const SURROUND = {
   morning: { fill: '#e7dcc2', ink: 'rgba(120,150,70,.55)', pattern: 'leaf', edge: '#f4b400' },
@@ -125,7 +126,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     tiles.current = leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...moodRules(mood), maxZoom: 19, maxDataZoom: 15,
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     tiles.current.bringToBack()
-    if (outside.current) paintSurround(m, outside.current, edge.current, mood)
+    edge.current?.setStyle({ color: EDGE_COLOR[mood] ?? '#f4b400' })
   }, [mood])
 
   useEffect(() => {
@@ -138,10 +139,9 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (import.meta.env.DEV) window.__bansaMap = m // for testing in the browser
     // Only Bansalan is shown: everything outside the border is a plain blank color (no map, no grey overlay, no dotted barrier),
     // with just a thin soft edge so you can see where the municipality ends.
-    const sur = SURROUND[moodRef.current] ?? SURROUND.day
-    outside.current = L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: sur.fill, fillOpacity: 1, interactive: false, bubblingMouseEvents: true }).addTo(m)
-    edge.current = L.polygon(boundary[0], { color: sur.edge, weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
-    paintSurround(m, outside.current, edge.current, moodRef.current)
+    // the real map shows around Bansalan too; a dotted golden line with a soft white edge marks where the municipality ends
+    L.polygon(boundary[0], { color: '#ffffff', weight: 6, opacity: 0.7, fill: false, interactive: false }).addTo(m)
+    edge.current = L.polygon(boundary[0], { color: EDGE_COLOR[moodRef.current] ?? '#f4b400', weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
     const names = L.layerGroup(barangays.map((b) => L.marker([b.lat, b.lon], {
       interactive: false, keyboard: false, zIndexOffset: -500,
       icon: L.divIcon({ className: 'brgy-wrap', html: `<span class="brgy">${b.name}</span>`, iconSize: [0, 0] }),
