@@ -55,6 +55,13 @@ export function AuthProvider({ children }) {
     if (error && /rate limit|too many/i.test(error.message)) return { error: 'Too many sign-in emails were sent just now. Use the link already in your email, or try again in about an hour.' }
     return { error: error?.message ?? null }
   }, [])
+  // Admins can also sign in with a password (set when the account is made in the Supabase dashboard), so no email is needed.
+  const signInPassword = useCallback(async (email, password) => {
+    if (!supabase) return { error: 'Sign-in is not switched on yet.' }
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error && /invalid/i.test(error.message)) return { error: 'Wrong email or password.' }
+    return { error: error?.message ?? null }
+  }, [])
   const signOut = useCallback(async () => { if (supabase) await supabase.auth.signOut(); setUser(null) }, [])
   const saveProfile = useCallback(async (p) => {
     setProfile(p); writeLocal(p)
@@ -73,7 +80,7 @@ export function AuthProvider({ children }) {
   const complete = !!kind && (!kind.student || !!profile?.school) && (!kind.needsId || !!profile?.idType)
   // With accounts switched on, the discount needs a verified sign-in. Without them (testing), it applies from the phone.
   const discount = complete && (supabase ? verified : true) && kind.id !== 'regular' ? kind.id : null
-  const value = useMemo(() => ({ user, profile, ready, verified, kind, complete, discount, configured: !!supabase, isAdmin, sendLink, signOut, saveProfile }),
-    [user, profile, ready, verified, kind, complete, discount, isAdmin, sendLink, signOut, saveProfile])
+  const value = useMemo(() => ({ user, profile, ready, verified, kind, complete, discount, configured: !!supabase, isAdmin, sendLink, signInPassword, signOut, saveProfile }),
+    [user, profile, ready, verified, kind, complete, discount, isAdmin, sendLink, signInPassword, signOut, saveProfile])
   return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>
 }
