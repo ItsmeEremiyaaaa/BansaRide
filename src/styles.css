@@ -1167,3 +1167,5 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* barangay names in the same quiet spaced capitals as the map */
 .brgy { color: #6f6a5f; font-weight: 700; letter-spacing: .16em; font-size: 11px; }
+.mapcard.slim { background: var(--brand); }
+.mapcard.slim .mapcard-top { border-bottom: 0; }

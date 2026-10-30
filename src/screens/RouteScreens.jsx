@@ -262,10 +262,10 @@ export function MapScreen() {
       const sp = n && stationPlace(n.station)
       if (sp) out.push([[p.lat, p.lon], [sp.lat, sp.lon]])
     }
-    const nm = me ? nearestStands(me, 1)[0] : null
+    const nm = me && sel ? nearestStands(me, 1)[0] : null // only once a place is picked
     if (nm) out.push([me, [nm.place.lat, nm.place.lon]])
     return out
-  }, [p, me])
+  }, [p, me, sel])
 
   const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else go('station', { id }) }
   const locate = () => { if (me) setFocusPt([me[0] + 1e-9 * (Date.now() % 7), me[1]]); // a new value each press, so the map moves every time
@@ -333,19 +333,14 @@ export function MapScreen() {
           </div>
           <p className="hint">Send the copied details to the app maker. The exact spot is then added to the map for everyone.</p>
         </section>
-      ) : !sel && hereNear && nearMe ? (
-        <section className="mapcard" aria-live="polite" key="here" ref={cardRef}>
+      ) : !sel && hereNear ? (
+        <section className="mapcard slim" aria-live="polite" key="here" ref={cardRef}>
           <div className="mapcard-top">
             <div>
               <h1 className="mapcard-title">You are here</h1>
               <p className="row-sub">Near {hereNear.place.name}</p>
             </div>
           </div>
-          <button className="stand-card compact live" onClick={() => go('station', { id: nearMe.station.id })}>
-            <span className="ico gold"><Icon name={nearMe.station.type === 'motor' ? 'moto' : 'vehicle'} /></span>
-            <span className="row-main"><span className="tl-k">Nearest to you · live</span><b>{nearMe.station.name}</b><span className="row-sub">{fmtDist(nearMe.meters)} {compassName(nearMe.bearing)} · about {walkMinutes(nearMe.meters)} min walk</span></span>
-            <Icon name="chevron" className="chev" />
-          </button>
         </section>
       ) : card && (
         <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef}>
