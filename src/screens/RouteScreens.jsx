@@ -255,6 +255,10 @@ export function MapScreen() {
   const [view3d, setView3dRaw] = useState(() => sessionStorage.getItem('bansaride.view3d') === '1') // stays 3D when you come back from a stand or place page
   const setView3d = (f) => setView3dRaw((v) => { const n = typeof f === 'function' ? f(v) : f; try { sessionStorage.setItem('bansaride.view3d', n ? '1' : '0') } catch { /* optional */ } return n })
   const look = useLook()
+  // the flat map stays on screen until the 3D map has drawn its first picture, then the 3D map fades in over it (no white flash)
+  const [ready3dFor, setReady3dFor] = useState(null)
+  const ready3d = view3d && ready3dFor === look.mood
+  useEffect(() => { if (!view3d) setReady3dFor(null) }, [view3d])
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
@@ -344,11 +348,11 @@ export function MapScreen() {
       <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
-        <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} selKind={rideMoto ? 'moto' : 'vehicle'} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
+        <Suspense fallback={null}>
+          <Map3D mood={look.mood} key={look.mood} onReady={() => setReady3dFor(look.mood)} selKind={rideMoto ? 'moto' : 'vehicle'} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
         </Suspense>
       )}
-      {!view3d && (
+      {(!view3d || !ready3d) && (
       <MapView mood={look.mood} selId={sel} selGlyph={rideMoto ? 'moto' : null} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}

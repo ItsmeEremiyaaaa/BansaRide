@@ -40,7 +40,7 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle' }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle', onReady }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
@@ -183,6 +183,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         map.on('mouseleave', l, () => { map.getCanvas().style.cursor = '' })
       }
       ready.current = true
+      map.once('idle', () => { box.current?.classList.add('ready'); onReady?.() }) // the first finished picture: now it can fade in
       apply()
       camera()
     })
