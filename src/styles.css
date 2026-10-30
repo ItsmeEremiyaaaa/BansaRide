@@ -1715,3 +1715,14 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
   .onb-slide.on .s-map .pin { animation-delay: 2.75s; }
 }
 .onb-art.board .chip-float.b { left: auto; right: 12px; bottom: 10px; }
+
+/* slide 3: the pedicab parks on the left and the fare tickets for its ride come out beside it */
+.s-fares .hero-spot { position: absolute; left: 20%; bottom: 16px; width: 0; height: 0; }
+.s-fares .ticket { left: calc(50% - 64px + 14px - var(--n) * 10px); width: 168px; }
+@media (prefers-reduced-motion: no-preference) {
+  .onb-slide.on .s-fares .ticket { animation-delay: calc(.7s + var(--n) * .18s); }
+  .onb-slide.on .s-fares .chip-float { animation-delay: 1.4s, 1.9s; }
+}
+
+.s-fares .ticket { left: calc(50% - 64px + 32px - var(--n) * 10px); width: 164px; }
+.s-fares .hero-spot { left: 17%; }

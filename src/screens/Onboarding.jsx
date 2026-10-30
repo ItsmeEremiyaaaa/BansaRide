@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Icon, Trike, Bus, Moto } from '../components'
 import { useAuth } from '../auth'
 import { translate } from '../i18n'
+import { fareFor } from '../data'
 
 export const ONBOARDED = 'bansaride.onboarded.v1'
 
@@ -39,7 +40,8 @@ function SceneMap() {
   )
 }
 function SceneFares() {
-  const cards = [['Student', '₱164', '#fff4d6'], ['Senior', '₱164', '#e3edff'], ['Adult', '₱205', '#ffe6df']]
+  const km = 3.7 // the ride the pedicab drove on the map slide
+  const cards = [['Student', '₱' + fareFor(km, 'elementary'), '#fff4d6'], ['Senior', '₱' + fareFor(km, 'senior'), '#e3edff'], ['Adult', '₱' + fareFor(km, 'adult'), '#ffe6df']]
   return (
     <div className="scene s-fares" aria-hidden="true">
       {cards.map(([who, fare, bg], n) => (
@@ -49,7 +51,8 @@ function SceneFares() {
           <span className="t-cut" />
         </div>
       ))}
-      <span className="chip-float a">Bus to Davao · 3 AM to 11 PM</span>
+      <span className="chip-float a">To Rizal · 3.7 km</span>
+      <span className="hero-spot" />
     </div>
   )
 }
@@ -71,7 +74,7 @@ const tx = (s) => translate(lang, s)
 const SLIDES = [
   { tone: 'gold', tag: 'Welcome', facts: [['#E8A100', 'Tricycle'], ['#067647', 'Motorcycle'], ['#E5322D', 'Bus'], ['#1560F0', 'Van'], ['#1F7A8C', 'Mini bus']], scene: <SceneWelcome />, title: tx('Welcome to BansaRide'), text: tx('Your ride and fare guide for Bansalan, Davao del Sur. Tricycle, pedicab, motorcycle, bus and van, all in one place.') },
   { tone: 'blue', tag: 'The map', facts: [['#1560F0', '61 streets'], ['#E5322D', '24 barangays and sitios'], ['#067647', 'Works offline']], scene: <SceneMap />, title: tx('A real map of Bansalan'), text: tx('Real streets, barangays and roads from OpenStreetMap. Once you have opened it, the map keeps working with no signal.') },
-  { tone: 'coral', tag: 'Fares', facts: [['#F4B400', 'Student −20%'], ['#1560F0', 'Senior −20%'], ['#E5322D', 'PWD −20%']], scene: <SceneFares />, title: tx('Know your fare first'), text: tx('See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.') },
+  { tone: 'coral', tag: 'Fares', facts: [['#E8A100', 'Pedicab: by distance'], ['#E5322D', 'Bus, van and mini bus'], ['#067647', 'Students, seniors and PWD pay less']], scene: <SceneFares />, title: tx('Know your fare first'), text: tx('See what a ride costs for a student, a senior or an adult, and when the bus, van and mini bus run. No more guessing.') },
   { tone: 'green', tag: 'Near you', facts: [['#12b76a', 'Drivers around'], ['#f79009', 'A few around'], ['#98a2b3', 'Closed now']], scene: <SceneNear />, title: tx('Drivers near you, live'), text: tx('Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.') },
 ]
 const LAST = SLIDES.length // the sign-in page
@@ -102,13 +105,13 @@ export default function Onboarding({ onDone }) {
       const w = view.offsetWidth
       const offs = (el) => { let x = 0, y = 0; while (el && el !== view) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent } return el === view ? { x, y } : null }
       const slides = view.querySelectorAll('.onb-slide')
-      const a = slides[0]?.querySelector('.hero-spot'), m = slides[1]?.querySelector('.s-map')
-      const pa = a && offs(a), pm = m && offs(m)
-      if (!pa || !pm) return
+      const a = slides[0]?.querySelector('.hero-spot'), m = slides[1]?.querySelector('.s-map'), c = slides[2]?.querySelector('.hero-spot')
+      const pa = a && offs(a), pm = m && offs(m), pc = c && offs(c)
+      if (!pa || !pm || !pc) return
       const sc = Math.min(m.offsetWidth / 260, m.offsetHeight / 220) // the map drawing is 260 x 220, scaled to fit
       const ox = pm.x - w + (m.offsetWidth - 260 * sc) / 2, oy = pm.y + (m.offsetHeight - 220 * sc) / 2
       const route = [[70, 176], [140, 176], [140, 120], [200, 120], [200, 86]].map(([x, y]) => ({ x: ox + x * sc, y: oy + y * sc + 4, s: 0.34, o: 1 }))
-      setSpots({ w, welcome: { x: pa.x, y: pa.y, s: 1, o: 1 }, route })
+      setSpots({ w, welcome: { x: pa.x, y: pa.y, s: 1, o: 1 }, route, fares: { x: pc.x - 2 * w, y: pc.y, s: 0.52, o: 1 } })
     }
     measure()
     const ro = new ResizeObserver(measure)
@@ -123,7 +126,7 @@ export default function Onboarding({ onDone }) {
     el.style.transform = `translate(-50%, -100%) scale(${q.s})`
     cur.current = q
   }
-  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : { ...spots.route[spots.route.length - 1], x: spots.w + 90, o: 0 })
+  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : n === 2 ? spots.fares : { ...spots.fares, x: spots.w + 90, o: 0 })
   // settle on the current slide (and on the map slide, drive the route)
   useEffect(() => {
     if (!spots || dragging) return
