@@ -32,12 +32,12 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day' }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [] }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
   const latest = useRef({})
-  latest.current = { markers, route, routeColor, onPick, offsetY, mood }
+  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links }
 
   const apply = () => {
     const map = mapRef.current
@@ -45,6 +45,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     const { markers: mk, route: rt, routeColor: rc } = latest.current
     map.getSource('spots')?.setData(geo(mk))
     map.getSource('route')?.setData(line(rt))
+    map.getSource('links')?.setData({ type: 'FeatureCollection', features: (latest.current.links ?? []).map((l) => line(l)) })
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
     if (rt?.length > 1) {
       const b = rt.reduce((bb, [la, lo]) => bb.extend([lo, la]), new maplibregl.LngLatBounds())
@@ -74,6 +75,9 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
 
     map.on('load', async () => {
       map.addSource('route', { type: 'geojson', data: line(null) })
+      // dashed lines: you to the nearest stand, a street to its stand (same as the flat map)
+      map.addSource('links', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
+      map.addLayer({ id: 'links', type: 'line', source: 'links', paint: { 'line-color': '#9a6b00', 'line-width': 3, 'line-dasharray': [2, 2] } })
       map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 11 } })
       map.addLayer({ id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': latest.current.routeColor, 'line-width': 6 } })
       // evening and night: houses with lights on, the same little warm windows as the flat map
@@ -108,7 +112,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     return () => { ready.current = false; youDot?.remove(); map.remove(); mapRef.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(apply, [markers, route, routeColor, offsetY]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(apply, [markers, route, routeColor, offsetY, links]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
   useEffect(() => { if (!route?.length) mapRef.current?.easeTo({ center: [center[1], center[0]], pitch, offset: [0, -latest.current.offsetY], duration: 700 }) }, [key, pitch]) // eslint-disable-line react-hooks/exhaustive-deps
   // the sky at the horizon: a gradient in the colours of the moment, drawn over the far edge of the tilted map
