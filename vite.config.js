@@ -39,7 +39,7 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,pmtiles}'], // the Bansalan map file is saved too, so the map works offline
-        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
         // Saves the map pictures people have viewed, so those places still show offline.
         runtimeCaching: [
           {
