@@ -753,7 +753,7 @@ svg.ico-art { stroke: none !important; fill: initial !important; width: auto; he
 .near-row svg.ico-art, .ico svg.ico-art { width: 30px; height: 22px; }
 
 /* one colour for each ride: the drawing and its route line match */
-.m-vehicle, .pin.art.vehicle { --vc: #e8a100; }
+.m-vehicle, .pin.art.vehicle { --vc: #ffffff; } /* the pedicab body is white */
 .m-moto, .pin.art.moto { --vc: #067647; }
 .m-bus, .pin.art.bus { --vc: #e5322d; }
 .m-van, .pin.art.van { --vc: #1560f0; }
@@ -974,7 +974,7 @@ svg.ico-art { width: 34px; height: 24px; max-width: none; flex: none; }
 /* grouped map pins */
 .cluster-wrap { background: none; border: 0; }
 .cluster { position: relative; display: grid; place-items: center; width: 52px; height: 40px; transform: translate(-50%, -50%); filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .35)); }
-.cluster svg { width: 46px; height: 32px; --vc: #e8a100; }
+.cluster svg { width: 46px; height: 32px; --vc: #ffffff; }
 .cluster b { position: absolute; right: -2px; top: -4px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 99px; background: var(--ink); color: #fff; border: 2px solid #fff; font-size: 12px; font-weight: 900; display: grid; place-items: center; }
 
 /* add to home screen */
@@ -1476,3 +1476,6 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .ask-possible span { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: var(--green); }
 .ask-possible b { font-family: var(--display); font-size: 20px; }
 .ask-possible em { grid-column: 1 / -1; font-style: normal; font-size: 12px; color: var(--ink3); }
+
+/* The "You are here" card keeps the black signboard outline, like the other cards. */
+.view:not(.view-home) .mapcard.slim.here { border-color: var(--ink) !important; box-shadow: 0 6px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25) !important; }
