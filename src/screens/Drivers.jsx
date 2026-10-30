@@ -102,7 +102,6 @@ export function Station() {
     walkRoute(me, [p.lat, p.lon]).then((data) => setWalk({ state: 'ok', data }), () => setWalk({ state: 'error' }))
   }
   const markers = useMemo(() => (p ? [{ id: p.id, lat: p.lat, lon: p.lon, kind: 'spot', label: '', title: p.name }] : []), [p])
-  const links = useMemo(() => (me && p && walk?.state !== 'ok' ? [[me, [p.lat, p.lon]]] : []), [me, p, walk])
   const now = standNow(s) // drivers around, a few, closed or not known
   const nearOpen = now.state === 'closed' && p ? nearestStands([p.lat, p.lon], 1, 'toda')[0] : null
   const goes = routes.filter((r) => p && (r.from === p.id || r.to === p.id) && (s.type === 'motor' ? r.vehicle === 'Motor' : r.vehicle !== 'Motor'))
@@ -111,7 +110,7 @@ export function Station() {
     <>
       {p ? (
         <div className="mapbox short">
-          <MapView markers={markers} zoom={17} me={me} links={links} route={walk?.state === 'ok' ? walk.data.path : undefined} routeColor="#1560F0" label={`Map of where ${s.name} waits`} />
+          <MapView markers={markers} zoom={17} me={me} route={walk?.state === 'ok' ? walk.data.path : undefined} routeColor="#1560F0" label={`Map of where ${s.name} waits`} />
           <div className="float l"><BackButton /></div>
         </div>
       ) : (
@@ -154,7 +153,7 @@ export function Station() {
               <button className="btn" onClick={() => go('map', { id: s.placeId ?? s.id })}><Icon name="map" />Show on map</button>
               <button className="btn secondary" onClick={walk?.state === 'ok' ? () => setWalk(null) : showDirections} disabled={walk?.state === 'loading'}><Icon name="arrow" />{walk?.state === 'loading' ? 'Finding the way…' : walk?.state === 'ok' ? 'Hide directions' : 'Directions'}</button>
             </div>
-            {walk?.state === 'error' && <p className="hint">Could not get directions. They need a signal. The dashed line on the map still points to the stand.</p>}
+            {walk?.state === 'error' && <p className="hint">Could not get directions. They need a signal.</p>}
             {walk?.state === 'ok' && (
               <div className="steps">
                 <p className="steps-head"><b>{fmtDist(walk.data.meters)}</b> · about {walk.data.minutes} min walk</p>
