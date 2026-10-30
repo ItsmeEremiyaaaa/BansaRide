@@ -1652,3 +1652,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .s-fares .ticket { top: calc(46px + var(--n) * 54px); }
 .s-near .drop svg, .s-near .drop svg * { color: #e5322d; }
 .s-near .drop svg path, .s-near .drop svg circle { fill: #e5322d; stroke: #fff; }
+
+/* top bar: the logo on the left, the language pill and Skip together on the right, so the pill stays in one place on every slide */
+.onb-top { justify-content: flex-start; gap: 10px; padding: 14px 20px 0; }
+.onb-top .onb-lang { margin-left: auto; flex: none; }
+.onb-top .onb-skip { flex: none; min-width: 72px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; }
+.onb-skip.ghost { visibility: hidden; border: 0; box-shadow: none; }
+.onb-logo { min-width: 0; white-space: nowrap; }
+.onb-lang button { min-width: 44px; }

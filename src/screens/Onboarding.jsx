@@ -144,7 +144,7 @@ export default function Onboarding({ onDone }) {
         <span className="onb-lang" role="group" aria-label="Language">
           {[['en', 'EN'], ['bis', 'BIS']].map(([id, label]) => <button key={id} aria-pressed={lang === id} onClick={() => { try { localStorage.setItem('bansaride-lang', JSON.stringify(id)) } catch { /* optional */ } window.location.reload() }}>{label}</button>)}
         </span>
-        {i < LAST && <button className="onb-skip" onClick={() => go(LAST)}>{tx('Skip')}</button>}
+        {i < LAST ? <button className="onb-skip" onClick={() => go(LAST)}>{tx('Skip')}</button> : <span className="onb-skip ghost" aria-hidden="true" />}
       </div>
       <div className="onb-road" aria-hidden="true" style={{ '--at': i / LAST, '--drag': -p / LAST }}>
         <span className="onb-line" />
