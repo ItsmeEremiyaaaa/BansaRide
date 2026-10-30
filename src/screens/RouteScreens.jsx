@@ -373,10 +373,10 @@ export function MapScreen() {
             </div>
             <span className="mapcard-btns">
               {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => goFromMap('place', { id: p.id })}><Icon name="info" /></button>}
-              <button className="icon-btn flat" aria-label="Close" onClick={() => setCard(false)}><Icon name="close" /></button>
+              <button className="icon-btn flat" aria-label="Close" onClick={() => { setCard(false); setSel(null); setFocusPt(null); setMore(false) }}><Icon name="close" /></button>
             </span>
           </div>
-          {me && <FromYou ride={ride} me={me} destId={p.id} />}
+          {me && <FromYou ride={ride} me={me} destId={p.id} compact />}
           <button className="mapcard-more" aria-expanded={more} onClick={() => setMore((v) => !v)}>{more ? 'Hide rides and drivers' : 'Show rides and drivers'}<Icon name="chevron" className={more ? 'up' : 'down'} /></button>
           {more && (<>
           {nearMe && (
