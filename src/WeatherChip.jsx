@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import WeatherIcon from './WeatherIcon'
+import { useLook } from './mood'
 
 // Real-time weather for Bansalan (Open-Meteo, refreshed every 10 minutes while there is a signal).
 const WORDS = (code) => {
@@ -16,18 +18,26 @@ const WORDS = (code) => {
 const COMPASS = (d) => ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'][Math.round(((d ?? 0) % 360) / 45) % 8]
 const ago = (t) => { const m = Math.max(0, Math.round((Date.now() - t) / 60000)); return m < 1 ? 'just now' : `${m} min ago` }
 
+// A small read-only pill (icon, degrees and word) for other screens.
+export function WeatherPill() {
+  const { weather, mood } = useLook()
+  if (!weather) return null
+  return <span className="wx-pill"><WeatherIcon code={weather.code} night={mood === 'night'} size={20} /><b>{weather.temp}°</b></span>
+}
+
 export default function WeatherChip({ weather }) {
   const [open, setOpen] = useState(false)
+  const night = useLook().mood === 'night'
   if (!weather) return null
-  const [word, icon] = WORDS(weather.code)
+  const [word] = WORDS(weather.code)
   return (
     <div className="wx">
       <button className="wx-chip" aria-expanded={open} onClick={() => setOpen((v) => !v)} aria-label={`Weather in Bansalan: ${weather.temp} degrees, ${word}. Tap for details.`}>
-        <span className="wx-ico" aria-hidden="true">{icon}</span><b>{weather.temp}°</b><span className="wx-word">{word}</span>
+        <WeatherIcon code={weather.code} night={night} size={24} /><b>{weather.temp}°</b><span className="wx-word">{word}</span>
       </button>
       {open && (
         <div className="wx-card" role="dialog" aria-label="Weather details">
-          <div className="wx-head"><b>Bansalan now</b><span>{ago(weather.at)}</span></div>
+          <div className="wx-head"><b><WeatherIcon code={weather.code} night={night} size={22} /> Bansalan now</b><span>{ago(weather.at)}</span></div>
           <div className="wx-grid">
             <div><span>Feels like</span><b>{weather.feels}°C</b></div>
             <div><span>Humidity</span><b>{weather.humidity}%</b></div>

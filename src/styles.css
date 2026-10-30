@@ -1450,3 +1450,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .sky3d.sky-evening { background: linear-gradient(180deg, rgba(255, 150, 90, .7), rgba(255, 190, 140, .35) 60%, transparent); }
 .sky3d.sky-night { background: linear-gradient(180deg, rgba(8, 12, 34, .92), rgba(15, 22, 52, .5) 60%, transparent); }
 .mapfill.mood-night .sky3d::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1.4px 1.4px at 12% 18%, #fff, transparent), radial-gradient(1.2px 1.2px at 38% 8%, #fff, transparent), radial-gradient(1.6px 1.6px at 66% 22%, #fff, transparent), radial-gradient(1.1px 1.1px at 84% 10%, #fff, transparent), radial-gradient(1.3px 1.3px at 52% 30%, #fff, transparent); opacity: .8; }
+
+/* weather icons */
+.wicon { flex: none; display: block; }
+.wx-chip .wicon { margin-left: -2px; }
+.wx-head b { display: inline-flex; align-items: center; gap: 6px; }
+.wx-pill { display: inline-flex; align-items: center; gap: 4px; height: 30px; padding: 0 10px 0 6px; border-radius: 99px; background: #eef3ff; font-family: var(--display); font-size: 15px; font-weight: 800; }
+.where-top { gap: 8px; }
+.note > .wicon { width: 28px; height: 28px; }

@@ -4,6 +4,7 @@ import { useStored } from '../hooks'
 import MapView from '../MapView'
 import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
+import { WeatherPill } from '../WeatherChip'
 import { useLook } from '../mood'
 import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist } from '../data'
 
@@ -146,6 +147,7 @@ export default function Home() {
         <section className="card glass where" aria-label="Plan a ride">
           <div className="where-top">
             <span className="where-chip">{t('whereTo')}</span>
+            <WeatherPill />
             <span className={'live ' + (online ? 'on' : 'off')} role="status"><i aria-hidden="true" />{online ? 'Ready offline' : 'Offline mode'}</span>
           </div>
           <div className="seg scope" role="tablist" aria-label="Where are you going">
