@@ -14,7 +14,7 @@ let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
-const LIMIT = [[bounds[0][1] - 0.01, bounds[0][0] - 0.01], [bounds[1][1] + 0.01, bounds[1][0] + 0.01]]
+const LIMIT = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
 const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
@@ -35,12 +35,12 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [] }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
   const latest = useRef({})
-  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center }
+  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center, me, target }
 
   const apply = () => {
     const map = mapRef.current
@@ -54,13 +54,37 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
 
   // One camera move at a time. A far place used to start a pan at street zoom and then a fit-to-route (zoom out, then in),
   // so the move waits a moment and only the final target decides it.
+  // The camera looks from where you are toward the place (the heading is turned that way), so the place is ahead, not hidden behind the card.
+  const heading = (a, b) => { const r = Math.PI / 180; const y = Math.sin((b[1] - a[1]) * r) * Math.cos(b[0] * r); const x = Math.cos(a[0] * r) * Math.sin(b[0] * r) - Math.sin(a[0] * r) * Math.cos(b[0] * r) * Math.cos((b[1] - a[1]) * r); return (Math.atan2(y, x) / r + 360) % 360 }
+  // a tilted camera hides the near end of a long stretch behind the card, so a long trip is shown almost from above (the tilt comes back as you get closer)
+  const flat = (b) => { const km = Math.hypot((b.getNorth() - b.getSouth()) * 111, (b.getEast() - b.getWest()) * 110); return km > 4 ? Math.min(pitch, 12) : km > 1.5 ? Math.min(pitch, 30) : pitch }
+  const fitFlat = (b, oy) => {
+    const map = mapRef.current, el = map.getContainer()
+    const H = el.clientHeight, Wd = el.clientWidth, top = 80, bot = H - oy * 2 - 16
+    const regH = Math.max(120, bot - top), regW = Wd - 72
+    const n = b.getNorth(), so = b.getSouth(), e = b.getEast(), w = b.getWest()
+    const cosl = Math.cos(((n + so) / 2) * Math.PI / 180)
+    const mpp = (Math.max(((n - so) * 111000) / regH, ((e - w) * 110500) / regW) || 1) * 1.1
+    const z = Math.min(17, Math.max(map.getMinZoom(), Math.log2((78271.517 * cosl) / mpp)))
+    const per = (78271.517 * cosl) / 2 ** z // metres per pixel
+    const shift = H / 2 - (top + bot) / 2 // the middle of the free area is above the middle of the screen
+    map.easeTo({ center: [(e + w) / 2, (n + so) / 2 - (shift * per) / 111000], zoom: z, pitch: 0, bearing: 0, duration: 900 })
+  }
   const camera = () => {
     const map = mapRef.current
     if (!map || !ready.current) return
-    const { route: rt, offsetY: oy, center: c } = latest.current
+    const { route: rt, offsetY: oy, center: c, me: m0, target: tg } = latest.current
+    const padding = { top: 80, left: 36, right: 36, bottom: oy * 2 + 40 }
+    const far = tg && m0 && Math.hypot((tg[0] - m0[0]) * 111000, (tg[1] - m0[1]) * 110500) > 120
     if (rt?.length > 1) {
       const b = rt.reduce((bb, [la, lo]) => bb.extend([lo, la]), new maplibregl.LngLatBounds())
-      map.fitBounds(b, { padding: { top: 90, left: 40, right: 40, bottom: oy * 2 + 30 }, maxZoom: 17, pitch, bearing: 0, duration: 900 })
+      if (m0) b.extend([m0[1], m0[0]]) // you stay in view too
+      if (flat(b) < pitch && flat(b) <= 12) fitFlat(b, oy)
+      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0 ?? rt[0], rt[rt.length - 1]), duration: 900 })
+    } else if (far) {
+      const b = new maplibregl.LngLatBounds([m0[1], m0[0]], [m0[1], m0[0]]).extend([tg[1], tg[0]])
+      if (flat(b) <= 12) fitFlat(b, oy)
+      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0, tg), duration: 900 })
     } else map.easeTo({ center: [c[1], c[0]], pitch, offset: [0, -oy], duration: 700 })
   }
 
@@ -78,7 +102,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
       ],
     }
-    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, maxBounds: LIMIT, minZoom: 10.5, attributionControl: false })
+    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, maxBounds: LIMIT, minZoom: 9.4, attributionControl: false })
     mapRef.current = map
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: false }), 'top-right')
     let youDot
@@ -127,10 +151,11 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
   useEffect(apply, [markers, route, routeColor, links]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
   const routeSig = route?.length > 1 ? route.length + ':' + route[0] + ':' + route[route.length - 1] : ''
+  const targetKey = target ? target.join() : ''
   useEffect(() => {
     const t = setTimeout(camera, 80)
     return () => clearTimeout(t)
-  }, [key, routeSig, pitch, offsetY > 0]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [key, routeSig, pitch, Math.round(offsetY / 30), targetKey, !!me]) // eslint-disable-line react-hooks/exhaustive-deps
   // the sky at the horizon: a gradient in the colours of the moment, drawn over the far edge of the tilted map
   return (
     <>

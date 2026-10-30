@@ -4,6 +4,7 @@ import MapView from '../MapView'
 import Feedback from '../Feedback'
 import { standNow, nearestStands, stations, stationById, stationConfirmed, stationStatus, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
 import { fmtDist } from './RouteScreens'
+import { useLook } from '../mood'
 
 const kindLabel = (s) => (s.type === 'motor' ? 'Motorcycles' : 'Tricycle / pedicab')
 const formatPhone = (n) => n.replace(/^(\d{4})(\d{3})(\d{4})$/, '$1 $2 $3')
@@ -103,6 +104,7 @@ export function DriversList() {
 // One group: where it waits, where it goes, how to get there.
 export function Station() {
   const { go, params, loc, retryLocation } = useApp()
+  const look = useLook()
   const s = stationById(params.id) ?? stations[0]
   const p = stationPlace(s)
   // live: updates as the person moves
@@ -124,7 +126,7 @@ export function Station() {
     <>
       {p ? (
         <div className="mapbox short">
-          <MapView markers={markers} zoom={17} me={me} route={walk?.state === 'ok' ? walk.data.path : undefined} routeColor="#1560F0" label={`Map of where ${s.name} waits`} />
+          <MapView mood={look.mood} markers={markers} zoom={17} me={me} route={walk?.state === 'ok' ? walk.data.path : undefined} routeColor="#1560F0" label={`Map of where ${s.name} waits`} />
           <div className="float l"><BackButton /></div>
         </div>
       ) : (
