@@ -7,6 +7,7 @@ import { Protocol } from 'pmtiles'
 import { moodFlavor } from './mapStyle'
 import { bansalanTiles } from './localTiles'
 import { bounds } from './boundary'
+import { places } from './data'
 
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
@@ -15,6 +16,8 @@ const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
 const LIMIT = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
+// only street names that belong to Bansalan are written (the same rule as the flat map)
+const NAMES = [...new Set(places.filter((p) => p.kind === 'Street').map((p) => p.name))]
 const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
@@ -99,6 +102,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     }
     const style = {
       version: 8,
+      glyphs: `${new URL(import.meta.env.BASE_URL, window.location.href).href}fonts/{fontstack}/{range}.pbf`, // saved with the app, so names work offline
       sources: { p: { type: 'vector', url: `pmtiles://${FILE()}`, maxzoom: 15 } },
       layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
       ],
@@ -114,6 +118,8 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       // dashed lines: you to the nearest stand, a street to its stand (same as the flat map)
       map.addSource('links', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
       map.addLayer({ id: 'links', type: 'line', source: 'links', paint: { 'line-color': '#9a6b00', 'line-width': 3, 'line-dasharray': [2, 2] } })
+      const night = ['night', 'dawn'].includes(latest.current.mood)
+      map.addLayer({ id: 'street-names', type: 'symbol', source: 'p', 'source-layer': 'roads', minzoom: 14, filter: ['in', ['get', 'name'], ['literal', NAMES]], layout: { 'symbol-placement': 'line', 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Medium'], 'text-size': 12, 'text-letter-spacing': 0.02, 'text-max-angle': 40, 'symbol-spacing': 320 }, paint: { 'text-color': night ? '#e3e9ff' : '#3a3428', 'text-halo-color': night ? '#16206b' : '#ffffff', 'text-halo-width': 1.6 } })
       map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 11 } })
       map.addLayer({ id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': latest.current.routeColor, 'line-width': 6 } })
       // evening and night: houses with lights on, the same little warm windows as the flat map
