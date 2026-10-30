@@ -1730,3 +1730,10 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 /* slide 4: the pedicab stands in the middle of the rings; the top road is gone, so the slides start right under the top bar */
 .s-near .hero-spot { position: absolute; left: 50%; top: calc(50% + 34px); width: 0; height: 0; }
 .onb { grid-template-rows: auto 1fr auto; }
+
+/* today's date and time on Home, with the weather beside it */
+.clock-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 10px 0 2px; }
+.clock-line time { display: flex; align-items: baseline; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.clock-line time b { font-family: var(--display); font-size: 30px; font-weight: 800; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.clock-line time span { font-size: 14px; font-weight: 800; color: var(--ink2); }
+.clock-wx { flex: none; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 10px 0 6px; border-radius: 99px; background: var(--primary-soft); font-weight: 900; font-size: 15px; color: var(--ink); }
