@@ -3,7 +3,6 @@ import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, CountUp, Trike, Mot
 import MapView from '../MapView'
 import Picker from '../Picker'
 import Transit from '../Transit'
-import TransitPop from '../TransitPop'
 import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
 import { useRideFromMe } from '../rideFromMe'
@@ -428,7 +427,6 @@ export function Place() {
   const nb = here.length === 0 && p.kind !== 'Terminal' ? nearestStand(p.lat, p.lon) : null
   return (
     <>
-      {MINI_PLACES.includes(p.id) && <TransitPop modes={['mini']} name={p.name} />}
       <div className="mapbox short">
         <MapView markers={markers} zoom={17} label={`Map of ${p.name}`} />
         <div className="float l"><BackButton /></div>

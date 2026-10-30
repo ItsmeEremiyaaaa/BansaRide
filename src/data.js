@@ -339,6 +339,9 @@ export const osmDirections = (from, to) =>
 const round5 = (n) => Math.round(n / 5) * 5
 const DAVAO_KM = 73.2
 const KAPATAGAN_KM = 33.4
+// The two ride alerts (pop-up in the app, notification when it is closed): minutes before the first and last ride.
+export const ALERT_FIRST_BEFORE = 30
+export const ALERT_LAST_BEFORE = 60
 export const TRANSIT = {
   bus: { id: 'bus', label: 'Big bus', first: 3 * 60, last: 23 * 60, firstText: '3:00 AM', lastText: '11:00 PM', where: 'Digos, Davao, Kidapawan and other cities', stop: 'Leaves from the Bus Terminal' },
   van: { id: 'van', label: 'Van', first: 5 * 60, last: 21 * 60, firstText: '5:00 AM', lastText: '9:00 PM', where: 'Cities and towns, a little cheaper than the bus', stop: 'Leaves when it is full' },

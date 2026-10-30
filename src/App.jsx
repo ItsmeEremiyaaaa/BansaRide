@@ -11,6 +11,7 @@ import Menu from './screens/Menu'
 import Account from './screens/Account'
 import Report from './screens/Report'
 import Notifications from './screens/Notifications'
+import RideAlertPop from './TransitPop'
 import { FareSheet, Visitor, Poster } from './screens/Sheets'
 import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
@@ -172,6 +173,7 @@ export default function App() {
             </button>
           ))}
         </nav>
+        <RideAlertPop />
         {toast && <div className="toast" role="status">{toast}</div>}
       </div>
     </Ctx.Provider>
