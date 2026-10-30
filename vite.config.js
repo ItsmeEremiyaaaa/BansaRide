@@ -16,7 +16,7 @@ export default defineConfig({
         background_color: '#F2F2F6',
         id: '/',
         scope: '/',
-        start_url: '/',
+        start_url: '/#/map',
         display: 'standalone',
         orientation: 'portrait',
         lang: 'en-PH',
