@@ -7,7 +7,7 @@ import Transit from '../Transit'
 import { useAuth } from '../auth'
 import { speak } from '../speech'
 import { offlineRide } from '../rideFromMe'
-import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare, townAsksFare, townFareText, isCity, TOWN_RIDES } from '../data'
+import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare, townAsksFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
 
 function TownRow({ town, onOpen, index }) {
   return (
@@ -94,7 +94,7 @@ export function Town() {
         </div>
 
         <section className="card stats3" aria-label="Trip summary">
-          <div><span className="stat-k">{isCity(tw) ? 'Bus fare' : 'Mini bus fare'}</span><span className={'stat-v' + (townAsksFare(tw.id) ? ' small' : '')}>{townFareText(tw)}</span></div>
+          <div><span className="stat-k">{isCity(tw) ? 'Bus fare' : 'Mini bus fare'}</span><span className={'stat-v' + (!isCity(tw) ? ' small' : '')}>{townFareText(tw)}</span>{!isCity(tw) && <span className="row-sub">Possible {miniPossible(tw.id, tw.km).text}</span>}</div>
           <div><span className="stat-k">Travel time</span><span className="stat-v small">{tw.duration}</span></div>
           <div><span className="stat-k">Distance</span><span className="stat-v">{tw.km}<small> km</small></span></div>
         </section>
@@ -111,7 +111,7 @@ export function Town() {
           <h2 className="sec">{transitModesForTown(tw.id).length === 1 ? 'How to get there' : 'Ride by bus or van'}</h2>
           {!isCity(tw) && <div className="note static"><Icon name="info" /><span><b>Only the mini bus</b><span className="row-sub">{TOWN_RIDES[tw.id]?.note ?? 'The big bus goes only to cities. This town is served by the mini bus.'}</span></span></div>}
           <Transit modes={transitModesForTown(tw.id)} km={tw.km} townId={tw.id} />
-          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { if (townAsksFare(tw.id)) return 'Mini bus only. The fare is not fixed. Ask the conductor.'; const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
+          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { if (m === 'mini') return `Mini bus: ask the conductor. The possible fare is ${miniPossible(tw.id, tw.km).text.replace('₱', '').replace(/₱/g, '')} pesos.`; const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
           <p className="hint">Hours are reported by riders. Fares are calculated from the Davao bus fare (₱140 to ₱200) and the Kapatagan mini bus fare (₱80 to ₱100 for a student), so they can be a little off. Ask the dispatcher.</p>
         </section>
 
