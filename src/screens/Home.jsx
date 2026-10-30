@@ -4,6 +4,7 @@ import { useStored } from '../hooks'
 import MapView from '../MapView'
 import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
+import { useLook } from '../mood'
 import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist } from '../data'
 
 const TRY = ['rizal', 'market', 'dolo', 'libertad']
@@ -55,6 +56,7 @@ function NearYou({ loc, go, retry }) {
 
 export default function Home() {
   const { go, t, lang, setLang, say, saved, recent, online, loc, retryLocation } = useApp()
+  const look = useLook()
   const [from, setFrom] = useState('me') // 'me' = where the person is now
   const [to, setTo] = useState(null)
   const [picker, setPicker] = useState(null) // 'from' | 'to' | 'slot:home' | 'slot:school' | 'slot:work' | null
@@ -123,7 +125,7 @@ export default function Home() {
     <>
       <header className="hero2">
         <div className="hero2-map" aria-hidden="true">
-          <MapView preview center={center} zoom={16} fit={false} me={here} focus={focus} />
+          <MapView mood={look.mood} preview center={center} zoom={16} fit={false} me={here} focus={focus} />
         </div>
         <div className="hero2-fade" aria-hidden="true" />
         <div className="hero2-bar">

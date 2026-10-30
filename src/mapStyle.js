@@ -131,3 +131,76 @@ export const mapsRules = (lang = 'en') => {
 
 // the style in use: add ?style=signboard to an address to see the yellow signboard map instead
 export const chosenRules = (lang = 'en') => (/[?&#]style=signboard/.test(window.location.href) ? texturedRules(lang) : mapsRules(lang))
+
+// ---------- moods: morning, day, evening, night (and rain, drawn over them) ----------
+// Each mood is a color set for the same map. Evening and night add lit windows in the houses and a dotted line of street lamps
+// along the roads, with a soft warm glow under them.
+const mix = (base, over) => ({ ...base, ...over })
+const LABEL = (ink, halo) => ({ roads_label_minor: ink, roads_label_minor_halo: halo, roads_label_major: ink, roads_label_major_halo: halo, subplace_label: ink, subplace_label_halo: halo, city_label: ink, city_label_halo: halo, address_label: ink, address_label_halo: halo })
+const ROADS = (fill, minorFill, casing, majorFill, highway, highwayCasing) => ({
+  minor_service: minorFill, minor_a: minorFill, minor_b: minorFill, other: minorFill, link: majorFill, major: majorFill, highway,
+  minor_service_casing: casing, minor_casing: casing, link_casing: casing, major_casing_early: casing, major_casing_late: casing, highway_casing_early: highwayCasing, highway_casing_late: highwayCasing,
+  bridges_minor: minorFill, bridges_major: majorFill, bridges_highway: highway, bridges_link: majorFill, bridges_other: minorFill,
+  bridges_minor_casing: casing, bridges_major_casing: casing, bridges_highway_casing: highwayCasing, bridges_link_casing: casing, bridges_other_casing: casing,
+})
+export const PALETTES = {
+  day: { flavor: MAPS, roads: { minor: '#ffffff', minorLine: '#d9d4c8', major: '#ffffff', majorLine: '#cfc9bb', highway: '#fbd48b', highwayLine: '#dba452', path: '#fbfaf6', pathLine: '#dedad0' }, dark: false },
+  morning: {
+    flavor: mix(MAPS, { background: '#f7efdc', earth: '#f7efdc', park_a: '#d2ecb4', park_b: '#c4e5a6', wood_a: '#c4e5a6', wood_b: '#b6dc98', water: '#b4dcf2', buildings: '#eadfc6', ...LABEL('#6b5f4a', '#fff8e8') }),
+    roads: { minor: '#fffaf0', minorLine: '#e0d4bd', major: '#fffaf0', majorLine: '#d6c8ae', highway: '#ffd98f', highwayLine: '#e0b060', path: '#fdf6e8', pathLine: '#e6dcc6' }, dark: false,
+  },
+  evening: {
+    flavor: mix(MAPS, { background: '#e6cdbd', earth: '#e6cdbd', park_a: '#a9bd96', park_b: '#9db38b', wood_a: '#9db38b', wood_b: '#8fa77e', water: '#8aa9d1', buildings: '#c9a692', hospital: '#e8bdb4', school: '#e3c9a0', ...LABEL('#4a3328', '#f6e4d6') }),
+    roads: { minor: '#fff0dc', minorLine: '#c9a98f', major: '#ffe6c6', majorLine: '#b99372', highway: '#ffc46b', highwayLine: '#c98a3c', path: '#f7e3cf', pathLine: '#c9a98f' }, dark: false, lamps: 0.7,
+  },
+  night: {
+    flavor: mix(MAPS, { background: '#151c30', earth: '#151c30', park_a: '#1b3631', park_b: '#18302b', wood_a: '#18302b', wood_b: '#152a26', scrub_a: '#1a3430', scrub_b: '#17302c', water: '#1f3a66', buildings: '#262f4c', hospital: '#3a2a3c', school: '#2f2c46', industrial: '#1b2238', pedestrian: '#1b2238', sand: '#222a42', beach: '#222a42', boundaries: '#44507a', ...LABEL('#dbe3f7', '#151c30') }),
+    roads: { minor: '#323d5e', minorLine: '#1d2540', major: '#3d4a72', majorLine: '#1d2540', highway: '#5a5368', highwayLine: '#1d2540', path: '#2a3452', pathLine: '#1d2540' }, dark: true, lamps: 1,
+  },
+}
+
+// lit windows: a sparse pattern of warm squares, so some houses glow
+const LIT = createPattern(24, 24, (_c, ctx) => {
+  ctx.fillStyle = 'rgba(255,214,107,.95)'
+  for (const [x, y] of [[4, 5], [15, 14]]) ctx.fillRect(x, y, 3, 3)
+  ctx.fillStyle = 'rgba(255,214,107,.4)'
+  ctx.fillRect(14, 4, 2, 2)
+})
+const roadKinds = (...k) => (_z, f) => k.includes(String(f?.props?.kind ?? ''))
+
+export const moodRules = (mood = 'day', lang = 'en') => {
+  const P = PALETTES[mood] ?? PALETTES.day
+  const flavor = { ...P.flavor, ...ROADS(null, P.roads.minor, P.roads.minorLine, P.roads.major, P.roads.highway, P.roads.highwayLine) }
+  const r = P.roads
+  const road = (width, color, outline, ...kinds) => [
+    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: outline, width: (z, f) => (width(z, f) > 0 ? width(z, f) + 1.6 : 0) }), filter: roadKinds(...kinds) },
+    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color, width }), filter: roadKinds(...kinds) },
+  ]
+  const mapRoads = [
+    ...road(W.path, r.path, r.pathLine, 'other', 'path'),
+    ...road(W.minor, r.minor, r.minorLine, 'minor_road'),
+    ...road(W.major, r.major, r.majorLine, 'major_road'),
+    ...road(W.highway, r.highway, r.highwayLine, 'highway'),
+  ]
+  const base = paintRules(flavor)
+  const isDefaultRoad = (x) => x.dataLayer === 'roads' && x.symbolizer instanceof LineSymbolizer && x.symbolizer.color?.get?.(10) === flavor.major && !x.symbolizer.dash
+  const first = base.findIndex(isDefaultRoad)
+  const kept = base.filter((x) => !isDefaultRoad(x))
+  const night = []
+  if (P.lamps) {
+    const glow = P.dark ? 'rgba(255,200,90,.16)' : 'rgba(255,190,90,.12)'
+    night.push(
+      // a soft warm glow under the roads
+      { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: glow, width: (z, f) => W.major(z, f) + 9 }), filter: roadKinds('major_road', 'highway'), minzoom: 14 },
+      { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: glow, width: (z, f) => W.minor(z, f) + 6 }), filter: roadKinds('minor_road'), minzoom: 15 },
+    )
+  }
+  const lamps = P.lamps ? [
+    // street lamps: a dotted line of warm points along the roads
+    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: '#ffd66b', width: 3.2, dash: [0.1, 15], lineCap: 'round' }), filter: roadKinds('major_road', 'highway'), minzoom: 15 },
+    { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: '#ffd66b', width: 2.6, dash: [0.1, 22], lineCap: 'round' }), filter: roadKinds('minor_road'), minzoom: 16 },
+    { dataLayer: 'buildings', symbolizer: new PolygonSymbolizer({ pattern: LIT }), minzoom: 15 },
+  ] : []
+  const at = first < 0 ? kept.length : first
+  return { paintRules: [...kept.slice(0, at), ...night, ...mapRoads, ...lamps, ...kept.slice(at)], labelRules: labelRules(flavor, lang), backgroundColor: flavor.background }
+}

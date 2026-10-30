@@ -7,6 +7,8 @@ import Picker from '../Picker'
 import Transit from '../Transit'
 import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
+import RainOverlay from '../RainOverlay'
+import { useLook, setLook } from '../mood'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
@@ -25,6 +27,7 @@ const isRural = (p) => p.kind === 'Barangay' || p.kind === 'Sitio'
 const standFor = (placeId, vehicle) => stationsAt(placeId).find((s) => s.type === (vehicle === 'Motor' ? 'motor' : 'toda'))
 
 export function RouteScreen() {
+  const look = useLook()
   const { go, say, saved, toggleSaved, remember, params, loc, t } = useApp()
   const r = routes.find((x) => x.id === params.id) ?? routes[0]
   const [rev, setRev] = useState(Boolean(params.rev))
@@ -87,7 +90,7 @@ export function RouteScreen() {
           <button className="btn secondary" onClick={() => shareText('BansaRide', `BansaRide: ${a.name} to ${b.name}. ${r.km} km, about ${r.minutes} min by ${vehicleLabel(r.vehicle).toLowerCase()}. Fare: ${r.fare === null ? 'ask the driver' : fareText(r)}.${shown ? ` Wait at: ${shown.name}.` : ''} ${window.location.origin}/#/route/${r.id}`, say)}><Icon name="drivers" />{t('Share this ride')}</button>
           <button className="btn secondary" onClick={() => speak(`From ${a.name} to ${b.name}. ${r.km} kilometers, about ${r.minutes} minutes by ${vehicleLabel(r.vehicle).toLowerCase()}. ${r.fare === null ? 'Ask the driver for the fare.' : `An adult pays ${fareFor(r.km, 'adult')} pesos. A student pays ${fareFor(r.km, 'elementary')} to ${fareFor(r.km, 'college')} pesos.`}`, say)}><Icon name="info" />{t('Read aloud')}</button>
         </div>
-        {motor && <div className="note static"><Icon name="alert" /><span><b>Rain and mud</b><span className="row-sub">Mountain roads can be slippery or blocked after rain. Ask the driver if the road is passable before you go.</span></span></div>}
+        {motor && <div className={'note static' + (look.rain ? ' warn' : '')}><Icon name="alert" /><span><b>{look.rain ? 'It is raining now: ask first' : 'Rain and mud'}</b><span className="row-sub">Mountain roads can be slippery or blocked after rain. Ask the driver if the road is passable before you go.</span></span></div>}
 
         {toPickup !== null && (
           <div className={'note live-note' + (toPickup <= 60 ? ' here' : '')} role="status">
@@ -244,6 +247,8 @@ export function MapScreen() {
   const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
   const [view3d, setView3d] = useState(false)
+  const look = useLook()
+  const [lookOpen, setLookOpen] = useState(false)
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
@@ -317,19 +322,36 @@ export function MapScreen() {
   }
 
   return (
-    <div className="mapfill">
+    <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' : '')}>
+      {look.rain && <RainOverlay night={look.mood === 'night'} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
-      <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
+      <MapView mood={look.mood} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
+      {lookOpen && (
+        <>
+          <button className="filter-scrim" aria-label="Close" onClick={() => setLookOpen(false)} tabIndex={-1} />
+          <div className="filter-panel look-panel" role="dialog" aria-label="Map look">
+            <div className="filter-head"><b>Map look</b></div>
+            <span className="look-k">Time of day</span>
+            <div className="chips wrap">
+              {[['auto', `Auto · ${look.auto}`], ['morning', 'Morning'], ['day', 'Day'], ['evening', 'Evening'], ['night', 'Night']].map(([id, label]) => <button key={id} className="chip small" aria-pressed={look.mode === id} onClick={() => setLook(id)}>{label}</button>)}
+            </div>
+            <span className="look-k">Rain</span>
+            <div className="chips wrap">
+              {[['auto', `Auto · ${look.rainAuto ? 'raining' : 'dry'}`], ['on', 'Rain on'], ['off', 'Rain off']].map(([id, label]) => <button key={id} className="chip small" aria-pressed={look.rainPick === id} onClick={() => setLook(null, id)}>{label}</button>)}
+            </div>
+          </div>
+        </>
+      )}
       {filterOpen && (
         <>
           <button className="filter-scrim" aria-label="Close the filter" onClick={() => setFilterOpen(false)} tabIndex={-1} />
@@ -346,6 +368,7 @@ export function MapScreen() {
       )}
       <div className="float r col">
         <button className={'icon-btn view-btn' + (view3d ? ' on' : '')} aria-pressed={view3d} aria-label={view3d ? 'Back to the flat map' : 'Show the 3D map'} onClick={() => setView3d((v) => !v)}>{view3d ? '2D' : '3D'}</button>
+        <button className={'icon-btn' + (look.mode !== 'auto' || look.rainPick !== 'auto' ? ' on' : '')} aria-haspopup="dialog" aria-expanded={lookOpen} aria-label="Map look: morning, evening, night and rain" onClick={() => { setLookOpen((v) => !v); setFilterOpen(false) }}><Icon name={look.rain ? 'info' : 'sun'} /></button>
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" aria-label={`Filter: show shops, hotels and more${poiKinds.length ? `, ${poiKinds.length} on` : ''}`} onClick={() => setFilterOpen((v) => !v)}><Icon name="filter" />{poiKinds.length > 0 && <i className="icon-badge">{poiKinds.length}</i>}</button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>

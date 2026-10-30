@@ -68,6 +68,33 @@ export function Visitor() {
   )
 }
 
+const STEPS = [
+  ['map', 'Find where you are', 'Open the Map. The blue dot is you. Tap the 3D button for a tilted view, or the sun button to change the look (morning, evening, night, rain).'],
+  ['search', 'Pick where you go', 'Search any street, barangay, shop or hotel. The card shows how long it takes to walk or ride, and the fare.'],
+  ['vehicle', 'Know who to ask', 'Tricycle and pedicab wait at the waiting spots on the map. Farm motorcycles wait at the Public Market and have no fixed fare: ask the driver.'],
+  ['calc', 'Check the price', 'Fare list and Fare check show prices for students, seniors, PWD and adults. Sign in to see your own fare everywhere.'],
+  ['clock', 'Buses and vans', 'Big buses and vans go to the cities, mini buses to the towns. Turn on Ride alerts to get a notice before the first and last ride.'],
+  ['alert', 'Something wrong?', 'Use Report a problem or Help us add data in the Menu. Real prices from riders make the app better for everyone.'],
+]
+// A short guide with pictures-in-words, for first-time users.
+export function HowTo() {
+  return (
+    <>
+      <YHeader title="How it works" back={<BackButton to="menu" />} />
+      <div className="body">
+        <p className="lede">Six steps. You can use all of it as a guest.</p>
+        {STEPS.map(([icon, h, t], i) => (
+          <section className="card how" key={h}>
+            <span className="how-n">{i + 1}</span>
+            <span className="how-ico"><Icon name={icon} /></span>
+            <div><h2 className="sec">{h}</h2><p>{t}</p></div>
+          </section>
+        ))}
+      </div>
+    </>
+  )
+}
+
 // A printable poster for a waiting spot: a QR code that opens the group's page, so riders need no app and drivers need no phone.
 export function Poster() {
   const { params } = useApp()

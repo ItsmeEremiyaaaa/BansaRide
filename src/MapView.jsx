@@ -3,7 +3,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { leafletLayer } from 'protomaps-leaflet'
 import { bansalanTiles } from './localTiles'
-import { chosenRules } from './mapStyle'
+import { moodRules } from './mapStyle'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from './boundary'
@@ -62,10 +62,11 @@ const pin = (cls, label, i, glyph, tone) => {
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
-export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false }) {
+export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day' }) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
+  const tiles = useRef(null) // the map pictures layer, replaced when the mood changes (morning, evening, night...)
   const fitted = useRef('')
   const offsetRef = useRef(offsetY) // pixels of the map hidden under a card at the bottom
   useEffect(() => {
@@ -78,8 +79,19 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   }, [offsetY])
   const routeFit = useRef('') // which route the view was last fitted to
   const routeRef = useRef(null) // the route now drawn
+  const moodRef = useRef(mood)
   const clickRef = useRef(onMapClick)
   useEffect(() => { clickRef.current = onMapClick }, [onMapClick])
+  useEffect(() => {
+    if (mood === moodRef.current) return
+    moodRef.current = mood
+    const m = map.current
+    if (!m || !tiles.current) return
+    tiles.current.remove()
+    tiles.current = leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...moodRules(mood), maxZoom: 19, maxDataZoom: 15,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
+    tiles.current.bringToBack()
+  }, [mood])
 
   useEffect(() => {
     // `preview` makes a quiet picture-only map (used behind the Home header)
@@ -106,7 +118,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (useOsm) {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m)
     } else {
-      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...chosenRules('en'), maxZoom: 19, maxDataZoom: 15, // past zoom 15 the vector shapes are redrawn sharp, not enlarged
+      tiles.current = leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...moodRules(moodRef.current), maxZoom: 19, maxDataZoom: 15, // past zoom 15 the vector shapes are redrawn sharp, not enlarged
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     }
     if (zoomControl) L.control.zoom({ position: 'topleft' }).addTo(m)
