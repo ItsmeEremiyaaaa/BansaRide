@@ -30,7 +30,6 @@ export default function Feedback({ scope, fare = false }) {
 
   if (!a.configured) return null // posts need accounts to be switched on
   const fares = (posts ?? []).filter((p) => p.kind === 'fare')
-  const comments = (posts ?? []).filter((p) => p.kind === 'comment')
   const byWho = PASSENGERS.map((p) => ({ p, list: fares.filter((f) => f.passenger === p.id) })).filter((x) => x.list.length)
   const ready = a.user && a.profile?.displayName
 

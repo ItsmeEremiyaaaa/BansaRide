@@ -16,20 +16,6 @@ const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
 const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.16, bounds[0][1] - 0.16], [bounds[1][0] + 0.16, bounds[1][1] + 0.16]) // a little of the neighbouring land can be seen
 const EDGE_COLOR = { dawn: '#ffd66b', morning: '#f4b400', day: '#f4b400', golden: '#e08a1e', evening: '#ffb13b', night: '#ffd66b' }
-// (kept for reference) Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
-// stars at night) and a golden dotted border like the app's signboards, so the edge looks designed, not blank.
-const SURROUND = {
-  morning: { fill: '#e7dcc2', ink: 'rgba(120,150,70,.55)', pattern: 'leaf', edge: '#f4b400' },
-  day: { fill: '#e2dccb', ink: 'rgba(110,140,70,.5)', pattern: 'leaf', edge: '#f4b400' },
-  evening: { fill: '#c9a994', ink: 'rgba(255,225,180,.7)', pattern: 'dot', edge: '#ffb13b' },
-  night: { fill: '#0a0f1f', ink: 'rgba(255,255,255,.85)', pattern: 'star', edge: '#ffd66b' },
-}
-const patternSvg = (kind, ink) => {
-  if (kind === 'star') return `<circle cx="9" cy="11" r="1.1" fill="${ink}"/><circle cx="31" cy="26" r="0.8" fill="${ink}"/><circle cx="20" cy="36" r="1.3" fill="${ink}"/><circle cx="37" cy="6" r="0.7" fill="${ink}"/><path d="M26 10l.9 2.1 2.1.9-2.1.9L26 16l-.9-2.1-2.1-.9 2.1-.9z" fill="${ink}"/>`
-  if (kind === 'dot') return `<circle cx="8" cy="8" r="1.6" fill="${ink}"/><circle cx="26" cy="22" r="1.6" fill="${ink}"/><circle cx="14" cy="32" r="1.1" fill="${ink}"/>`
-  return `<path d="M10 12c4-1 7 1 8 5-4 1-7-1-8-5z" fill="${ink}"/><path d="M28 28c3-3 7-3 9 0-3 3-7 3-9 0z" fill="${ink}"/><circle cx="31" cy="9" r="1.3" fill="${ink}"/><circle cx="8" cy="33" r="1.1" fill="${ink}"/>`
-}
-const WORLD = [[-85, -180], [-85, 180], [85, 180], [85, -180]]
 
 // A real OpenStreetMap map. Pins and the route line are drawn by us, so they still
 // show offline even when the map pictures (tiles) have not been saved yet.
@@ -77,43 +63,6 @@ const pin = (cls0, label, i, glyph, tone) => {
 }
 
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
-// colors the area outside the border for the current mood, and lays the pattern over it
-function paintSurround(m, poly, edgeLine, mood) {
-  const sur = SURROUND[mood] ?? SURROUND.day
-  poly.setStyle({ fillColor: sur.fill })
-  edgeLine.setStyle({ color: sur.edge })
-  const svg = m.getPane('overlayPane').querySelector('svg')
-  if (!svg || !poly.getElement()) return
-  svg.querySelector('#bansa-surround')?.remove()
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
-  defs.id = 'bansa-surround'
-  defs.innerHTML = `<pattern id="bansa-pat" width="44" height="44" patternUnits="userSpaceOnUse">${patternSvg(sur.pattern, sur.ink)}</pattern>`
-  svg.prepend(defs)
-  // the pattern sits on a second copy of the outside shape, over the plain color
-  if (!poly._pat) {
-    poly._pat = L.polygon(poly.getLatLngs(), { stroke: false, fillOpacity: 1, interactive: false }).addTo(m)
-    poly._pat.bringToBack()
-    poly.bringToBack()
-  }
-  poly._pat.getElement()?.setAttribute('fill', 'url(#bansa-pat)')
-}
-
-// Brings a set of points (the route, and where you are) into the free part of the map above the card: the zoom and centre are
-// worked out here, so the near end of a long trip is never left behind the card.
-function fitAbove(m, pts, coverPx) {
-  if (!pts.length) return
-  const b = L.latLngBounds(pts)
-  const size = m.getSize(), top = 84, bottom = size.y - coverPx - 40
-  const regH = Math.max(120, bottom - top), regW = size.x - 72
-  const n = b.getNorth(), so = b.getSouth(), e = b.getEast(), w = b.getWest()
-  const cosl = Math.cos(((n + so) / 2) * Math.PI / 180)
-  const mpp = (Math.max(((n - so) * 111000) / regH, ((e - w) * 110500) / regW) || 1) * 1.08
-  const z = Math.min(17, Math.max(m.getMinZoom(), Math.log2((156543.034 * cosl) / mpp)))
-  const per = (156543.034 * cosl) / 2 ** z
-  const shift = size.y / 2 - (top + bottom) / 2
-  m.setView([(n + so) / 2 - (shift * per) / 111000, (e + w) / 2], Math.floor(z * 4) / 4, { animate: true })
-}
-
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
 export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null, selGlyph = null }) {
@@ -123,7 +72,6 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   const pinLayer = useRef(null) // the pins live on their own layer, so changing the route never redraws them
   const markersRef = useRef(markers)
   markersRef.current = markers
-  const outside = useRef(null)
   const edge = useRef(null)
   const tiles = useRef(null) // the map pictures layer, replaced when the mood changes (morning, evening, night...)
   const fitted = useRef('')

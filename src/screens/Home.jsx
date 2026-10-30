@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useApp, Trike, Moto, Icon, RouteRow, Tag } from '../components'
+import { useApp, Trike, Moto, Icon, RouteRow } from '../components'
 import { useStored } from '../hooks'
 import MapView from '../MapView'
 import Picker from '../Picker'

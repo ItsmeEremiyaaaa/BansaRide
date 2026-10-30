@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, StandPill, ClosedNotice, YHeader, Trike, Moto } from '../components'
+import { useApp, BackButton, Icon, RouteRow, StatusTag, StandPill, ClosedNotice, YHeader, Trike, Moto } from '../components'
 import MapView from '../MapView'
 import Feedback from '../Feedback'
-import { standNow, nearestStands, stations, stationById, stationConfirmed, stationStatus, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
+import { standNow, nearestStands, stations, stationById, stationStatus, stationVerified, stationPlace, routes, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
 import { fmtDist } from './RouteScreens'
 import { useLook } from '../mood'
 

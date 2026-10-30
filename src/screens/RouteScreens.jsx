@@ -285,7 +285,6 @@ export function MapScreen() {
   useExclusive('adding', adding, () => { setAdding(false); setDraft(null) })
   const p = (sel && (placeById(sel) ?? poiById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null))) || placeById('terminal') // only a stand-in until something is picked
   const from = routes.filter((r) => r.from === p.id)
-  const here = stationsAt(p.id)
   const spot = waitingSpots[p.id]
   const standState = placeStandNow(p.id) // drivers around now, a few, closed, or hours not known
   const nearOpen = standState?.state === 'closed' && me ? nearestStands(me, 1, 'toda')[0] : null
