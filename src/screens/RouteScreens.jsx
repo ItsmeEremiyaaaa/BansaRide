@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, StandPill, ClosedNotice, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
 import { lazy, Suspense } from 'react'
+const NO_LINKS = [] // no dashed lines while a route is drawn
 const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
 import Picker from '../Picker'
 import Transit from '../Transit'
@@ -338,11 +339,11 @@ export function MapScreen() {
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} links={sel && ride?.path ? NO_LINKS : links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
-      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
+      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={sel && ride?.path ? NO_LINKS : links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
