@@ -15,7 +15,7 @@ const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
 const LIMIT = [[bounds[0][1] - 0.01, bounds[0][0] - 0.01], [bounds[1][1] + 0.01, bounds[1][0] + 0.01]]
-const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
+const TINT = { vehicle: '#E8A100', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
 const vehicleImage = (kind) => new Promise((resolve) => {
@@ -35,7 +35,7 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#FFFFFF', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [] }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [] }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
@@ -50,7 +50,6 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     map.getSource('route')?.setData(line(rt))
     map.getSource('links')?.setData({ type: 'FeatureCollection', features: rt?.length > 1 ? [] : (latest.current.links ?? []).map((l) => line(l)) })
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
-    if (map.getLayer('route-casing')) map.setPaintProperty('route-casing', 'line-color', /^#f{6}$/i.test(rc) ? '#101828' : '#ffffff') // a white route gets a dark edge
   }
 
   // One camera move at a time. A far place used to start a pan at street zoom and then a fit-to-route (zoom out, then in),
