@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'BansaRide',
         short_name: 'BansaRide',
         description: 'Ride and fare guide for Bansalan, Davao del Sur',
-        theme_color: '#F4B400',
+        theme_color: '#FFFFFF',
         background_color: '#F2F2F6',
         id: '/',
         scope: '/',
