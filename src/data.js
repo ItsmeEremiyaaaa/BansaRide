@@ -32,6 +32,8 @@ export const fareFor = (km, id) => {
   const { base } = PASSENGERS.find((p) => p.id === id)
   return Math.max(base, TIER_SHORT.fare, Math.round((base + PER_KM * Math.max(0, km - 1)) / 5) * 5) // never cheaper than the 100 m to 1 km fare
 }
+// "₱15" when both ends are the same, "₱15–25" when they differ (never "₱15–15").
+export const pesoRange = (a, b) => (a === b ? `₱${a}` : `₱${Math.min(a, b)}–${Math.max(a, b)}`)
 export const estimateFare = (km) => fareFor(km, 'adult')
 export const FARE_NOTE = 'Near Bansalan the base fares are reported by riders. Farther rides cost more: Rizal is ₱30 to ₱40 (riders say up to ₱50 at times). Confirm at the terminal.'
 // "₱30–50" (cheapest to adult), "₱10" when they are the same, "Ask driver" for motorcycles.

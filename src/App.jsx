@@ -18,11 +18,11 @@ import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
 const SCREENS = { home: Home, routes: RoutesList, route: RouteScreen, map: MapScreen, place: Place, town: Town, towns: TownsList, fares: Fares, drivers: DriversList, station: Station, menu: Menu, account: Account, report: Report, notify: Notifications, howto: HowTo, farelist: FareSheet, visitor: Visitor, poster: Poster }
 const TABS = [
-  { key: 'home', icon: 'home' },
-  { key: 'routes', icon: 'routes' },
-  { key: 'map', icon: 'map' },
-  { key: 'drivers', icon: 'drivers' },
-  { key: 'fares', icon: 'calc' },
+  { key: 'home', icon: 'tabHome' },
+  { key: 'routes', icon: 'tabRoutes' },
+  { key: 'map', icon: 'tabMap' },
+  { key: 'drivers', icon: 'tabTrike' },
+  { key: 'fares', icon: 'tabFare' },
 ]
 const TAB_OF = { menu: 'home', account: 'home', report: 'home', notify: 'home', howto: 'home', farelist: 'fares', visitor: 'home', poster: 'drivers', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
 
