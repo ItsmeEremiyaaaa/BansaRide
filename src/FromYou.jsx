@@ -39,7 +39,7 @@ export default function FromYou({ ride, me, destId }) {
   if (!ride) return null
   const motor = ride.vehicle === 'Motor'
   const mine = discount && PASSENGERS.find((p) => p.id === discount)
-  const fare = (id) => fareFor(ride.km, id)
+  const fare = (id) => fareFor(ride.kmExact ?? ride.km, id) // by the exact distance, so 79 m and 150 m land in the right tier
   return (
     <section className="from-you" aria-label="From your location">
       <div className="fy-top">
