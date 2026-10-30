@@ -99,10 +99,13 @@ function paintSurround(m, poly, edgeLine, mood) {
 
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
-export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day' }) {
+export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null }) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
+  const pinLayer = useRef(null) // the pins live on their own layer, so changing the route never redraws them
+  const markersRef = useRef(markers)
+  markersRef.current = markers
   const outside = useRef(null)
   const edge = useRef(null)
   const tiles = useRef(null) // the map pictures layer, replaced when the mood changes (morning, evening, night...)
@@ -167,6 +170,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     }
     if (zoomControl) L.control.zoom({ position: 'topleft' }).addTo(m)
+    pinLayer.current = L.layerGroup().addTo(m)
     layer.current = L.layerGroup().addTo(m)
     m.on('click', (e) => clickRef.current?.([e.latlng.lat, e.latlng.lng]))
     // Keep the map correct when its box changes size (screen layout, rotation, keyboard).
@@ -191,17 +195,11 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     }
     links.forEach((l) => { L.polyline(l, { color: '#b7791f', weight: 3, dashArray: '6 8', lineCap: 'round' }).addTo(layer.current) })
     if (draft) L.marker(draft, { icon: pin('draft', '', 0), keyboard: false }).addTo(layer.current)
-    // crowded pins (a dozen stands on one corner) fold into one numbered badge that opens as you zoom in
-    const group = cluster ? L.markerClusterGroup({
-      maxClusterRadius: 46, showCoverageOnHover: false, spiderfyOnMaxZoom: true, disableClusteringAtZoom: 18, animate: true,
-      iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster${(() => { const known = c.getAllChildMarkers().filter((x) => x.options.stand && x.options.hoursKnown); return known.length > 0 && known.every((x) => x.options.closed) })() ? ' closed' : ''}"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
-    }).addTo(layer.current) : null
-    markers.forEach((k, i) => {
-      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
-      mk.addTo(cluster && k.kind !== 'sel' && !k.night ? group : layer.current) // night spots are never folded into a group, so they stand out // the place you picked is never folded away
-      if (k.id) mk.on('click', () => pickRef.current?.(k.id))
-      pts.push([k.lat, k.lon])
-    })
+    const pts2 = markers.map((k) => [k.lat, k.lon])
+    pts.push(...pts2)
+    // the picked place: one bigger pin drawn over the normal one
+    const picked = selId && markers.find((k) => k.id === selId)
+    if (picked) { const big = L.marker([picked.lat, picked.lon], { icon: pin('sel', picked.label || picked.title || '', 0, picked.glyph ?? (picked.kind === 'spot' ? 'vehicle' : null), TONES[picked.glyph]), keyboard: false, zIndexOffset: 900 }).addTo(layer.current); big.on('click', () => pickRef.current?.(picked.id)) }
     if (me) {
       L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
       if (fit) pts.push(me)
@@ -222,7 +220,26 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
       if (fit && pts.length > 1) m.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [40, 70], paddingBottomRight: [40, 70], maxZoom: 17, animate: false })
       else if (fit && pts.length === 1) m.setView(pts[0], zoom, { animate: false })
     }
-  }, [route, routeColor, markers, me, zoom, fit, links, draft]) // onPick is read from a ref, so a new function never redraws the pins
+  }, [route, routeColor, markers, me, zoom, fit, links, draft, selId])
+
+  // The pins are redrawn only when the set of pins really changes (not when a card opens or closes, or the route clears).
+  const pinKey = markers.map((k) => [k.id, k.kind, k.closed ? 1 : 0, k.glyph ?? '', k.label ?? ''].join(':')).join('|') + (cluster ? '|c' : '')
+  useEffect(() => {
+    const m = map.current
+    if (!m || !pinLayer.current) return
+    pinLayer.current.clearLayers()
+        // crowded pins (a dozen stands on one corner) fold into one numbered badge that opens as you zoom in
+    const group = cluster ? L.markerClusterGroup({
+      maxClusterRadius: 46, showCoverageOnHover: false, spiderfyOnMaxZoom: true, disableClusteringAtZoom: 18, animate: false, animateAddingMarkers: false,
+      iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster${(() => { const known = c.getAllChildMarkers().filter((x) => x.options.stand && x.options.hoursKnown); return known.length > 0 && known.every((x) => x.options.closed) })() ? ' closed' : ''}"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
+    }).addTo(pinLayer.current) : null
+    markersRef.current.forEach((k, i) => {
+      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
+      mk.addTo(cluster && k.kind !== 'sel' && !k.night ? group : pinLayer.current) // night spots are never folded into a group, so they stand out
+      if (k.id) mk.on('click', () => pickRef.current?.(k.id))
+    })
+
+  }, [pinKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (focus && map.current) {

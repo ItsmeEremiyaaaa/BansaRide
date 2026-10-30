@@ -269,20 +269,21 @@ export function MapScreen() {
   const nb = isStreet || isPoi ? nearestStand(p.lat, p.lon) : null
 
   // Every waiting spot is a pin: places with a group, and stands with their own exact position.
+  const selPoiKey = sel && poiById(sel) ? sel : '' // only a picked shop or hotel adds a pin
   const markers = useMemo(() => [
     ...places.filter((x) => x.kind !== 'Street' || x.id === sel || waitingSpots[x.id]).map((x) => ({
       id: x.id, lat: x.lat, lon: x.lon, title: x.name,
-      kind: x.id === sel ? 'sel' : waitingSpots[x.id] ? 'spot' : 'place',
+      kind: waitingSpots[x.id] ? 'spot' : 'place', // the picked place is drawn bigger by the map itself (selId), so picking never changes this list
       closed: placeStandNow(x.id)?.state === 'closed',
       hoursUnknown: placeStandNow(x.id)?.state === 'unknown',
       // the Bus Terminal shows a bus and the Public Market a mini bus (they wait there); other spots show the pedicab or motorcycle
       glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? 'mini' : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind,
-      label: x.id === sel && x.kind !== 'Barangay' && x.kind !== 'Sitio' ? shortName(x.id) : '',
+      label: '',
     })),
-    ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: x.id === sel ? 'sel' : 'place', label: x.id === sel ? x.name : '', glyph: x.kind })),
+    ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: 'place', label: '', glyph: x.kind })),
     // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
     ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
-  ], [sel, poiKinds, look.tick])
+  ], [selPoiKey, poiKinds, look.tick]) // eslint-disable-line react-hooks/exhaustive-deps
   const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
   // pressing the location button always wins, even while a route is shown
   const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
@@ -335,7 +336,7 @@ export function MapScreen() {
         </Suspense>
       )}
       {!view3d && (
-      <MapView mood={look.mood} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
+      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
@@ -393,7 +394,7 @@ export function MapScreen() {
           </div>
         </section>
       ) : card && (
-        <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef} {...dragDown(() => { setCard(false); setSel(null); setFocusPt(null); setMore(false) })}>
+        <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef} {...dragDown(() => { movedToMe.current = true; setCard(false); setSel(null); setFocusPt(null); setMore(false) })}>
           <div className="mapcard-top">
             <div>
               <div className="mapcard-tags">
@@ -406,7 +407,7 @@ export function MapScreen() {
             </div>
             <span className="mapcard-btns">
               {!isPoi && <button className="icon-btn flat" aria-label={`Details about ${p.name}`} onClick={() => goFromMap('place', { id: p.id })}><Icon name="info" /></button>}
-              <button className="icon-btn flat" aria-label="Close" onClick={() => { setCard(false); setSel(null); setFocusPt(null); setMore(false) }}><Icon name="close" /></button>
+              <button className="icon-btn flat" aria-label="Close" onClick={() => { movedToMe.current = true; setCard(false); setSel(null); setFocusPt(null); setMore(false) }}><Icon name="close" /></button>
             </span>
           </div>
           <ClosedNotice now={standState} near={nearOpen} onNear={() => nearOpen && goFromMap('station', { id: nearOpen.station.id })} />
