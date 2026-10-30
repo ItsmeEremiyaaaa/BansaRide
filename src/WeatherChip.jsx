@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import WeatherIcon from './WeatherIcon'
 import { useLook } from './mood'
+import { useExclusive } from './popover'
 
 // Real-time weather for Bansalan (Open-Meteo, refreshed every 10 minutes while there is a signal).
 const WORDS = (code) => {
@@ -27,6 +28,14 @@ export function WeatherPill() {
 
 export default function WeatherChip({ weather }) {
   const [open, setOpen] = useState(false)
+  useExclusive('weather', open, () => setOpen(false))
+  // a tap anywhere else closes it
+  useEffect(() => {
+    if (!open) return
+    const away = (e) => { if (!e.target.closest?.('.wx')) setOpen(false) }
+    document.addEventListener('pointerdown', away)
+    return () => document.removeEventListener('pointerdown', away)
+  }, [open])
   const night = useLook().mood === 'night'
   if (!weather) return null
   const [word] = WORDS(weather.code)

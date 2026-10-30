@@ -12,6 +12,7 @@ import RainOverlay from '../RainOverlay'
 import CloudOverlay from '../CloudOverlay'
 import { useLook } from '../mood'
 import WeatherChip from '../WeatherChip'
+import { useExclusive } from '../popover'
 import WeatherIcon from '../WeatherIcon'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
@@ -261,6 +262,11 @@ export function MapScreen() {
   const [finding, setFinding] = useState(false) // the search picker
   const [adding, setAdding] = useState(false) // "add a waiting spot" mode
   const [draft, setDraft] = useState(null)
+  // one thing open at a time: the weather card, the filter, the place card, the search and the add-a-spot panel close each other
+  useExclusive('filter', filterOpen, () => setFilterOpen(false))
+  useExclusive('card', card && !!sel, () => { setCard(false); setMore(false) })
+  useExclusive('finding', finding, () => setFinding(false))
+  useExclusive('adding', adding, () => { setAdding(false); setDraft(null) })
   const p = (sel && (placeById(sel) ?? poiById(sel) ?? (stationById(sel) ? stationPlace(stationById(sel)) : null))) || placeById('terminal') // only a stand-in until something is picked
   const from = routes.filter((r) => r.from === p.id)
   const here = stationsAt(p.id)
