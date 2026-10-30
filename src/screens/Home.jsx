@@ -6,10 +6,27 @@ import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
 import { WeatherPill } from '../WeatherChip'
 import { useLook } from '../mood'
-import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist } from '../data'
+import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist, bansalanClock } from '../data'
 
 const TRY = ['rizal', 'market', 'dolo', 'libertad']
 const countBy = (f) => routes.filter(f).length
+
+// After 8 PM most pedicabs are gone: point to the nearest stand that still has drivers (the 7-Eleven or the hotel).
+function NightTip({ loc, go, t }) {
+  const h = bansalanClock()
+  if (!(h >= 20 || h < 4)) return null
+  const near = loc.state === 'ok' ? nearestStands(loc.ll, 1, 'toda')[0] : null
+  return (
+    <button className="night-tip" onClick={() => (near ? go('station', { id: near.station.id }) : go('drivers'))}>
+      <span className="night-moon" aria-hidden="true">☾</span>
+      <span className="night-text">
+        <b>{t('Riding tonight?')}</b>
+        <span>{near ? `${t('Most pedicabs are gone. Nearest with drivers')}: ${near.station.name} · ${fmtDist(near.meters)}` : t('Most pedicabs are gone after 8 PM. See who is still around.')}</span>
+      </span>
+      <Icon name="chevron" className="chev" />
+    </button>
+  )
+}
 
 // Live: the closest waiting spots and BTODA groups to where the person is, updating as they walk.
 function NearYou({ loc, go, retry }) {
@@ -209,6 +226,7 @@ export default function Home() {
           </div>
         </section>
 
+        <NightTip loc={loc} go={go} t={t} />
         <NearYou loc={loc} go={go} retry={retryLocation} />
 
         <section aria-label="Kinds of rides and places">

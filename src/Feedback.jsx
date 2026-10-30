@@ -14,7 +14,7 @@ const label = (id) => PASSENGERS.find((p) => p.id === id)?.short ?? id
 // What riders say about a route, a place or a driver group: what they paid and short comments.
 // `scope` is { routeId } or { placeId } or { stationId }. `fare` also shows the "I paid" form (routes only).
 export default function Feedback({ scope, fare = false }) {
-  const { go, say } = useApp()
+  const { go, say, t } = useApp()
   const a = useAuth()
   const [posts, setPosts] = useState(null) // null = loading
   const [failed, setFailed] = useState(false)
@@ -46,7 +46,7 @@ export default function Feedback({ scope, fare = false }) {
 
   return (
     <section className="card glass feedback" aria-label="What riders say">
-      <h2 className="sec">What riders say</h2>
+      <h2 className="sec">{t('What riders say')}</h2>
       {posts === null && <p className="hint">Loading…</p>}
       {failed && <p className="hint">Could not load posts. They need a signal.</p>}
 
