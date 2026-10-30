@@ -1169,3 +1169,25 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .brgy { color: #6f6a5f; font-weight: 700; letter-spacing: .16em; font-size: 11px; }
 .mapcard.slim { background: var(--brand); }
 .mapcard.slim .mapcard-top { border-bottom: 0; }
+
+/* getting there: walk and ride lines */
+.fy-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.fy-lines li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 14px; line-height: 1.35; }
+.fy-lines svg { width: 22px; height: 18px; margin-top: 1px; stroke: currentColor; fill: none; stroke-width: 2; }
+.fy-lines svg.ico-art { width: 28px; height: 20px; }
+.fy-lines b { font-family: var(--display); font-size: 16px; }
+
+/* "You are here" card: clear of the tab bar, with a pulse, a hint and a tricycle */
+.mapcard.slim.here { bottom: calc(108px + env(safe-area-inset-bottom, 0px)); }
+.mapcard.slim.here .mapcard-top { gap: 12px; align-items: center; }
+.here-pulse { flex: none; width: 34px; height: 34px; border-radius: 50%; background: rgba(21, 96, 240, .18); display: grid; place-items: center; }
+.here-pulse i { width: 16px; height: 16px; border-radius: 50%; background: var(--primary); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--primary); }
+.here-hint { margin: 4px 0 0; font-size: 13px; font-weight: 700; color: #4d3200; line-height: 1.3; }
+.here-chip { display: inline-block; margin-top: 8px; padding: 2px 10px; border: 2px solid var(--ink); border-radius: 99px; background: #fff; font-size: 11px; font-weight: 900; }
+.here-trike { flex: none; margin-left: auto; filter: drop-shadow(0 3px 0 rgba(16, 24, 40, .25)); }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes here-pulse { 0% { box-shadow: 0 0 0 0 rgba(21, 96, 240, .45); } 100% { box-shadow: 0 0 0 14px rgba(21, 96, 240, 0); } }
+  .here-pulse { animation: here-pulse 1.8s ease-out infinite; }
+  @keyframes here-bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4px) rotate(1deg); } }
+  .here-trike { animation: here-bob 3s ease-in-out infinite; }
+}

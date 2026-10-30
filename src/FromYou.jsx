@@ -43,13 +43,13 @@ export default function FromYou({ ride, me, destId }) {
   return (
     <section className="from-you" aria-label="From your location">
       <div className="fy-top">
-        <span className="tl-k">From you · live</span>
-        <span className={'fy-tag' + (ride.exact ? ' exact' : '')}>{ride.exact ? 'Exact road' : online ? 'Estimate' : 'Estimate · offline'}</span>
+        <span className="tl-k">Getting there</span>
+        {!ride.exact && <span className="fy-tag">{online ? 'Estimate' : 'Estimate · offline'}</span>}
       </div>
-      <div className="fy-stats">
-        <div><b>{fmtDist(ride.straight)}</b><span>straight line · {walkMinutes(ride.straight)} min walk</span></div>
-        <div><b>{ride.km} km</b><span>by {vehicleLabel(ride.vehicle).toLowerCase()} · about {ride.minutes} min</span></div>
-      </div>
+      <ul className="fy-lines">
+        <li><Icon name="locate" /><span><b>Walk {walkMinutes(ride.straight)} min</b> · {fmtDist(ride.straight)} ({(ride.straight / 1609.34).toFixed(2)} mi), about {Math.round(ride.straight / 0.75).toLocaleString()} steps</span></li>
+        <li><Icon name={motor ? 'moto' : 'vehicle'} /><span><b>{motor ? 'Motorcycle' : 'Tricycle'} about {ride.minutes} min</b> · {ride.km} km by road</span></li>
+      </ul>
       {motor ? (
         <AskDriver me={me} destId={destId} />
       ) : (
@@ -59,7 +59,7 @@ export default function FromYou({ ride, me, destId }) {
           <span className="fy-chip"><em>Student</em>₱{fare('elementary')}–{fare('college')}</span>
         </div>
       )}
-      {!ride.exact && <p className="fy-note">{online ? 'Finding the exact road…' : 'No signal: estimated from the routes saved in the app.'}</p>}
+      {!ride.exact && !online && <p className="fy-note">No signal: estimated from the routes saved in the app.</p>}
     </section>
   )
 }
