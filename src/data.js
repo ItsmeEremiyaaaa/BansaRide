@@ -65,7 +65,7 @@ export const placeById = (id) => places.find((p) => p.id === id)
 export const shortName = (id) => (placeById(id)?.name ?? id).replace('Bansalan ', '')
 
 // One colour for each kind of ride. The vehicle drawing and its route line on the map use the same colour.
-export const MODE_COLOR = { vehicle: '#E8A100', moto: '#067647', bus: '#E5322D', van: '#1560F0', mini: '#1F7A8C' }
+export const MODE_COLOR = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', van: '#1560F0', mini: '#1F7A8C' }
 export const routeColor = (r) => (r?.vehicle === 'Motor' ? MODE_COLOR.moto : MODE_COLOR.vehicle)
 export const vehicleLabel = (v) => (v === 'Motor' ? 'Motorcycles' : 'Tricycle')
 

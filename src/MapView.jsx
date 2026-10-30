@@ -188,7 +188,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     layer.current.clearLayers()
     const pts = []
     if (route?.length) {
-      L.polyline(route, { color: '#ffffff', weight: 11, opacity: 0.95, lineCap: 'round', lineJoin: 'round' }).addTo(layer.current)
+      L.polyline(route, { color: /^#f{6}$/i.test(routeColor) ? '#101828' : '#ffffff', weight: 11, opacity: 0.95, lineCap: 'round', lineJoin: 'round' }).addTo(layer.current)
       const line = L.polyline(route, { color: routeColor, weight: 6, lineCap: 'round', lineJoin: 'round', className: 'route-draw' }).addTo(layer.current)
       line.getElement()?.setAttribute('pathLength', '1') // lets CSS draw the line from start to end
       pts.push(...route)
