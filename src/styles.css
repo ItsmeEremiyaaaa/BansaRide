@@ -1500,3 +1500,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .view-btn.on, .mapfill .float .icon-btn.on, .filter-btn.on { background: #1f7a5a; color: #fff; }
 .mapcard.slim { box-shadow: 0 0 0 2px rgba(255, 255, 255, .55), 0 6px 0 var(--ink), 0 14px 30px rgba(16, 24, 40, .25) !important; position: absolute; }
 .mapcard.slim::after { content: ''; position: absolute; inset: 5px; border: 2px solid rgba(255, 255, 255, .8); border-radius: 15px; pointer-events: none; z-index: 2; }
+
+/* "You are here": a blue map pin with a person in it, standing on a soft pulsing ring at your exact spot. */
+.you-pin { width: 0; height: 0; background: none; border: 0; box-shadow: none; border-radius: 0; transform: none; overflow: visible; }
+.you-pin i { inset: auto; left: -22px; top: -22px; width: 44px; height: 44px; }
+.you-pin svg { position: absolute; left: -19px; bottom: 0; width: 38px; height: 49px; filter: drop-shadow(0 3px 4px rgba(16, 24, 40, .4)); }
