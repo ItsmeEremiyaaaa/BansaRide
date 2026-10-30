@@ -1508,7 +1508,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* the small details card when the pointer rests on a pin */
 .leaflet-tooltip.pin-tip { width: max-content; max-width: 230px; white-space: normal; background: #fff !important; color: var(--ink) !important; border: 2.5px solid var(--ink) !important; border-radius: 14px !important; box-shadow: 0 3px 0 var(--ink) !important; padding: 0 !important; pointer-events: none; }
-.leaflet-tooltip.pin-tip::before { display: none !important; }
+.leaflet-tooltip.pin-tip::before { display: block !important; border: 9px solid transparent !important; border-top-color: var(--ink) !important; margin-left: -9px !important; margin-bottom: -19px !important; }
 .maplibregl-popup.pin-tip .maplibregl-popup-content { background: #fff !important; opacity: 1; border-radius: 12px; padding: 0; }
 .maplibregl-popup.pin-tip .maplibregl-popup-tip { display: none; }
 .maplibregl-popup.pin-tip { border: 0 !important; box-shadow: none !important; background: none !important; }
@@ -1521,3 +1521,19 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .pt-d { font-size: 12px; color: var(--ink3); }
 
 .pt-pop { position: absolute; z-index: 460; transform: translate(-50%, -100%); pointer-events: none; background: #fff; color: var(--ink); border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); }
+/* a small point at the centre of the card, aimed at the pin */
+.leaflet-tooltip.pin-tip::after { content: ''; position: absolute; left: 50%; bottom: -12px; margin-left: -6px; border: 6px solid transparent; border-top-color: #fff; pointer-events: none; }
+.pt-pop::before, .pt-pop::after { content: ''; position: absolute; left: calc(50% + var(--ax, 0px)); border: 9px solid transparent; margin-left: -9px; pointer-events: none; }
+.pt-pop[data-pos='above']::before { top: 100%; border-top-color: var(--ink); margin-top: 0; }
+.pt-pop[data-pos='above']::after { top: 100%; margin-top: -3px; border: 6px solid transparent; border-top-color: #fff; margin-left: -6px; }
+.pt-pop[data-pos='below']::before { bottom: 100%; border-bottom-color: var(--ink); }
+.pt-pop[data-pos='below']::after { bottom: 100%; margin-bottom: -3px; border: 6px solid transparent; border-bottom-color: #fff; margin-left: -6px; }
+
+/* going to 3D: the map fades in while it tilts and swings round from the flat view */
+.map3d.maplibregl-map { animation: m3d-in .7s ease both; }
+@keyframes m3d-in { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+.sky3d { animation: sky-in 1.2s ease .3s both; }
+@keyframes sky-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .map3d.maplibregl-map, .sky3d { animation: none; } }
+.leaflet-tooltip.pin-tip::before { border-width: 11px !important; margin-left: -11px !important; margin-bottom: -22px !important; }
+.leaflet-tooltip.pin-tip::after { border-width: 8px; margin-left: -8px; bottom: -16px; }
