@@ -208,6 +208,27 @@ export function RoutesList() {
   )
 }
 
+// Drag a bottom card down to dismiss it: it follows the finger, and lets go past 80 px (or a quick flick).
+function dragDown(onClose) {
+  let y0 = null, t0 = 0, el = null
+  return {
+    onPointerDown: (e) => { if (e.target.closest('button, a, input')) return; el = e.currentTarget; if (el.scrollTop > 0) return; y0 = e.clientY; t0 = performance.now() },
+    onPointerMove: (e) => {
+      if (y0 === null) return
+      const dy = e.clientY - y0
+      if (dy > 6) { try { el.setPointerCapture(e.pointerId) } catch { /* optional */ } el.style.transition = 'none'; el.style.transform = `translateY(${dy}px)` }
+    },
+    onPointerUp: (e) => {
+      if (y0 === null) return
+      const dy = e.clientY - y0, fast = dy / Math.max(1, performance.now() - t0) > 0.5
+      y0 = null
+      el.style.transition = 'transform .25s ease'
+      if (dy > 80 || (fast && dy > 30)) { el.style.transform = 'translateY(120%)'; setTimeout(onClose, 200) } else el.style.transform = ''
+    },
+    onPointerCancel: () => { y0 = null; if (el) el.style.transform = '' },
+  }
+}
+
 export function MapScreen() {
   const { go, say, params, loc, retryLocation } = useApp()
   const memo = useMemo(() => recallMap(), []) // what you had open before you left for a detail page (Back brings it back)
@@ -361,7 +382,7 @@ export function MapScreen() {
           </div>
         </section>
       ) : card && (
-        <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef}>
+        <section className="mapcard" aria-live="polite" key={p.id} ref={cardRef} {...dragDown(() => { setCard(false); setSel(null); setFocusPt(null); setMore(false) })}>
           <div className="mapcard-top">
             <div>
               <div className="mapcard-tags">
