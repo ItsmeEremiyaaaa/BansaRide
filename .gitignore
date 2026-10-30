@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .claude/
+
+# push notification private key: never commit
+supabase/.vapid-private.txt

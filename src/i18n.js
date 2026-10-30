@@ -24,7 +24,7 @@ const dict = {
     'Drivers near you, live': 'Mga drayber duol nimo, live', 'Find the nearest BTODA waiting spot and how far it is. The distance updates as you walk.': 'Pangitaa ang labing duol nga hulaton sa BTODA ug unsa kalayo. Mag-usab ang gilay-on kung naglakaw ka.',
     'Skip': 'Laktaw', 'Next': 'Sunod', 'Sign in': 'Sulod', 'Open the app': 'Ablihi ang app', 'Continue as guest': 'Padayon isip bisita',
     'Menu': 'Menu', 'Fare check': 'Susiha ang plete', 'Fare list': 'Listahan sa plete', 'Account': 'Account', 'Report a problem': 'Ireport ang problema',
-    'Visiting Bansalan': 'Pagbisita sa Bansalan', 'Poster': 'Poster', 'Towns': 'Mga lungsod', 'Drivers': 'Mga drayber', 'Routes': 'Mga ruta',
+    'Visiting Bansalan': 'Pagbisita sa Bansalan', 'Ride alerts': 'Mga pahibalo sa biyahe', 'Poster': 'Poster', 'Towns': 'Mga lungsod', 'Drivers': 'Mga drayber', 'Routes': 'Mga ruta',
     'Rides and places': 'Mga sakyanan ug lugar', 'Drivers and waiting spots': 'Mga drayber ug hulaton', 'You': 'Ikaw', 'Tools': 'Mga himan',
     'All routes': 'Tanang ruta', 'Tricycle and pedicab': 'Traysikol ug pedikab', 'Motorcycles': 'Mga motorsiklo', 'Streets and roads': 'Mga dalan',
     'Barangays and sitios': 'Mga barangay ug sitio', 'Other towns': 'Ubang lungsod', 'BTODA groups': 'Mga grupo sa BTODA', 'Street waiting spots': 'Hulaton sa mga dalan',

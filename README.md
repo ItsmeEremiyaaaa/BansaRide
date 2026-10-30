@@ -25,6 +25,18 @@ npm run preview    # test the built app, including offline mode
 
 Accounts and posts are optional. To switch them on, create a [Supabase](https://supabase.com) project, run `supabase/profiles.sql` and then `supabase/community.sql` in its SQL editor, copy `.env.example` to `.env.local` and fill in the project URL and publishable key.
 
+## Ride alerts (push notifications), one-time setup
+
+Riders can turn on a notice 30 minutes before the first ride and 1 hour before the last ride of the big bus, van and mini bus. It works even when the app is closed (Android, the installed app and the APK).
+
+1. In the Supabase SQL editor, run `supabase/push.sql`.
+2. Deploy the function `supabase/functions/send-ride-alerts` (Dashboard > Edge Functions > Deploy a new function, paste `index.ts`; or `supabase functions deploy send-ride-alerts`).
+3. Add three secrets (Edge Functions > Secrets): `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` (an email). Create the key pair with `npx web-push generate-vapid-keys`. Never commit the private key.
+4. Put the same public key in `.env.local` and in the host's environment variables as `VITE_VAPID_PUBLIC_KEY`.
+5. Schedule it: Integrations > Cron > new job, every 5 minutes (`*/5 * * * *`), run the Edge Function `send-ride-alerts`.
+
+Optional usage counts: run `supabase/stats.sql`.
+
 ## What is real and what is not
 
 | Item | Status |
