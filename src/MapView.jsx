@@ -3,7 +3,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { leafletLayer } from 'protomaps-leaflet'
 import { bansalanTiles } from './localTiles'
-import { signboardRules } from './mapStyle'
+import { texturedRules } from './mapStyle'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from './boundary'
@@ -103,7 +103,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (useOsm) {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m)
     } else {
-      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...signboardRules('en'), maxZoom: 19, maxDataZoom: 15, // past zoom 15 the vector shapes are redrawn sharp, not enlarged
+      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...texturedRules('en'), maxZoom: 19, maxDataZoom: 15, // past zoom 15 the vector shapes are redrawn sharp, not enlarged
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     }
     if (zoomControl) L.control.zoom({ position: 'topleft' }).addTo(m)
