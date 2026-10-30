@@ -1419,3 +1419,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .station-sheet .nav-card .cta-row .btn svg { width: 18px; height: 18px; flex: none; }
 .station-sheet .nav-dist { font-size: 34px; }
 .station-sheet { border-top: 0 !important; }
+
+/* town seals */
+.row-item .ico.has-seal { background: transparent; width: 48px; height: 48px; }
+.seal { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(16, 24, 40, .18)); }
+.town-seal { display: grid; place-items: center; margin: 14px auto 0; width: 92px; height: 92px; border-radius: 50%; background: #fff; box-shadow: 0 8px 22px rgba(16, 24, 40, .16); padding: 4px; }
+.town-seal .seal { width: 84px; height: 84px; }
+.seal { border-radius: 50%; background: #fff; object-fit: cover; box-shadow: 0 0 0 2px #fff, 0 3px 10px rgba(16, 24, 40, .2); filter: none; }
+.town-seal { border-radius: 50%; padding: 0; width: 92px; height: 92px; background: transparent; box-shadow: none; }

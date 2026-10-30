@@ -9,10 +9,16 @@ import { speak } from '../speech'
 import { offlineRide } from '../rideFromMe'
 import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare, townAsksFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
 
+// Official seals of the towns we have a picture for (kept in public/seals). Other towns show the plain town icon.
+const SEALS = new Set(['magsaysay', 'matanao', 'hagonoy', 'digos', 'kiblawan', 'santa-cruz'])
+export function Seal({ id, size = 44 }) {
+  return SEALS.has(id) ? <img className="seal" src={`${import.meta.env.BASE_URL}seals/${id}.png`} width={size} height={size} alt="" loading="lazy" /> : <Icon name="town" />
+}
+
 function TownRow({ town, onOpen, index }) {
   return (
     <button className="row-item rise" style={{ '--i': Math.min(index, 8) }} onClick={() => onOpen(town.id)}>
-      <span className="ico"><Icon name="town" /></span>
+      <span className={'ico' + (SEALS.has(town.id) ? ' has-seal' : '')}><Seal id={town.id} /></span>
       <span className="row-main">
         <span className="row-title">{town.name}</span>
         <span className="row-sub">{town.km} km · {town.duration.replace('about ', '~')}</span>
@@ -80,6 +86,7 @@ export function Town() {
   return (
     <>
       <YHeader title={out ? tw.name : 'Bansalan'} back={<BackButton to="towns" />} />
+      {SEALS.has(tw.id) && <div className="town-seal"><Seal id={tw.id} size={84} /></div>}
       <div className="body">
         <div className="chips scroll" role="group" aria-label="Choose a town">
           {towns.map((x) => (
