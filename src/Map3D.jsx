@@ -48,7 +48,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
     if (rt?.length > 1) {
       const b = rt.reduce((bb, [la, lo]) => bb.extend([lo, la]), new maplibregl.LngLatBounds())
-      map.fitBounds(b, { padding: { top: 100, left: 40, right: 40, bottom: latest.current.offsetY * 2 + 40 }, maxZoom: 17, pitch, duration: 800 })
+      map.fitBounds(b, { padding: { top: 90, left: 40, right: 40, bottom: latest.current.offsetY * 2 + 30 }, maxZoom: 17, pitch, bearing: 0, duration: 800 })
     }
   }
 
@@ -110,7 +110,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
 
   useEffect(apply, [markers, route, routeColor, offsetY]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
-  useEffect(() => { if (!route?.length) mapRef.current?.easeTo({ center: [center[1], center[0]], duration: 700 }) }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (!route?.length) mapRef.current?.easeTo({ center: [center[1], center[0]], pitch, offset: [0, -latest.current.offsetY], duration: 700 }) }, [key, pitch]) // eslint-disable-line react-hooks/exhaustive-deps
   // the sky at the horizon: a gradient in the colours of the moment, drawn over the far edge of the tilted map
   return (
     <>
