@@ -1866,3 +1866,73 @@ body.aw-body #root { height: auto; min-height: 100%; }
 .aw-mode { margin-bottom: 4px; }
 .aw-login .lbl { margin-top: 2px; }
 .aw-hint { font-size: 13px; color: var(--ink3) !important; }
+
+/* announcements from the BansaRide team: cards on Home, a slim banner on the map */
+.notices { display: grid; gap: 10px; }
+.notice { position: relative; display: flex; gap: 12px; align-items: flex-start; padding: 12px 44px 12px 12px; background: #fff; border: 3px solid var(--ink); border-left-width: 10px; border-radius: 16px; box-shadow: 0 4px 0 var(--ink); }
+.notice.tone-info { border-left-color: var(--primary); }
+.notice.tone-warn { border-left-color: #f79009; background: #fffaeb; }
+.notice.tone-danger { border-left-color: #c9282a; background: #fef3f2; }
+.notice-ico { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--ink); color: #fff; }
+.notice-ico svg, .notice-main svg, .notice-x svg, .notice-link svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.notice-text { display: grid; gap: 2px; min-width: 0; }
+.notice-text b { font-family: var(--display); font-size: 17px; line-height: 1.15; }
+.notice-text p { font-size: 14px; color: var(--ink2); }
+.notice-x { position: absolute; right: 6px; top: 6px; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: var(--ink2); }
+.notice.slim { position: absolute; z-index: 1150; left: 12px; right: 68px; top: calc(12px + 56px + env(safe-area-inset-top, 0px)); padding: 0 40px 0 0; display: block; border-width: 2.5px; border-left-width: 8px; box-shadow: 0 3px 0 var(--ink); }
+.notice-main { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 42px; padding: 0 10px; text-align: left; font-size: 14px; }
+.notice-main b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.notice-main em { font-style: normal; font-size: 12px; font-weight: 900; color: var(--ink2); }
+.notice.slim.open .notice-main b { white-space: normal; }
+.notice-more { display: grid; gap: 8px; padding: 0 12px 12px; font-size: 14px; color: var(--ink2); }
+.notice-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; color: var(--primary-ink); justify-self: start; }
+.notice.slim .notice-x { top: 4px; right: 4px; }
+
+/* admin website, part 2: maps, editors, fares table, toolbars */
+.aw-map { position: relative; border: 2.5px solid var(--ink); border-radius: 14px; overflow: hidden; box-shadow: 0 3px 0 var(--ink); }
+.aw-map .leaflet-container { position: absolute; inset: 0; height: 100%; }
+.aw-field { display: grid; gap: 4px; font-size: 13px; font-weight: 800; color: var(--ink2); min-width: 0; }
+.aw-field .input { font-weight: 600; color: var(--ink); min-height: 44px; width: 100%; }
+.aw-field-label { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 800; color: var(--ink2); }
+.aw-clear { font-weight: 800; color: #b42318; text-decoration: underline; }
+.aw-narrow { max-width: 280px; }
+.aw-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: end; }
+.aw-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.btn.ok { background: #1f7a5a; color: #fff; }
+.adm-check.warn { color: #b42318; }
+.aw-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 4px; }
+.aw-search { flex: 1 1 280px; max-width: 420px; background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); }
+.aw-rows { display: grid; gap: 12px; }
+.aw-row header { align-items: center; }
+.aw-editor { display: grid; gap: 12px; margin-top: 8px; padding-top: 14px; border-top: 2px dashed rgba(23, 10, 53, .3); }
+.aw-members { display: grid; gap: 8px; padding: 12px; background: var(--brand-soft); border-radius: 14px; }
+.aw-member { display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 12px; background: #fff; border: 2px solid var(--ink); border-radius: 12px; }
+.aw-member span { flex: 1; font-weight: 800; }
+.aw-member em { font-style: normal; font-size: 12px; font-weight: 900; color: #b42318; }
+.aw-member.off span { text-decoration: line-through; color: var(--ink3); }
+.aw-member .btn { width: auto; flex: none; }
+.aw-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 14px; }
+.aw-table th, .aw-table td { text-align: left; padding: 6px 8px; }
+.aw-table thead th { font-size: 12px; color: var(--ink2); }
+.aw-table tbody th { font-weight: 800; }
+.aw-table tbody th small { display: block; font-size: 12px; font-weight: 700; color: var(--ink3); }
+.aw-table tbody tr { background: var(--brand-soft); }
+.aw-table tbody tr th:first-child { border-radius: 10px 0 0 10px; } .aw-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+.aw-towns .input { min-height: 38px; max-width: 120px; }
+.aw-fares { display: grid; gap: 14px; }
+.aw-sticky { position: sticky; bottom: 12px; padding: 10px; background: rgba(238, 241, 251, .92); border-radius: 16px; backdrop-filter: blur(6px); }
+.aw-sticky .btn { width: auto; flex: none; padding: 0 22px; }
+.aw-counts { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--ink2); }
+.aw-counts span { padding: 4px 10px; background: var(--brand-soft); border-radius: 99px; font-weight: 700; }
+.aw-counts b { color: var(--ink); }
+.aw-posts { display: grid; gap: 6px; margin-top: 4px; }
+.aw-post { display: grid; gap: 2px; padding: 8px 10px; background: #f5f6f8; border-radius: 10px; }
+.aw-post span { font-size: 12px; color: var(--ink3); font-weight: 700; }
+.aw-post b { font-weight: 700; font-size: 14px; }
+.aw-post em { font-style: normal; font-size: 12px; font-weight: 900; color: #b42318; }
+.aw-notices { display: grid; gap: 16px; }
+.notice-row.tone-warn { border-left-color: #f79009; } .notice-row.tone-danger { border-left-color: #c9282a; } .notice-row.tone-info { border-left-color: var(--primary); }
+.adm-item .adm-tags { flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 820px) { .aw-grid2, .aw-grid3 { grid-template-columns: 1fr; } }
+textarea { font: inherit; }
+.notice.slim { left: 64px; }

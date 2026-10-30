@@ -4,6 +4,7 @@ import { registerSW } from 'virtual:pwa-register'
 import '@fontsource-variable/nunito'
 import '@fontsource-variable/baloo-2'
 import './styles.css'
+import './liveData' // the admin's saved changes (fares, BTODA groups, spots) apply before the first screen
 import App from './App.jsx'
 import { AuthProvider } from './auth'
 

@@ -13,6 +13,7 @@ import Report from './screens/Report'
 import Notifications from './screens/Notifications'
 import RideAlertPop from './TransitPop'
 import { clearMapMemo } from './mapMemo'
+import { refreshLive, onLive, liveVersion } from './liveData'
 import { FareSheet, Visitor, Poster, HowTo } from './screens/Sheets'
 import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
@@ -44,6 +45,16 @@ export default function App() {
   const [lang, setLang] = useStored('bansaride-lang', 'en')
   const [textSize, setTextSize] = useStored('bansaride-text', (() => { const px = parseFloat(getComputedStyle(document.documentElement).fontSize); return px >= 20 ? 'xlarge' : px >= 18 ? 'large' : 'normal' })()) // normal | large | xlarge
   useEffect(() => { document.documentElement.dataset.text = textSize }, [textSize])
+  // the admin's changes: fetched now, every 10 minutes and when the signal comes back; screens redraw when they change
+  const [live, setLive] = useState(liveVersion)
+  useEffect(() => {
+    const off = onLive(setLive)
+    const pull = () => refreshLive().catch(() => {})
+    pull()
+    const id = setInterval(pull, 10 * 60 * 1000)
+    window.addEventListener('online', pull)
+    return () => { off(); clearInterval(id); window.removeEventListener('online', pull) }
+  }, [])
   const [saved, setSaved] = useStored('bansaride-saved', [])
   const [recent, setRecent] = useStored('bansaride-recent', [])
   const [toast, setToast] = useState('')
@@ -185,7 +196,7 @@ export default function App() {
   const fullBleed = ['route', 'map', 'place'].includes(entry.name) || (entry.name === 'station')
 
   return (
-    <Ctx.Provider value={{ go, back, t, lang, setLang, textSize, setTextSize, say, saved, toggleSaved, recent, remember, online, loc, retryLocation: startWatch, params: entry.params }}>
+    <Ctx.Provider value={{ go, back, t, lang, setLang, textSize, setTextSize, say, saved, toggleSaved, recent, remember, online, loc, live, retryLocation: startWatch, params: entry.params }}>
       <Defs />
       <div className="app">
         <main className="views">

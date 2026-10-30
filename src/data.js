@@ -21,7 +21,8 @@ export const PASSENGERS = [
   { id: 'pwd', label: 'PWD', short: 'PWD', base: 15 },
   { id: 'adult', label: 'Adult', short: 'Adult', base: 20 },
 ]
-const PER_KM = 20 / 2.7 // pesos for each km after the first (about ₱7.4), fitted to the Rizal example
+let PER_KM = 20 / 2.7 // pesos for each km after the first (about ₱7.4), fitted to the Rizal example. The admin can change it (see applyFareSettings).
+let TRANSIT_DISCOUNT = 0.8 // students, seniors and PWD pay 80% of the bus, van and mini bus fare
 // Short rides by how far it is (told by riders): under 100 m (two digits, like 20 to 50 m) costs ₱10 for everyone;
 // 100 m up to 1 km (three digits) costs ₱15. From 1 km the normal fares below apply.
 export const TIER_NEAR = { km: 0.1, fare: 10 }
@@ -376,7 +377,7 @@ export const TOWN_FARES = {
 }
 export function transitFare(mode, km, townId) {
   const fixed = TOWN_FARES[townId]?.[mode]
-  if (fixed) return { adult: fixed, student: Math.round(fixed * 0.8) }
+  if (fixed) return { adult: fixed, student: Math.round(fixed * TRANSIT_DISCOUNT) }
   const bus = { adult: Math.max(15, round5((200 / DAVAO_KM) * km)), student: Math.max(10, round5((140 / DAVAO_KM) * km)) }
   if (mode === 'bus') return bus
   if (mode === 'van') {
@@ -501,3 +502,58 @@ export function placeStandNow(placeId, h) {
 }
 // Is the stand worth showing on the map and suggesting as the nearest?
 export const standActive = (s, h) => standNow(s, h).state !== 'closed'
+
+// ---------- settings the admin can change (fares, BTODA groups, approved spots) ----------
+// The app starts with the values written above. The admin website saves changes in the database; the app downloads them,
+// keeps a copy on the phone (so they work offline) and applies them here. See liveData.js.
+export const fareSettings = () => ({
+  base: Object.fromEntries(PASSENGERS.map((x) => [x.id, x.base])),
+  perKm: Math.round(PER_KM * 100) / 100,
+  near: { ...TIER_NEAR },
+  short: { ...TIER_SHORT },
+  discount: TRANSIT_DISCOUNT,
+  towns: JSON.parse(JSON.stringify(TOWN_FARES)),
+})
+const FARE_DEFAULTS = fareSettings()
+const num = (v, lo, hi) => { const n = Number(v); return Number.isFinite(n) && n >= lo && n <= hi ? n : null }
+export function applyFareSettings(cfg) {
+  const c = { ...FARE_DEFAULTS, ...(cfg || {}) }
+  for (const x of PASSENGERS) x.base = num(c.base?.[x.id], 5, 200) ?? FARE_DEFAULTS.base[x.id]
+  PER_KM = num(c.perKm, 0, 100) ?? FARE_DEFAULTS.perKm
+  TRANSIT_DISCOUNT = num(c.discount, 0.3, 1) ?? FARE_DEFAULTS.discount
+  Object.assign(TIER_NEAR, { km: num(c.near?.km, 0, 1) ?? FARE_DEFAULTS.near.km, fare: num(c.near?.fare, 0, 200) ?? FARE_DEFAULTS.near.fare })
+  Object.assign(TIER_SHORT, { km: num(c.short?.km, 0, 3) ?? FARE_DEFAULTS.short.km, fare: num(c.short?.fare, 0, 200) ?? FARE_DEFAULTS.short.fare })
+  for (const id of Object.keys(TOWN_FARES)) delete TOWN_FARES[id]
+  for (const [id, f] of Object.entries(c.towns || FARE_DEFAULTS.towns)) {
+    const row = {}
+    for (const m of ['bus', 'van', 'mini']) { const v = num(f?.[m], 1, 5000); if (v) row[m] = v }
+    if (Object.keys(row).length) TOWN_FARES[id] = row
+  }
+  // the fares already worked out for each route follow the new rules
+  for (const r of routes) if (r.fare !== null && r.vehicle !== 'Motor') { r.fare = estimateFare(r.km); r.fareMin = fareFor(r.km, 'elementary') }
+}
+
+// Stands as written in this file, so the admin's changes can be applied again from a clean start.
+const STAND_ORIGINAL = stations.map((x) => ({ ...x }))
+// edits: [{ station_id, name, landmark, contact_name, contact_phone, verified, suspended, members: [{ name, suspended }] }]
+// spots: approved rider spots [{ id, name, about, lat, lon }]
+export function applyStandData(edits = [], spots = []) {
+  stations.length = 0
+  stations.push(...STAND_ORIGINAL.map((x) => ({ ...x })))
+  for (const sp of spots) {
+    if (sp.lat == null || sp.lon == null) continue
+    stations.push({ id: 'rs-' + sp.id, type: 'toda', placeId: null, pos: { lat: sp.lat, lon: sp.lon }, name: sp.name || 'Waiting spot', alias: '', source: 'reported', landmark: sp.about || 'Marked by a rider and checked by BansaRide', confirmed: false, contact: null, members: [], streetSpot: true, riderSpot: true })
+  }
+  const hide = new Set()
+  for (const e of edits) {
+    const st = stations.find((x) => x.id === e.station_id)
+    if (!st) continue
+    if (e.suspended) { hide.add(st.id); continue } // a suspended group is not shown in the app
+    if (e.name) st.name = e.name
+    if (e.landmark) st.landmark = e.landmark
+    if (e.contact_name && e.contact_phone) st.contact = { name: e.contact_name, org: st.name, phone: e.contact_phone }
+    if (e.verified != null) st.verified = e.verified
+    if (Array.isArray(e.members) && e.members.length) st.members = e.members.filter((m) => m && m.name && !m.suspended).map((m) => m.name) // suspended members are not shown
+  }
+  if (hide.size) { const keep = stations.filter((x) => !hide.has(x.id)); stations.length = 0; stations.push(...keep) }
+}

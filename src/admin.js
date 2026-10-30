@@ -56,3 +56,34 @@ export const sendToInbox = async (row) => {
   const { error } = await supabase.from('submissions').insert({ ...row, status: 'new' })
   return !error
 }
+
+// ---------- part 2: spots, BTODA groups, fares, suspensions, user activity, announcements (see supabase/manage.sql) ----------
+const SAMPLE2 = {
+  edits: [{ station_id: 'night-711', name: '7-Eleven night spot', landmark: 'In front of 7-Eleven', contact_name: 'Rodel', contact_phone: '09171234567', verified: true, suspended: false, members: [{ name: 'Rodel Santos', suspended: false }, { name: 'Ben Cruz', suspended: true }] }],
+  spots: [{ id: 's1', name: 'Roxas Street waiting spot', about: 'near Roxas Street', lat: 6.78712, lon: 125.21245 }],
+  notices: [{ id: 'n1', title: 'Muddy road to Balutakay', body: 'The road past Managa is muddy. Motorcycles may ask for more.', tone: 'warn', lat: 6.86, lon: 125.18, active: true, rain_only: true, ends_at: null, created_at: ago(4) }],
+  activity: [{ id: 'a', kind: 'comment', route_id: 'terminal-rizal', body: 'Driver asked for ₱50 at night, is that normal?', status: 'visible', reports: 2, created_at: ago(3) }],
+}
+SAMPLE.users.forEach((u, i) => Object.assign(u, { posts_count: i ? 1 : 6, reports_made: i ? 0 : 2, last_post_at: ago(i ? 30 : 3), suspended: false, suspend_reason: null }))
+
+// marked spots: approve (shows on the map) or take off the map
+export const approveSpot = async (id, name) => { need(); ok(await supabase.from('submissions').update({ status: 'approved', name: name.trim().slice(0, 60) }).eq('id', id)) }
+export const loadApprovedSpots = async () => { if (DEMO) return SAMPLE2.spots; need(); return ok(await supabase.rpc('approved_spots')) }
+
+// BTODA groups: the admin's changes on top of the groups written in the app
+export const loadStandEdits = async () => { if (DEMO) return SAMPLE2.edits; need(); return ok(await supabase.from('stand_edits').select('*')) }
+export const saveStandEdit = async (row) => { need(); ok(await supabase.from('stand_edits').upsert({ ...row, updated_at: new Date().toISOString() })) }
+
+// fares
+export const loadFares = async () => { if (DEMO) return null; need(); const d = ok(await supabase.from('app_settings').select('value').eq('key', 'fares').maybeSingle()); return d?.value ?? null }
+export const saveFares = async (value) => { need(); ok(await supabase.from('app_settings').upsert({ key: 'fares', value, updated_at: new Date().toISOString() })) }
+
+// accounts: suspend, restore, and what an account has posted
+export const suspendUser = async (userId, reason) => { need(); ok(await supabase.from('suspensions').upsert({ user_id: userId, reason: (reason || '').slice(0, 120) || null })) }
+export const restoreUser = async (userId) => { need(); ok(await supabase.from('suspensions').delete().eq('user_id', userId)) }
+export const loadUserPosts = async (userId) => { if (DEMO) return SAMPLE2.activity; need(); return ok(await supabase.from('posts').select('id, kind, route_id, place_id, station_id, passenger, paid, body, status, reports, created_at').eq('user_id', userId).order('created_at', { ascending: false }).limit(50)) }
+
+// announcements
+export const loadNotices = async () => { if (DEMO) return SAMPLE2.notices; need(); return ok(await supabase.from('announcements').select('*').order('created_at', { ascending: false }).limit(100)) }
+export const saveNotice = async (n) => { need(); const { id, ...rest } = n; ok(id ? await supabase.from('announcements').update(rest).eq('id', id) : await supabase.from('announcements').insert(rest)) }
+export const removeNotice = async (id) => { need(); ok(await supabase.from('announcements').delete().eq('id', id)) }
