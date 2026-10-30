@@ -1,3 +1,4 @@
+// @ts-nocheck - this file runs on Supabase (Deno), not Node. VS Code checks it as Node, so it shows false errors for Deno and npm: imports.
 // Sends the two ride alerts: 30 minutes before the first ride and 1 hour before the last ride, for the big bus, van and mini bus.
 // It runs every 5 minutes (see the README for the schedule). Times are Bansalan time (UTC+8).
 import { createClient } from 'npm:@supabase/supabase-js@2'
