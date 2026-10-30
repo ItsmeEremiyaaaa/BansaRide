@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, StandPill, ClosedNotice, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
 import { lazy, Suspense } from 'react'
-const NO_LINKS = [] // no dashed lines while a route is drawn
+const NO_LINKS = []
 const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
 import Picker from '../Picker'
 import Transit from '../Transit'
@@ -297,18 +297,7 @@ export function MapScreen() {
   useEffect(() => { if (!sel && me && !movedToMe.current) { movedToMe.current = true; setFocusPt([me[0], me[1]]) } }, [sel, me])
   const hereNear = me && !sel ? nearestPlace(me[0], me[1]) : null
   const nearMe = me ? nearestStands(me, 1)[0] : null
-  // dashed lines: from a street to its nearest stand, and from you to the stand nearest to you
-  const links = useMemo(() => {
-    const out = []
-    if (p.kind === 'Street') {
-      const n = nearestStand(p.lat, p.lon)
-      const sp = n && stationPlace(n.station)
-      if (sp) out.push([[p.lat, p.lon], [sp.lat, sp.lon]])
-    }
-    const nm = me && sel ? nearestStands(me, 1)[0] : null // only once a place is picked
-    if (nm) out.push([me, [nm.place.lat, nm.place.lon]])
-    return out
-  }, [p, me, sel])
+  const links = NO_LINKS // the dashed lines between you, a street and a stand were removed
 
   const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else goFromMap('station', { id }) }
   const locate = () => { if (me) setFocusPt([me[0] + 1e-9 * (Date.now() % 7), me[1]]); // a new value each press, so the map moves every time
@@ -339,11 +328,11 @@ export function MapScreen() {
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} links={sel && ride?.path ? NO_LINKS : links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
-      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={sel && ride?.path ? NO_LINKS : links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
+      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
