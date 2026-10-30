@@ -4,10 +4,12 @@ import { useAuth } from '../auth'
 import { checkAdmin, loadOverview } from '../admin'
 import { Overview, Posts, Words } from './sections'
 import { Inbox, Groups, Fares, Users, Notices } from './sections2'
+import AdminMap from './AdminMap'
 
 // The admin website: a sidebar of sections and a wide work area, in the app's signboard style.
 const SECTIONS = [
   { id: 'overview', label: 'Overview', icon: 'chart', note: 'Accounts, posts, alerts and what riders open' },
+  { id: 'map', label: 'Map', icon: 'map', note: 'Every stand, approved spot, spot waiting for approval and announcement, in 2D or 3D' },
   { id: 'inbox', label: 'Inbox', icon: 'mail', note: 'Problem reports, and marked spots to approve before they show on the map' },
   { id: 'groups', label: 'BTODA groups', icon: 'vehicle', note: 'Groups and street spots: names, contacts, members, verified and suspended' },
   { id: 'fares', label: 'Fares', icon: 'peso', note: 'Tricycle fares by distance, and bus, van and mini bus fares by town' },
@@ -16,7 +18,7 @@ const SECTIONS = [
   { id: 'users', label: 'Accounts', icon: 'drivers', note: 'Who uses the app, what they post, and suspending accounts' },
   { id: 'words', label: 'Blocked words', icon: 'ban', note: 'Words that cannot be used in names and comments' },
 ]
-const BODY = { overview: Overview, inbox: Inbox, groups: Groups, fares: Fares, notices: Notices, posts: Posts, users: Users, words: Words }
+const BODY = { map: AdminMap, overview: Overview, inbox: Inbox, groups: Groups, fares: Fares, notices: Notices, posts: Posts, users: Users, words: Words }
 const fromHash = () => { const id = window.location.hash.replace(/^#\/?/, ''); return BODY[id] ? id : 'overview' }
 const today = () => new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date())
 
