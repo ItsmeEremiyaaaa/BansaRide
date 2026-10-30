@@ -6,21 +6,21 @@ import { Overview, Posts, Words } from './sections'
 import { Inbox, Groups, Fares, Users, Notices } from './sections2'
 import AdminMap from './AdminMap'
 
-// The admin website: a sidebar of sections and a wide work area, in the app's signboard style.
+// The admin website: a dark terminal-board sidebar grouped by job, and a calm wide work area.
 const SECTIONS = [
-  { id: 'overview', label: 'Overview', icon: 'chart', note: 'Accounts, posts, alerts and what riders open' },
-  { id: 'map', label: 'Map', icon: 'map', note: 'Every stand, approved spot, spot waiting for approval and announcement, in 2D or 3D' },
-  { id: 'inbox', label: 'Inbox', icon: 'mail', note: 'Problem reports, and marked spots to approve before they show on the map' },
-  { id: 'groups', label: 'BTODA groups', icon: 'vehicle', note: 'Groups and street spots: names, contacts, members, verified and suspended' },
-  { id: 'fares', label: 'Fares', icon: 'peso', note: 'Tricycle fares by distance, and bus, van and mini bus fares by town' },
-  { id: 'notices', label: 'Announcements', icon: 'megaphone', note: 'Notices riders see in the app and on the map' },
-  { id: 'posts', label: 'Posts', icon: 'chat', note: 'Fare reports and comments, and the ones riders reported' },
-  { id: 'users', label: 'Accounts', icon: 'drivers', note: 'Who uses the app, what they post, and suspending accounts' },
-  { id: 'words', label: 'Blocked words', icon: 'ban', note: 'Words that cannot be used in names and comments' },
+  { id: 'overview', group: 'Today', label: 'Overview', icon: 'chart', note: 'Accounts, posts, alerts and what riders open' },
+  { id: 'map', group: 'Today', label: 'Map', icon: 'map', note: 'Every stand, approved spot, spot waiting for approval and announcement, in 2D or 3D' },
+  { id: 'inbox', group: 'Today', label: 'Inbox', icon: 'mail', note: 'Problem reports, and marked spots to approve before they show on the map' },
+  { id: 'groups', group: 'Manage', label: 'BTODA groups', icon: 'vehicle', note: 'Groups and street spots: names, contacts, members, verified and suspended' },
+  { id: 'fares', group: 'Manage', label: 'Fares', icon: 'peso', note: 'Tricycle fares by distance, and bus, van and mini bus fares by town' },
+  { id: 'notices', group: 'Manage', label: 'Announcements', icon: 'megaphone', note: 'Notices riders see in the app and on the map' },
+  { id: 'posts', group: 'Community', label: 'Posts', icon: 'chat', note: 'Fare reports and comments, and the ones riders reported' },
+  { id: 'users', group: 'Community', label: 'Accounts', icon: 'drivers', note: 'Who uses the app, what they post, and suspending accounts' },
+  { id: 'words', group: 'Community', label: 'Blocked words', icon: 'ban', note: 'Words that cannot be used in names and comments' },
 ]
 const BODY = { map: AdminMap, overview: Overview, inbox: Inbox, groups: Groups, fares: Fares, notices: Notices, posts: Posts, users: Users, words: Words }
 const fromHash = () => { const id = window.location.hash.replace(/^#\/?/, ''); return BODY[id] ? id : 'overview' }
-const today = () => new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date())
+const today = () => new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date())
 
 // small line icons that the rider app does not have
 const EXTRA = {
@@ -109,22 +109,27 @@ export default function AdminApp() {
           <aside className="aw-side">
             <div className="aw-brand"><span className="aw-brand-art"><Trike width={46} height={32} /></span><b>BansaRide</b><em>Admin</em></div>
             <nav className="aw-nav" aria-label="Admin sections">
-              {SECTIONS.map((s) => (
-                <button key={s.id} className="aw-nav-item" aria-current={section === s.id ? 'page' : undefined} onClick={() => open(s.id)}>
-                  <Glyph name={s.icon} /><span>{s.label}</span>{s.id === 'inbox' && inbox > 0 && <i className="aw-badge">{inbox}</i>}
-                </button>
+              {['Today', 'Manage', 'Community'].map((g) => (
+                <div key={g} className="aw-nav-group">
+                  <span className="aw-nav-title">{g}</span>
+                  {SECTIONS.filter((s) => s.group === g).map((s) => (
+                    <button key={s.id} className="aw-nav-item" aria-current={section === s.id ? 'page' : undefined} onClick={() => open(s.id)}>
+                      <Glyph name={s.icon} /><span>{s.label}</span>{s.id === 'inbox' && inbox > 0 && <i className="aw-badge">{inbox}</i>}
+                    </button>
+                  ))}
+                </div>
               ))}
             </nav>
             <div className="aw-side-foot">
-              <span className="aw-who">{user?.email ?? 'Sample data'}</span>
+              <span className="aw-who"><i>{(user?.email ?? 'S').slice(0, 1).toUpperCase()}</i><span>{user?.email ?? 'Sample data'}</span></span>
               <a className="aw-link" href="/" target="_blank" rel="noreferrer"><Icon name="map" />Open the rider app</a>
               <button className="aw-link" onClick={signOut}><Icon name="back" />Sign out</button>
             </div>
           </aside>
           <main className="aw-main">
             <header className="aw-head">
-              <div><h1>{cur.label}</h1><p>{cur.note}</p></div>
-              <span className="aw-clock">{clock}</span>
+              <div><p className="aw-crumb">{cur.group}</p><h1>{cur.label}</h1><p>{cur.note}</p></div>
+              <span className="aw-clock"><Icon name="clock" />{clock}</span>
             </header>
             <div className={'aw-content adm aw-' + section}><Body key={section} /></div>
           </main>
