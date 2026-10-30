@@ -1689,3 +1689,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .onb-sent { color: var(--ink); }
 .onb-err { color: #fff; background: rgba(23, 10, 53, .55); border-radius: 10px; padding: 6px 10px; }
 .onb-input:focus { outline: 3px solid #fff; border-color: var(--ink); }
+
+/* Onboarding: centred. The panel is full width; the title, text, chips and links sit centred under it on every slide */
+.onb-slide { text-align: center; align-items: stretch; }
+.onb-slide h1, .onb-slide p, .onb-slide.login h1, .onb-slide.login p { text-align: center; margin-left: auto; margin-right: auto; }
+.onb-slide p { max-width: 34ch; }
+.onb-facts { justify-content: center; }
+.onb-guest:not(.primary) { align-self: center; }
+.onb-sent { text-align: left; }
