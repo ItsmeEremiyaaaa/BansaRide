@@ -95,10 +95,10 @@ const todaStations = standable.map((p) => ({
   members: MEMBERS[p.id] ?? [],
 }))
 // Stands mapped on OpenStreetMap inside Bansalan (exact positions). Their groups still need confirming with the drivers.
+// Motorcycles are not here on purpose: they all wait at the Public Market (see motor-pangbukid below).
 const nearStreet = (lat, lon) => places.filter((p) => p.kind === 'Street')
   .map((p) => ({ p, d: Math.hypot((p.lat - lat) * 111000, (p.lon - lon) * 110000) })).sort((a, b) => a.d - b.d)[0]?.p.name
 const osmStations = [
-  { id: 'spot-osm-moto', type: 'motor', lat: 6.78679, lon: 125.21015, label: 'Motorcycle stand' },
   { id: 'spot-osm-tric', type: 'toda', lat: 6.78659, lon: 125.21082, label: 'Tricycle stand' },
 ].map((o) => ({
   id: o.id, type: o.type, placeId: null, pos: { lat: o.lat, lon: o.lon },
@@ -143,7 +143,7 @@ export const stations = [
   // St. Therese Elementary School BTODA waits at the end of the road in Nebrada. Position is approximate (Lower Nebrada).
   { id: 'toda-sttherese', type: 'toda', placeId: null, pos: { lat: 6.7686, lon: 125.20599, approx: true }, name: 'St. Therese Elementary School BTODA', alias: 'St. Therese BTODA', source: 'reported', landmark: 'End of the road in Nebrada', contact: null, members: [] },
   {
-    id: 'motor-pangbukid', type: 'motor', placeId: 'market', name: 'Motorcycles', source: 'reported',
+    id: 'motor-pangbukid', type: 'motor', placeId: 'market', name: 'Motorcycles (Public Market)', alias: 'Motor pang-bukid', source: 'reported',
     landmark: 'They stay at the Public Market', confirmed: true, contact: null, members: [],
     // Motorcycles are only for the mountain areas. Routes are generated from the data.
     serves: [

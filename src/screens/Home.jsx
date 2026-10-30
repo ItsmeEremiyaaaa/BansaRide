@@ -186,7 +186,7 @@ export default function Home() {
         </section>
 
         <section aria-label="My places">
-          <div className="mine">
+          <div className="myplaces">
             {[['home', 'Home', 'home'], ['school', 'School', 'town'], ['work', 'Work', 'flag']].map(([slot, label, icon]) => {
               const id = mine[slot]
               const p = id && placeById(id)
