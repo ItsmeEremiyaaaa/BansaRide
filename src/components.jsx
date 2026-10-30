@@ -178,9 +178,9 @@ export const Icon = ({ name, filled, className }) =>
   )
 
 export const BackButton = ({ to, params }) => {
-  const { go, back } = useApp()
+  const { back } = useApp()
   return (
-    <button className="icon-btn" aria-label="Back" onClick={() => (to ? go(to, params, true) : back())}><Icon name="back" /></button>
+    <button className="icon-btn" aria-label="Back" onClick={() => back(to, params)}><Icon name="back" /></button>
   )
 }
 

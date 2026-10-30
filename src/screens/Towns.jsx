@@ -10,6 +10,8 @@ import { speak } from '../speech'
 import { offlineRide } from '../rideFromMe'
 import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
 
+let switchingTown = false // set when you pick another town in the chips: the rides pop-up stays quiet then
+
 function TownRow({ town, onOpen, index }) {
   return (
     <button className="row-item rise" style={{ '--i': Math.min(index, 8) }} onClick={() => onOpen(town.id)}>
@@ -76,18 +78,19 @@ export function Town() {
   const { go, params, say } = useApp()
   const tw = towns.find((x) => x.id === params.id) ?? towns[0]
   const [dir, setDir] = useState('out')
+  const [showPop] = useState(() => { const show = !switchingTown; switchingTown = false; return show })
   const out = dir === 'out'
 
   return (
     <>
-      <TransitPop modes={transitModesForTown(tw.id)} name={tw.name} />
+      {showPop && <TransitPop modes={transitModesForTown(tw.id)} name={tw.name} />}
       <YHeader title={out ? tw.name : 'Bansalan'} back={<BackButton to="towns" />} />
       <div className="body">
         <div className="chips scroll" role="group" aria-label="Choose a town">
           {towns.map((x) => (
             <button key={x.id} className="chip" aria-pressed={x.id === tw.id}
               ref={(el) => { if (el && x.id === tw.id) el.scrollIntoView({ inline: 'center', block: 'nearest' }) }}
-              onClick={() => go('town', { id: x.id }, true)}>{x.name}</button>
+              onClick={() => { switchingTown = true; go('town', { id: x.id }, 'replace') }}>{x.name}</button>
           ))}
         </div>
         <div className="seg" role="tablist" aria-label="Direction">
