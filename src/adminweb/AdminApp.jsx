@@ -33,7 +33,7 @@ function SignIn() {
   const [err, setErr] = useState('')
   const send = async (e) => {
     e.preventDefault()
-    if (!/^S+@S+.S+$/.test(email)) { setErr('Type a valid email.'); return }
+    if (!/^\S+@\S+\.\S+$/.test(email.trim())) { setErr('Type a valid email.'); return }
     if (!password) { setErr('Type your password.'); return }
     setErr(''); setBusy(true)
     const { error } = await signInPassword(email.trim(), password)
