@@ -1697,3 +1697,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .onb-facts { justify-content: center; }
 .onb-guest:not(.primary) { align-self: center; }
 .onb-sent { text-align: left; }
+/* Onboarding: the content block sits in the vertical middle of the space between the road and the buttons
+   (auto margins keep it scrollable instead of cut off on short screens) */
+.onb-slide { justify-content: flex-start; }
+.onb-slide > :first-child { margin-top: auto; }
+.onb-slide > :last-child { margin-bottom: auto; }
