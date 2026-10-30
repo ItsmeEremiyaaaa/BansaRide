@@ -13,6 +13,7 @@ let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href // one address used for both the key and the style
 export default function Map3D({ center, me, markers = [], pitch = 60, bearing = -20, onPick }) {
   const box = useRef(null)
+  const mapRef = useRef(null)
   useEffect(() => {
     if (!registered) {
       const proto = new Protocol()
@@ -26,9 +27,7 @@ export default function Map3D({ center, me, markers = [], pitch = 60, bearing = 
       sources: { p: { type: 'vector', url: `pmtiles://${FILE()}`, maxzoom: 15 } },
       layers: [
         { id: 'bg', type: 'background', paint: { 'background-color': MAPS.background } },
-        ...baseLayers('p', MAPS).filter((l) => l.type !== 'symbol' && l.id !== 'buildings'),
-        { id: 'b3d', type: 'fill-extrusion', source: 'p', 'source-layer': 'buildings', minzoom: 14,
-          paint: { 'fill-extrusion-color': '#e3dccb', 'fill-extrusion-height': ['coalesce', ['get', 'height'], 7], 'fill-extrusion-base': ['coalesce', ['get', 'min_height'], 0], 'fill-extrusion-opacity': 0.95 } },
+        ...baseLayers('p', MAPS).filter((l) => l.type !== 'symbol'),
       ],
     }
     const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, attributionControl: false })
@@ -39,8 +38,12 @@ export default function Map3D({ center, me, markers = [], pitch = 60, bearing = 
       const e = document.createElement('button'); e.className = 'pin3d-wrap'; e.setAttribute('aria-label', k.title ?? 'Place'); e.onclick = () => onPick?.(k.id); e.innerHTML = '<i class="pin3d"></i>'
       dots.push(new maplibregl.Marker({ element: e, anchor: 'bottom' }).setLngLat([k.lon, k.lat]).addTo(map))
     }
+    mapRef.current = map
     if (import.meta.env.DEV) window.__map3d = map
     return () => { dots.forEach((d) => d.remove()); map.remove() }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  // when a place is picked, glide to it and stay in 3D
+  const key = center.join()
+  useEffect(() => { mapRef.current?.easeTo({ center: [center[1], center[0]], duration: 700 }) }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
   return <div ref={box} className="map3d" role="img" aria-label="3D map of Bansalan" />
 }
