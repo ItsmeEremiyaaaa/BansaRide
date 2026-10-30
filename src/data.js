@@ -380,11 +380,19 @@ export const TOWN_RIDES = {
   kapatagan: { modes: ['mini'], ask: true, guide: { student: [80, 100] }, note: 'The fare is not fixed. It differs from bus to bus, so ask the conductor before you ride.' },
 }
 export const townAsksFare = (id) => !!TOWN_RIDES[id]?.ask
-export const transitModesForTown = (id) => TOWN_RIDES[id]?.modes ?? (MINI_TOWNS.includes(id) ? ['bus', 'van', 'mini'] : ['bus', 'van'])
+// The rule (told by riders): the big bus goes only to cities. Every other town has only the mini bus.
+// Cities also have vans, and Digos City also has the mini bus.
+export const isCity = (t) => /\bCity$/.test(t?.name ?? '')
+const townById = (id) => towns.find((t) => t.id === id)
+export const transitModesForTown = (id) => {
+  if (TOWN_RIDES[id]?.modes) return TOWN_RIDES[id].modes
+  if (!isCity(townById(id))) return ['mini']
+  return id === 'digos' ? ['bus', 'van', 'mini'] : ['bus', 'van']
+}
 // A short text for the main fare of a town: "₱65–90", or "Ask the conductor" where the fare is not fixed.
 export const townFareText = (t) => {
   if (townAsksFare(t.id)) return 'Ask the conductor'
-  const f = transitFare('bus', t.km)
+  const f = transitFare(isCity(t) ? 'bus' : 'mini', t.km)
   return `₱${f.student}–${f.adult}`
 }
 
