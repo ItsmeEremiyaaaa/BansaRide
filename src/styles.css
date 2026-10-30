@@ -1216,3 +1216,21 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 /* a clear gap between the map card and the tab bar */
 .mapcard { bottom: calc(112px + env(safe-area-inset-bottom, 0px)); max-height: 48%; }
 .mapcard.slim.here { bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+
+/* ---------- account screen: even spacing and readable text ---------- */
+.acct-status { display: flex; align-items: flex-start; gap: 12px; }
+.acct-status p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--ink2); min-width: 0; }
+.acct-status b { color: var(--ink); font-family: var(--display); font-size: 17px; }
+.acct-email { display: flex; align-items: center; gap: 10px; padding: 0 4px; min-width: 0; }
+.acct-email span { font-size: 14px; font-weight: 700; color: var(--ink2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.acct-form { gap: 20px; }
+.acct-field { display: grid; gap: 8px; }
+.acct-field .lbl { font-size: 13px; color: var(--ink); letter-spacing: 0; }
+.acct-field .boxed.input { font-size: 16px; font-weight: 700; min-height: 52px; }
+.acct-field .boxed.input::placeholder { font-weight: 600; font-size: 15px; color: #98a2b3; }
+.acct-field .hint { margin: 0; font-size: 13px; line-height: 1.5; }
+.acct-sec { padding-top: 18px; border-top: 2px dashed var(--line); margin: 0 !important; }
+.acct-form .chips.wrap { gap: 10px; }
+.acct-form .chips.wrap .chip { height: 42px; padding: 0 16px; }
+.acct-out { margin-top: 4px; }
+.body:has(.acct-form) { gap: 18px; padding-bottom: 140px; }
