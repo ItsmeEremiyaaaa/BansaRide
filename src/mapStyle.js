@@ -27,7 +27,7 @@ export const signboardRules = (lang = 'en') => ({ paintRules: paintRules(SIGNBOA
 
 // ---------- texture: trees, crop rows, grass, hatched buildings and little waves ----------
 // Each pattern is a small picture that repeats over an area. They sit under the roads and labels.
-import { PolygonSymbolizer, createPattern } from 'protomaps-leaflet'
+import { PolygonSymbolizer, LineSymbolizer, createPattern, exp } from 'protomaps-leaflet'
 
 const draw = (size, fn) => createPattern(size, size, (_c, ctx) => fn(ctx, size))
 const tree = (ctx, x, y, r, crown, trunk) => {
@@ -81,3 +81,53 @@ export const texturedRules = (lang = 'en') => {
   const at = base.findIndex((r) => r.dataLayer === 'roads')
   return { paintRules: [...base.slice(0, at), ...textures, ...base.slice(at)], labelRules: labelRules(SIGNBOARD, lang), backgroundColor: PAPER }
 }
+
+// ---------- "Maps" style: the clean, familiar phone-map look (this is the default now) ----------
+const LAND = '#f3f0e9'
+export const MAPS = {
+  ...LIGHT,
+  background: LAND, earth: LAND,
+  park_a: '#d3e9bf', park_b: '#c8e4b0', wood_a: '#c8e4b0', wood_b: '#bcdca3', scrub_a: '#dcebc8', scrub_b: '#d3e6bc',
+  hospital: '#f7dcd8', school: '#f4e7c9', industrial: '#ece8df', pedestrian: '#f7f5ef', sand: '#f1e6c4', beach: '#f1e6c4',
+  water: '#a6d4f0',
+  buildings: '#e7e2d6',
+  // roads: white with a thin light-grey outline; main roads a touch bigger and tan like the reference highway
+  minor_service_casing: '#e1ddd2', minor_casing: '#dedad0', link_casing: '#e0c08a', major_casing_early: '#d8d3c6', major_casing_late: '#d8d3c6',
+  highway_casing_early: '#e2b46d', highway_casing_late: '#e2b46d',
+  minor_service: '#ffffff', minor_a: '#ffffff', minor_b: '#ffffff', other: '#fbfaf6', link: '#fde7b6',
+  major: '#ffffff', highway: '#fbd48b',
+  bridges_minor_casing: '#d8d3c6', bridges_major_casing: '#d8d3c6', bridges_highway_casing: '#e2b46d', bridges_link_casing: '#e0c08a', bridges_other_casing: '#d8d3c6',
+  bridges_minor: '#ffffff', bridges_major: '#ffffff', bridges_highway: '#fbd48b', bridges_link: '#fde7b6', bridges_other: '#ffffff',
+  boundaries: '#b9b2a2',
+  roads_label_minor: '#6b665c', roads_label_minor_halo: '#ffffff', roads_label_major: '#4d493f', roads_label_major_halo: '#ffffff',
+  subplace_label: '#7c776b', subplace_label_halo: '#f7f5ef', city_label: '#4d493f', city_label_halo: '#f7f5ef',
+  address_label: '#8a8577', address_label_halo: '#ffffff',
+}
+// The default style paints every road the same color, so the roads are drawn here: a grey outline under each, then the fill.
+const KIND = (...k) => (_z, f) => k.includes(String(f?.props?.kind ?? ''))
+const W = {
+  path: exp(1.6, [[14, 0], [20, 7]]),
+  minor: exp(1.6, [[13, 0], [18, 8]]),
+  major: exp(1.6, [[6, 0], [12, 1.6], [15, 3], [18, 13]]),
+  highway: exp(1.6, [[3, 0], [6, 1.1], [12, 1.6], [15, 5], [18, 15]]),
+}
+const road = (width, color, outline, ...kinds) => [
+  { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color: outline, width: (z, f) => (width(z, f) > 0 ? width(z, f) + 1.6 : 0) }), filter: KIND(...kinds) },
+  { dataLayer: 'roads', symbolizer: new LineSymbolizer({ color, width }), filter: KIND(...kinds) },
+]
+const mapRoads = [
+  ...road(W.path, '#fbfaf6', '#dedad0', 'other', 'path'),
+  ...road(W.minor, '#ffffff', '#d9d4c8', 'minor_road'),
+  ...road(W.major, '#ffffff', '#cfc9bb', 'major_road'),
+  ...road(W.highway, '#fbd48b', '#dba452', 'highway'),
+]
+export const mapsRules = (lang = 'en') => {
+  const base = paintRules(MAPS)
+  const isDefaultRoad = (r) => r.dataLayer === 'roads' && r.symbolizer instanceof LineSymbolizer && r.symbolizer.color?.get?.(10) === MAPS.major && !r.symbolizer.dash
+  const first = base.findIndex(isDefaultRoad)
+  const kept = base.filter((r) => !isDefaultRoad(r))
+  return { paintRules: [...kept.slice(0, first), ...mapRoads, ...kept.slice(first)], labelRules: labelRules(MAPS, lang), backgroundColor: LAND }
+}
+
+// the style in use: add ?style=signboard to an address to see the yellow signboard map instead
+export const chosenRules = (lang = 'en') => (/[?&#]style=signboard/.test(window.location.href) ? texturedRules(lang) : mapsRules(lang))
