@@ -125,7 +125,7 @@ export default function Onboarding({ onDone }) {
     el.style.transform = `translate(-50%, -100%) scale(${q.s})`
     cur.current = q
   }
-  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : n === 2 ? spots.fares : n === 3 ? spots.near : { ...spots.near, x: spots.w + 120, o: 0 }) // the bus takes over on the last slide
+  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : n === 2 ? spots.fares : n === 3 ? spots.near : { ...spots.near, x: spots.near.x - (n - 3) * spots.w }) // after slide 4 it stays on that slide and moves out with it
   // settle on the current slide (and on the map slide, drive the route)
   useEffect(() => {
     if (!spots || dragging) return
