@@ -120,7 +120,7 @@ export function Station() {
           <p><b>Location needed</b>This group is not on the map yet. Tell us where it waits and we will add it.</p>
         </div>
       )}
-      <div className="sheet">
+      <div className="sheet station-sheet">
         <div className="grab" aria-hidden="true" />
         <div>
           <div className="mapcard-tags">
@@ -130,7 +130,10 @@ export function Station() {
             {s.source === 'generated' && <Tag tone="grey">Group name to confirm</Tag>}
             {s.pos?.approx && <Tag tone="grey">Approximate position</Tag>}
           </div>
-          <h1 className="route-title" style={{ marginTop: 8 }}>{s.name}</h1>
+          <div className="st-hero">
+            <span className="st-badge">{s.type === 'motor' ? <Moto width={64} height={44} /> : <Trike width={64} height={44} />}</span>
+            <div className="st-titles"><h1 className="route-title">{s.name}</h1><StandPill s={s} /></div>
+          </div>
           {s.alias && <p className="row-sub">Also called {s.alias}</p>}
           <p className="row-sub">{p ? `Waits at ${p.name}${s.landmark ? ` · ${s.landmark}` : ''}` : 'Waiting spot not on the map yet'}</p>
         </div>
@@ -141,7 +144,7 @@ export function Station() {
           <div className={'nav-card' + (now.state === 'closed' ? ' dimmed' : '')} aria-disabled={now.state === 'closed'}>
             <div className="row between">
               <div>
-                <span className="stat-k">From you · live</span>
+                <span className="stat-k">How far from you</span>
                 <b className="nav-dist">{dist !== null ? fmtDist(dist) : loc.state === 'finding' ? 'Finding you…' : 'Location is off'}</b>
                 {dist !== null && <span className="row-sub"><Icon name="arrow" className="inline" style={{ transform: `rotate(${Math.round(bearing - 90)}deg)` }} /> {compassName(bearing)} · about {walkMinutes(dist)} min walk · within {loc.accuracy} m</span>}
               </div>

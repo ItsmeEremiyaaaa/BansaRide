@@ -1400,3 +1400,22 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .stats3 { text-align: center; }
 .stats3 > div { justify-items: center; text-align: center; align-content: center; }
 .stats3 .stat-v, .stats3 .stat-k, .stats3 .row-sub { text-align: center; }
+
+/* ---------- driver stand page: a calmer, clearer sheet ---------- */
+.station-sheet { gap: 18px; padding-top: 14px; }
+.station-sheet .mapcard-tags { gap: 8px; margin: 0 0 10px; }
+.st-hero { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; align-items: center; margin: 4px 0 8px; }
+.st-badge { width: 76px; height: 62px; display: grid; place-items: center; border-radius: 18px; background: #fff3cf; box-shadow: 0 6px 16px rgba(232, 161, 0, .22); }
+.st-titles { display: grid; gap: 8px; min-width: 0; justify-items: start; }
+.st-titles .route-title { font-size: 26px; line-height: 1.1; margin: 0; overflow-wrap: anywhere; }
+.station-sheet > div > .row-sub { line-height: 1.45; margin-top: 4px; }
+.station-sheet .nav-card { display: grid; gap: 14px; padding: 18px; border-radius: 22px; background: linear-gradient(180deg, #eef3ff, #f7f9ff); box-shadow: 0 8px 24px rgba(21, 96, 240, .10); border: 0; }
+.station-sheet .nav-dist { display: block; font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -.02em; margin: 4px 0; }
+.station-sheet .nav-card .stat-k { text-transform: uppercase; letter-spacing: .06em; font-size: 11px; color: var(--primary); }
+.station-sheet .nav-card .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.station-sheet .nav-card .hint { margin: 0; text-align: center; }
+.station-sheet h2.sec { margin: 0 0 8px; }
+.station-sheet .nav-card .cta-row .btn { white-space: nowrap; font-size: 14px; padding: 0 10px; }
+.station-sheet .nav-card .cta-row .btn svg { width: 18px; height: 18px; flex: none; }
+.station-sheet .nav-dist { font-size: 34px; }
+.station-sheet { border-top: 0 !important; }
