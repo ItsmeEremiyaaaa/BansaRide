@@ -66,9 +66,9 @@ export function RouteScreen() {
   return (
     <>
       <div className="mapbox tall">
-        <MapView route={path} routeColor={routeColor(r)} markers={markers} label={`Map of the route from ${a.name} to ${b.name}`} />
+        <MapView mood={look.mood} route={path} routeColor={routeColor(r)} markers={markers} label={`Map of the route from ${a.name} to ${b.name}`} />
         <div className="float l"><BackButton /></div>
-        <div className="float c"><span className="route-pill glass">{shortName(fromId)} <Icon name="arrow" className="inline" /> {shortName(toId)}</span></div>
+        <div className="float c"><span className="route-pill glass">{me && !motor ? 'Your location' : shortName(fromId)} <Icon name="arrow" className="inline" /> {shortName(toId)}</span></div>
         <div className="float r">
           <button className="icon-btn" aria-pressed={isSaved} aria-label={isSaved ? 'Remove saved route' : 'Save route'}
             onClick={() => { toggleSaved(r.id); say(isSaved ? 'Removed from saved routes' : 'Saved. Find it on Home.') }}>
@@ -328,7 +328,7 @@ export function MapScreen() {
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
@@ -478,6 +478,7 @@ function SchoolCard({ school, go, nearest }) {
 
 export function Place() {
   const { go, params, loc } = useApp()
+  const look = useLook()
   const p = placeById(params.id) ?? places[0]
   const ways = routes.filter((r) => r.to === p.id || r.from === p.id)
   const here = stationsAt(p.id)
@@ -486,7 +487,7 @@ export function Place() {
   return (
     <>
       <div className="mapbox short">
-        <MapView markers={markers} zoom={17} label={`Map of ${p.name}`} />
+        <MapView mood={look.mood} markers={markers} zoom={17} label={`Map of ${p.name}`} />
         <div className="float l"><BackButton /></div>
       </div>
       <div className="sheet">
