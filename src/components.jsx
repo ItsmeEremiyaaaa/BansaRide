@@ -114,6 +114,54 @@ export function Defs() {
           <circle cx="110" cy="220" r="36" fill="#111" /><circle cx="110" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="110" cy="220" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="110" cy="220" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="110" cy="220" r="8" fill="#1F7A8C" strokeWidth="3" /><circle cx="310" cy="220" r="36" fill="#111" /><circle cx="310" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="310" cy="220" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="310" cy="220" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="310" cy="220" r="8" fill="#1F7A8C" strokeWidth="3" />
         </g>
       </symbol>
+      <symbol id="i-barangay" viewBox="0 0 420 290">
+        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <rect x="50" y="238" width="320" height="20" rx="10" fill="#7FB8C9" />
+          <path d="M338 36 V150" fill="none" strokeWidth="6" />
+          <path d="M338 40 H392 L376 60 L392 80 H338 Z" fill="#E5322D" />
+          <rect x="92" y="142" width="236" height="98" fill="#F4B400" />
+          <path d="M66 148 L210 60 L354 148 Z" fill="#E5322D" />
+          <polygon points="120,134 140,134 130,148" fill="#fff" /><polygon points="150,126 170,126 160,140" fill="#1F7A8C" /><polygon points="250,126 270,126 260,140" fill="#fff" /><polygon points="280,134 300,134 290,148" fill="#1F7A8C" />
+          <rect x="146" y="116" width="128" height="24" rx="6" fill="#fff" /><path d="M162 128 H258" stroke="#E5322D" strokeWidth="6" fill="none" />
+          <rect x="186" y="178" width="48" height="62" rx="6" fill="#1F7A8C" />
+          <rect x="112" y="166" width="42" height="38" rx="5" fill="#bfe3ee" /><rect x="266" y="166" width="42" height="38" rx="5" fill="#bfe3ee" />
+          <path d="M112 185 H154 M133 166 V204" stroke="#111" strokeWidth="4" fill="none" /><path d="M266 185 H308 M287 166 V204" stroke="#111" strokeWidth="4" fill="none" />
+        </g>
+      </symbol>
+      <symbol id="i-sitio" viewBox="0 0 420 290">
+        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <circle cx="340" cy="62" r="26" fill="#FFD24A" />
+          <path d="M30 240 L158 66 L286 240 Z" fill="#4CAE74" />
+          <path d="M158 66 L132 102 L150 96 L162 112 L176 96 L190 102 Z" fill="#fff" />
+          <path d="M200 240 L296 118 L392 240 Z" fill="#6CC28A" />
+          <rect x="30" y="238" width="360" height="20" rx="10" fill="#F2D49B" />
+          <rect x="132" y="196" width="76" height="44" fill="#F2D49B" />
+          <path d="M118 204 L170 154 L222 204 Z" fill="#F4B400" />
+          <rect x="160" y="212" width="20" height="28" rx="3" fill="#7a5a2b" />
+          <rect x="316" y="204" width="14" height="38" fill="#7a5a2b" />
+          <circle cx="323" cy="190" r="28" fill="#3f9a52" /><circle cx="312" cy="180" r="8" fill="#fff" fillOpacity=".3" stroke="none" />
+        </g>
+      </symbol>
+      <symbol id="i-place" viewBox="0 0 420 290">
+        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <ellipse cx="210" cy="262" rx="84" ry="13" fill="#111" fillOpacity=".22" stroke="none" />
+          <path d="M210 28 C146 28 108 76 108 128 C108 196 210 258 210 258 C210 258 312 196 312 128 C312 76 274 28 210 28 Z" fill="#E5322D" />
+          <circle cx="210" cy="126" r="48" fill="#fff" />
+          <path d="M210 98 L219 118 L241 121 L225 136 L229 158 L210 147 L191 158 L195 136 L179 121 L201 118 Z" fill="#F4B400" />
+          <path d="M146 58 Q164 40 190 36" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="9" />
+        </g>
+      </symbol>
+      <symbol id="i-street" viewBox="0 0 420 290">
+        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M96 266 L168 168 H252 L324 266 Z" fill="#475467" />
+          <path d="M210 256 V238 M210 220 V204 M210 188 V176" fill="none" stroke="#fff" strokeWidth="9" />
+          <rect x="198" y="100" width="24" height="70" fill="#F4B400" />
+          <rect x="52" y="30" width="316" height="76" rx="12" fill="#1F7A8C" />
+          <rect x="64" y="42" width="292" height="52" rx="7" fill="none" stroke="#fff" strokeWidth="4" />
+          <path d="M92 68 H214" stroke="#fff" strokeWidth="11" fill="none" />
+          <path d="M252 68 H322 M300 52 L322 68 L300 84" stroke="#F4B400" strokeWidth="9" fill="none" />
+        </g>
+      </symbol>
     </svg>
   )
 }
@@ -172,7 +220,7 @@ const ICONS = {
   minus: <path d="M5 12h14" />,
 }
 
-const ICON_ART = {"vehicle":"trike","moto":"moto","bus":"bus","van":"van"}
+const ICON_ART = {"vehicle":"trike","moto":"moto","bus":"bus","van":"van","barangay":"i-barangay","sitio":"i-sitio","place":"i-place","street":"i-street"}
 export const Icon = ({ name, filled, className }) =>
   ICON_ART[name] ? (
     <svg className={'ico-art m-' + name + ' ' + (className ?? '')} viewBox="0 0 420 290" aria-hidden="true"><use href={'#' + ICON_ART[name]} /></svg>

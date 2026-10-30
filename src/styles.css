@@ -1295,3 +1295,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .pin.closed { opacity: .4; filter: grayscale(1); }
 .pin.art.closed { opacity: .4; filter: grayscale(1) drop-shadow(0 2px 2px rgba(0,0,0,.3)); }
 .pin.still, .pin.art.still { animation: none !important; }
+
+/* the app's own place icons on the map */
+.pin.art.Barangay, .pin.art.Sitio, .pin.art.Place { width: 46px; height: 32px; }
+.row-item .ico svg.ico-art.m-barangay, .pick-row .ico svg.ico-art.m-barangay, .pick-row .ico svg.ico-art.m-sitio, .pick-row .ico svg.ico-art.m-place, .pick-row .ico svg.ico-art.m-street { width: 36px; height: 25px; }
