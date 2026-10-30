@@ -8,7 +8,7 @@ import Transit from '../Transit'
 import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
 import RainOverlay from '../RainOverlay'
-import { useLook, setLook } from '../mood'
+import { useLook } from '../mood'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
 import { track } from '../track'
@@ -248,7 +248,6 @@ export function MapScreen() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [view3d, setView3d] = useState(false)
   const look = useLook()
-  const [lookOpen, setLookOpen] = useState(false)
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
   const [more, setMore] = useState(false) // the card starts small so the map stays visible; this opens the rides and drivers
@@ -336,22 +335,6 @@ export function MapScreen() {
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
-      {lookOpen && (
-        <>
-          <button className="filter-scrim" aria-label="Close" onClick={() => setLookOpen(false)} tabIndex={-1} />
-          <div className="filter-panel look-panel" role="dialog" aria-label="Map look">
-            <div className="filter-head"><b>Map look</b></div>
-            <span className="look-k">Time of day</span>
-            <div className="chips wrap">
-              {[['auto', `Auto · ${look.auto}`], ['morning', 'Morning'], ['day', 'Day'], ['evening', 'Evening'], ['night', 'Night']].map(([id, label]) => <button key={id} className="chip small" aria-pressed={look.mode === id} onClick={() => setLook(id)}>{label}</button>)}
-            </div>
-            <span className="look-k">Rain</span>
-            <div className="chips wrap">
-              {[['auto', `Auto · ${look.rainAuto ? 'raining' : 'dry'}`], ['on', 'Rain on'], ['off', 'Rain off']].map(([id, label]) => <button key={id} className="chip small" aria-pressed={look.rainPick === id} onClick={() => setLook(null, id)}>{label}</button>)}
-            </div>
-          </div>
-        </>
-      )}
       {filterOpen && (
         <>
           <button className="filter-scrim" aria-label="Close the filter" onClick={() => setFilterOpen(false)} tabIndex={-1} />
@@ -368,7 +351,6 @@ export function MapScreen() {
       )}
       <div className="float r col">
         <button className={'icon-btn view-btn' + (view3d ? ' on' : '')} aria-pressed={view3d} aria-label={view3d ? 'Back to the flat map' : 'Show the 3D map'} onClick={() => setView3d((v) => !v)}>{view3d ? '2D' : '3D'}</button>
-        <button className={'icon-btn' + (look.mode !== 'auto' || look.rainPick !== 'auto' ? ' on' : '')} aria-haspopup="dialog" aria-expanded={lookOpen} aria-label="Map look: morning, evening, night and rain" onClick={() => { setLookOpen((v) => !v); setFilterOpen(false) }}><Icon name={look.rain ? 'info' : 'sun'} /></button>
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" aria-label={`Filter: show shops, hotels and more${poiKinds.length ? `, ${poiKinds.length} on` : ''}`} onClick={() => setFilterOpen((v) => !v)}><Icon name="filter" />{poiKinds.length > 0 && <i className="icon-badge">{poiKinds.length}</i>}</button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>

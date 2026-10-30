@@ -69,7 +69,7 @@ export function Visitor() {
 }
 
 const STEPS = [
-  ['map', 'Find where you are', 'Open the Map. The blue dot is you. Tap the 3D button for a tilted view, or the sun button to change the look (morning, evening, night, rain).'],
+  ['map', 'Find where you are', 'Open the Map. The blue dot is you. Tap the 3D button for a tilted view. The map follows the real time and weather in Bansalan: morning, evening, night and rain.'],
   ['search', 'Pick where you go', 'Search any street, barangay, shop or hotel. The card shows how long it takes to walk or ride, and the fare.'],
   ['vehicle', 'Know who to ask', 'Tricycle and pedicab wait at the waiting spots on the map. Farm motorcycles wait at the Public Market and have no fixed fare: ask the driver.'],
   ['calc', 'Check the price', 'Fare list and Fare check show prices for students, seniors, PWD and adults. Sign in to see your own fare everywhere.'],
