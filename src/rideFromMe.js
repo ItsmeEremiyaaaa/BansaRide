@@ -19,7 +19,7 @@ export function offlineRide(me, dest) {
   const vehicle = direct?.vehicle ?? (motorOnly ? 'Motor' : 'Tricycle')
   const km = Math.max(0.1, direct ? direct.km + (np.meters / 1000) * 1.3 : (straight / 1000) * roadFactor(dest))
   const stored = direct ? (direct.from === np.place.id ? direct.path : [...direct.path].reverse()) : null
-  return { km: Math.round(km * 10) / 10, minutes: rideMinutes(km, vehicle), vehicle, path: stored ? [me, ...stored] : null, straight, exact: false }
+  return { km: Math.round(km * 10) / 10, kmExact: km, minutes: rideMinutes(km, vehicle), vehicle, path: stored ? [me, ...stored] : null, straight, exact: false }
 }
 
 // Hook: the ride estimate for `dest`, improved to the real road when there is a signal.
@@ -41,7 +41,7 @@ export function useRideFromMe(me, dest) {
         if (cancelled || j.code !== 'Ok') return
         const leg = j.routes[0]
         const km = Math.max(0.1, Math.round(leg.distance / 100) / 10)
-        const result = { km, minutes: rideMinutes(km, base.vehicle), vehicle: base.vehicle, path: leg.geometry.coordinates.map(([x, y]) => [y, x]), straight: base.straight, exact: true }
+        const result = { km, kmExact: leg.distance / 1000, minutes: rideMinutes(km, base.vehicle), vehicle: base.vehicle, path: leg.geometry.coordinates.map(([x, y]) => [y, x]), straight: base.straight, exact: true }
         const all = read(); all[key] = result; write(all)
         setExact(result)
       })

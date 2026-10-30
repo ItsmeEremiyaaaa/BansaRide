@@ -159,7 +159,7 @@ export function Fares() {
   const motor = trip?.vehicle === 'Motor'
   const km = trip?.km ?? 0
   const fromName = fromId === 'me' ? 'My location' : placeById(fromId)?.name
-  const r = { km }
+  const r = { km: trip?.kmExact ?? km } // the fare uses the exact distance
   const rows = PASSENGERS.map((p) => ({ ...p, n: counts[p.id] ?? 0, each: fareFor(r.km, p.id) }))
   const riders = rows.reduce((a, x) => a + x.n, 0)
   const total = rows.reduce((a, x) => a + x.n * x.each, 0)

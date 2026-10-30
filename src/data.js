@@ -22,13 +22,15 @@ export const PASSENGERS = [
   { id: 'adult', label: 'Adult', short: 'Adult', base: 20 },
 ]
 const PER_KM = 20 / 2.7 // pesos for each km after the first (about ₱7.4), fitted to the Rizal example
-// A very short ride (a few steps, under about 500 m) costs the minimum of ₱10 for everyone. Change SHORT_RIDE_KM to move it.
-export const SHORT_RIDE_KM = 0.5
-export const SHORT_RIDE_FARE = 10
+// Short rides by how far it is (told by riders): under 100 m (two digits, like 20 to 50 m) costs ₱10 for everyone;
+// 100 m up to 1 km (three digits) costs ₱15. From 1 km the normal fares below apply.
+export const TIER_NEAR = { km: 0.1, fare: 10 }
+export const TIER_SHORT = { km: 1, fare: 15 }
 export const fareFor = (km, id) => {
-  if (km < SHORT_RIDE_KM) return SHORT_RIDE_FARE
+  if (km < TIER_NEAR.km) return TIER_NEAR.fare
+  if (km < TIER_SHORT.km) return TIER_SHORT.fare
   const { base } = PASSENGERS.find((p) => p.id === id)
-  return Math.max(base, Math.round((base + PER_KM * Math.max(0, km - 1)) / 5) * 5)
+  return Math.max(base, TIER_SHORT.fare, Math.round((base + PER_KM * Math.max(0, km - 1)) / 5) * 5) // never cheaper than the 100 m to 1 km fare
 }
 export const estimateFare = (km) => fareFor(km, 'adult')
 export const FARE_NOTE = 'Near Bansalan the base fares are reported by riders. Farther rides cost more: Rizal is ₱30 to ₱40 (riders say up to ₱50 at times). Confirm at the terminal.'
