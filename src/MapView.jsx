@@ -14,6 +14,8 @@ const PAD = 0.012
 const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
 const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD])
+const OUTSIDE = '#ece9e1' // what you see outside Bansalan: plain, no map
+const EDGE = '#c9c3b4'
 const WORLD = [[-85, -180], [-85, 180], [85, 180], [85, -180]]
 
 // A real OpenStreetMap map. Pins and the route line are drawn by us, so they still
@@ -87,9 +89,10 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (offsetRef.current) m.setView(above(m, center ?? [6.7875, 125.2118], zoom, offsetRef.current), zoom, { animate: false })
     map.current = m
     if (import.meta.env.DEV) window.__bansaMap = m // for testing in the browser
-    // dim everything outside Bansalan, then outline the border
-    L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: '#0b1020', fillOpacity: 0.42, interactive: false }).addTo(m)
-    L.polygon(boundary[0], { color: '#f4b400', weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
+    // Only Bansalan is shown: everything outside the border is a plain blank color (no map, no grey overlay, no dotted barrier),
+    // with just a thin soft edge so you can see where the municipality ends.
+    L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: OUTSIDE, fillOpacity: 1, interactive: false, bubblingMouseEvents: true }).addTo(m)
+    L.polygon(boundary[0], { color: EDGE, weight: 1.5, fill: false, interactive: false }).addTo(m)
     const names = L.layerGroup(barangays.map((b) => L.marker([b.lat, b.lon], {
       interactive: false, keyboard: false, zIndexOffset: -500,
       icon: L.divIcon({ className: 'brgy-wrap', html: `<span class="brgy">${b.name}</span>`, iconSize: [0, 0] }),
