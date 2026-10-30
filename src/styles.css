@@ -1234,3 +1234,20 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .acct-form .chips.wrap .chip { height: 42px; padding: 0 16px; }
 .acct-out { margin-top: 4px; }
 .body:has(.acct-form) { gap: 18px; padding-bottom: 140px; }
+
+/* map look: rain and the mood of the day */
+.rain { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1050; pointer-events: none; }
+.mapfill.rainy::after { content: ''; position: absolute; inset: 0; z-index: 1040; pointer-events: none; background: linear-gradient(180deg, rgba(60, 80, 110, .28), rgba(90, 110, 140, .16)); }
+.mapfill.rainy .leaflet-tile-pane { filter: saturate(.7) brightness(.92); }
+.mapfill.mood-night.rainy::after { background: linear-gradient(180deg, rgba(5, 10, 30, .35), rgba(20, 30, 60, .2)); }
+.mapfill.mood-morning .leaflet-tile-pane { filter: sepia(.08) brightness(1.03); }
+.mapfill.mood-evening::before { content: ''; position: absolute; inset: 0; z-index: 1040; pointer-events: none; background: radial-gradient(120% 70% at 50% 0%, rgba(255, 150, 80, .22), transparent 60%); }
+.mapfill.mood-night .leaflet-container { background: #151c30; }
+.look-panel { top: calc(124px + env(safe-area-inset-top, 0px)); width: min(310px, calc(100% - 136px)); gap: 10px; }
+.look-k { font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: var(--ink2); }
+.look-panel .chips.wrap { gap: 8px; }
+.note.warn { background: #ffe2dd; border-color: var(--red); }
+.how { display: grid; grid-template-columns: 34px 40px minmax(0, 1fr); gap: 12px; align-items: start; }
+.how-n { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); border: 2.5px solid var(--ink); display: grid; place-items: center; font-weight: 900; font-family: var(--display); }
+.how-ico svg { width: 30px; height: 30px; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.how .sec { margin: 0 0 4px; } .how p { margin: 0; line-height: 1.45; font-size: 14px; }
