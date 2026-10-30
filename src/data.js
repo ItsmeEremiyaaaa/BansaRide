@@ -352,7 +352,7 @@ export const ALERT_FIRST_BEFORE = 30
 export const ALERT_LAST_BEFORE = 60
 export const TRANSIT = {
   bus: { id: 'bus', label: 'Big bus', first: 3 * 60, last: 23 * 60, firstText: '3:00 AM', lastText: '11:00 PM', where: 'Digos, Davao, Kidapawan and other cities', stop: 'Leaves from the Bus Terminal' },
-  van: { id: 'van', label: 'Van', first: 5 * 60, last: 23 * 60, firstText: '5:00 AM', lastText: '11:00 PM', where: 'Cities and towns, a little cheaper than the bus', stop: 'Leaves when it is full' },
+  van: { id: 'van', label: 'Van', first: 5 * 60, last: 20 * 60, firstText: '5:00 AM', lastText: '8:00 PM', where: 'Cities and towns, a little cheaper than the bus', stop: 'Leaves when it is full' },
   mini: { id: 'mini', label: 'Mini bus', first: 8 * 60, last: 17 * 60, firstText: '8:00 AM', lastText: '5:00 PM', where: 'Rural areas with a good road', stop: 'Waits at the Public Market' },
 }
 // { adult, student } for a trip of `km`. Students, seniors and PWD get the discount.
