@@ -24,32 +24,35 @@ const EXTRA = {
 }
 const Glyph = ({ name }) => (EXTRA[name] ? <svg className="aw-ico" viewBox="0 0 24 24" aria-hidden="true">{EXTRA[name]}</svg> : <Icon name={name} />)
 
+// Admins sign in with an email and a password (the account is made in Supabase: Authentication, Users). No email is sent.
 function SignIn() {
-  const { sendLink, configured } = useAuth()
+  const { signInPassword, configured } = useAuth()
   const [email, setEmail] = useState('')
-  const [state, setState] = useState('idle')
+  const [password, setPassword] = useState('')
+  const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
   const send = async (e) => {
     e.preventDefault()
-    if (!/^\S+@\S+\.\S+$/.test(email)) { setErr('Type a valid email.'); return }
-    setErr(''); setState('busy')
-    const { error } = await sendLink(email.trim())
-    if (error) { setErr(error); setState('idle'); return }
-    setState('sent')
+    if (!/^S+@S+.S+$/.test(email)) { setErr('Type a valid email.'); return }
+    if (!password) { setErr('Type your password.'); return }
+    setErr(''); setBusy(true)
+    const { error } = await signInPassword(email.trim(), password)
+    setBusy(false)
+    if (error) setErr(error)
   }
   return (
     <form className="aw-login" onSubmit={send}>
       <span className="aw-login-art"><Trike width={120} height={83} /></span>
       <h1>BansaRide admin</h1>
-      {!configured ? <p>Accounts are not switched on for this copy of the site.</p> : state === 'sent' ? (
-        <p className="aw-sent"><Icon name="check" className="inline" /> Check your email and open the sign-in link on this computer.</p>
-      ) : (
+      {!configured ? <p>Accounts are not switched on for this copy of the site.</p> : (
         <>
-          <p>Sign in with an admin account. We email you a link; no password needed.</p>
+          <p>Sign in with your admin email and password.</p>
           <label className="lbl" htmlFor="aw-email">Email</label>
-          <input id="aw-email" className="boxed input" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" />
+          <input id="aw-email" className="boxed input" type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" />
+          <label className="lbl" htmlFor="aw-pass">Password</label>
+          <input id="aw-pass" className="boxed input" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
           {err && <span className="aw-err" role="alert">{err}</span>}
-          <button className="btn" disabled={state === 'busy'}>{state === 'busy' ? 'Sending…' : 'Send me a sign-in link'}</button>
+          <button className="btn" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</button>
         </>
       )}
     </form>

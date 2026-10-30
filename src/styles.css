@@ -1862,3 +1862,7 @@ body.aw-body #root { height: auto; min-height: 100%; }
   .aw-overview { grid-template-columns: 1fr; }
   .aw-overview .adm-stats { grid-template-columns: 1fr 1fr; }
 }
+
+.aw-mode { margin-bottom: 4px; }
+.aw-login .lbl { margin-top: 2px; }
+.aw-hint { font-size: 13px; color: var(--ink3) !important; }
