@@ -1726,3 +1726,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 .s-fares .ticket { left: calc(50% - 64px + 32px - var(--n) * 10px); width: 164px; }
 .s-fares .hero-spot { left: 17%; }
+
+/* slide 4: the pedicab stands in the middle of the rings; the top road is gone, so the slides start right under the top bar */
+.s-near .hero-spot { position: absolute; left: 50%; top: calc(50% + 34px); width: 0; height: 0; }
+.onb { grid-template-rows: auto 1fr auto; }
