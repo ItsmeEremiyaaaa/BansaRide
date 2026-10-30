@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { leafletLayer } from 'protomaps-leaflet'
+import { bansalanTiles } from './localTiles'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from './boundary'
@@ -94,10 +96,15 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     const showNames = () => { if (m.getZoom() >= 13) names.addTo(m); else names.remove() }
     m.on('zoomend', showNames)
     showNames()
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(m)
+    // Our own map of Bansalan (a 2 MB file served with the app, so it also works offline).
+    // Add ?tiles=osm to the address to compare with the OpenStreetMap server while checking accuracy.
+    const useOsm = /[?&#]tiles=osm/.test(window.location.href)
+    if (useOsm) {
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m)
+    } else {
+      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), flavor: 'light', lang: 'en', maxZoom: 19, maxNativeZoom: 15,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
+    }
     if (zoomControl) L.control.zoom({ position: 'topleft' }).addTo(m)
     layer.current = L.layerGroup().addTo(m)
     m.on('click', (e) => clickRef.current?.([e.latlng.lat, e.latlng.lng]))
