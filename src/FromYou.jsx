@@ -4,7 +4,7 @@ import { PASSENGERS, fareFor, walkMinutes, vehicleLabel, fmtDist, nearestStands,
 
 
 // Motorcycles have no fixed fare. This says where to ask: the motorcycle stand nearest to you, and the route they take.
-export function AskDriver({ me, destId }) {
+export function AskDriver({ me, destId, compact }) {
   const { go } = useApp()
   // the motorcycles stay at the Public Market: prefer the confirmed stand over generic map entries
   const stands = me ? nearestStands(me, 8, 'motor') : []
@@ -13,6 +13,12 @@ export function AskDriver({ me, destId }) {
   const route = routes.find((r) => r.vehicle === 'Motor' && !r.via && (r.to === destId || r.from === destId))
   const st = stand?.station ?? fallback
   if (!st) return null
+  // on the map card: one slim line, so the map stays visible
+  if (compact) return (
+    <button className="ask-slim" onClick={() => go('station', { id: st.id })}>
+      <Icon name="moto" /><span><b>Ask the driver</b> at {st.placeId ? placeById(st.placeId)?.name : st.name}{stand ? ` · ${fmtDist(stand.meters)} away` : ''}</span><Icon name="chevron" className="chev" />
+    </button>
+  )
   return (
     <div className="ask-driver">
       <b className="ask-title"><Icon name="moto" />Ask the driver · {placeById(destId)?.name}</b>
@@ -33,7 +39,7 @@ export function AskDriver({ me, destId }) {
 }
 
 // "From you": how far this place is from where you are, what a ride there costs, and how long it takes.
-export default function FromYou({ ride, me, destId }) {
+export default function FromYou({ ride, me, destId, compact }) {
   const { online } = useApp()
   const { discount } = useAuth()
   if (!ride) return null
@@ -51,7 +57,7 @@ export default function FromYou({ ride, me, destId }) {
         <li><Icon name={motor ? 'moto' : 'vehicle'} /><span><b>{motor ? 'Motorcycle' : 'Tricycle'} about {ride.minutes} min</b> · {ride.km} km by road</span></li>
       </ul>
       {motor ? (
-        <AskDriver me={me} destId={destId} />
+        <AskDriver me={me} destId={destId} compact={compact} />
       ) : (
         <div className="fy-fare">
           {mine && <span className="fy-chip mine"><em>Your fare</em>₱{fare(mine.id)}</span>}
