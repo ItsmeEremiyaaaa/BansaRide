@@ -4,7 +4,7 @@ import { useEffect, useSyncExternalStore } from 'react'
 // Only while developing, a look can be forced by saving it in the browser (for testing).
 const KEY = 'bansaride.look.v1'
 const listeners = new Set()
-let state = { mode: 'auto', rain: false, rainAuto: false, now: Date.now() }
+let state = { mode: 'auto', level: 0, thunder: false, now: Date.now() } // level: 0 dry, 1 light rain, 2 strong rain
 try { const saved = JSON.parse(localStorage.getItem(KEY)); if (saved) state = { ...state, mode: saved.mode ?? 'auto', rainPick: saved.rainPick ?? 'auto' } } catch { /* optional */ }
 const emit = () => { state = { ...state }; listeners.forEach((l) => l()) }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify({ mode: state.mode, rainPick: state.rainPick })) } catch { /* optional */ } }
@@ -15,13 +15,18 @@ export const timeMood = (ms = Date.now()) => {
   return h >= 5 && h < 8 ? 'morning' : h >= 8 && h < 16.5 ? 'day' : h >= 16.5 && h < 18.5 ? 'evening' : 'night'
 }
 // rain from the free Open-Meteo forecast (no key). It needs a signal; offline it keeps the last answer.
+const THUNDER = new Set([95, 96, 99]) // thunderstorm codes
+const STRONG = new Set([65, 67, 82, 95, 96, 99]) // heavy rain, violent showers, storms
 const RAIN_CODES = new Set([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99])
 let started = false
 const poll = async () => {
   try {
     const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=6.79&longitude=125.21&current=precipitation,weather_code')
     const j = await r.json()
-    state.rainAuto = (j.current?.precipitation ?? 0) > 0.1 || RAIN_CODES.has(j.current?.weather_code)
+    const mm = j.current?.precipitation ?? 0, code = j.current?.weather_code
+    const wet = mm > 0.1 || RAIN_CODES.has(code)
+    state.level = !wet ? 0 : mm >= 2.5 || STRONG.has(code) ? 2 : 1 // from 2.5 mm an hour it is strong rain
+    state.thunder = THUNDER.has(code)
     emit()
   } catch { /* no signal: keep the last answer */ }
 }
@@ -43,6 +48,8 @@ export function useLook() {
   const auto = timeMood(s.now)
   const forced = import.meta.env.DEV && s.mode !== 'auto' // never in the real app
   const mood = forced ? s.mode : auto
-  const rain = import.meta.env.DEV && s.rainPick === 'on' ? true : import.meta.env.DEV && s.rainPick === 'off' ? false : s.rainAuto
-  return { mood, rain, mode: s.mode, rainPick: s.rainPick ?? 'auto', auto, rainAuto: s.rainAuto }
+  const dev = import.meta.env.DEV && s.rainPick && s.rainPick !== 'auto' // testing only
+  const level = dev ? { off: 0, light: 1, strong: 2, storm: 2 }[s.rainPick] ?? 0 : s.level
+  const thunder = dev ? s.rainPick === 'storm' : s.thunder
+  return { mood, rain: level > 0, level, thunder, mode: s.mode, auto }
 }

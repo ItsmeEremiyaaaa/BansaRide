@@ -1251,3 +1251,9 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .how-n { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); border: 2.5px solid var(--ink); display: grid; place-items: center; font-weight: 900; font-family: var(--display); }
 .how-ico svg { width: 30px; height: 30px; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .how .sec { margin: 0 0 4px; } .how p { margin: 0; line-height: 1.45; font-size: 14px; }
+
+/* rain strength and lightning */
+.lightning { position: absolute; inset: 0; z-index: 1060; pointer-events: none; background: radial-gradient(120% 90% at 50% 0%, #fff 0%, rgba(235, 242, 255, .85) 45%, rgba(200, 215, 255, .5) 100%); opacity: 0; transition: opacity 60ms linear; mix-blend-mode: screen; }
+.mapfill.rainy.strong::after { background: linear-gradient(180deg, rgba(40, 55, 85, .42), rgba(70, 90, 120, .26)); }
+.mapfill.rainy.strong .leaflet-tile-pane { filter: saturate(.55) brightness(.82); }
+.mapfill.mood-night.rainy.strong::after { background: linear-gradient(180deg, rgba(3, 6, 20, .5), rgba(14, 22, 48, .32)); }

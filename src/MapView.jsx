@@ -14,8 +14,19 @@ const PAD = 0.012
 const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
 const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD])
-const OUTSIDE = '#ece9e1' // what you see outside Bansalan: plain, no map
-const EDGE = '#c9c3b4'
+// Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
+// stars at night) and a golden dotted border like the app's signboards, so the edge looks designed, not blank.
+const SURROUND = {
+  morning: { fill: '#e7dcc2', ink: 'rgba(120,150,70,.55)', pattern: 'leaf', edge: '#f4b400' },
+  day: { fill: '#e2dccb', ink: 'rgba(110,140,70,.5)', pattern: 'leaf', edge: '#f4b400' },
+  evening: { fill: '#c9a994', ink: 'rgba(255,225,180,.7)', pattern: 'dot', edge: '#ffb13b' },
+  night: { fill: '#0a0f1f', ink: 'rgba(255,255,255,.85)', pattern: 'star', edge: '#ffd66b' },
+}
+const patternSvg = (kind, ink) => {
+  if (kind === 'star') return `<circle cx="9" cy="11" r="1.1" fill="${ink}"/><circle cx="31" cy="26" r="0.8" fill="${ink}"/><circle cx="20" cy="36" r="1.3" fill="${ink}"/><circle cx="37" cy="6" r="0.7" fill="${ink}"/><path d="M26 10l.9 2.1 2.1.9-2.1.9L26 16l-.9-2.1-2.1-.9 2.1-.9z" fill="${ink}"/>`
+  if (kind === 'dot') return `<circle cx="8" cy="8" r="1.6" fill="${ink}"/><circle cx="26" cy="22" r="1.6" fill="${ink}"/><circle cx="14" cy="32" r="1.1" fill="${ink}"/>`
+  return `<path d="M10 12c4-1 7 1 8 5-4 1-7-1-8-5z" fill="${ink}"/><path d="M28 28c3-3 7-3 9 0-3 3-7 3-9 0z" fill="${ink}"/><circle cx="31" cy="9" r="1.3" fill="${ink}"/><circle cx="8" cy="33" r="1.1" fill="${ink}"/>`
+}
 const WORLD = [[-85, -180], [-85, 180], [85, 180], [85, -180]]
 
 // A real OpenStreetMap map. Pins and the route line are drawn by us, so they still
@@ -60,12 +71,35 @@ const pin = (cls, label, i, glyph, tone) => {
 }
 
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
+// colors the area outside the border for the current mood, and lays the pattern over it
+function paintSurround(m, poly, edgeLine, mood) {
+  const sur = SURROUND[mood] ?? SURROUND.day
+  poly.setStyle({ fillColor: sur.fill })
+  edgeLine.setStyle({ color: sur.edge })
+  const svg = m.getPane('overlayPane').querySelector('svg')
+  if (!svg || !poly.getElement()) return
+  svg.querySelector('#bansa-surround')?.remove()
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
+  defs.id = 'bansa-surround'
+  defs.innerHTML = `<pattern id="bansa-pat" width="44" height="44" patternUnits="userSpaceOnUse">${patternSvg(sur.pattern, sur.ink)}</pattern>`
+  svg.prepend(defs)
+  // the pattern sits on a second copy of the outside shape, over the plain color
+  if (!poly._pat) {
+    poly._pat = L.polygon(poly.getLatLngs(), { stroke: false, fillOpacity: 1, interactive: false }).addTo(m)
+    poly._pat.bringToBack()
+    poly.bringToBack()
+  }
+  poly._pat.getElement()?.setAttribute('fill', 'url(#bansa-pat)')
+}
+
 const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
 export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day' }) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
+  const outside = useRef(null)
+  const edge = useRef(null)
   const tiles = useRef(null) // the map pictures layer, replaced when the mood changes (morning, evening, night...)
   const fitted = useRef('')
   const offsetRef = useRef(offsetY) // pixels of the map hidden under a card at the bottom
@@ -91,6 +125,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     tiles.current = leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), ...moodRules(mood), maxZoom: 19, maxDataZoom: 15,
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     tiles.current.bringToBack()
+    if (outside.current) paintSurround(m, outside.current, edge.current, mood)
   }, [mood])
 
   useEffect(() => {
@@ -103,8 +138,10 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (import.meta.env.DEV) window.__bansaMap = m // for testing in the browser
     // Only Bansalan is shown: everything outside the border is a plain blank color (no map, no grey overlay, no dotted barrier),
     // with just a thin soft edge so you can see where the municipality ends.
-    L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: OUTSIDE, fillOpacity: 1, interactive: false, bubblingMouseEvents: true }).addTo(m)
-    L.polygon(boundary[0], { color: EDGE, weight: 1.5, fill: false, interactive: false }).addTo(m)
+    const sur = SURROUND[moodRef.current] ?? SURROUND.day
+    outside.current = L.polygon([WORLD, boundary[0]], { stroke: false, fillColor: sur.fill, fillOpacity: 1, interactive: false, bubblingMouseEvents: true }).addTo(m)
+    edge.current = L.polygon(boundary[0], { color: sur.edge, weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
+    paintSurround(m, outside.current, edge.current, moodRef.current)
     const names = L.layerGroup(barangays.map((b) => L.marker([b.lat, b.lon], {
       interactive: false, keyboard: false, zIndexOffset: -500,
       icon: L.divIcon({ className: 'brgy-wrap', html: `<span class="brgy">${b.name}</span>`, iconSize: [0, 0] }),
