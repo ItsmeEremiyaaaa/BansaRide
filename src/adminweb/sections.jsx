@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BackButton, Icon, YHeader, useApp } from '../components'
-import { useAuth } from '../auth'
+import { Icon, useApp } from '../components'
 import { routes, placeById, stationById, shortName, PASSENGERS } from '../data'
-import { checkAdmin, loadOverview, loadUsers, loadPosts, setPostStatus, removePost, loadInbox, setInboxStatus, removeInbox, loadWords, addWord, removeWord } from '../admin'
+import { loadOverview, loadUsers, loadPosts, setPostStatus, removePost, loadInbox, setInboxStatus, removeInbox, loadWords, addWord, removeWord } from '../admin'
 
-// The admin area: the same signboard look as the rest of the app. Only admins get data; the database checks every call.
-const TABS = [['overview', 'Overview'], ['posts', 'Posts'], ['inbox', 'Inbox'], ['users', 'Users'], ['words', 'Words']]
+// The sections of the BansaRide admin website (admin/index.html). Only admins get data: the database checks every call.
 const when = (iso) => new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(iso))
 const who = (id) => PASSENGERS.find((p) => p.id === id)?.short ?? (id === 'regular' ? 'Regular' : id ?? '—')
 const routeName = (id) => { const r = routes.find((x) => x.id === id); return r ? `${shortName(r.from)} to ${shortName(r.to)}` : id }
@@ -22,7 +20,7 @@ function useData(load, deps) {
   return [state, run]
 }
 
-function Problem({ error, retry }) {
+export function Problem({ error, retry }) {
   const missing = /does not exist|schema cache|not_admin|permission/i.test(error)
   return (
     <div className="adm-empty">
@@ -33,7 +31,7 @@ function Problem({ error, retry }) {
   )
 }
 
-function Overview() {
+export function Overview() {
   const [{ data, error }, retry] = useData(loadOverview, [])
   if (error) return <Problem error={error} retry={retry} />
   if (!data) return <p className="hint">Loading…</p>
@@ -65,7 +63,7 @@ function Overview() {
   )
 }
 
-function Posts() {
+export function Posts() {
   const { say } = useApp()
   const [filter, setFilter] = useState('reported')
   const [{ data, error }, retry] = useData(() => loadPosts(filter), [filter])
@@ -100,7 +98,7 @@ function Posts() {
   )
 }
 
-function Inbox() {
+export function Inbox() {
   const { say } = useApp()
   const [status, setStatus] = useState('new')
   const [{ data, error }, retry] = useData(() => loadInbox(status), [status])
@@ -132,7 +130,7 @@ function Inbox() {
   )
 }
 
-function Users() {
+export function Users() {
   const [{ data, error }, retry] = useData(loadUsers, [])
   if (error) return <Problem error={error} retry={retry} />
   if (!data) return <p className="hint">Loading…</p>
@@ -150,7 +148,7 @@ function Users() {
   )
 }
 
-function Words() {
+export function Words() {
   const { say } = useApp()
   const [{ data, error }, retry] = useData(loadWords, [])
   const [word, setWord] = useState('')
@@ -180,36 +178,6 @@ function Words() {
           ))}
         </div>
       )}
-    </>
-  )
-}
-
-export default function Admin() {
-  const { go } = useApp()
-  const { user, configured, ready } = useAuth()
-  const [tab, setTab] = useState('overview')
-  const [allowed, setAllowed] = useState(null) // null = checking
-  useEffect(() => { if (!ready) return; checkAdmin().then((yes) => setAllowed(yes && (!!user || import.meta.env.DEV))) }, [user, ready])
-
-  const Body = { overview: Overview, posts: Posts, inbox: Inbox, users: Users, words: Words }[tab]
-  return (
-    <>
-      <YHeader title="Admin" back={<BackButton to="menu" />}>
-        {allowed && (
-          <div className="seg adm-tabs" role="tablist" aria-label="Admin sections">
-            {TABS.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)}>{l}</button>)}
-          </div>
-        )}
-      </YHeader>
-      <div className="body adm">
-        {allowed === null ? <p className="hint">Checking your account…</p> : !allowed ? (
-          <div className="adm-empty">
-            <b>Admins only</b>
-            <span>{!configured ? 'Accounts are not switched on in this copy of the app.' : !user ? 'Sign in with an admin account to manage BansaRide.' : 'This account is not an admin. Ask the app owner to add you.'}</span>
-            {configured && !user && <button className="btn sm" onClick={() => go('account')}><Icon name="drivers" />Sign in</button>}
-          </div>
-        ) : <Body />}
-      </div>
     </>
   )
 }
