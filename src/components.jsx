@@ -35,7 +35,7 @@ export function Defs() {
           <circle cx="338" cy="238" r="19" fill="none" stroke="#F4B400" strokeWidth="12" strokeDasharray="7 7.1" />
           <circle cx="338" cy="238" r="10" fill="#1F7A8C" strokeWidth="3" />
           <g clipPath="url(#cabin)" stroke="none">
-            <rect x="70" y="76" width="200" height="136" style={{ fill: 'var(--vc, #F4B400)' }} />
+            <rect x="70" y="76" width="200" height="136" style={{ fill: 'var(--vc, #FFFFFF)' }} />
             <circle cx="160" cy="118" r="30" fill="#E5322D" /><circle cx="160" cy="118" r="22" fill="#F4B400" />
             <circle cx="160" cy="118" r="14" fill="#E5322D" /><circle cx="160" cy="118" r="6" fill="#F4B400" />
             <polygon points="98,80 114,80 106,96" fill="#1F7A8C" /><polygon points="114,80 130,80 122,96" fill="#E5322D" />

@@ -15,7 +15,7 @@ const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
 const LIMIT = [[bounds[0][1] - 0.01, bounds[0][0] - 0.01], [bounds[1][1] + 0.01, bounds[1][0] + 0.01]]
-const TINT = { vehicle: '#E8A100', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
+const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
 const vehicleImage = (kind) => new Promise((resolve) => {
