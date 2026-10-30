@@ -43,6 +43,10 @@ export default function Menu() {
     <>
       <YHeader title="Menu" back={<BackButton to="home" />} />
       <div className="body">
+        <div className="seal-card">
+          <img src={`${import.meta.env.BASE_URL}seals/bansalan.png`} alt="Seal of the Municipality of Bansalan, Davao del Sur" width="84" height="84" />
+          <div><b>BansaRide</b><span>The ride and fare guide of Bansalan, Davao del Sur</span></div>
+        </div>
         {items.map((g) => (
           <section key={g.title}>
             <h2 className="sec">{t(g.title)}</h2>

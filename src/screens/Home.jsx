@@ -296,6 +296,7 @@ export default function Home() {
           </div>
         </section>
 
+        <img className="foot-seal" src={`${import.meta.env.BASE_URL}seals/bansalan.png`} alt="Seal of the Municipality of Bansalan" width="64" height="64" loading="lazy" />
         <p className="foot">
           Made for Bansalan, Davao del Sur. Places and roads come from OpenStreetMap. Fares and travel times are estimates
           until confirmed at the terminals. Tricycle and pedicab are the same ride. Motorcycles are for the mountain areas.

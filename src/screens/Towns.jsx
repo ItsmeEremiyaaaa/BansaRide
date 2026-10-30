@@ -7,7 +7,7 @@ import Transit from '../Transit'
 import { useAuth } from '../auth'
 import { speak } from '../speech'
 import { offlineRide } from '../rideFromMe'
-import { towns, routes, placeById, poiById, routeBetween, FARE_NOTE, PASSENGERS, fareFor, transitModesForTown, transitFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
+import { TOWN_FARES, pesoRange, towns, routes, placeById, poiById, routeBetween, FARE_NOTE, PASSENGERS, fareFor, transitModesForTown, transitFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
 
 // Official seals of the towns we have a picture for (kept in public/seals). Other towns show the plain town icon.
 const SEALS = new Set(['magsaysay', 'matanao', 'hagonoy', 'digos', 'kiblawan', 'kapatagan', 'santa-cruz', 'padada', 'malalag', 'sulop', 'kidapawan', 'davao', 'gensan', 'cotabato'])
@@ -23,7 +23,7 @@ function TownRow({ town, onOpen, index }) {
         <span className="row-title">{town.name}</span>
         <span className="row-sub">{town.km} km · {town.duration.replace('about ', '~')}</span>
       </span>
-      {town.fare ? <span className="price">₱{town.fare}</span> : <Tag>Ask at terminal</Tag>}
+      {TOWN_FARES[town.id] ? <span className="price small">{pesoRange(TOWN_FARES[town.id].mini, TOWN_FARES[town.id].van)}</span> : <Tag>Ask at terminal</Tag>}
       <Icon name="chevron" className="chev" />
     </button>
   )
@@ -50,7 +50,7 @@ export function TownsList() {
         </label>
       </YHeader>
       <div className="body">
-        <p className="lede">Road distance from the Bansalan Bus Terminal. Fares and trip times are not confirmed yet. Ask at the terminal before you go.</p>
+        <p className="lede">Road distance from the Bansalan Bus Terminal. Fares are from the bus, van and mini bus prices for each town. Students, seniors and PWD pay 20% less. Prices can change, so ask at the terminal.</p>
         <div className="chips scroll" role="group" aria-label="Filter">
           {['All', 'Davao del Sur', 'Other cities'].map((k) => <button key={k} className="chip" aria-pressed={g === k} onClick={() => setG(k)}>{k}</button>)}
         </div>
@@ -112,7 +112,7 @@ export function Town() {
           <Tag>Not confirmed</Tag>
         </p>
         {tw.ref && <p className="hint">{tw.ref}</p>}
-        <p className="hint">Fares and trip times are not confirmed yet. Ask at the terminal before you go. The distance is the real road distance.</p>
+        <p className="hint">Fares are the prices given for each town and can change, so ask at the terminal. The distance is the real road distance.</p>
 
         <section className="card ride-modes">
           <h2 className="sec">{transitModesForTown(tw.id).length === 1 ? 'How to get there' : 'Ride by bus or van'}</h2>

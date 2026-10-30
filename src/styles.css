@@ -1585,3 +1585,11 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .night-text b { font-family: var(--display); font-size: 18px; text-transform: uppercase; }
 .night-text span { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .92); }
 .night-tip .chev { color: #fff; }
+
+/* the Bansalan seal in the menu and at the foot of Home */
+.seal-card { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 4px 0 var(--ink); }
+.seal-card img { flex: none; filter: drop-shadow(0 2px 3px rgba(16, 24, 40, .3)); }
+.seal-card div { display: grid; gap: 2px; }
+.seal-card b { font-family: var(--display); font-size: 22px; text-transform: uppercase; }
+.seal-card span { font-size: 13px; font-weight: 700; color: var(--ink2); }
+.foot-seal { display: block; margin: 8px auto 0; opacity: .95; }
