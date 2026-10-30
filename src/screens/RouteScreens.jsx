@@ -294,9 +294,6 @@ export function MapScreen() {
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
       </button>
-      <button className={'filter-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" onClick={() => setFilterOpen((v) => !v)}>
-        <Icon name="search" />Filter{poiKinds.length ? ` · ${poiKinds.length}` : ''}
-      </button>
       {filterOpen && (
         <>
           <button className="filter-scrim" aria-label="Close the filter" onClick={() => setFilterOpen(false)} tabIndex={-1} />
@@ -313,6 +310,7 @@ export function MapScreen() {
       )}
       <div className="float r col">
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
+        <button className={'icon-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" aria-label={`Filter: show shops, hotels and more${poiKinds.length ? `, ${poiKinds.length} on` : ''}`} onClick={() => setFilterOpen((v) => !v)}><Icon name="filter" />{poiKinds.length > 0 && <i className="icon-badge">{poiKinds.length}</i>}</button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>
       </div>
 
