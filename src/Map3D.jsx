@@ -45,7 +45,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     const { markers: mk, route: rt, routeColor: rc } = latest.current
     map.getSource('spots')?.setData(geo(mk))
     map.getSource('route')?.setData(line(rt))
-    map.getSource('links')?.setData({ type: 'FeatureCollection', features: rt?.length > 1 ? [] : (latest.current.links ?? []).map((l) => line(l)) // no dashed line over a drawn route })
+    map.getSource('links')?.setData({ type: 'FeatureCollection', features: rt?.length > 1 ? [] : (latest.current.links ?? []).map((l) => line(l)) })
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
   }
 
