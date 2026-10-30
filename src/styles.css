@@ -1143,3 +1143,6 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .poi-chips::-webkit-scrollbar { display: none; }
 .poi-chips .chip.small { height: 34px; flex: none; box-shadow: 0 2px 0 var(--ink); }
 .poi-chips .chip[aria-pressed='true'] { background: var(--brand); color: var(--ink); }
+
+/* the floating tab bar sits over the bottom of the sheet, so leave room for it: short result lists stay visible */
+.picker-panel { padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px)); min-height: 340px; }
