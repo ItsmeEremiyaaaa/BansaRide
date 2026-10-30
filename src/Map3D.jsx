@@ -35,18 +35,19 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle' }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
   const latest = useRef({})
-  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center, me, target }
+  latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center, me, target, selKind }
 
   const apply = () => {
     const map = mapRef.current
     if (!map || !ready.current) return
     const { markers: mk, route: rt, routeColor: rc } = latest.current
     map.getSource('spots')?.setData(geo(mk))
+    if (map.getLayer('icons')) map.setLayoutProperty('icons', 'icon-image', ['concat', 'v-', ['case', ['==', ['get', 'kind'], 'sel'], latest.current.selKind ?? 'vehicle', ['get', 'kind']]])
     map.getSource('route')?.setData(line(rt))
     map.getSource('links')?.setData({ type: 'FeatureCollection', features: rt?.length > 1 ? [] : (latest.current.links ?? []).map((l) => line(l)) })
     if (map.getLayer('route-line')) map.setPaintProperty('route-line', 'line-color', rc)
@@ -129,7 +130,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       map.addLayer({
         id: 'icons', type: 'symbol', source: 'spots', filter: ['!=', ['get', 'kind'], 'dot'],
         layout: {
-          'icon-image': ['concat', 'v-', ['case', ['==', ['get', 'kind'], 'sel'], 'vehicle', ['get', 'kind']]],
+          'icon-image': ['concat', 'v-', ['case', ['==', ['get', 'kind'], 'sel'], latest.current.selKind ?? 'vehicle', ['get', 'kind']]],
           'icon-size': ['case', ['get', 'sel'], 1.05, 0.8], 'icon-allow-overlap': false, 'icon-padding': 2,
           'symbol-sort-key': ['case', ['get', 'sel'], 0, 1],
         },
@@ -148,7 +149,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     return () => { ready.current = false; youDot?.remove(); map.remove(); mapRef.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(apply, [markers, route, routeColor, links]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(apply, [markers, route, routeColor, links, selKind]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
   const routeSig = route?.length > 1 ? route.length + ':' + route[0] + ':' + route[route.length - 1] : ''
   const targetKey = target ? target.join() : ''

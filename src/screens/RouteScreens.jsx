@@ -275,6 +275,8 @@ export function MapScreen() {
 
   // Every waiting spot is a pin: places with a group, and stands with their own exact position.
   const selPoiKey = sel && poiById(sel) ? sel : '' // only a picked shop or hotel adds a pin
+  const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
+  const rideMoto = ride?.vehicle === 'Motor' // a motorcycle ride: the map draws motorcycles
   const markers = useMemo(() => [
     ...places.filter((x) => x.kind !== 'Street' || x.id === sel || waitingSpots[x.id]).map((x) => ({
       id: x.id, lat: x.lat, lon: x.lon, title: x.name,
@@ -282,14 +284,13 @@ export function MapScreen() {
       closed: placeStandNow(x.id)?.state === 'closed',
       hoursUnknown: placeStandNow(x.id)?.state === 'unknown',
       // the Bus Terminal shows a bus and the Public Market a mini bus (they wait there); other spots show the pedicab or motorcycle
-      glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? 'mini' : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind === 'Barangay' || x.kind === 'Sitio' ? x.kind : 'Place',
+      glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? (rideMoto ? 'moto' : 'mini') : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind === 'Barangay' || x.kind === 'Sitio' ? x.kind : 'Place',
       label: '',
     })),
     ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: 'place', label: '', glyph: x.kind })),
     // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
     ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
-  ], [selPoiKey, poiKinds, look.tick]) // eslint-disable-line react-hooks/exhaustive-deps
-  const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
+  ], [selPoiKey, poiKinds, look.tick, rideMoto]) // eslint-disable-line react-hooks/exhaustive-deps
   // pressing the location button always wins, even while a route is shown
   const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
   // the first time your location arrives (and nothing is picked), the map moves to you once
@@ -328,11 +329,11 @@ export function MapScreen() {
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} selKind={rideMoto ? 'moto' : 'vehicle'} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 32 : sel ? 45 : 55} target={sel ? [p.lat, p.lon] : null} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
-      <MapView mood={look.mood} selId={sel} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
+      <MapView mood={look.mood} selId={sel} selGlyph={rideMoto ? 'moto' : null} markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
         onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
