@@ -40,7 +40,7 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle', onReady }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle', onReady, leaving = false }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
@@ -77,6 +77,11 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     const shift = H / 2 - (top + bot) / 2 // the middle of the free area is above the middle of the screen
     map.easeTo({ center: [(e + w) / 2, (n + so) / 2 - (shift * per) / 111000], zoom: z, pitch: 0, bearing: 0, duration: dur(900), easing: ease })
   }
+  useEffect(() => {
+    if (!leaving) return
+    const t = setTimeout(() => box.current?.classList.remove('ready'), 700) // the flat map draws underneath first, then 3D fades away
+    return () => clearTimeout(t)
+  }, [leaving]) // fades out while the flat map is already underneath
   const entered = useRef(false) // the first move is the long swing from the flat map into 3D
   const camera = () => {
     const map = mapRef.current
@@ -136,7 +141,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         map.addLayer({ id: 'lit', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-pattern': 'lit-pattern', 'fill-opacity': latest.current.mood === 'night' ? 1 : 0.6 } }, 'route-casing')
         map.addLayer({ id: 'glow', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-color': '#ffb13b', 'fill-opacity': latest.current.mood === 'night' ? 0.14 : 0.06 } }, 'lit')
       }
-      for (const k of Object.keys(ART)) { const img = await vehicleImage(k); if (img && !map.hasImage('v-' + k)) map.addImage('v-' + k, img, { pixelRatio: 2 }) }
+      for (const k of Object.keys(ART)) { const img = await vehicleImage(k); if (!mapRef.current) return; if (img && !map.hasImage('v-' + k)) map.addImage('v-' + k, img, { pixelRatio: 2 }) }
       map.addSource('spots', { type: 'geojson', data: geo(latest.current.markers) })
       map.addLayer({ id: 'dots', type: 'circle', source: 'spots', filter: ['==', ['get', 'kind'], 'dot'], paint: { 'circle-radius': 6, 'circle-color': '#98a2b3', 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' } })
       map.addLayer({
