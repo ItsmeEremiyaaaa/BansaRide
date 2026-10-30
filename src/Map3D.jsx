@@ -19,6 +19,7 @@ const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van
 const LIMIT = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
 // only street names that belong to Bansalan are written (the same rule as the flat map)
 const NAMES = [...new Set(places.filter((p) => p.kind === 'Street').map((p) => p.name))]
+const ease = (t) => 1 - Math.pow(1 - t, 3) // starts quick, lands softly
 const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
@@ -64,7 +65,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
   const heading = (a, b) => { const r = Math.PI / 180; const y = Math.sin((b[1] - a[1]) * r) * Math.cos(b[0] * r); const x = Math.cos(a[0] * r) * Math.sin(b[0] * r) - Math.sin(a[0] * r) * Math.cos(b[0] * r) * Math.cos((b[1] - a[1]) * r); return (Math.atan2(y, x) / r + 360) % 360 }
   // a tilted camera hides the near end of a long stretch behind the card, so a long trip is shown almost from above (the tilt comes back as you get closer)
   const flat = (b) => { const km = Math.hypot((b.getNorth() - b.getSouth()) * 111, (b.getEast() - b.getWest()) * 110); return km > 4 ? Math.min(pitch, 12) : km > 1.5 ? Math.min(pitch, 30) : pitch }
-  const fitFlat = (b, oy) => {
+  const fitFlat = (b, oy, dur) => {
     const map = mapRef.current, el = map.getContainer()
     const H = el.clientHeight, Wd = el.clientWidth, top = 80, bot = H - oy * 2 - 16
     const regH = Math.max(120, bot - top), regW = Wd - 72
@@ -74,24 +75,27 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     const z = Math.min(17, Math.max(map.getMinZoom(), Math.log2((78271.517 * cosl) / mpp)))
     const per = (78271.517 * cosl) / 2 ** z // metres per pixel
     const shift = H / 2 - (top + bot) / 2 // the middle of the free area is above the middle of the screen
-    map.easeTo({ center: [(e + w) / 2, (n + so) / 2 - (shift * per) / 111000], zoom: z, pitch: 0, bearing: 0, duration: 900 })
+    map.easeTo({ center: [(e + w) / 2, (n + so) / 2 - (shift * per) / 111000], zoom: z, pitch: 0, bearing: 0, duration: dur(900), easing: ease })
   }
+  const entered = useRef(false) // the first move is the long swing from the flat map into 3D
   const camera = () => {
     const map = mapRef.current
     if (!map || !ready.current) return
+    const first = !entered.current; entered.current = true
+    const dur = (d) => (first ? 1700 : d)
     const { route: rt, offsetY: oy, center: c, me: m0, target: tg } = latest.current
     const padding = { top: 80, left: 36, right: 36, bottom: oy * 2 + 40 }
     const far = tg && m0 && Math.hypot((tg[0] - m0[0]) * 111000, (tg[1] - m0[1]) * 110500) > 120
     if (rt?.length > 1) {
       const b = rt.reduce((bb, [la, lo]) => bb.extend([lo, la]), new maplibregl.LngLatBounds())
       if (m0) b.extend([m0[1], m0[0]]) // you stay in view too
-      if (flat(b) < pitch && flat(b) <= 12) fitFlat(b, oy)
-      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0 ?? rt[0], rt[rt.length - 1]), duration: 900 })
+      if (flat(b) < pitch && flat(b) <= 12) fitFlat(b, oy, dur)
+      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0 ?? rt[0], rt[rt.length - 1]), duration: dur(900), easing: ease })
     } else if (far) {
       const b = new maplibregl.LngLatBounds([m0[1], m0[0]], [m0[1], m0[0]]).extend([tg[1], tg[0]])
-      if (flat(b) <= 12) fitFlat(b, oy)
-      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0, tg), duration: 900 })
-    } else map.easeTo({ center: [c[1], c[0]], pitch, offset: [0, -oy], duration: 700 })
+      if (flat(b) <= 12) fitFlat(b, oy, dur)
+      else map.fitBounds(b, { padding, maxZoom: 17, pitch: flat(b), bearing: heading(m0, tg), duration: dur(900), easing: ease })
+    } else map.easeTo({ center: [c[1], c[0]], pitch, offset: [0, -oy], ...(first ? { zoom: 17, bearing } : {}), duration: dur(700), easing: ease })
   }
 
   useEffect(() => {
@@ -109,7 +113,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
       ],
     }
-    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, maxBounds: LIMIT, minZoom: 9.4, attributionControl: false })
+    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 15.6, pitch: 0, bearing: 0, maxPitch: 75, maxBounds: LIMIT, minZoom: 9.4, attributionControl: false })
     mapRef.current = map
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: false }), 'top-right')
     let youDot
@@ -152,7 +156,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         const q = f.properties
         const pt = map.project(f.geometry.coordinates)
             tipEl.innerHTML = pinTipHtml({ title: q.title, sub: q.sub, closed: q.closed === true || q.closed === 'true', hoursUnknown: q.hu === true || q.hu === 'true', kind: q.spot === true || q.spot === 'true' ? 'spot' : 'place', lat: q.lat, lon: q.lon }, latest.current.me)
-            tipEl.style.display = 'block'; tipEl.style.left = Math.min(Math.max(pt.x, 120), box.current.clientWidth - 120) + 'px'; const below = pt.y < 170; tipEl.style.transform = below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'; tipEl.style.top = (below ? pt.y + 24 : pt.y - 22) + 'px'
+            tipEl.style.display = 'block'; tipEl.style.left = Math.min(Math.max(pt.x, 120), box.current.clientWidth - 120) + 'px'; const below = pt.y < 170; tipEl.style.transform = below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'; tipEl.dataset.pos = below ? 'below' : 'above'; tipEl.style.setProperty('--ax', (pt.x - parseFloat(tipEl.style.left)) + 'px'); tipEl.style.top = (below ? pt.y + 24 : pt.y - 22) + 'px'
       }
       // phone: press and hold a pin to see its card (a quick tap opens the full details)
       let holdT = null, holdAt = null, hideT = null
