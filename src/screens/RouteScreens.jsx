@@ -523,12 +523,15 @@ export function Place() {
         <MapView mood={look.mood} markers={markers} zoom={17} label={`Map of ${p.name}`} />
         <div className="float l"><BackButton /></div>
       </div>
-      <div className="sheet">
+      <div className="sheet place-sheet">
         <div className="grab" aria-hidden="true" />
-        <div>
-          <Tag tone="grey">{p.kind}</Tag>
-          <h1 className="route-title" style={{ marginTop: 8 }}>{p.name}</h1>
-          <p className="row-sub">{p.note}{p.also ? ` · also ${p.also}` : ''}. Opening hours: to be confirmed.</p>
+        <div className="place-sign">
+          <span className="place-ico" aria-hidden="true"><Icon name={p.kind === 'Street' ? 'street' : p.kind === 'Barangay' ? 'barangay' : p.kind === 'Sitio' ? 'sitio' : 'place'} /></span>
+          <div className="place-sign-text">
+            <span className="place-kind">{p.kind}</span>
+            <h1 className="route-title">{p.name}</h1>
+            <p className="row-sub">{p.note}{p.also ? ` · also ${p.also}` : ''}. Opening hours: to be confirmed.</p>
+          </div>
         </div>
         {here.length > 0 && (
           <section>
