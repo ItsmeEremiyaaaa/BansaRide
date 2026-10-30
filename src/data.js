@@ -35,8 +35,13 @@ export const fareFor = (km, id) => {
 // "₱15" when both ends are the same, "₱15–25" when they differ (never "₱15–15").
 export const pesoRange = (a, b) => (a === b ? `₱${a}` : `₱${Math.min(a, b)}–${Math.max(a, b)}`)
 // Farm motorcycles have no fixed fare. This is only a guide for the possible price, worked out like the tricycle fare
-// (by distance), so the driver may well ask for more on a rough mountain road. Always ask first.
-export const motorPossible = (km) => pesoRange(fareFor(km, 'elementary'), fareFor(km, 'adult'))
+// (by distance), and the farther the place, the more the driver may ask on a rough mountain road (up to about 60% more
+// by 20 km). Always ask first.
+export const motorPossible = (km) => {
+  const low = fareFor(km, 'adult')
+  const high = Math.round((low * (1 + Math.min(0.6, Math.max(0, km - 2) * 0.033))) / 5) * 5
+  return pesoRange(low, Math.max(low, high))
+}
 export const estimateFare = (km) => fareFor(km, 'adult')
 export const FARE_NOTE = 'Near Bansalan the base fares are reported by riders. Farther rides cost more: Rizal is ₱30 to ₱40 (riders say up to ₱50 at times). Confirm at the terminal.'
 // "₱30–50" (cheapest to adult), "₱10" when they are the same, "Ask driver" for motorcycles.
@@ -448,11 +453,11 @@ const hm = (h) => { const x = Math.floor(h) % 24, m = Math.round((h % 1) * 60); 
 const inRange = (h, a, b) => (a <= b ? h >= a && h < b : h >= a || h < b)
 
 // Night spots (10 PM to 4 AM): some BTODA stay at the 7-Eleven and at the hotel across from the warehouse.
-// The hotel is shown at Kate's Hotel until someone confirms which one it is.
-const poiPos = (id) => { const p = geoPois.find((x) => x.id === id); return p ? { lat: p.lat, lon: p.lon, approx: id !== 'poi-7-eleven' } : null }
+// The hotel across from the warehouse is Kate's Mini Hotel.
+const poiPos = (id) => { const p = geoPois.find((x) => x.id === id); return p ? { lat: p.lat, lon: p.lon, approx: false } : null }
 const nightStations = [
   ['night-711', '7-Eleven night spot', 'Some BTODA stay here from 10 PM to 4 AM', poiPos('poi-7-eleven')],
-  ['night-hotel', 'Hotel night spot (across the warehouse)', 'Some BTODA stay here from 10 PM to 4 AM. Exact hotel to confirm', poiPos('poi-kate-s-hotel')],
+  ['night-hotel', "Kate's Mini Hotel night spot", 'Across the warehouse. Some BTODA stay here from 10 PM to 4 AM', poiPos('poi-kate-s-hotel')],
 ].filter((x) => x[3]).map(([id, name, landmark, pos]) => ({
   id, type: 'toda', placeId: null, pos, name, alias: '', source: 'reported', landmark, confirmed: false, contact: null, members: [], night: true, streetSpot: true,
 }))
