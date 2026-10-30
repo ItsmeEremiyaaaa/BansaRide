@@ -10,7 +10,7 @@ import { offlineRide } from '../rideFromMe'
 import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare, townAsksFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
 
 // Official seals of the towns we have a picture for (kept in public/seals). Other towns show the plain town icon.
-const SEALS = new Set(['magsaysay', 'matanao', 'hagonoy', 'digos', 'kiblawan', 'kapatagan', 'santa-cruz', 'padada', 'malalag', 'sulop'])
+const SEALS = new Set(['magsaysay', 'matanao', 'hagonoy', 'digos', 'kiblawan', 'kapatagan', 'santa-cruz', 'padada', 'malalag', 'sulop', 'kidapawan'])
 export function Seal({ id, size = 44 }) {
   return SEALS.has(id) ? <img className="seal" src={`${import.meta.env.BASE_URL}seals/${id}.png`} width={size} height={size} alt="" loading="lazy" /> : <Icon name="town" />
 }
