@@ -162,7 +162,7 @@ export default function App() {
       <Defs />
       <div className="app">
         <main className="views">
-          <section className={`view enter-${dir}` + (fullBleed ? ' flush' : '') + (entry.name === 'map' ? ' map' : '')} key={entry.name + (entry.params.id ?? '') + (entry.params.rev ? 'r' : '')}>
+          <section className={`view view-${entry.name} enter-${dir}` + (fullBleed ? ' flush' : '') + (entry.name === 'map' ? ' map' : '')} key={entry.name + (entry.params.id ?? '') + (entry.params.rev ? 'r' : '')}>
             <Screen />
           </section>
         </main>

@@ -1300,32 +1300,79 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .pin.art.Barangay, .pin.art.Sitio, .pin.art.Place { width: 46px; height: 32px; }
 .row-item .ico svg.ico-art.m-barangay, .pick-row .ico svg.ico-art.m-barangay, .pick-row .ico svg.ico-art.m-sitio, .pick-row .ico svg.ico-art.m-place, .pick-row .ico svg.ico-art.m-street { width: 36px; height: 25px; }
 
+/* ---------- softer look: white cards with a light shadow, no thick black outlines (every screen except Home) ---------- */
 /* ---------- softer look: white cards with a light shadow, no thick black outlines ---------- */
-.card, .card.glass, .row-item, .row-item.compact, .note, .stat-tile, .verdict, .status, .paid-chip, .steps li, .from-you, .closed-notice, .ask-driver, .ask-stand, .ask-route, .ask-slim, .alert-row, .trip-row, .install, .mine-go, .cat, .board, .town-card, .town-chip, .stand-card, .drivers-banner {
+.view:not(.view-home) .card,
+.view:not(.view-home) .card.glass,
+.view:not(.view-home) .row-item,
+.view:not(.view-home) .row-item.compact,
+.view:not(.view-home) .note,
+.view:not(.view-home) .stat-tile,
+.view:not(.view-home) .verdict,
+.view:not(.view-home) .status,
+.view:not(.view-home) .paid-chip,
+.view:not(.view-home) .steps li,
+.view:not(.view-home) .from-you,
+.view:not(.view-home) .closed-notice,
+.view:not(.view-home) .ask-driver,
+.view:not(.view-home) .ask-stand,
+.view:not(.view-home) .ask-route,
+.view:not(.view-home) .ask-slim,
+.view:not(.view-home) .alert-row,
+.view:not(.view-home) .trip-row,
+.view:not(.view-home) .install,
+.view:not(.view-home) .mine-go,
+.view:not(.view-home) .cat,
+.view:not(.view-home) .board,
+.view:not(.view-home) .town-card,
+.view:not(.view-home) .town-chip,
+.view:not(.view-home) .stand-card,
+.view:not(.view-home) .drivers-banner {
   border-color: transparent !important; border-width: 1px !important; box-shadow: 0 6px 22px rgba(50, 70, 130, .10) !important;
 }
-.row-item.line { border-left: 8px solid var(--stub) !important; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: transparent !important; }
-.row-item:active, .cat:active, .stand-card:active, .trip-row:active { transform: scale(.985) !important; box-shadow: 0 3px 12px rgba(50, 70, 130, .12) !important; }
-.chip, .chip.small, .pill, .pill.action, .tag, .stand-pill, .seg, .seg button, .fy-chip, .here-chip, .onb-tag { border-color: #e4e7ec !important; border-width: 1px !important; box-shadow: none !important; }
-.chip[aria-pressed='true'] { border-color: var(--ink) !important; }
-.seg { background: #eef1f8 !important; }
-.boxed.input, .select-wrap.boxed select, .search-input, .yhead .search-input, .post-form textarea { border: 1.5px solid #dfe3ea !important; box-shadow: none !important; }
-.yhead .search-input { border-color: transparent !important; box-shadow: 0 3px 10px rgba(16, 24, 40, .12) !important; }
-.boxed.input:focus, .search-input:focus-within { border-color: var(--primary) !important; outline: 0 !important; }
-.btn.secondary { border: 1.5px solid #dfe3ea !important; box-shadow: none !important; }
-.btn { box-shadow: 0 6px 16px rgba(21, 96, 240, .25) !important; border-width: 0 !important; }
-.btn.secondary:hover { background: #f3f6fb !important; }
-.table-wrap, .ftable thead th { border-color: #e4e7ec !important; }
-.closed-notice { border: 1px solid #d9dde4 !important; }
-.mapcard { border-color: transparent !important; box-shadow: 0 14px 34px rgba(16, 24, 40, .22) !important; }
-.mapcard-top { border-bottom-color: rgba(16, 24, 40, .12) !important; }
-.tabs { border-color: rgba(16, 24, 40, .08) !important; box-shadow: 0 10px 30px rgba(16, 24, 40, .16) !important; }
-.map-search, .mapfill .float .icon-btn, .mapfill .leaflet-bar { border-color: transparent !important; box-shadow: 0 4px 14px rgba(16, 24, 40, .22) !important; }
-.mapfill .leaflet-bar a { border-bottom-color: #e4e7ec !important; }
+.view:not(.view-home) .row-item.line { border-left: 8px solid var(--stub) !important; border-top-color: transparent !important; border-right-color: transparent !important; border-bottom-color: transparent !important; }
+.view:not(.view-home) .row-item:active,
+.view:not(.view-home) .cat:active,
+.view:not(.view-home) .stand-card:active,
+.view:not(.view-home) .trip-row:active { transform: scale(.985) !important; box-shadow: 0 3px 12px rgba(50, 70, 130, .12) !important; }
+.view:not(.view-home) .chip,
+.view:not(.view-home) .chip.small,
+.view:not(.view-home) .pill,
+.view:not(.view-home) .pill.action,
+.view:not(.view-home) .tag,
+.view:not(.view-home) .stand-pill,
+.view:not(.view-home) .seg,
+.view:not(.view-home) .seg button,
+.view:not(.view-home) .fy-chip,
+.view:not(.view-home) .here-chip,
+.view:not(.view-home) .onb-tag { border-color: #e4e7ec !important; border-width: 1px !important; box-shadow: none !important; }
+.view:not(.view-home) .chip[aria-pressed='true'] { border-color: var(--ink) !important; }
+.view:not(.view-home) .seg { background: #eef1f8 !important; }
+.view:not(.view-home) .boxed.input,
+.view:not(.view-home) .select-wrap.boxed select,
+.view:not(.view-home) .search-input,
+.view:not(.view-home) .yhead .search-input,
+.view:not(.view-home) .post-form textarea { border: 1.5px solid #dfe3ea !important; box-shadow: none !important; }
+.view:not(.view-home) .yhead .search-input { border-color: transparent !important; box-shadow: 0 3px 10px rgba(16, 24, 40, .12) !important; }
+.view:not(.view-home) .boxed.input:focus,
+.view:not(.view-home) .search-input:focus-within { border-color: var(--primary) !important; outline: 0 !important; }
+.view:not(.view-home) .btn.secondary { border: 1.5px solid #dfe3ea !important; box-shadow: none !important; }
+.view:not(.view-home) .btn { box-shadow: 0 6px 16px rgba(21, 96, 240, .25) !important; border-width: 0 !important; }
+.view:not(.view-home) .btn.secondary:hover { background: #f3f6fb !important; }
+.view:not(.view-home) .table-wrap,
+.view:not(.view-home) .ftable thead th { border-color: #e4e7ec !important; }
+.view:not(.view-home) .closed-notice { border: 1px solid #d9dde4 !important; }
+.view:not(.view-home) .mapcard { border-color: transparent !important; box-shadow: 0 14px 34px rgba(16, 24, 40, .22) !important; }
+.view:not(.view-home) .mapcard-top { border-bottom-color: rgba(16, 24, 40, .12) !important; }
+.view:not(.view-home) .tabs { border-color: rgba(16, 24, 40, .08) !important; box-shadow: 0 10px 30px rgba(16, 24, 40, .16) !important; }
+.view:not(.view-home) .map-search,
+.view:not(.view-home) .mapfill .float .icon-btn,
+.view:not(.view-home) .mapfill .leaflet-bar { border-color: transparent !important; box-shadow: 0 4px 14px rgba(16, 24, 40, .22) !important; }
+.view:not(.view-home) .mapfill .leaflet-bar a { border-bottom-color: #e4e7ec !important; }
 
 /* nav bar: no black outline, soft shadow, like the rest */
 .tabs { border: 1px solid rgba(16, 24, 40, .06) !important; background: rgba(255, 255, 255, .96) !important; box-shadow: 0 10px 30px rgba(16, 24, 40, .16) !important; }
 .tab[aria-current='page'] { border: 0 !important; box-shadow: 0 6px 16px rgba(21, 96, 240, .28) !important; }
 
 /* no coloured stub on the route rows */
-.row-item.line { border-left: 1px solid transparent !important; }
+.view:not(.view-home) .row-item.line { border-left: 1px solid transparent !important; }
