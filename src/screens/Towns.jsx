@@ -118,8 +118,8 @@ export function Town() {
           <h2 className="sec">{transitModesForTown(tw.id).length === 1 ? 'How to get there' : 'Ride by bus or van'}</h2>
           {!isCity(tw) && <div className="note static"><Icon name="info" /><span><b>Only the mini bus</b><span className="row-sub">{TOWN_RIDES[tw.id]?.note ?? 'The big bus goes only to cities. This town is served by the mini bus.'}</span></span></div>}
           <Transit modes={transitModesForTown(tw.id)} km={tw.km} townId={tw.id} />
-          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { if (m === 'mini') return `Mini bus: ask the conductor. The possible fare is ${miniPossible(tw.id, tw.km).text.replace('₱', '').replace(/₱/g, '')} pesos.`; const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
-          <p className="hint">Hours are reported by riders. Fares are calculated from the Davao bus fare (₱140 to ₱200) and the Kapatagan mini bus fare (₱80 to ₱100 for a student), so they can be a little off. Ask the dispatcher.</p>
+          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { if (m === 'mini') return `Mini bus: ask the conductor. The possible fare is ${miniPossible(tw.id, tw.km).text.replace('₱', '').replace(/₱/g, '')} pesos.`; const f = transitFare(m, tw.km, tw.id); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
+          <p className="hint">Hours are reported by riders. Fares are the ones given for each town. Students, seniors and PWD pay 20% less. Prices can change, so ask the dispatcher.</p>
         </section>
 
         <section className="card">
