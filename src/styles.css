@@ -1660,3 +1660,32 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .onb-skip.ghost { visibility: hidden; border: 0; box-shadow: none; }
 .onb-logo { min-width: 0; white-space: nowrap; }
 .onb-lang button { min-width: 44px; }
+
+/* ---- Onboarding, alignment pass: one left edge and one right edge for the logo, road, panel, title, text and buttons ---- */
+.onb-top { padding: 14px 24px 0; }
+.onb-road { margin: 8px 32px 0; }
+.onb-slide { justify-content: flex-start; align-items: stretch; padding: 22px 24px 16px; gap: 14px; }
+.onb-slide .onb-art, .onb-slide .onb-art.board { align-self: stretch; width: 100%; max-width: none; }
+.onb-art.board { height: clamp(190px, 30vh, 250px); }
+.onb-art.board.small { height: clamp(150px, 24vh, 190px); }
+.onb-slide h1 { font-size: clamp(28px, 8.6vw, 36px); max-width: none; text-wrap: balance; margin: 8px 0 0; }
+.onb-slide p { max-width: none; text-wrap: pretty; }
+.onb-slide.login p { max-width: none; }
+.onb-slide .onb-form, .onb-slide .onb-guest { align-self: stretch; }
+.onb-guest:not(.primary) { align-self: flex-start; }
+.onb-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.onb-facts li { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 13px 0 10px; background: #fff; color: var(--ink); border: 2.5px solid var(--ink); border-radius: 99px; box-shadow: 0 3px 0 var(--ink); font-weight: 800; font-size: 13px; white-space: nowrap; }
+.onb-facts li i { flex: none; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ink); }
+/* the scenes are centred in the wider panel */
+.s-fares .ticket { left: calc(50% - 90px + 12px - var(--n) * 12px); }
+.onb-art.board .chip-float.b { left: 12px; }
+@media (prefers-reduced-motion: no-preference) {
+  .onb-slide.on .onb-facts li { animation: onb-pop .45s calc(.34s + var(--k, 0) * .07s) cubic-bezier(.2, .8, .2, 1) both; }
+}
+@media (max-height: 700px) { .onb-art.board { height: 170px; } .onb-slide h1 { font-size: 26px; } .onb-slide { padding-top: 14px; } }
+.onb-form { max-width: none; }
+.onb-guest.primary { max-width: none; align-self: stretch; }
+.onb-guest:not(.primary) { padding-left: 0; padding-right: 0; }
+.onb-sent { color: var(--ink); }
+.onb-err { color: #fff; background: rgba(23, 10, 53, .55); border-radius: 10px; padding: 6px 10px; }
+.onb-input:focus { outline: 3px solid #fff; border-color: var(--ink); }
