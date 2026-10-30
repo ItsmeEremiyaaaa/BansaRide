@@ -33,7 +33,7 @@ export default function WeatherChip({ weather }) {
   return (
     <div className="wx">
       <button className="wx-chip" aria-expanded={open} onClick={() => setOpen((v) => !v)} aria-label={`Weather in Bansalan: ${weather.temp} degrees, ${word}. Tap for details.`}>
-        <WeatherIcon code={weather.code} night={night} size={24} /><b>{weather.temp}°</b><span className="wx-word">{word}</span>
+        <WeatherIcon code={weather.code} night={night} size={28} />
       </button>
       {open && (
         <div className="wx-card" role="dialog" aria-label="Weather details">

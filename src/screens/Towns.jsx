@@ -199,7 +199,7 @@ export function Fares() {
           ) : (
             <p className="hint">{fromId === toId ? 'Pick two different places.' : 'No ride is saved for this pair yet.'}</p>
           )}
-          {motor && <AskDriver me={me} destId={toId} />}
+          {motor && <AskDriver me={me} destId={toId} km={trip?.kmExact ?? km} />}
 
           {!motor && trip && <div className="pax">
             {rows.map((p) => (

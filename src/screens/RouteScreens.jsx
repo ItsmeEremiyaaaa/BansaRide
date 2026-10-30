@@ -8,6 +8,7 @@ import Transit from '../Transit'
 import { shareText, speak } from '../speech'
 import FromYou from '../FromYou'
 import RainOverlay from '../RainOverlay'
+import CloudOverlay from '../CloudOverlay'
 import { useLook } from '../mood'
 import WeatherChip from '../WeatherChip'
 import WeatherIcon from '../WeatherIcon'
@@ -331,6 +332,7 @@ export function MapScreen() {
 
   return (
     <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' + (look.level >= 2 ? ' strong' : '') : '')}>
+      <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />
       <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
