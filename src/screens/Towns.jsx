@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import Picker from '../Picker'
+import { useRideFromMe } from '../rideFromMe'
 import { useApp, BackButton, Icon, Tag, YHeader, Bus, Van } from '../components'
 import Transit from '../Transit'
 import TransitPop from '../TransitPop'
 import { useAuth } from '../auth'
 import { speak } from '../speech'
-import { towns, routes, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
+import { towns, routes, placeById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
 
 function TownRow({ town, onOpen, index }) {
   return (
@@ -130,15 +132,29 @@ export function Town() {
 }
 
 export function Fares() {
-  const { params } = useApp()
-  const calcRoutes = routes.filter((x) => x.fare !== null) // motorcycles have no fare yet
-  const first = calcRoutes.find((x) => x.id === params.id) ?? calcRoutes.find((x) => x.to === 'rizal') ?? calcRoutes[0]
-  const [rid, setRid] = useState(first.id)
+  const { params, loc } = useApp()
+  const fromRoute = routes.find((x) => x.id === params.id) // opened from a route page: start with that trip
+  const [fromId, setFromId] = useState(fromRoute ? fromRoute.from : 'me') // 'me' = where you are now
+  const [toId, setToId] = useState(fromRoute ? fromRoute.to : 'rizal')
+  const [picker, setPicker] = useState(null) // 'from' | 'to' | null
   const { discount } = useAuth()
   const [counts, setCounts] = useState({ [discount ?? 'adult']: 1 }) // starts with your own fare when you have a discount
   const [asked, setAsked] = useState('')
   const [townId, setTownId] = useState('davao')
-  const r = calcRoutes.find((x) => x.id === rid) ?? first
+
+  // the trip: from your location (real road when online, saved routes when offline), or between two places
+  const me = loc.state === 'ok' ? loc.ll : null
+  const dest = placeById(toId)
+  const fromMe = useRideFromMe(fromId === 'me' ? me : null, dest)
+  const between = fromId !== 'me' && fromId !== toId ? routeBetween(fromId, toId) : null
+  const fallback = fromId === 'me' && !me ? routeBetween('terminal', toId) : null // no location yet: show it from the Bus Terminal
+  const trip = fromId === 'me'
+    ? (me ? fromMe : fallback && { km: fallback.route.km, minutes: fallback.route.minutes, vehicle: fallback.route.vehicle, exact: true, fallback: true })
+    : between && { km: between.route.km, minutes: between.route.minutes, vehicle: between.route.vehicle, exact: !between.route.via || between.route.exact }
+  const motor = trip?.vehicle === 'Motor'
+  const km = trip?.km ?? 0
+  const fromName = fromId === 'me' ? 'My location' : placeById(fromId)?.name
+  const r = { km }
   const rows = PASSENGERS.map((p) => ({ ...p, n: counts[p.id] ?? 0, each: fareFor(r.km, p.id) }))
   const riders = rows.reduce((a, x) => a + x.n, 0)
   const total = rows.reduce((a, x) => a + x.n * x.each, 0)
@@ -152,21 +168,28 @@ export function Fares() {
     <>
       <YHeader title="Fare check" />
       <div className="body">
-        <p className="lede">Choose a route and who is riding. Each person pays their own fare, by distance.</p>
+        <p className="lede">Choose where you go and who is riding. Each person pays their own fare, by distance.</p>
 
         <section className="card form">
-          <div>
-            <label className="lbl" htmlFor="route">Route</label>
-            <div className="select-wrap boxed">
-              <select id="route" value={rid} onChange={(e) => setRid(e.target.value)}>
-                {calcRoutes.map((x) => <option key={x.id} value={x.id}>{shortName(x.from)} → {shortName(x.to)}</option>)}
-              </select>
-              <Icon name="chevron" className="caret" />
-            </div>
-            <p className="row-sub" style={{ marginTop: 6 }}>{r.km} km · {r.minutes} min · Fare {fareText(r)} depending on who rides</p>
+          <div className="trip">
+            <button className="trip-row" onClick={() => setPicker('from')}>
+              <span className="lbl">From</span>
+              <b><Icon name={fromId === 'me' ? 'locate' : 'pin'} className="inline" />{fromName}</b>
+              {fromId === 'me' && <span className="row-sub">{me ? 'Where you are now' : 'Turn on location, or choose a pickup'}</span>}
+            </button>
+            <button className="trip-row" onClick={() => setPicker('to')}>
+              <span className="lbl">To</span>
+              <b><Icon name="flag" className="inline" />{dest?.name}</b>
+            </button>
           </div>
+          {trip ? (
+            <p className="row-sub">{km} km · about {trip.minutes} min{motor ? '' : ' by tricycle'} · {trip.fallback ? 'from the Bus Terminal' : trip.exact ? 'road distance' : 'estimate'}</p>
+          ) : (
+            <p className="hint">{fromId === toId ? 'Pick two different places.' : 'No ride is saved for this pair yet.'}</p>
+          )}
+          {motor && <div className="note static"><Icon name="moto" /><span><b>Ask the driver</b><span className="row-sub">Farm motorcycles have no fixed fare. Ask before you ride.</span></span></div>}
 
-          <div className="pax">
+          {!motor && trip && <div className="pax">
             {rows.map((p) => (
               <div key={p.id} className="pax-row">
                 <div><b>{p.label}</b><span className="row-sub">₱{p.each} each</span></div>
@@ -177,13 +200,23 @@ export function Fares() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="result">
+          </div>}
+          {!motor && trip && <div className="result">
             <div><span className="stat-k">Total for {riders} {riders === 1 ? 'rider' : 'riders'}</span><span className="stat-v huge">₱{total}</span></div>
-          </div>
+          </div>}
           <p className="hint">{FARE_NOTE}</p>
         </section>
+
+        {picker && (
+          <Picker
+            title={picker === 'from' ? 'Choose pickup' : 'Choose destination'}
+            otherId={picker === 'from' ? toId : fromId === 'me' ? null : fromId}
+            selectedId={picker === 'from' ? fromId : toId}
+            allowMe={picker === 'from'}
+            onPick={(id) => { if (picker === 'from') setFromId(id); else setToId(id); setPicker(null) }}
+            onClose={() => setPicker(null)}
+          />
+        )}
 
         <section className="card form">
           <h2 className="sec">Bus, van and mini bus</h2>
