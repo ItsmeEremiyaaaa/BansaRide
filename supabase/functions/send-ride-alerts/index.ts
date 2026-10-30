@@ -7,8 +7,8 @@ import webpush from 'npm:web-push@3.6.7'
 // minutes after midnight
 const MODES: Record<string, { label: string; first: number; last: number; firstText: string; lastText: string }> = {
   bus: { label: 'Big bus', first: 3 * 60, last: 23 * 60, firstText: '3:00 AM', lastText: '11:00 PM' },
-  van: { label: 'Van', first: 5 * 60, last: 21 * 60, firstText: '5:00 AM', lastText: '9:00 PM' },
-  mini: { label: 'Mini bus', first: 8 * 60, last: 18 * 60, firstText: '8:00 AM', lastText: '6:00 PM' },
+  van: { label: 'Van', first: 5 * 60, last: 23 * 60, firstText: '5:00 AM', lastText: '11:00 PM' },
+  mini: { label: 'Mini bus', first: 8 * 60, last: 17 * 60, firstText: '8:00 AM', lastText: '5:00 PM' },
 }
 const FIRST_BEFORE = 30 // minutes before the first ride
 const LAST_BEFORE = 60 // minutes before the last ride
