@@ -1593,3 +1593,62 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .seal-card b { font-family: var(--display); font-size: 22px; text-transform: uppercase; }
 .seal-card span { font-size: 13px; font-weight: 700; color: var(--ink2); }
 .foot-seal { display: block; margin: 8px auto 0; opacity: .95; }
+
+/* ---- Onboarding, redesigned: the signboard language of the app, and a road that the tricycle drives along ---- */
+.onb { --onb-ink: #170a35; }
+.onb.tone-gold { --onb-bg: #f4b400; --onb-panel: #fff1c7; }
+.onb.tone-blue { --onb-bg: #1560f0; --onb-panel: #e3edff; }
+.onb.tone-coral { --onb-bg: #e5322d; --onb-panel: #ffe6df; }
+.onb.tone-green { --onb-bg: #1f7a5a; --onb-panel: #dff5e8; }
+.onb-logo { color: var(--ink); }
+.onb-skip { color: var(--ink); background: rgba(255, 255, 255, .6); border: 2.5px solid var(--ink); box-shadow: 0 3px 0 var(--ink); border-radius: 14px; }
+.onb-top .onb-lang { box-shadow: 0 3px 0 var(--ink); }
+/* the road */
+.onb-road { position: relative; height: 40px; margin: 8px 28px 0; }
+.onb-line { position: absolute; left: 0; right: 0; top: 24px; height: 8px; border-radius: 6px; background: repeating-linear-gradient(90deg, var(--ink) 0 14px, transparent 14px 24px); opacity: .9; }
+.onb-road i { position: absolute; top: 20px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: #fff; border: 3px solid var(--ink); transition: background .4s ease, transform .4s ease; }
+.onb-road i.done { background: var(--ink); transform: scale(.7); }
+.onb-car { position: absolute; left: calc(var(--at, 0) * 100%); top: -2px; margin-left: -23px; transform: translateX(calc(var(--drag, 0) * 100%)); transition: left .6s cubic-bezier(.22, 1, .36, 1); filter: drop-shadow(0 3px 0 rgba(23, 10, 53, .35)); }
+/* slides: left-aligned, signage type, no pills */
+.onb-slide { align-items: stretch; text-align: left; gap: 14px; padding-left: 24px; padding-right: 24px; }
+.onb-slide h1 { font-size: 32px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; color: var(--ink); }
+.onb-slide p { max-width: 36ch; color: var(--ink); opacity: .82; font-weight: 600; }
+.onb-slide .onb-art { align-self: center; }
+.onb-art.board { width: min(330px, 86vw); height: min(250px, 33vh); padding: 14px; background: var(--onb-panel); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 0 7px 0 var(--ink); overflow: hidden; }
+.onb-art.board.small { height: 170px; }
+.onb-art .rv { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); opacity: .75; z-index: 2; }
+.onb-art .rv.a { left: 9px; top: 9px; } .onb-art .rv.b { right: 9px; top: 9px; } .onb-art .rv.c { left: 9px; bottom: 9px; } .onb-art .rv.d { right: 9px; bottom: 9px; }
+.onb-slide.on .onb-art.board { animation: board-in .7s cubic-bezier(.22, 1.3, .36, 1) both; transform-origin: 50% 0; }
+@keyframes board-in { from { transform: translateY(-14px) rotate(-2.5deg); } to { transform: none; } }
+.onb-slide.login .onb-art { align-self: center; }
+.onb-slide.login p, .onb-slide.login h1 { text-align: left; }
+.onb-next, .onb-btn, .onb-guest.primary { background: var(--ink); color: #fff; box-shadow: 0 5px 0 rgba(23, 10, 53, .35); border: 2.5px solid var(--ink); }
+.onb-back { border: 2.5px solid var(--ink); box-shadow: 0 4px 0 var(--ink); }
+.onb-input { border: 2.5px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.onb-guest:not(.primary) { color: var(--ink); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.onb-hint { color: var(--ink); opacity: .7; font-weight: 700; }
+.onb-sent { color: var(--ink); font-weight: 700; }
+.s-fares .ticket { border: 3px solid var(--ink); box-shadow: 0 4px 0 var(--ink); }
+.onb-art .chip-float { border: 2.5px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+@media (prefers-reduced-motion: reduce) { .onb-slide.on .onb-art.board { animation: none; } .onb-car { transition: none; } }
+/* fixes: scenes fill the panel, the fares chip sits clear of the tickets, readable text on each colour */
+.onb-art.board .scene { position: absolute; inset: 14px; width: auto; height: auto; }
+.s-fares .ticket { top: calc(34px + var(--n) * 56px); left: calc(30px - var(--n) * 8px); width: 180px; padding: 11px 16px; }
+.onb-art.board .chip-float.a { right: 10px; top: 10px; font-size: 11px; padding: 5px 10px; }
+.onb-art.board .chip-float.b { left: 10px; bottom: 10px; }
+.onb.tone-coral { --onb-bg: #c9282a; }
+.onb.tone-blue, .onb.tone-coral, .onb.tone-green { --onb-fg: #fff; }
+.onb.tone-gold { --onb-fg: var(--ink); }
+.onb-slide h1, .onb-slide p, .onb-logo, .onb-hint, .onb-sent { color: var(--onb-fg, var(--ink)); }
+.onb-guest:not(.primary) { color: var(--onb-fg, var(--ink)); }
+.onb-next, .onb-btn, .onb-guest.primary { background: #fff; color: var(--ink); border-color: var(--ink); box-shadow: 0 5px 0 var(--ink); }
+.onb.tone-gold .onb-next, .onb.tone-gold .onb-btn { background: var(--ink); color: #fff; box-shadow: 0 5px 0 rgba(23, 10, 53, .35); }
+.onb-road i { background: #fff; }
+.onb.tone-blue .onb-line, .onb.tone-coral .onb-line, .onb.tone-green .onb-line { background: repeating-linear-gradient(90deg, #fff 0 14px, transparent 14px 24px); }
+.onb.tone-blue .onb-road i, .onb.tone-coral .onb-road i, .onb.tone-green .onb-road i { border-color: #fff; }
+.onb.tone-blue .onb-road i.done, .onb.tone-coral .onb-road i.done, .onb.tone-green .onb-road i.done { background: #fff; }
+.onb-car { z-index: 2; }
+.s-welcome .ride { width: 150px; height: auto; }
+.s-fares .ticket { top: calc(46px + var(--n) * 54px); }
+.s-near .drop svg, .s-near .drop svg * { color: #e5322d; }
+.s-near .drop svg path, .s-near .drop svg circle { fill: #e5322d; stroke: #fff; }

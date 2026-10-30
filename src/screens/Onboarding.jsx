@@ -39,7 +39,7 @@ function SceneMap() {
   )
 }
 function SceneFares() {
-  const cards = [['Student', '₱10', '#fff4d6'], ['Senior', '₱15', '#e3edff'], ['Adult', '₱20', '#ffe6df']]
+  const cards = [['Student', '₱164', '#fff4d6'], ['Senior', '₱164', '#e3edff'], ['Adult', '₱205', '#ffe6df']]
   return (
     <div className="scene s-fares" aria-hidden="true">
       {cards.map(([who, fare, bg], n) => (
@@ -49,7 +49,7 @@ function SceneFares() {
           <span className="t-cut" />
         </div>
       ))}
-      <span className="chip-float a">Bus 3 AM to 11 PM</span>
+      <span className="chip-float a">Bus to Davao · 3 AM to 11 PM</span>
     </div>
   )
 }
@@ -146,26 +146,26 @@ export default function Onboarding({ onDone }) {
         </span>
         {i < LAST && <button className="onb-skip" onClick={() => go(LAST)}>{tx('Skip')}</button>}
       </div>
-      <div className="onb-steps" aria-hidden="true">
-        {[...SLIDES, null].map((_, n) => <i key={n} className={n < i ? 'done' : n === i ? 'on' : ''} />)}
+      <div className="onb-road" aria-hidden="true" style={{ '--at': i / LAST, '--drag': -p / LAST }}>
+        <span className="onb-line" />
+        {[...SLIDES, null].map((_, n) => <i key={n} className={n <= i ? 'done' : ''} style={{ left: (n / LAST) * 100 + '%' }} />)}
+        <span className="onb-car"><Trike width={46} height={32} /></span>
       </div>
 
       <div className={'onb-view' + (dragging ? ' dragging' : '')} ref={box} onPointerDown={down} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
         <div className="onb-track" style={{ transform: `translateX(calc(${-i * 100}% + ${dx}px))`, '--p': p }}>
           {SLIDES.map((s, n) => (
             <section className={'onb-slide' + (n === i ? ' on' : '')} key={s.title} aria-hidden={n !== i} aria-label={s.title}>
-              <div className="onb-art">
-                <span className="onb-blob" />
+              <div className="onb-art board">
+                <i className="rv a" /><i className="rv b" /><i className="rv c" /><i className="rv d" />
                 {s.scene}
               </div>
-              <span className="onb-tag">{s.tag}</span>
               <h1>{s.title}</h1>
               <p>{s.text}</p>
             </section>
           ))}
           <section className={'onb-slide login' + (i === LAST ? ' on' : '')} aria-hidden={i !== LAST} aria-label="Sign in">
-            <div className="onb-art small"><span className="onb-blob" /><Bus className="bigbus" width={170} height={118} /></div>
-            <span className="onb-tag">Almost there</span>
+            <div className="onb-art board small"><i className="rv a" /><i className="rv b" /><i className="rv c" /><i className="rv d" /><Bus className="bigbus" width={170} height={118} /></div>
             <h1>Get your own fare</h1>
             <p>Students, senior citizens and PWD sign in to see their discounted fare everywhere. Or just look around as a guest.</p>
             {configured && (state === 'sent' ? (
