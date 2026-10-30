@@ -7,6 +7,7 @@ import { moodRules } from './mapStyle'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from './boundary'
+import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
 // The map is limited to Bansalan, Davao del Sur: it cannot be panned away, and everything outside the
 // real municipal border is dimmed. Barangay names show from zoom 13.
@@ -160,6 +161,22 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     // `preview` makes a quiet picture-only map (used behind the Home header)
     const still = preview ? { dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false } : {}
     const m = L.map(el.current, { zoomControl: false, zoomSnap: 0.25, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
+    // press and hold a pin (touch) to see its details card
+    { let timer = null, sx = 0, sy = 0, open = null, closeT = null
+      const c = m.getContainer()
+      const stop = () => { clearTimeout(timer); timer = null }
+      c.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse') return
+        const k = e.target.closest?.('.leaflet-marker-icon')?._tip
+        if (!k?.title || k.kind === 'sel') return
+        sx = e.clientX; sy = e.clientY; clearTimeout(closeT)
+        timer = setTimeout(() => { markHold(); open = L.tooltip({ direction: 'top', offset: [0, -16], className: 'pin-tip', opacity: 1 }).setLatLng([k.lat, k.lon]).setContent(pinTipHtml(k, meRef.current)).openOn(m) }, HOLD_MS)
+      })
+      c.addEventListener('pointermove', (e) => { if (timer && Math.hypot(e.clientX - sx, e.clientY - sy) > 10) stop() })
+      const end = () => { stop(); if (open) { const o = open; open = null; closeT = setTimeout(() => m.closeTooltip(o), 2200) } }
+      c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end)
+      m.on('unload', () => { stop(); clearTimeout(closeT) })
+    }
     // keep the place in the part of the map you can see, above the card
     if (offsetRef.current) m.setView(above(m, center ?? [6.7875, 125.2118], zoom, offsetRef.current), zoom, { animate: false })
     map.current = m
@@ -252,9 +269,11 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
       iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster${(() => { const known = c.getAllChildMarkers().filter((x) => x.options.stand && x.options.hoursKnown); return known.length > 0 && known.every((x) => x.options.closed) })() ? ' closed' : ''}"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
     }).addTo(pinLayer.current) : null
     markersRef.current.forEach((k, i) => {
-      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
+      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), alt: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
       mk.addTo(cluster && k.kind !== 'sel' && !k.night ? group : pinLayer.current) // night spots are never folded into a group, so they stand out
-      if (k.id) mk.on('click', () => pickRef.current?.(k.id))
+      if (k.id) mk.on('click', () => { if (!justHeld()) pickRef.current?.(k.id) })
+      mk.on('add', () => { const e = mk.getElement(); if (e) e._tip = k })
+      if (k.title && k.kind !== 'sel' && canHover()) mk.bindTooltip(() => pinTipHtml(k, meRef.current), { direction: 'top', offset: [0, -16], className: 'pin-tip', opacity: 1 })
     })
 
   }, [pinKey]) // eslint-disable-line react-hooks/exhaustive-deps

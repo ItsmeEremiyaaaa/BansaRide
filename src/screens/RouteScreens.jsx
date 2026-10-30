@@ -285,7 +285,7 @@ export function MapScreen() {
   const rideMoto = ride?.vehicle === 'Motor' // a motorcycle ride: the map draws motorcycles
   const markers = useMemo(() => [
     ...places.filter((x) => x.kind !== 'Street' || x.id === sel || waitingSpots[x.id]).map((x) => ({
-      id: x.id, lat: x.lat, lon: x.lon, title: x.name,
+      id: x.id, lat: x.lat, lon: x.lon, title: x.name, sub: waitingSpots[x.id] ? `${x.kind} · waiting spot` : x.kind,
       kind: waitingSpots[x.id] ? 'spot' : 'place', // the picked place is drawn bigger by the map itself (selId), so picking never changes this list
       closed: placeStandNow(x.id)?.state === 'closed',
       hoursUnknown: placeStandNow(x.id)?.state === 'unknown',
@@ -293,9 +293,9 @@ export function MapScreen() {
       glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? (rideMoto ? 'moto' : 'mini') : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind === 'Barangay' || x.kind === 'Sitio' ? x.kind : 'Place',
       label: '',
     })),
-    ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: 'place', label: '', glyph: x.kind })),
+    ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, sub: x.kind, kind: 'place', label: '', glyph: x.kind })),
     // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
-    ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
+    ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, sub: s.type === 'motor' ? 'Motorcycle stand' : 'Tricycle / pedicab stand', kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
   ], [selPoiKey, poiKinds, look.tick, rideMoto]) // eslint-disable-line react-hooks/exhaustive-deps
   // pressing the location button always wins, even while a route is shown
   // The map makes ONE move to a picked place. It waits (up to 4 seconds) while your location or the real road is still coming,
