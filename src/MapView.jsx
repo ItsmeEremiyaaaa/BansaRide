@@ -21,6 +21,7 @@ const EDGE_COLOR = { dawn: '#ffd66b', morning: '#f4b400', day: '#f4b400', golden
 // show offline even when the map pictures (tiles) have not been saved yet.
 // Small drawings inside the pins, so a school looks like a school and a waiting spot like a tricycle.
 const GLYPHS = {
+  Notice: '<path d="M12 4 3 20h18z" /><path d="M12 10v4" /><path d="M12 17.5v.5" />',
   vehicle: '<path d="M3 15V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v6" /><path d="M2 15h15M15 10h3.5l2 5" /><circle cx="6" cy="18" r="2" /><circle cx="19" cy="18" r="2" />',
   moto: '<circle cx="6" cy="17" r="3" /><circle cx="18" cy="17" r="3" /><path d="M6 17l4-7h5l3 7M10 10l-1-3H7M14 10l1-3h2" />',
   School: '<path d="M3 9l9-5 9 5-9 5z" /><path d="M7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5" />',
@@ -37,7 +38,7 @@ const GLYPHS = {
   Barangay: '<path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10" />',
   Sitio: '<path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10" />',
 }
-const TONES = { Hotel: '#7c4dff', Food: '#e8590c', Bank: '#0b7285', Pharmacy: '#e03131', Gas: '#495057', moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
+const TONES = { Notice: '#c9282a', Hotel: '#7c4dff', Food: '#e8590c', Bank: '#0b7285', Pharmacy: '#e03131', Gas: '#495057', moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
 // Waiting spots and terminals use the real vehicle drawings (from the app's art sheet), with no circle behind them.
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' } // the last four are the app's own place icons
 // The pins drop in once when the map opens. After that, redrawing them (closing a card, picking a place) must not replay the drop,

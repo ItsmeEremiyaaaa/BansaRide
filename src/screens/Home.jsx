@@ -5,6 +5,7 @@ import MapView from '../MapView'
 import Picker from '../Picker'
 import InstallPrompt from '../InstallPrompt'
 import Clock from '../Clock'
+import Notices from '../Notices'
 import { useLook } from '../mood'
 import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist, bansalanClock } from '../data'
 
@@ -160,6 +161,7 @@ export default function Home() {
       </header>
 
       <div className="body home2">
+        <Notices />
         <InstallPrompt />
         <section className="card glass where" aria-label="Plan a ride">
           <div className="where-top">

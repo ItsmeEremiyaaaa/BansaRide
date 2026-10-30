@@ -14,6 +14,8 @@ import { useLook } from '../mood'
 import WeatherChip from '../WeatherChip'
 import { useExclusive } from '../popover'
 import { sendToInbox } from '../admin'
+import Notices from '../Notices'
+import { announcements } from '../liveData'
 import WeatherIcon from '../WeatherIcon'
 import { rememberMap, recallMap } from '../mapMemo'
 import { useRideFromMe } from '../rideFromMe'
@@ -239,7 +241,7 @@ function dragDown(onClose) {
 }
 
 export function MapScreen() {
-  const { go, say, params, loc, retryLocation } = useApp()
+  const { go, say, params, loc, retryLocation, live } = useApp()
   const memo = useMemo(() => recallMap(), []) // what you had open before you left for a detail page (Back brings it back)
   const [sel, setSel] = useState(params.id ?? memo?.sel ?? null) // null = nothing picked yet: the map starts on where you are
   const me = loc.state === 'ok' ? loc.ll : null // live
@@ -312,7 +314,9 @@ export function MapScreen() {
     ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, sub: x.kind, kind: 'place', label: '', glyph: x.kind })),
     // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
     ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, sub: s.type === 'motor' ? 'Motorcycle stand' : 'Tricycle / pedicab stand', kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
-  ], [selPoiKey, poiKinds, look.tick, rideMoto]) // eslint-disable-line react-hooks/exhaustive-deps
+    // announcements that have a place get a pin
+    ...announcements(look.rain).filter((n) => n.lat != null && n.lon != null).map((n) => ({ id: 'notice-' + n.id, lat: n.lat, lon: n.lon, title: n.title, sub: 'Announcement', kind: 'place', label: '', glyph: 'Notice' })),
+  ], [selPoiKey, poiKinds, look.tick, rideMoto, live, look.rain]) // eslint-disable-line react-hooks/exhaustive-deps
   // pressing the location button always wins, even while a route is shown
   // The map makes ONE move to a picked place. It waits (up to 4 seconds) while your location or the real road is still coming,
   // so it never zooms in on the place and then back out when the whole trip is framed.
@@ -332,7 +336,9 @@ export function MapScreen() {
   const nearMe = me ? nearestStands(me, 1)[0] : null
   const links = NO_LINKS // the dashed lines between you, a street and a stand were removed
 
-  const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else goFromMap('station', { id }) }
+  const onPick = (id) => {
+    if (id.startsWith('notice-')) { const n = announcements(look.rain).find((x) => 'notice-' + x.id === id); if (n) say(n.body ? `${n.title}: ${n.body}` : n.title); return }
+    setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else goFromMap('station', { id }) }
   const locate = () => { if (me) setFocusPt([me[0] + 1e-9 * (Date.now() % 7), me[1]]); // a new value each press, so the map moves every time
      else { retryLocation(); say('Looking for your location…') } }
 
@@ -343,7 +349,7 @@ export function MapScreen() {
   const copyDraft = async () => {
     // saved for the BansaRide team; with no connection it falls back to copying the details
     const near = [draftStreet ? `near ${draftStreet.x.name}` : '', draftPlace ? `${draftPlace.x.name} ${draftPlace.m} m away` : ''].filter(Boolean).join(' · ')
-    if (await sendToInbox({ kind: 'spot', about: near.slice(0, 80) || null, lat: draft[0], lon: draft[1], page: window.location.hash.slice(0, 200) })) { say('Sent to the BansaRide team. Thank you.'); setAdding(false); setDraft(null); return }
+    if (await sendToInbox({ kind: 'spot', about: near.slice(0, 80) || null, lat: draft[0], lon: draft[1], page: window.location.hash.slice(0, 200) })) { say('Sent. It shows on the map once the BansaRide team approves it.'); setAdding(false); setDraft(null); return }
     const [la, lo] = draft.map((n) => n.toFixed(6))
     const text = [
       'BansaRide waiting spot',
@@ -360,6 +366,7 @@ export function MapScreen() {
   return (
     <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' + (look.level >= 2 ? ' strong' : '') : '')}>
       <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />
+      <Notices variant="slim" onShow={(n) => setFocusPt([n.lat, n.lon])} />
       <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {(view3d || shown3d) && (
@@ -410,7 +417,7 @@ export function MapScreen() {
             <button className="btn secondary" onClick={() => (me ? setDraft(me) : locate())}><Icon name="locate" />Use my location</button>
             <button className="btn" disabled={!draft} onClick={copyDraft}><Icon name="check" />Send this spot</button>
           </div>
-          <p className="hint">Send the copied details to the app maker. The exact spot is then added to the map for everyone.</p>
+          <p className="hint">The BansaRide team checks every spot first. It shows on the map for everyone once it is approved.</p>
         </section>
       ) : !sel && hereNear ? (
         <section className="mapcard slim here" aria-live="polite" key="here" ref={cardRef}>

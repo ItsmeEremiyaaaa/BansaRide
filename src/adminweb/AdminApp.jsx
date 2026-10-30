@@ -2,17 +2,21 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Ctx, Defs, Icon, Trike } from '../components'
 import { useAuth } from '../auth'
 import { checkAdmin, loadOverview } from '../admin'
-import { Overview, Posts, Inbox, Users, Words } from './sections'
+import { Overview, Posts, Words } from './sections'
+import { Inbox, Groups, Fares, Users, Notices } from './sections2'
 
 // The admin website: a sidebar of sections and a wide work area, in the app's signboard style.
 const SECTIONS = [
   { id: 'overview', label: 'Overview', icon: 'chart', note: 'Accounts, posts, alerts and what riders open' },
-  { id: 'inbox', label: 'Inbox', icon: 'mail', note: 'Problem reports and new waiting spots from riders' },
+  { id: 'inbox', label: 'Inbox', icon: 'mail', note: 'Problem reports, and marked spots to approve before they show on the map' },
+  { id: 'groups', label: 'BTODA groups', icon: 'vehicle', note: 'Groups and street spots: names, contacts, members, verified and suspended' },
+  { id: 'fares', label: 'Fares', icon: 'peso', note: 'Tricycle fares by distance, and bus, van and mini bus fares by town' },
+  { id: 'notices', label: 'Announcements', icon: 'megaphone', note: 'Notices riders see in the app and on the map' },
   { id: 'posts', label: 'Posts', icon: 'chat', note: 'Fare reports and comments, and the ones riders reported' },
-  { id: 'users', label: 'Accounts', icon: 'drivers', note: 'Everyone who signed in, with their discount type' },
-  { id: 'words', label: 'Blocked words', icon: 'alert', note: 'Words that cannot be used in names and comments' },
+  { id: 'users', label: 'Accounts', icon: 'drivers', note: 'Who uses the app, what they post, and suspending accounts' },
+  { id: 'words', label: 'Blocked words', icon: 'ban', note: 'Words that cannot be used in names and comments' },
 ]
-const BODY = { overview: Overview, inbox: Inbox, posts: Posts, users: Users, words: Words }
+const BODY = { overview: Overview, inbox: Inbox, groups: Groups, fares: Fares, notices: Notices, posts: Posts, users: Users, words: Words }
 const fromHash = () => { const id = window.location.hash.replace(/^#\/?/, ''); return BODY[id] ? id : 'overview' }
 const today = () => new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date())
 
@@ -21,6 +25,9 @@ const EXTRA = {
   chart: <><path d="M4 20V10" /><path d="M10 20V4" /><path d="M16 20v-7" /><path d="M2 20h20" /></>,
   mail: <><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m4 7 8 6 8-6" /></>,
   chat: <><path d="M4 5h16v11H9l-5 4z" /><path d="M8 10h8" /></>,
+  peso: <><path d="M8 20V4h5a4 4 0 0 1 0 8H8" /><path d="M5 8h12" /><path d="M5 11h12" /></>,
+  megaphone: <><path d="M3 10v4h3l7 5V5L6 10z" /><path d="M17 9a4 4 0 0 1 0 6" /></>,
+  ban: <><circle cx="12" cy="12" r="8.5" /><path d="m6 6 12 12" /></>,
 }
 const Glyph = ({ name }) => (EXTRA[name] ? <svg className="aw-ico" viewBox="0 0 24 24" aria-hidden="true">{EXTRA[name]}</svg> : <Icon name={name} />)
 
