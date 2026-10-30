@@ -509,7 +509,7 @@ function SchoolCard({ school, go, nearest }) {
 }
 
 export function Place() {
-  const { go, params, loc } = useApp()
+  const { go, params, loc, t } = useApp()
   const look = useLook()
   const p = placeById(params.id) ?? places[0]
   const ways = routes.filter((r) => r.to === p.id || r.from === p.id)
@@ -534,7 +534,7 @@ export function Place() {
         </div>
         {here.length > 0 && (
           <section>
-            <h2 className="sec">Drivers waiting here</h2>
+            <h2 className="sec">{t('Drivers waiting here')}</h2>
             <div className="list">
               {here.map((s) => (
                 <button key={s.id} className="stand-card" onClick={() => go('station', { id: s.id })}>
@@ -555,7 +555,7 @@ export function Place() {
         )}
         {nb && (
           <section>
-            <h2 className="sec">Nearest drivers' stand</h2>
+            <h2 className="sec">{t("Nearest drivers' stand")}</h2>
             <button className="stand-card" onClick={() => go('station', { id: nb.station.id })}>
               <span className="ico gold"><Icon name="vehicle" /></span>
               <span className="row-main"><b>{nb.station.name}</b><span className="row-sub">{fmtDist(nb.meters)} away. Tricycle and pedicab group</span></span>
@@ -567,7 +567,7 @@ export function Place() {
         {p.kind === 'School' && <SchoolCard school={p} go={go} nearest={here[0] ?? nb?.station} />}
         <Feedback scope={{ placeId: p.id }} />
         <section>
-          <h2 className="sec">Rides</h2>
+          <h2 className="sec">{t('Rides')}</h2>
           {ways.length === 0 && <p className="hint">No routes to this place yet. We are adding more.</p>}
           <div className="list">{ways.map((r, i) => <RouteRow key={r.id} route={r} onOpen={(id) => go('route', { id })} index={i} />)}</div>
         </section>

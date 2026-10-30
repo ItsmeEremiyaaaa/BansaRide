@@ -1576,3 +1576,12 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .hscroll .town-card, .hscroll .board { transform: translateZ(0); backface-visibility: hidden; }
 .hscroll .town-card:active { transform: scale(.97); }
 .hscroll .rise { animation-fill-mode: backwards; } /* the entrance animation never replays or jumps while sliding */
+
+/* "Riding tonight?" card on Home, after 8 PM */
+.night-tip { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 16px; margin: 0 0 12px; background: #1f7a5a; color: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 4px 0 var(--ink); text-align: left; }
+.night-tip:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.night-moon { flex: none; width: 42px; height: 42px; border-radius: 14px; background: #170a35; color: #ffd66b; display: grid; place-items: center; font-size: 22px; border: 2.5px solid var(--ink); }
+.night-text { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.night-text b { font-family: var(--display); font-size: 18px; text-transform: uppercase; }
+.night-text span { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .92); }
+.night-tip .chev { color: #fff; }

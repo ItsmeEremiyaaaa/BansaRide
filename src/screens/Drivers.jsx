@@ -32,7 +32,7 @@ function StationRow({ s, onOpen, index }) {
 
 // Driver groups (BTODA) and motorcycles stands.
 export function DriversList() {
-  const { go, loc } = useApp()
+  const { go, loc, t } = useApp()
   const me = loc?.state === 'ok' ? loc.ll : null
   const [q, setQ] = useState('')
   const [kind, setKind] = useState('All')
@@ -103,7 +103,7 @@ export function DriversList() {
 
 // One group: where it waits, where it goes, how to get there.
 export function Station() {
-  const { go, params, loc, retryLocation } = useApp()
+  const { go, params, loc, retryLocation, t } = useApp()
   const look = useLook()
   const s = stationById(params.id) ?? stations[0]
   const p = stationPlace(s)
@@ -189,7 +189,7 @@ export function Station() {
         )}
 
         <section>
-          <h2 className="sec">Where they go</h2>
+          <h2 className="sec">{t('Where they go')}</h2>
           {s.type === 'motor' ? (
             <div className="list">
               {s.serves.map((x) => (
@@ -210,7 +210,7 @@ export function Station() {
         <button className="btn secondary" onClick={() => go('poster', { id: s.id })}><Icon name="check" />Make a poster for this stand</button>
 
         <section className="contact-card">
-          <h2 className="sec">Contact</h2>
+          <h2 className="sec">{t('Contact')}</h2>
           {s.contact ? (
             <div className="contact-person">
               <span className="avatar-lg" aria-hidden="true">{s.contact.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</span>
