@@ -223,6 +223,12 @@ const ICONS = {
   tabMoto: <><circle className="duo" cx="6" cy="17" r="3" /><circle cx="6" cy="17" r="3" /><circle className="duo" cx="18.5" cy="17" r="3" /><circle cx="18.5" cy="17" r="3" /><path className="duo" d="M6 17l3.5-6.5h5l4 6.5-4.5-2.5z" /><path d="M6 17l3.5-6.5h5M14.5 10.5 18.5 17M9.5 10.5 8.5 7.5H6.5M14.5 10.5l1-3.5h2.5" /></>,
   // a street: a street-name sign on a post, above a road that runs away into the distance
   street: <><rect className="duo" x="3" y="3" width="15" height="6" rx="1.4" /><rect x="3" y="3" width="15" height="6" rx="1.4" /><path d="M6 6h6" /><path d="m14.6 6 1.6 0" /><path d="M10.5 9v5.5" /><path className="duo" d="M9.5 14.5h-6L1.8 21h20.4l-1.7-6.5z" /><path d="M2.3 21 6.2 14.5M21.7 21l-3.9-6.5M12 15v1.4M12 18v1.4" /></>,
+  // a barangay: a small community, with two houses and a tree
+  barangay: <><path className="duo" d="M2.5 20v-7.5L8 8l5.5 4.5V20z" /><path d="M2.5 20v-7.5L8 8l5.5 4.5V20zM1.5 12.8 8 7.4l6.5 5.4" /><path d="M6 20v-4h4v4" /><path className="duo" d="M14 20v-5.5l4.2-3.4 4.3 3.4V20z" /><path d="M14 20v-5.5l4.2-3.4 4.3 3.4V20" /><path d="M16.5 20v-3h3.4v3M2 20.5h20" /><circle cx="19" cy="6" r="2.6" /><path d="M19 8.6v2.4" /></>,
+  // a sitio: a hut up on a hill, for the small mountain places
+  sitio: <><path className="duo" d="M1.5 20.5 8.5 9l4.5 7 2.5-3.5 6.5 8z" /><path d="M1.5 20.5 8.5 9l4.5 7 2.5-3.5 6.5 8z" /><path className="duo" d="M15 11.5V7.2l3-2.4 3 2.4v4.3z" /><path d="M15 11.5V7.2l3-2.4 3 2.4v4.3" /></>,
+  // a place: a map pin with a soft fill
+  place: <><path className="duo" d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" /><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></>,
   tabFare: <><circle className="duo" cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="9" /><path d="M9.3 17V7.3h3.4a2.5 2.5 0 0 1 0 5H9.3M7.6 9.2h6.9M7.6 11.2h6.9" /></>,
   sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" /></>,
   filter: <><path d="M4 6h16M7 12h10M10 18h4" /></>,

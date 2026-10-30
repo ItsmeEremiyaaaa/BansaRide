@@ -168,6 +168,9 @@ const LIT = createPattern(24, 24, (_c, ctx) => {
 })
 const roadKinds = (...k) => (_z, f) => k.includes(String(f?.props?.kind ?? ''))
 
+// the colours of a mood for the 3D map (same palette as the flat map, roads included)
+export const moodFlavor = (mood = 'day') => { const P = PALETTES[mood] ?? PALETTES.day; return { ...P.flavor, ...ROADS(null, P.roads.minor, P.roads.minorLine, P.roads.major, P.roads.highway, P.roads.highwayLine) } }
+
 export const moodRules = (mood = 'day', lang = 'en') => {
   const P = PALETTES[mood] ?? PALETTES.day
   const flavor = { ...P.flavor, ...ROADS(null, P.roads.minor, P.roads.minorLine, P.roads.major, P.roads.highway, P.roads.highwayLine) }

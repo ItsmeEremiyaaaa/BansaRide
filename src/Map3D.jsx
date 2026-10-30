@@ -4,7 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import { layers as baseLayers } from '@protomaps/basemaps'
 import { Protocol } from 'pmtiles'
-import { MAPS } from './mapStyle'
+import { moodFlavor } from './mapStyle'
 import { bansalanTiles } from './localTiles'
 
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip
@@ -32,12 +32,12 @@ const geo = (markers) => ({
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day' }) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
   const latest = useRef({})
-  latest.current = { markers, route, routeColor, onPick, offsetY }
+  latest.current = { markers, route, routeColor, onPick, offsetY, mood }
 
   const apply = () => {
     const map = mapRef.current
@@ -63,7 +63,9 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
     const style = {
       version: 8,
       sources: { p: { type: 'vector', url: `pmtiles://${FILE()}`, maxzoom: 15 } },
-      layers: [{ id: 'bg', type: 'background', paint: { 'background-color': MAPS.background } }, ...baseLayers('p', MAPS).filter((l) => l.type !== 'symbol')],
+      layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
+        // evening and night: the houses glow (a soft warm layer over the buildings)
+        ...(latest.current.mood === 'night' || latest.current.mood === 'evening' ? [{ id: 'lit', type: 'fill', source: 'p', 'source-layer': 'buildings', minzoom: 15, paint: { 'fill-color': '#ffd66b', 'fill-opacity': latest.current.mood === 'night' ? 0.22 : 0.1 } }] : [])],
     }
     const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, attributionControl: false })
     mapRef.current = map
@@ -101,5 +103,11 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
   useEffect(apply, [markers, route, routeColor, offsetY]) // eslint-disable-line react-hooks/exhaustive-deps
   const key = center.join()
   useEffect(() => { if (!route?.length) mapRef.current?.easeTo({ center: [center[1], center[0]], duration: 700 }) }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
-  return <div ref={box} className="map3d" role="img" aria-label="3D map of Bansalan" />
+  // the sky at the horizon: a gradient in the colours of the moment, drawn over the far edge of the tilted map
+  return (
+    <>
+      <div ref={box} className="map3d" role="img" aria-label="3D map of Bansalan" />
+      <div className={'sky3d sky-' + mood} aria-hidden="true" />
+    </>
+  )
 }

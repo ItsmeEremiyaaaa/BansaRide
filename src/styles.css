@@ -1427,3 +1427,26 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .town-seal .seal { width: 84px; height: 84px; }
 .seal { border-radius: 50%; background: #fff; object-fit: cover; box-shadow: 0 0 0 2px #fff, 0 3px 10px rgba(16, 24, 40, .2); filter: none; }
 .town-seal { border-radius: 50%; padding: 0; width: 92px; height: 92px; background: transparent; box-shadow: none; }
+
+/* weather chip and card on the map */
+.wx { position: absolute; z-index: 1100; top: calc(68px + env(safe-area-inset-top, 0px)); left: 68px; }
+.wx-chip { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; background: #fff; border-radius: 99px; box-shadow: 0 4px 14px rgba(16, 24, 40, .22); font-size: 14px; }
+.wx-chip b { font-family: var(--display); font-size: 16px; }
+.wx-word { font-weight: 800; color: var(--ink2); font-size: 13px; }
+.wx-card { margin-top: 8px; width: min(290px, calc(100vw - 150px)); padding: 12px; background: #fff; border-radius: 18px; box-shadow: 0 12px 30px rgba(16, 24, 40, .28); display: grid; gap: 10px; }
+.wx-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--ink3); }
+.wx-head b { font-family: var(--display); font-size: 16px; color: var(--ink); }
+.wx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wx-grid > div { display: grid; gap: 1px; padding: 8px 10px; background: #f3f6fb; border-radius: 12px; }
+.wx-grid span { font-size: 11px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: .04em; }
+.wx-grid b { font-family: var(--display); font-size: 17px; }
+.wx-grid em { font-style: normal; font-size: 11px; color: var(--ink2); }
+.wx-note { margin: 0; font-size: 12px; color: var(--ink3); line-height: 1.4; }
+
+/* the sky over the far edge of the 3D map */
+.sky3d { position: absolute; left: 0; right: 0; top: 0; height: 34%; z-index: 410; pointer-events: none; }
+.sky3d.sky-morning { background: linear-gradient(180deg, rgba(255, 214, 160, .7), rgba(255, 238, 205, .35) 60%, transparent); }
+.sky3d.sky-day { background: linear-gradient(180deg, rgba(170, 210, 250, .6), rgba(210, 232, 252, .3) 60%, transparent); }
+.sky3d.sky-evening { background: linear-gradient(180deg, rgba(255, 150, 90, .7), rgba(255, 190, 140, .35) 60%, transparent); }
+.sky3d.sky-night { background: linear-gradient(180deg, rgba(8, 12, 34, .92), rgba(15, 22, 52, .5) 60%, transparent); }
+.mapfill.mood-night .sky3d::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1.4px 1.4px at 12% 18%, #fff, transparent), radial-gradient(1.2px 1.2px at 38% 8%, #fff, transparent), radial-gradient(1.6px 1.6px at 66% 22%, #fff, transparent), radial-gradient(1.1px 1.1px at 84% 10%, #fff, transparent), radial-gradient(1.3px 1.3px at 52% 30%, #fff, transparent); opacity: .8; }

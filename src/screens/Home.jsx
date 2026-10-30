@@ -118,7 +118,7 @@ export default function Home() {
     { id: 'Tricycle', name: 'Tricycle', sub: `${countBy((r) => r.vehicle !== 'Motor')} routes`, eg: 'Rizal, Dolo, Libertad, Tubod', tone: 'blue', art: <Trike width={96} height={66} /> },
     { id: 'Motor', name: 'Motorcycles', sub: `${countBy((r) => r.vehicle === 'Motor')} mountain routes`, eg: 'Balutakay, Gagpang, Alegre', tone: 'green', art: <Moto width={96} height={66} /> },
     { id: 'Streets', name: 'Streets', sub: `${places.filter((p) => p.kind === 'Street').length} mapped`, eg: 'Via Aldi, J. P. Laurel, Roxas', tone: 'orange', art: <Icon name="street" /> },
-    { id: 'Barangays', name: 'Barangays', sub: `${places.filter((p) => p.kind === 'Barangay' || p.kind === 'Sitio').length} and sitios`, eg: 'Mabuhay, Union, Managa', tone: 'red', art: <Icon name="town" /> },
+    { id: 'Barangays', name: 'Barangays', sub: `${places.filter((p) => p.kind === 'Barangay' || p.kind === 'Sitio').length} and sitios`, eg: 'Mabuhay, Union, Managa', tone: 'red', art: <Icon name="barangay" /> },
   ]
 
   return (
