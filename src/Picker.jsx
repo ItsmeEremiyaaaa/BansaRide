@@ -1,5 +1,6 @@
 import { track } from './track'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Icon, useApp } from './components'
 import { pesoRange, places, pois, towns, transitFare, townAsksFare, townFareText, miniPossible, isCity, POI_KINDS, routeBetween, fareText, metersBetween, fmtDist, fareFor } from './data'
 import { offlineRide } from './rideFromMe'
@@ -38,7 +39,8 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
     ...(withPois && term.length >= 2 ? [['Shops, hotels and more', byNear(pois.filter((x) => matches([x.name, x.kind, x.sub ?? '', POI_KINDS[x.kind]?.label ?? ''], term))).slice(0, 30)]] : []),
   ].filter(([, items]) => items.length > 0)
 
-  return (
+  // drawn on the app frame itself (not inside the scrolling page), so it opens in view wherever the page is scrolled
+  return createPortal(
     <div className="picker" role="dialog" aria-modal="true" aria-label={title}>
       <button className="picker-scrim" aria-label="Close" onClick={onClose} tabIndex={-1} />
       <div className="picker-panel">
@@ -84,6 +86,7 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.querySelector('.app') ?? document.body,
   )
 }

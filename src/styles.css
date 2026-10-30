@@ -1145,7 +1145,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .poi-chips .chip[aria-pressed='true'] { background: var(--brand); color: var(--ink); }
 
 /* the floating tab bar sits over the bottom of the sheet, so leave room for it: short result lists stay visible */
-.picker-panel { padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px)); min-height: 340px; }
+.picker-panel { padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); min-height: 340px; }
 
 /* map filter: one button and a small panel instead of a row of pills */
 .filter-btn { position: absolute; z-index: 1100; top: calc(68px + env(safe-area-inset-top, 0px)); left: 68px; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; background: #fff; border: 2.5px solid var(--ink); border-radius: 99px; box-shadow: 0 3px 0 var(--ink); font-weight: 900; font-size: 14px; }
