@@ -247,7 +247,8 @@ export function MapScreen() {
     ...stations.filter((s) => !s.placeId && s.pos).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle' })),
   ], [sel, poiKinds])
   const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
-  const focus = useMemo(() => (ride?.path?.length ? null : focusPt ?? (sel ? [p.lat, p.lon] : null)), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
+  // pressing the location button always wins, even while a route is shown
+  const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
   // the first time your location arrives (and nothing is picked), the map moves to you once
   const movedToMe = useRef(false)
   useEffect(() => { if (!sel && me && !movedToMe.current) { movedToMe.current = true; setFocusPt([me[0], me[1]]) } }, [sel, me])
@@ -267,7 +268,8 @@ export function MapScreen() {
   }, [p, me])
 
   const onPick = (id) => { setFocusPt(null); if (placeById(id) || poiById(id)) { setSel(id); setCard(true); setMore(false) } else go('station', { id }) }
-  const locate = () => { if (me) setFocusPt([me[0], me[1]]); else { retryLocation(); say('Looking for your location…') } }
+  const locate = () => { if (me) setFocusPt([me[0] + 1e-9 * (Date.now() % 7), me[1]]); // a new value each press, so the map moves every time
+     else { retryLocation(); say('Looking for your location…') } }
 
   // helper to share an exact stand position
   const nearestOf = (ll, test) => places.filter(test).map((x) => ({ x, m: metersBetween(ll, [x.lat, x.lon]) })).sort((u, v) => u.m - v.m)[0]
