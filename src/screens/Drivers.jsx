@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, Tag, YHeader, Trike, Moto } from '../components'
+import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, YHeader, Trike, Moto } from '../components'
 import MapView from '../MapView'
 import Feedback from '../Feedback'
-import { stations, stationById, stationConfirmed, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
+import { stations, stationById, stationConfirmed, stationStatus, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
 import { fmtDist } from './RouteScreens'
 
 const kindLabel = (s) => (s.type === 'motor' ? 'Motorcycles' : 'Tricycle / pedicab')
@@ -23,7 +23,7 @@ function StationRow({ s, onOpen, index }) {
         <span className="row-title">{s.name}</span>
         <span className="row-sub">{p ? `At ${p.name}` : 'Location needed'} · {kindLabel(s)}{s.members?.length ? ` · ${s.members.length} members` : ''}</span>
       </span>
-      {s.contact ? <Tag tone="green">Has contact</Tag> : stationConfirmed(s) ? <Tag tone="green">Confirmed</Tag> : <Tag>To confirm</Tag>}
+      {s.contact ? <Tag tone="green">Has contact</Tag> : <StatusTag status={stationStatus(s)} />}
       <Icon name="chevron" className="chev" />
     </button>
   )
@@ -124,7 +124,7 @@ export function Station() {
           <div className="mapcard-tags">
             <Tag tone={s.type === 'motor' ? 'green' : 'gold'}>{kindLabel(s)}</Tag>
             {stationVerified(s) && <Tag tone="green">Verified by BTODA</Tag>}
-            {stationConfirmed(s) ? <Tag tone="green">Confirmed</Tag> : <Tag>To confirm</Tag>}
+            <StatusTag status={stationStatus(s)} />
             {s.source === 'generated' && <Tag tone="grey">Group name to confirm</Tag>}
             {s.pos?.approx && <Tag tone="grey">Approximate position</Tag>}
           </div>

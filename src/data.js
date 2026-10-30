@@ -127,10 +127,18 @@ const streetSpots = STREET_SPOTS.map(([q, note]) => {
     source: 'reported', landmark: note ?? (p ? p.note : ''), confirmed: false, contact: null, members: [], streetSpot: true, needsLocation: !p,
   }
 })
+// Every other street in Bansalan also has a spot (the pedicab and tricycle drivers pick up on the street itself).
+// These are generated from the street list, so they are marked "To confirm" until drivers say where exactly they wait.
+const listedStreets = new Set(streetSpots.map((s) => s.placeId).filter(Boolean))
+const otherStreetSpots = places.filter((p) => p.kind === 'Street' && !listedStreets.has(p.id)).map((p) => ({
+  id: `spot-${p.id}`, type: 'toda', placeId: p.id, name: `${p.name} waiting spot`, alias: '',
+  source: 'generated', landmark: p.note ?? '', confirmed: false, contact: null, members: [], streetSpot: true, needsLocation: false,
+}))
 export const stations = [
   ...todaStations,
   ...osmStations,
   ...streetSpots,
+  ...otherStreetSpots,
   // reported by a rider, but the place is not on the map yet
   // St. Therese Elementary School BTODA waits at the end of the road in Nebrada. Position is approximate (Lower Nebrada).
   { id: 'toda-sttherese', type: 'toda', placeId: null, pos: { lat: 6.7686, lon: 125.20599, approx: true }, name: 'St. Therese Elementary School BTODA', alias: 'St. Therese BTODA', source: 'reported', landmark: 'End of the road in Nebrada', contact: null, members: [] },
@@ -151,6 +159,8 @@ export const stationPlace = (s) => (s.placeId ? placeById(s.placeId) : s.pos ? {
 export const stationsAt = (placeId) => stations.filter((s) => s.placeId === placeId)
 // A group can confirm its own details: set `verified: true` on its station once a BTODA officer has checked them.
 export const stationVerified = (s) => s.verified === true
+// Three honest levels: confirmed on the spot, reported by riders and locals, or still to confirm (made from map data).
+export const stationStatus = (s) => (stationConfirmed(s) ? 'confirmed' : s.source === 'reported' ? 'reported' : 'toconfirm')
 export const stationConfirmed = (s) => (s.placeId === 'terminal' && s.type === 'toda') || s.confirmed === true // confirmed: the bus terminal and the motorcycles at the Public Market
 
 // The closest tricycle stand to any point (a street, a barangay...), with the distance in meters.
@@ -172,7 +182,7 @@ export const waitingSpots = Object.fromEntries(
     const here = stationsAt(p.id)
     if (here.length === 0) return [p.id, null]
     const first = here.find((s) => s.type === 'toda') ?? here[0]
-    return [p.id, { landmark: `${first.name}${first.landmark ? ` · ${first.landmark}` : ''}`, confirmed: here.every(stationConfirmed), group: first.name }]
+    return [p.id, { landmark: `${first.name}${first.landmark ? ` · ${first.landmark}` : ''}`, confirmed: here.every(stationConfirmed), status: here.every((s) => stationStatus(s) === 'confirmed') ? 'confirmed' : here.every((s) => stationStatus(s) !== 'toconfirm') ? 'reported' : 'toconfirm', group: first.name }]
   }).filter(([, v]) => v),
 )
 

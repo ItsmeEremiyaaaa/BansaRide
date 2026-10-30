@@ -85,7 +85,7 @@ export default function Menu() {
             <ul>
               <li><b>Real:</b> places, streets and barangays (OpenStreetMap), road routes and distances (OSRM) and the map.</li>
               <li><b>Estimates:</b> fares and travel times, until they are confirmed at the terminals. Motorcycle fares are "ask the driver".</li>
-              <li><b>To confirm:</b> group names, exact waiting spots and the positions marked approximate.</li>
+              <li><b>Confirmed</b> means checked on the spot. <b>Reported by riders</b> means a local told us. <b>To confirm</b> means made from map data: group names, exact waiting spots and approximate positions.</li>
               <li><b>Rule:</b> maps and routes cover Bansalan only. Other towns show distance and time.</li>
             </ul>
             <p className="row-sub">Map data © OpenStreetMap contributors.</p>
