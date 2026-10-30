@@ -251,7 +251,7 @@ export default function Home() {
             <button className="link-btn" onClick={() => go('routes')}>{t('seeAll')}<Icon name="chevron" /></button>
           </div>
           {listRoutes.length > 0
-            ? <div className="list">{listRoutes.map((r, i) => <RouteRow key={r.id} route={r} onOpen={open} isSaved={saved.includes(r.id)} index={i} />)}</div>
+            ? <div className="list recent-list">{listRoutes.map((r, i) => <RouteRow key={r.id} route={r} onOpen={open} isSaved={saved.includes(r.id)} index={i} />)}</div>
             : <p className="empty-card glass">{t('savedEmpty')}</p>}
         </section>
 
