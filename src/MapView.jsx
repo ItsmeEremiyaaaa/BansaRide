@@ -189,7 +189,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
       iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
     }).addTo(layer.current) : null
     markers.forEach((k, i) => {
-      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind, k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true })
+      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true })
       mk.addTo(cluster && k.kind !== 'sel' ? group : layer.current) // the place you picked is never folded away
       if (onPick && k.id) mk.on('click', () => onPick(k.id))
       pts.push([k.lat, k.lon])

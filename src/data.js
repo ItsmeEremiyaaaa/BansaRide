@@ -186,7 +186,7 @@ export const stationConfirmed = (s) => (s.placeId === 'terminal' && s.type === '
 export function nearestStand(lat, lon) {
   let best = null
   for (const s of stations) {
-    if (s.type !== 'toda') continue
+    if (s.type !== 'toda' || !standActive(s)) continue
     const p = stationPlace(s)
     if (!p) continue
     const m = Math.round(Math.hypot((p.lat - lat) * 111000, (p.lon - lon) * 110000))
@@ -298,7 +298,7 @@ export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m}
 // The closest waiting spots to a point (a person), nearest first.
 export function nearestStands(ll, count = 3, type) {
   return stations
-    .filter((s) => (!type || s.type === type) && stationPlace(s))
+    .filter((s) => (!type || s.type === type) && stationPlace(s) && (s.type !== 'toda' || standActive(s))) // only drivers who are around now
     .map((s) => { const p = stationPlace(s); return { station: s, place: p, meters: metersBetween(ll, [p.lat, p.lon]), bearing: bearingTo(ll, [p.lat, p.lon]) } })
     .sort((a, b) => a.meters - b.meters)
     .slice(0, count)
@@ -431,3 +431,59 @@ export async function refineRoute(route) {
   try { localStorage.setItem(EXACT_KEY, JSON.stringify({ ...readExact(), [route.id]: e })) } catch { /* storage is optional */ }
   return applyExact(route, e)
 }
+
+// ---------- when the drivers are around (told by riders) ----------
+// Bansalan time, with a hook for testing the clock in development.
+export const bansalanClock = () => {
+  const ms = (import.meta.env.DEV && typeof window !== 'undefined' && window.__bansaNow ? window.__bansaNow() : Date.now()) + 8 * 3600 * 1000
+  const d = new Date(ms)
+  return d.getUTCHours() + d.getUTCMinutes() / 60
+}
+const hm = (h) => { const x = Math.floor(h) % 24, m = Math.round((h % 1) * 60); return `${x % 12 || 12}${m ? ':' + String(m).padStart(2, '0') : ''} ${x < 12 ? 'AM' : 'PM'}` }
+const inRange = (h, a, b) => (a <= b ? h >= a && h < b : h >= a || h < b)
+
+// Night spots (10 PM to 4 AM): some BTODA stay at the 7-Eleven and at the hotel across from the warehouse.
+// The hotel is shown at Kate's Hotel until someone confirms which one it is.
+const poiPos = (id) => { const p = geoPois.find((x) => x.id === id); return p ? { lat: p.lat, lon: p.lon, approx: id !== 'poi-7-eleven' } : null }
+const nightStations = [
+  ['night-711', '7-Eleven night spot', 'Some BTODA stay here from 10 PM to 4 AM', poiPos('poi-7-eleven')],
+  ['night-hotel', 'Hotel night spot (across the warehouse)', 'Some BTODA stay here from 10 PM to 4 AM. Exact hotel to confirm', poiPos('poi-kate-s-hotel')],
+].filter((x) => x[3]).map(([id, name, landmark, pos]) => ({
+  id, type: 'toda', placeId: null, pos, name, alias: '', source: 'reported', landmark, confirmed: false, contact: null, members: [], night: true, streetSpot: true,
+}))
+stations.push(...nightStations)
+
+const CENTER = () => placeById('market')
+const farFromCenter = (s) => {
+  const p = stationPlace(s), c = CENTER()
+  return !!(p && c && Math.hypot((p.lat - c.lat) * 111000, (p.lon - c.lon) * 110000) > 3000)
+}
+// state: 'open' | 'few' | 'closed' | 'unknown'
+export function standNow(s, h = bansalanClock()) {
+  const s0 = { state: 'open', label: 'Drivers are around' }
+  if (s.night) return inRange(h, 22, 4) ? { state: 'few', label: 'A few BTODA stay here tonight', until: hm(4) } : { state: 'closed', label: 'Night spot: only from 10 PM to 4 AM', back: hm(22) }
+  if (s.type === 'motor') return { state: 'unknown', label: 'Hours not confirmed' }
+  if (farFromCenter(s)) return { state: 'unknown', label: 'Far from the town centre: hours not confirmed, ask first' }
+  const place = s.placeId ? placeById(s.placeId) : null
+  const id = s.placeId ?? ''
+  if (id === 'smcb' || id === 'um') return inRange(h, 4, 20) ? { state: 'open', label: h >= 18 ? 'Classes run until 8 PM: drivers stay here' : s0.label, until: hm(20) } : { state: 'closed', label: 'No drivers: classes ended at 8 PM', back: hm(4) }
+  if (place?.kind === 'School') return inRange(h, 5, 17) ? { state: 'open', label: 'School hours', until: hm(17) } : { state: 'closed', label: 'School is out: no drivers here', back: hm(5) }
+  if (id === 'market' || id === 'terminal' || place?.kind === 'Store' || place?.kind === 'Market') {
+    if (inRange(h, 4, 20)) return { state: 'open', label: s0.label, until: hm(20) }
+    if (inRange(h, 20, 22)) return { state: 'few', label: 'Fewer drivers now', until: hm(22) }
+    return { state: 'closed', label: 'No drivers here at this hour', back: hm(4) }
+  }
+  // streets and everything else
+  if (inRange(h, 4, 18)) return { state: 'open', label: s0.label, until: hm(18) }
+  if (inRange(h, 18, 20)) return { state: 'few', label: 'Still rounding around; fewer now', until: hm(20) }
+  return { state: 'closed', label: 'No BTODA on the streets after 8 PM', back: hm(4) }
+}
+// The state of a place's tricycle stands: the best of them (if any one has drivers around, the place is not closed).
+export function placeStandNow(placeId, h) {
+  const list = stationsAt(placeId).filter((s) => s.type === 'toda')
+  if (!list.length) return null
+  const all = list.map((s) => ({ ...standNow(s, h), station: s }))
+  return all.find((x) => x.state === 'open') ?? all.find((x) => x.state === 'few') ?? all.find((x) => x.state === 'unknown') ?? all[0]
+}
+// Is the stand worth showing on the map and suggesting as the nearest?
+export const standActive = (s, h) => standNow(s, h).state !== 'closed'

@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, YHeader, Trike, Moto } from '../components'
+import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, StandPill, ClosedNotice, YHeader, Trike, Moto } from '../components'
 import MapView from '../MapView'
 import Feedback from '../Feedback'
-import { stations, stationById, stationConfirmed, stationStatus, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
+import { standNow, nearestStands, stations, stationById, stationConfirmed, stationStatus, stationVerified, stationPlace, routes, shortName, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
 import { fmtDist } from './RouteScreens'
 
 const kindLabel = (s) => (s.type === 'motor' ? 'Motorcycles' : 'Tricycle / pedicab')
@@ -23,7 +23,7 @@ function StationRow({ s, onOpen, index }) {
         <span className="row-title">{s.name}</span>
         <span className="row-sub">{p ? `At ${p.name}` : 'Location needed'} · {kindLabel(s)}{s.members?.length ? ` · ${s.members.length} members` : ''}</span>
       </span>
-      {s.contact ? <Tag tone="green">Has contact</Tag> : <StatusTag status={stationStatus(s)} />}
+      <StandPill s={s} />
       <Icon name="chevron" className="chev" />
     </button>
   )
@@ -103,6 +103,8 @@ export function Station() {
   }
   const markers = useMemo(() => (p ? [{ id: p.id, lat: p.lat, lon: p.lon, kind: 'spot', label: '', title: p.name }] : []), [p])
   const links = useMemo(() => (me && p && walk?.state !== 'ok' ? [[me, [p.lat, p.lon]]] : []), [me, p, walk])
+  const now = standNow(s) // drivers around, a few, closed or not known
+  const nearOpen = now.state === 'closed' && p ? nearestStands([p.lat, p.lon], 1, 'toda')[0] : null
   const goes = routes.filter((r) => p && (r.from === p.id || r.to === p.id) && (s.type === 'motor' ? r.vehicle === 'Motor' : r.vehicle !== 'Motor'))
 
   return (
@@ -133,8 +135,10 @@ export function Station() {
           <p className="row-sub">{p ? `Waits at ${p.name}${s.landmark ? ` · ${s.landmark}` : ''}` : 'Waiting spot not on the map yet'}</p>
         </div>
 
+        <ClosedNotice now={now} near={nearOpen} onNear={() => nearOpen && go('station', { id: nearOpen.station.id })} />
+
         {p && (
-          <div className="nav-card">
+          <div className={'nav-card' + (now.state === 'closed' ? ' dimmed' : '')} aria-disabled={now.state === 'closed'}>
             <div className="row between">
               <div>
                 <span className="stat-k">From you · live</span>

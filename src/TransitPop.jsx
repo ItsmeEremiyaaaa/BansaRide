@@ -45,7 +45,8 @@ export default function RideAlertPop() {
       const seen = read(); seen[next.key] = true // shown once
       try { localStorage.setItem(SEEN, JSON.stringify(seen)) } catch { /* optional */ }
       setLeaving(false); setAlert(next)
-      timers.current.push(setTimeout(() => setLeaving(true), 9000), setTimeout(() => setAlert(null), 9400))
+      // it closes itself after about 4 to 5 seconds
+      timers.current.push(setTimeout(() => setLeaving(true), 4200), setTimeout(() => setAlert(null), 4600))
     }
     check()
     const id = setInterval(check, 20000)

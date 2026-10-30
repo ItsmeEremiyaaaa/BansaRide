@@ -51,5 +51,5 @@ export function useLook() {
   const dev = import.meta.env.DEV && s.rainPick && s.rainPick !== 'auto' // testing only
   const level = dev ? { off: 0, light: 1, strong: 2, storm: 2 }[s.rainPick] ?? 0 : s.level
   const thunder = dev ? s.rainPick === 'storm' : s.thunder
-  return { mood, rain: level > 0, level, thunder, mode: s.mode, auto }
+  return { mood, rain: level > 0, level, thunder, mode: s.mode, auto, tick: s.now }
 }

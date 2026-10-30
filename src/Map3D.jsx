@@ -28,7 +28,7 @@ const vehicleImage = (kind) => new Promise((resolve) => {
 const kindOf = (k) => (k.kind === 'sel' ? 'sel' : ART[k.glyph] ? k.glyph : k.kind === 'spot' ? 'vehicle' : 'dot')
 const geo = (markers) => ({
   type: 'FeatureCollection',
-  features: markers.map((k) => ({ type: 'Feature', properties: { id: k.id, kind: kindOf(k), sel: k.kind === 'sel' }, geometry: { type: 'Point', coordinates: [k.lon, k.lat] } })),
+  features: markers.map((k) => ({ type: 'Feature', properties: { id: k.id, kind: kindOf(k), sel: k.kind === 'sel', closed: !!k.closed }, geometry: { type: 'Point', coordinates: [k.lon, k.lat] } })),
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
@@ -82,7 +82,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         id: 'icons', type: 'symbol', source: 'spots', filter: ['!=', ['get', 'kind'], 'dot'],
         layout: {
           'icon-image': ['concat', 'v-', ['case', ['==', ['get', 'kind'], 'sel'], 'vehicle', ['get', 'kind']]],
-          'icon-size': ['case', ['get', 'sel'], 0.8, 0.55], 'icon-allow-overlap': false, 'icon-padding': 2,
+          'icon-size': ['case', ['get', 'sel'], 0.8, 0.55], 'icon-opacity': ['case', ['get', 'closed'], 0.35, 1], 'icon-allow-overlap': false, 'icon-padding': 2,
           'symbol-sort-key': ['case', ['get', 'sel'], 0, 1],
         },
       })
