@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Icon, Trike, Bus, Moto } from '../components'
 import { useAuth } from '../auth'
 import { translate } from '../i18n'
@@ -13,7 +13,7 @@ function SceneWelcome() {
       <span className="cloud c1" /><span className="cloud c2" />
       <div className="hills"><i /><i /><i /></div>
       <div className="road"><b /><b /><b /><b /></div>
-      <Trike className="ride" width={190} height={130} />
+      <span className="hero-spot" />
       <span className="sign">BANSALAN</span>
     </div>
   )
@@ -87,6 +87,74 @@ export default function Onboarding({ onDone }) {
   const [err, setErr] = useState('')
   const box = useRef(null)
   const drag = useRef(null)
+
+  // ---- the travelling pedicab: one pedicab that sits on the welcome road, then drives onto the map and along the route ----
+  const heroRef = useRef(null)
+  const cur = useRef(null) // where it was last sent
+  const timers = useRef([])
+  const dragBase = useRef(null)
+  const lastI = useRef(null)
+  const [spots, setSpots] = useState(null)
+  useLayoutEffect(() => {
+    const view = box.current
+    if (!view) return
+    const measure = () => {
+      const w = view.offsetWidth
+      const offs = (el) => { let x = 0, y = 0; while (el && el !== view) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent } return el === view ? { x, y } : null }
+      const slides = view.querySelectorAll('.onb-slide')
+      const a = slides[0]?.querySelector('.hero-spot'), m = slides[1]?.querySelector('.s-map')
+      const pa = a && offs(a), pm = m && offs(m)
+      if (!pa || !pm) return
+      const sc = Math.min(m.offsetWidth / 260, m.offsetHeight / 220) // the map drawing is 260 x 220, scaled to fit
+      const ox = pm.x - w + (m.offsetWidth - 260 * sc) / 2, oy = pm.y + (m.offsetHeight - 220 * sc) / 2
+      const route = [[70, 176], [140, 176], [140, 120], [200, 120], [200, 86]].map(([x, y]) => ({ x: ox + x * sc, y: oy + y * sc + 4, s: 0.34, o: 1 }))
+      setSpots({ w, welcome: { x: pa.x, y: pa.y, s: 1, o: 1 }, route })
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(view)
+    return () => ro.disconnect()
+  }, [])
+  const place = (q, ms, ease = 'cubic-bezier(.22, 1, .36, 1)') => {
+    const el = heroRef.current
+    if (!el || !q) return
+    el.style.transition = ms ? ['left', 'top', 'transform', 'opacity'].map((k) => `${k} ${ms}ms ${ease}`).join(', ') : 'none'
+    el.style.left = q.x + 'px'; el.style.top = q.y + 'px'; el.style.opacity = q.o
+    el.style.transform = `translate(-50%, -100%) scale(${q.s})`
+    cur.current = q
+  }
+  const rest = (n) => (n === 0 ? spots.welcome : n === 1 ? spots.route[spots.route.length - 1] : { ...spots.route[spots.route.length - 1], x: spots.w + 90, o: 0 })
+  // settle on the current slide (and on the map slide, drive the route)
+  useEffect(() => {
+    if (!spots || dragging) return
+    dragBase.current = null
+    timers.current.forEach(clearTimeout); timers.current = []
+    const same = lastI.current === i
+    lastI.current = i
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!cur.current) { place(rest(i), 0); return }
+    if (i !== 1 || same || reduce) { place(rest(i), same ? 350 : 600); return }
+    const r = spots.route
+    place(r[0], 650) // over to the start of the route
+    let t = 650
+    for (let k = 1; k < r.length; k++) {
+      const ms = Math.max(140, Math.hypot(r[k].x - r[k - 1].x, r[k].y - r[k - 1].y) / 0.11)
+      const to = r[k]
+      timers.current.push(setTimeout(() => place(to, ms, 'linear'), t))
+      t += ms
+    }
+  }, [i, spots, dragging]) // eslint-disable-line react-hooks/exhaustive-deps
+  // follow the finger while the page is dragged
+  useEffect(() => {
+    if (!spots || !dragging || !cur.current) return
+    if (!dragBase.current) { timers.current.forEach(clearTimeout); timers.current = []; dragBase.current = cur.current }
+    const f = -dx / spots.w, n = i + (f > 0 ? 1 : -1)
+    if (n < 0 || n > LAST) return
+    const from = dragBase.current, to = n === 1 ? spots.route[0] : rest(n), t = Math.min(1, Math.abs(f))
+    const mix = (k) => from[k] + (to[k] - from[k]) * t
+    place({ x: mix('x'), y: mix('y'), s: mix('s'), o: mix('o') }, 0)
+  }, [dx, dragging]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => () => timers.current.forEach(clearTimeout), [])
 
   const finish = () => { try { localStorage.setItem(ONBOARDED, '1') } catch { /* storage is optional */ } onDone() }
   const go = (n) => setI(Math.max(0, Math.min(LAST, n)))
@@ -182,6 +250,7 @@ export default function Onboarding({ onDone }) {
             <button className={'onb-guest' + (state === 'sent' ? ' primary' : '')} onClick={finish}>{state === 'sent' ? tx('Open the app') : tx('Continue as guest')}</button>
           </section>
         </div>
+        <div className={'onb-hero' + (i === 0 && !dragging ? ' bob' : '')} ref={heroRef} aria-hidden="true"><div className="onb-hero-in"><Trike width={150} height={104} /></div></div>
       </div>
 
       <div className="onb-foot">
