@@ -5,6 +5,10 @@ import { places, pois, towns, transitFare, townAsksFare, townFareText, miniPossi
 import { offlineRide } from './rideFromMe'
 
 // A full-screen list to pick a pickup point or a destination. Type to search.
+// Search that forgives spaces, dashes and slashes, and spoken numbers: 7/11, 7 11, 7-Eleven and seven eleven all match.
+const squash = (t) => String(t ?? '').toLowerCase().replace(/seven/g, '7').replace(/eleven/g, '11').replace(/[^a-z0-9]+/g, '')
+const matches = (fields, q) => { const a = q.trim().toLowerCase(); const b = squash(q); return fields.some((f) => { const x = String(f ?? ''); return x.toLowerCase().includes(a) || (b.length >= 2 && squash(x).includes(b)) }) }
+
 export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe, withPois, withTowns }) {
   const [q, setQ] = useState('')
   const { loc } = useApp()
@@ -19,7 +23,7 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
   }, [onClose])
 
   const term = q.trim().toLowerCase()
-  const list = places.filter((p) => [p.name, p.kind, p.also ?? ''].some((x) => x.toLowerCase().includes(term)))
+  const list = places.filter((p) => matches([p.name, p.kind, p.also ?? ''], term))
   const dist = (p) => (me ? metersBetween(me, [p.lat, p.lon]) : null)
   const byNear = (items) => (me ? [...items].sort((a, b) => dist(a) - dist(b)) : items)
   const near = me && !term ? byNear(places.filter((p) => p.kind !== 'Sitio')).slice(0, 6) : []
@@ -31,7 +35,7 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
     // towns and cities outside Bansalan (Digos, Kapatagan, Davao...) open their own page with the bus, van and mini bus fares
     ...(withTowns && term.length >= 2 ? [['Other towns and cities', towns.filter((x) => x.name.toLowerCase().includes(term)).map((x) => ({ id: 'town:' + x.id, name: x.name, kind: 'Town', km: x.km, lat: x.lat, lon: x.lon }))]] : []),
     // shops, hotels, food and more show up when you type (they can be a destination for a fare check)
-    ...(withPois && term.length >= 2 ? [['Shops, hotels and more', byNear(pois.filter((x) => [x.name, x.kind, x.sub ?? '', POI_KINDS[x.kind]?.label ?? ''].some((t) => t.toLowerCase().includes(term)))).slice(0, 30)]] : []),
+    ...(withPois && term.length >= 2 ? [['Shops, hotels and more', byNear(pois.filter((x) => matches([x.name, x.kind, x.sub ?? '', POI_KINDS[x.kind]?.label ?? ''], term))).slice(0, 30)]] : []),
   ].filter(([, items]) => items.length > 0)
 
   return (
