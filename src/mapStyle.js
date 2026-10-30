@@ -139,7 +139,8 @@ export const mapsRules = (lang = 'en') => {
 export const chosenRules = (lang = 'en') => (/[?&#]style=signboard/.test(window.location.href) ? texturedRules(lang) : mapsRules(lang))
 
 // ---------- moods: morning, day, evening, night (and rain, drawn over them) ----------
-// Each mood is a color set for the same map. Evening and night add lit windows in the houses and a dotted line of street lamps
+// Each mood is a color set for the same map. Lights in the houses come on in the evening, stay on through the night and
+// dawn, and switch off at 6 AM (morning, day and the afternoon golden hour have none). The mood follows the clock by itself.
 // along the roads, with a soft warm glow under them.
 const mix = (base, over) => ({ ...base, ...over })
 const LABEL = (ink, halo) => ({ roads_label_minor: ink, roads_label_minor_halo: halo, roads_label_major: ink, roads_label_major_halo: halo, subplace_label: ink, subplace_label_halo: halo, city_label: ink, city_label_halo: halo, address_label: ink, address_label_halo: halo })
@@ -164,7 +165,7 @@ export const PALETTES = {
   // afternoon golden hour: warm oranges and cream
   golden: {
     flavor: mix(MAPS, { background: '#ffe3a8', earth: '#ffe3a8', park_a: '#dfe09a', park_b: '#d3d68c', wood_a: '#d3d68c', wood_b: '#c6cb7e', water: '#f0bd8c', buildings: '#ffcb82', hospital: '#ffc198', school: '#ffd98a', ...LABEL('#6b3d0f', '#fff9dc') }),
-    roads: { minor: '#fff6d2', minorLine: '#ecc07a', major: '#ffe19a', majorLine: '#e3a850', highway: '#ff9f3d', highwayLine: '#c87420', path: '#ffeebb', pathLine: '#ecc888' }, dark: false, lamps: 0.35,
+    roads: { minor: '#fff6d2', minorLine: '#ecc07a', major: '#ffe19a', majorLine: '#e3a850', highway: '#ff9f3d', highwayLine: '#c87420', path: '#ffeebb', pathLine: '#ecc888' }, dark: false, // afternoon: no lights in the houses yet
   },
   evening: {
     flavor: mix(MAPS, { background: '#e6cdbd', earth: '#e6cdbd', park_a: '#a9bd96', park_b: '#9db38b', wood_a: '#9db38b', wood_b: '#8fa77e', water: '#8aa9d1', buildings: '#c9a692', hospital: '#e8bdb4', school: '#e3c9a0', ...LABEL('#4a3328', '#f6e4d6') }),
