@@ -84,7 +84,7 @@ export function Town() {
         <div className="chips scroll" role="group" aria-label="Choose a town">
           {towns.map((x) => (
             <button key={x.id} className="chip" aria-pressed={x.id === tw.id}
-              ref={(el) => { if (el && x.id === tw.id) el.scrollIntoView({ inline: 'center', block: 'nearest' }) }}
+              ref={(el) => { if (el && x.id === tw.id && el.parentElement) { const row = el.parentElement; row.scrollTo({ left: el.offsetLeft - (row.clientWidth - el.offsetWidth) / 2 }) } }}
               onClick={() => go('town', { id: x.id }, 'replace')}>{x.name}</button>
           ))}
         </div>
