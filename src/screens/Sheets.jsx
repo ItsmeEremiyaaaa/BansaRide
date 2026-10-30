@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import QRCode from 'qrcode'
 import { BackButton, Icon, Trike, YHeader, useApp } from '../components'
-import { PASSENGERS, fareFor, towns, transitFare, TRANSIT, popularRoutes, shortName, stationById, stationPlace, stations } from '../data'
+import { PASSENGERS, fareFor, towns, transitFare, townAsksFare, TRANSIT, popularRoutes, shortName, stationById, stationPlace, stations } from '../data'
 
 const KMS = [0.5, 1, 2, 3, 4, 5, 7, 10]
 const SHORT = { elementary: 'Elem', highschool: 'HS', college: 'Col', senior: 'Sen', pwd: 'PWD', adult: 'Adult' } // short so all six fit on a phone
@@ -30,7 +30,8 @@ export function FareSheet() {
           <div className="table-wrap">
             <table className="ftable">
               <thead><tr><th>To</th><th>Km</th><th>Bus</th><th>Van</th></tr></thead>
-              <tbody>{towns.map((t) => { const b = transitFare('bus', t.km), v = transitFare('van', t.km); return <tr key={t.id}><th>{t.name.replace(' City', '')}</th><td>{t.km}</td><td>₱{b.student}–{b.adult}</td><td>₱{v.student}–{v.adult}</td></tr> })}</tbody>
+              <tbody>{towns.map((t) => { if (townAsksFare(t.id)) return <tr key={t.id}><th>{t.name.replace(' City', '')}</th><td>{t.km}</td><td colSpan="2">Mini bus only · ask</td></tr>
+                const b = transitFare('bus', t.km), v = transitFare('van', t.km); return <tr key={t.id}><th>{t.name.replace(' City', '')}</th><td>{t.km}</td><td>₱{b.student}–{b.adult}</td><td>₱{v.student}–{v.adult}</td></tr> })}</tbody>
             </table>
           </div>
           <p className="hint">Hours: bus {TRANSIT.bus.firstText} to {TRANSIT.bus.lastText}, van {TRANSIT.van.firstText} to {TRANSIT.van.lastText}, mini bus {TRANSIT.mini.firstText} to {TRANSIT.mini.lastText}. First number is the student fare.</p>

@@ -374,7 +374,19 @@ export function transitStatus(m, now = new Date()) {
 // Which towns and barangays a mini bus serves (rural, good road). Still to confirm with the drivers.
 export const MINI_TOWNS = ['kapatagan', 'magsaysay', 'digos', 'santa-cruz']
 export const MINI_PLACES = ['dolo', 'darapuay', 'linawan', 'alegre', 'altavista']
-export const transitModesForTown = (id) => (MINI_TOWNS.includes(id) ? ['bus', 'van', 'mini'] : ['bus', 'van'])
+// Towns with their own rules. Kapatagan (told by a rider who lives there): only the mini bus goes there, and the fare is not
+// fixed: it differs from bus to bus, so you ask the conductor. The ₱80 to ₱100 student price is only a guide.
+export const TOWN_RIDES = {
+  kapatagan: { modes: ['mini'], ask: true, guide: { student: [80, 100] }, note: 'The fare is not fixed. It differs from bus to bus, so ask the conductor before you ride.' },
+}
+export const townAsksFare = (id) => !!TOWN_RIDES[id]?.ask
+export const transitModesForTown = (id) => TOWN_RIDES[id]?.modes ?? (MINI_TOWNS.includes(id) ? ['bus', 'van', 'mini'] : ['bus', 'van'])
+// A short text for the main fare of a town: "₱65–90", or "Ask the conductor" where the fare is not fixed.
+export const townFareText = (t) => {
+  if (townAsksFare(t.id)) return 'Ask the conductor'
+  const f = transitFare('bus', t.km)
+  return `₱${f.student}–${f.adult}`
+}
 
 // ---------- exact roads for joined routes ----------
 // A joined route (via a hub) is only an estimate: it is longer and doubles back. When there is a signal we ask the
