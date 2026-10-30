@@ -102,7 +102,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     if (useOsm) {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m)
     } else {
-      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), flavor: 'light', lang: 'en', maxZoom: 19, maxNativeZoom: 15,
+      leafletLayer({ url: bansalanTiles(`${import.meta.env.BASE_URL}bansalan.pmtiles`), flavor: 'light', lang: 'en', maxZoom: 19, maxDataZoom: 15, // past zoom 15 the vector shapes are redrawn sharp, not enlarged
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · <a href="https://protomaps.com">Protomaps</a>' }).addTo(m)
     }
     if (zoomControl) L.control.zoom({ position: 'topleft' }).addTo(m)
