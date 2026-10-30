@@ -42,7 +42,7 @@ export default function App() {
   const [recent, setRecent] = useStored('bansaride-recent', [])
   const [toast, setToast] = useState('')
   const timer = useRef()
-  const depth = useRef(window.history.state?.d ?? 0)
+  const pos = useRef(window.history.state?.i ?? 0)
   const online = useOnline()
 
   // Live location for the whole app: it keeps updating while the app is open, so distances change as you walk.
@@ -75,25 +75,52 @@ export default function App() {
     return () => { document.removeEventListener('visibilitychange', onVis); if (watch.current !== null) navigator.geolocation?.clearWatch(watch.current) }
   }, [startWatch])
 
+  // History: every entry remembers i (its place in the browser history, to know back from forward), d (how many screens deep
+  // it is inside the current tab) and from (the screen before it). That is what makes Back and Forward land where you expect.
   useEffect(() => {
+    if (!window.history.state?.i && window.history.state?.i !== 0) window.history.replaceState({ i: 0, d: 0, from: '' }, '')
     const onPop = () => {
-      const d = window.history.state?.d ?? 0
-      setDir(d < depth.current ? 'back' : 'fwd')
-      depth.current = d
+      const st = window.history.state ?? { i: pos.current, d: 0, from: '' }
+      setDir(st.i < pos.current ? 'back' : st.i > pos.current ? 'fwd' : 'tab')
+      pos.current = st.i
       setEntry(parse())
     }
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
 
-  const go = useCallback((name, params = {}, reset = false) => {
-    depth.current = reset ? 0 : depth.current + 1
-    window.history.pushState({ d: depth.current }, '', hashOf(name, params))
-    setDir(reset ? 'tab' : 'fwd')
+  // mode: false = open a screen on top (pushed); true = switch to the root of a tab; 'replace' = swap this screen
+  // for another one at the same place (for example choosing another town) without adding to the history.
+  const go = useCallback((name, params = {}, mode = false) => {
+    const cur = window.history.state ?? { i: pos.current, d: 0, from: '' }
+    const hash = hashOf(name, params)
+    const here = window.location.hash || '#/home'
+    if (mode === 'replace') {
+      window.history.replaceState({ ...cur }, '', hash)
+      setDir('tab')
+    } else if (mode === true) {
+      if (cur.d === 0 && here === hash) return // already there
+      if (cur.d === 0) window.history.replaceState({ i: cur.i, d: 0, from: '' }, '', hash) // tab to tab: no extra history
+      else { pos.current = cur.i + 1; window.history.pushState({ i: pos.current, d: 0, from: '' }, '', hash) }
+      setDir('tab')
+    } else {
+      pos.current = cur.i + 1
+      window.history.pushState({ i: pos.current, d: cur.d + 1, from: here }, '', hash)
+      setDir('fwd')
+    }
     setEntry({ name, params })
   }, [])
-  const back = useCallback(() => {
-    if (depth.current > 0) window.history.back()
+  // Back: a real step back when the screen before is the one wanted, otherwise go up to it.
+  const back = useCallback((to, params = {}) => {
+    const cur = window.history.state ?? { i: pos.current, d: 0, from: '' }
+    if (to) {
+      if (cur.d > 0 && cur.from?.startsWith(`#/${to}`)) { window.history.back(); return }
+      window.history.replaceState({ ...cur }, '', hashOf(to, params))
+      setDir('back')
+      setEntry({ name: to, params })
+      return
+    }
+    if (cur.d > 0) window.history.back()
     else go('home', {}, true)
   }, [go])
   const say = useCallback((msg) => {
