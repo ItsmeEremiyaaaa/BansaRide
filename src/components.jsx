@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { shortName, vehicleLabel, fareText, standNow } from './data'
+import { shortName, vehicleLabel, fareText, standNow, motorPossible } from './data'
 import { useLook } from './mood'
 
 export const Ctx = createContext(null)
@@ -302,8 +302,8 @@ export function RouteRow({ route, onOpen, isSaved, index = 0 }) {
       </span>
       {isSaved && <Icon name="star" filled className="saved-star" />}
       <span className="row-right">
-        {route.fare === null ? <Tag>Ask driver</Tag> : <b className="price">{fareText(route)}</b>}
-        <span className="eta">~{route.minutes} min</span>
+        {route.fare === null ? <b className="price">~{motorPossible(route.km)}</b> : <b className="price">{fareText(route)}</b>}
+        <span className="eta">{route.fare === null ? 'Ask driver · ' : ''}~{route.minutes} min</span>
       </span>
     </button>
   )
