@@ -1121,3 +1121,16 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .trip-row:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
 .trip-row b { font-family: var(--display); font-size: 19px; display: flex; align-items: center; gap: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .trip-row b svg { width: 18px; height: 18px; flex: none; }
+
+/* ask the driver: where to ask and the route */
+.ask-driver { display: grid; gap: 10px; padding: 12px; background: #dff5e8; border: 2.5px solid var(--ink); border-radius: 16px; box-shadow: 0 3px 0 var(--ink); }
+.ask-title { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-size: 17px; }
+.ask-title svg { width: 34px; height: 24px; flex: none; }
+.ask-text { margin: 0; font-size: 14px; line-height: 1.4; }
+.ask-stand { position: relative; display: grid; gap: 2px; text-align: left; padding: 10px 40px 10px 12px; background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); }
+.ask-stand .tl-k { color: var(--green); }
+.ask-stand b { font-family: var(--display); font-size: 17px; }
+.ask-stand .chev { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; }
+.ask-stand:active, .ask-route:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.ask-route { display: flex; align-items: center; gap: 8px; text-align: left; padding: 10px 12px; background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); font-weight: 800; font-size: 14px; line-height: 1.3; }
+.ask-route svg { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 2; }

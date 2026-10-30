@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Picker from '../Picker'
+import { AskDriver } from '../FromYou'
 import { useRideFromMe } from '../rideFromMe'
 import { useApp, BackButton, Icon, Tag, YHeader, Bus, Van } from '../components'
 import Transit from '../Transit'
@@ -187,7 +188,7 @@ export function Fares() {
           ) : (
             <p className="hint">{fromId === toId ? 'Pick two different places.' : 'No ride is saved for this pair yet.'}</p>
           )}
-          {motor && <div className="note static"><Icon name="moto" /><span><b>Ask the driver</b><span className="row-sub">Farm motorcycles have no fixed fare. Ask before you ride.</span></span></div>}
+          {motor && <AskDriver me={me} destId={toId} />}
 
           {!motor && trip && <div className="pax">
             {rows.map((p) => (
