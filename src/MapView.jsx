@@ -158,7 +158,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
 
   useEffect(() => {
     if (focus && map.current) {
-      const z = Math.max(map.current.getZoom(), 15)
+      const z = Math.max(map.current.getZoom(), 16)
       map.current.flyTo(above(map.current, focus, z, offsetRef.current), z, { duration: 0.6 })
     }
   }, [focus])
