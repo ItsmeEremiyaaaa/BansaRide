@@ -96,6 +96,7 @@ export default function Home() {
   const pick = (id) => {
     const which = picker
     setPicker(null)
+    if (id.startsWith('town:')) { go('town', { id: id.slice(5) }); return } // a town outside Bansalan: its own page
     if (which?.startsWith('slot:')) { setMine((m) => ({ ...m, [which.slice(5)]: id })); say('Saved.'); return }
     if (which === 'from') { setFrom(id); if (to) openPair(id, to) } else { setTo(id); openPair(from, id) }
   }
@@ -281,6 +282,7 @@ export default function Home() {
 
       {picker && (
         <Picker
+          withTowns={picker === 'to'}
           title={picker === 'from' ? 'Choose pickup' : picker.startsWith('slot:') ? `Choose your ${picker.slice(5)}` : 'Choose destination'}
           otherId={picker === 'from' ? to : (from === 'me' ? null : from)}
           selectedId={picker === 'from' ? from : to}
