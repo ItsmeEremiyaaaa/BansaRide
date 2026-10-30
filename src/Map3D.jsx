@@ -116,7 +116,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 11 } })
       map.addLayer({ id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': latest.current.routeColor, 'line-width': 6 } })
       // evening and night: houses with lights on, the same little warm windows as the flat map
-      if (latest.current.mood === 'night' || latest.current.mood === 'evening') {
+      if (['night', 'evening', 'dawn'].includes(latest.current.mood)) {
         const c = document.createElement('canvas'); c.width = c.height = 48
         const x = c.getContext('2d'); x.fillStyle = 'rgba(255,214,107,.98)'; for (const [a, b] of [[8, 10], [30, 28], [34, 8]]) x.fillRect(a, b, 6, 6); x.fillStyle = 'rgba(255,214,107,.45)'; x.fillRect(26, 40, 4, 4)
         map.addImage('lit-pattern', x.getImageData(0, 0, 48, 48), { pixelRatio: 2 })

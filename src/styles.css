@@ -1445,10 +1445,12 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 
 /* the sky over the far edge of the 3D map */
 .sky3d { position: absolute; left: 0; right: 0; top: 0; height: 34%; z-index: 410; pointer-events: none; }
-.sky3d.sky-morning { background: linear-gradient(180deg, rgba(255, 214, 160, .7), rgba(255, 238, 205, .35) 60%, transparent); }
+.sky3d.sky-morning { background: linear-gradient(180deg, rgba(229, 176, 90, .6), rgba(243, 234, 208, .4) 60%, transparent); }
 .sky3d.sky-day { background: linear-gradient(180deg, rgba(170, 210, 250, .6), rgba(210, 232, 252, .3) 60%, transparent); }
 .sky3d.sky-evening { background: linear-gradient(180deg, rgba(255, 150, 90, .7), rgba(255, 190, 140, .35) 60%, transparent); }
-.sky3d.sky-night { background: linear-gradient(180deg, rgba(8, 12, 34, .92), rgba(15, 22, 52, .5) 60%, transparent); }
+.sky3d.sky-night { background: linear-gradient(180deg, rgba(14, 14, 30, .94), rgba(39, 40, 77, .55) 60%, transparent); }
+.sky3d.sky-dawn { background: linear-gradient(180deg, rgba(10, 18, 98, .92), rgba(36, 64, 154, .55) 60%, transparent); }
+.sky3d.sky-golden { background: linear-gradient(180deg, rgba(255, 169, 77, .75), rgba(255, 224, 158, .4) 60%, transparent); }
 .mapfill.mood-night .sky3d::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1.4px 1.4px at 12% 18%, #fff, transparent), radial-gradient(1.2px 1.2px at 38% 8%, #fff, transparent), radial-gradient(1.6px 1.6px at 66% 22%, #fff, transparent), radial-gradient(1.1px 1.1px at 84% 10%, #fff, transparent), radial-gradient(1.3px 1.3px at 52% 30%, #fff, transparent); opacity: .8; }
 
 /* weather icons */
