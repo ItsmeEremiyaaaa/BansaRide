@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, Tag, CountUp, Trike, Moto, YHeader } from '../components'
+import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
 import Picker from '../Picker'
 import Transit from '../Transit'
@@ -332,7 +332,7 @@ export function MapScreen() {
             <div>
               <div className="mapcard-tags">
                 {spot ? <Tag tone="gold">Waiting spot</Tag> : <Tag tone="grey">{p.kind}</Tag>}
-                {spot && !spot.confirmed && <Tag>To confirm</Tag>}
+                {spot && spot.status !== 'confirmed' && <StatusTag status={spot.status} />}
               </div>
               <h1 className="mapcard-title">{p.name}</h1>
               <p className="row-sub">{p.note}{dist !== null ? ` · ${fmtDist(dist)} from you` : ''}</p>

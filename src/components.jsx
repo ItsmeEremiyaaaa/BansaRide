@@ -203,6 +203,8 @@ export function CountUp({ value }) {
   return <>{calm ? value : n}</>
 }
 
+// How sure we are about a waiting spot or group.
+export const StatusTag = ({ status }) => (status === 'confirmed' ? <Tag tone="green">Confirmed</Tag> : status === 'reported' ? <Tag tone="gold">Reported by riders</Tag> : <Tag>To confirm</Tag>)
 export const Tag = ({ children, tone = 'amber' }) => <span className={`tag ${tone}`}>{children}</span>
 
 export function RouteRow({ route, onOpen, isSaved, index = 0 }) {
