@@ -7,7 +7,7 @@ import Transit from '../Transit'
 import { useAuth } from '../auth'
 import { speak } from '../speech'
 import { offlineRide } from '../rideFromMe'
-import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare } from '../data'
+import { towns, routes, placeById, poiById, routeBetween, shortName, FARE_NOTE, PASSENGERS, fareFor, fareText, transitModesForTown, transitFare, townAsksFare, townFareText, TOWN_RIDES } from '../data'
 
 function TownRow({ town, onOpen, index }) {
   return (
@@ -94,7 +94,7 @@ export function Town() {
         </div>
 
         <section className="card stats3" aria-label="Trip summary">
-          <div><span className="stat-k">Bus fare</span><span className="stat-v">₱{transitFare('bus', tw.km).student}–{transitFare('bus', tw.km).adult}</span></div>
+          <div><span className="stat-k">{townAsksFare(tw.id) ? 'Mini bus fare' : 'Bus fare'}</span><span className={'stat-v' + (townAsksFare(tw.id) ? ' small' : '')}>{townFareText(tw)}</span></div>
           <div><span className="stat-k">Travel time</span><span className="stat-v small">{tw.duration}</span></div>
           <div><span className="stat-k">Distance</span><span className="stat-v">{tw.km}<small> km</small></span></div>
         </section>
@@ -108,9 +108,10 @@ export function Town() {
         <p className="hint">Fares and trip times are not confirmed yet. Ask at the terminal before you go. The distance is the real road distance.</p>
 
         <section className="card ride-modes">
-          <h2 className="sec">Ride by bus or van</h2>
-          <Transit modes={transitModesForTown(tw.id)} km={tw.km} />
-          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
+          <h2 className="sec">{transitModesForTown(tw.id).length === 1 ? 'How to get there' : 'Ride by bus or van'}</h2>
+          {TOWN_RIDES[tw.id]?.note && <div className="note static"><Icon name="info" /><span><b>Only the mini bus</b><span className="row-sub">{TOWN_RIDES[tw.id].note}</span></span></div>}
+          <Transit modes={transitModesForTown(tw.id)} km={tw.km} townId={tw.id} />
+          <button className="btn secondary" onClick={() => speak(`${tw.name}, ${tw.km} kilometers from Bansalan. ${transitModesForTown(tw.id).map((m) => { if (townAsksFare(tw.id)) return 'Mini bus only. The fare is not fixed. Ask the conductor.'; const f = transitFare(m, tw.km); return `${m === 'bus' ? 'Bus' : m === 'van' ? 'Van' : 'Mini bus'}: ${f.adult} pesos, student ${f.student} pesos.` }).join(' ')}`, say)}><Icon name="info" />Read the fares aloud</button>
           <p className="hint">Hours are reported by riders. Fares are calculated from the Davao bus fare (₱140 to ₱200) and the Kapatagan mini bus fare (₱80 to ₱100 for a student), so they can be a little off. Ask the dispatcher.</p>
         </section>
 
@@ -235,7 +236,7 @@ export function Fares() {
               <Icon name="chevron" className="caret" />
             </div>
           </div>
-          <Transit modes={transitModesForTown(townId)} km={towns.find((x) => x.id === townId).km} />
+          <Transit modes={transitModesForTown(townId)} km={towns.find((x) => x.id === townId).km} townId={townId} />
           <p className="hint">Students, seniors and PWD pay the student fare. Based on the Davao bus fare and the Kapatagan mini bus fare riders told us.</p>
         </section>
 
