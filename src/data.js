@@ -467,6 +467,7 @@ export function standNow(s, h = bansalanClock()) {
   const place = s.placeId ? placeById(s.placeId) : null
   const id = s.placeId ?? ''
   if (id === 'smcb' || id === 'um') return inRange(h, 4, 20) ? { state: 'open', label: h >= 18 ? 'Classes run until 8 PM: drivers stay here' : s0.label, until: hm(20) } : { state: 'closed', label: 'No drivers: classes ended at 8 PM', back: hm(4) }
+  if (id === 'salazar') return inRange(h, 4, 17) ? { state: 'open', label: 'Salazar closes at 5 PM', until: hm(17) } : { state: 'closed', label: 'Salazar is closed: no drivers after 5 PM', back: hm(4) }
   if (place?.kind === 'School') return inRange(h, 5, 17) ? { state: 'open', label: 'School hours', until: hm(17) } : { state: 'closed', label: 'School is out: no drivers here', back: hm(5) }
   if (id === 'market' || id === 'terminal' || place?.kind === 'Store' || place?.kind === 'Market') {
     if (inRange(h, 4, 20)) return { state: 'open', label: s0.label, until: hm(20) }

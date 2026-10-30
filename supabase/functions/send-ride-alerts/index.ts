@@ -22,6 +22,19 @@ Deno.serve(async () => {
   const day = now.toISOString().slice(0, 10)
   const report: string[] = []
 
+  // 8 PM every day: tell everyone who turned alerts on that most pedicabs are gone for the night
+  if (t >= 20 * 60 && t < 20 * 60 + WINDOW) {
+    const { data: claimed } = await sb.from('alerts_sent').insert({ day, mode: 'night', kind: 'last' }).select()
+    if (claimed?.length) {
+      const { data: subs } = await sb.from('push_subscriptions').select('token, endpoint, p256dh, auth')
+      const payload = JSON.stringify({ title: 'Night notice', body: 'Most pedicabs are not around after 8 PM. A few stay at the 7-Eleven and a hotel until 4 AM. Be careful.', tag: 'night', url: '/#/map' })
+      const results = await Promise.allSettled((subs ?? []).map((s) => webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, payload)))
+      const dead = (subs ?? []).filter((_, i) => { const r = results[i]; return r.status === 'rejected' && [404, 410].includes((r.reason as { statusCode?: number })?.statusCode ?? 0) })
+      if (dead.length) await sb.from('push_subscriptions').delete().in('token', dead.map((d) => d.token))
+      report.push(`night notice: ${results.filter((r) => r.status === 'fulfilled').length}/${subs?.length ?? 0} sent`)
+    }
+  }
+
   for (const [mode, m] of Object.entries(MODES)) {
     for (const kind of ['first', 'last'] as const) {
       const at = kind === 'first' ? m.first - FIRST_BEFORE : m.last - LAST_BEFORE

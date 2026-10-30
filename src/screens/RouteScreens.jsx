@@ -273,13 +273,14 @@ export function MapScreen() {
       id: x.id, lat: x.lat, lon: x.lon, title: x.name,
       kind: x.id === sel ? 'sel' : waitingSpots[x.id] ? 'spot' : 'place',
       closed: placeStandNow(x.id)?.state === 'closed',
+      hoursUnknown: placeStandNow(x.id)?.state === 'unknown',
       // the Bus Terminal shows a bus and the Public Market a mini bus (they wait there); other spots show the pedicab or motorcycle
       glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? 'mini' : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind,
       label: x.id === sel && x.kind !== 'Barangay' && x.kind !== 'Sitio' ? shortName(x.id) : '',
     })),
     ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: x.id === sel ? 'sel' : 'place', label: x.id === sel ? x.name : '', glyph: x.kind })),
     // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
-    ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed' })),
+    ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed', night: !!s.night })),
   ], [sel, poiKinds, look.tick])
   const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
   // pressing the location button always wins, even while a route is shown
