@@ -8,6 +8,7 @@ import { moodFlavor } from './mapStyle'
 import { bansalanTiles } from './localTiles'
 import { bounds } from './boundary'
 import { places } from './data'
+import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
@@ -34,7 +35,7 @@ const vehicleImage = (kind) => new Promise((resolve) => {
 const kindOf = (k) => (k.kind === 'sel' ? 'sel' : ART[k.glyph] ? k.glyph : k.kind === 'spot' ? 'vehicle' : 'dot')
 const geo = (markers) => ({
   type: 'FeatureCollection',
-  features: markers.map((k) => ({ type: 'Feature', properties: { id: k.id, kind: kindOf(k), sel: k.kind === 'sel', closed: !!k.closed }, geometry: { type: 'Point', coordinates: [k.lon, k.lat] } })),
+  features: markers.map((k) => ({ type: 'Feature', properties: { id: k.id, kind: kindOf(k), sel: k.kind === 'sel', closed: !!k.closed, hu: !!k.hoursUnknown, title: k.title ?? '', sub: k.sub ?? '', lat: k.lat, lon: k.lon, spot: k.kind === 'spot' }, geometry: { type: 'Point', coordinates: [k.lon, k.lat] } })),
 })
 const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
@@ -42,6 +43,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
+  const tipRef = useRef(null)
   const latest = useRef({})
   latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center, me, target, selKind }
 
@@ -142,8 +144,37 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
         },
         paint: { 'icon-opacity': ['case', ['get', 'closed'], 0.7, 1] },
       })
+      // the details card is a plain element above the sky, so the sky tint never greys it
+      const tipEl = document.createElement('div'); tipEl.className = 'pt-pop'; tipEl.style.display = 'none'
+      box.current.parentElement.appendChild(tipEl); tipRef.current = tipEl
+      const tip = { remove: () => { tipEl.style.display = 'none' } }
+      const showTip = (f) => {
+        const q = f.properties
+        const pt = map.project(f.geometry.coordinates)
+            tipEl.innerHTML = pinTipHtml({ title: q.title, sub: q.sub, closed: q.closed === true || q.closed === 'true', hoursUnknown: q.hu === true || q.hu === 'true', kind: q.spot === true || q.spot === 'true' ? 'spot' : 'place', lat: q.lat, lon: q.lon }, latest.current.me)
+            tipEl.style.display = 'block'; tipEl.style.left = Math.min(Math.max(pt.x, 120), box.current.clientWidth - 120) + 'px'; const below = pt.y < 170; tipEl.style.transform = below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'; tipEl.style.top = (below ? pt.y + 24 : pt.y - 22) + 'px'
+      }
+      // phone: press and hold a pin to see its card (a quick tap opens the full details)
+      let holdT = null, holdAt = null, hideT = null
+      const clearHold = () => { clearTimeout(holdT); holdT = null }
+      map.on('touchstart', (e) => {
+        const f = map.queryRenderedFeatures(e.point, { layers: ['icons', 'dots'] }).find((x) => x.properties.title && !x.properties.sel)
+        clearTimeout(hideT); clearHold(); if (!f || e.points?.length > 1) return
+        holdAt = e.point
+        holdT = setTimeout(() => { markHold(); showTip(f) }, HOLD_MS)
+      })
+      map.on('touchmove', (e) => { if (holdT && holdAt && Math.hypot(e.point.x - holdAt.x, e.point.y - holdAt.y) > 10) clearHold() })
+      const endHold = () => { clearHold(); if (tipEl.style.display === 'block') { clearTimeout(hideT); hideT = setTimeout(tip.remove, 2200) } }
+      map.on('touchend', endHold); map.on('touchcancel', endHold)
       for (const l of ['icons', 'dots']) {
-        map.on('click', l, (e) => { const id = e.features?.[0]?.properties?.id; if (id) latest.current.onPick?.(id) })
+        if (canHover()) {
+          map.on('mousemove', l, (e) => {
+            const f = e.features?.[0]; if (!f?.properties?.title || f.properties.sel) { tip.remove(); return }
+            showTip(f)
+          })
+          map.on('mouseleave', l, () => tip.remove())
+        }
+        map.on('click', l, (e) => { const id = e.features?.[0]?.properties?.id; if (id && !justHeld()) latest.current.onPick?.(id) })
         map.on('mouseenter', l, () => { map.getCanvas().style.cursor = 'pointer' })
         map.on('mouseleave', l, () => { map.getCanvas().style.cursor = '' })
       }
@@ -152,7 +183,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       camera()
     })
     if (import.meta.env.DEV) window.__map3d = map
-    return () => { ready.current = false; youDot?.remove(); map.remove(); mapRef.current = null }
+    return () => { tipRef.current?.remove(); ready.current = false; youDot?.remove(); map.remove(); mapRef.current = null }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(apply, [markers, route, routeColor, links, selKind]) // eslint-disable-line react-hooks/exhaustive-deps
