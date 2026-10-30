@@ -45,6 +45,8 @@ export default defineConfig({
         clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,pmtiles,pbf}'], // the Bansalan map file is saved too, so the map works offline
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+        globIgnores: ['admin/**', 'assets/adminpage-*'], // the admin website is not saved on riders' phones
+        navigateFallbackDenylist: [/^\/admin/], // and the rider app never stands in for it
         // Saves the map pictures people have viewed, so those places still show offline.
         runtimeCaching: [
           {
@@ -60,4 +62,12 @@ export default defineConfig({
       },
     }),
   ],
+  // two pages: the rider app and the admin website (bansalanride.netlify.app/admin/)
+  build: {
+    rollupOptions: {
+      input: { main: 'index.html', admin: 'admin/index.html' },
+      // only the admin page's own code is named 'adminpage', so the code both pages share is still saved for offline use
+      output: { entryFileNames: (c) => (c.name === 'admin' ? 'assets/adminpage-[hash].js' : 'assets/[name]-[hash].js'), chunkFileNames: 'assets/app-[hash].js' },
+    },
+  },
 })
