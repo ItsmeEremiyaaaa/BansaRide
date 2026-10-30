@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react'
 
-// The look of the map follows Bansalan time (morning, day, evening, night) and the weather (rain), unless the person picks one.
+// The look of the map is automatic: it follows Bansalan time (morning, day, evening, night) and the real weather (rain). People cannot change it.
+// Only while developing, a look can be forced by saving it in the browser (for testing).
 const KEY = 'bansaride.look.v1'
 const listeners = new Set()
 let state = { mode: 'auto', rain: false, rainAuto: false, now: Date.now() }
@@ -40,7 +41,8 @@ export function useLook() {
   useEffect(start, [])
   const s = useSyncExternalStore(sub, snap)
   const auto = timeMood(s.now)
-  const mood = s.mode === 'auto' ? auto : s.mode
-  const rain = s.rainPick === 'on' ? true : s.rainPick === 'off' ? false : s.rainAuto
+  const forced = import.meta.env.DEV && s.mode !== 'auto' // never in the real app
+  const mood = forced ? s.mode : auto
+  const rain = import.meta.env.DEV && s.rainPick === 'on' ? true : import.meta.env.DEV && s.rainPick === 'off' ? false : s.rainAuto
   return { mood, rain, mode: s.mode, rainPick: s.rainPick ?? 'auto', auto, rainAuto: s.rainAuto }
 }
