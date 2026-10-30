@@ -250,7 +250,8 @@ export function MapScreen() {
   }, [])
   const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
-  const [view3d, setView3d] = useState(false)
+  const [view3d, setView3dRaw] = useState(() => sessionStorage.getItem('bansaride.view3d') === '1') // stays 3D when you come back from a stand or place page
+  const setView3d = (f) => setView3dRaw((v) => { const n = typeof f === 'function' ? f(v) : f; try { sessionStorage.setItem('bansaride.view3d', n ? '1' : '0') } catch { /* optional */ } return n })
   const look = useLook()
   const goFromMap = (name, p) => { rememberMap({ sel, poiKinds }); go(name, p) }
   const toggleKind = (k) => setPoiKinds((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))
@@ -337,7 +338,7 @@ export function MapScreen() {
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D mood={look.mood} key={look.mood} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
+          <Map3D mood={look.mood} key={look.mood} links={links} center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} pitch={sel && ride?.path ? 28 : 55} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
