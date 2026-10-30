@@ -11,7 +11,7 @@ export default function Transit({ modes, km, townId }) {
     <div className="transit">
       {modes.map((id) => {
         const m = TRANSIT[id]
-        const fare = transitFare(id, km)
+        const fare = transitFare(id, km, townId)
         const s = transitStatus(m)
         const Art = id === 'van' ? Van : Bus
         const tone = id === 'mini' ? 'm-mini' : ''

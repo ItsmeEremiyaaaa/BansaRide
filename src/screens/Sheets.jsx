@@ -31,7 +31,7 @@ export function FareSheet() {
             <table className="ftable">
               <thead><tr><th>To</th><th>Km</th><th>Bus</th><th>Van</th></tr></thead>
               <tbody>{towns.map((t) => { if (!isCity(t)) return <tr key={t.id}><th>{t.name}</th><td>{t.km}</td><td colSpan="2">Mini bus · ask · possible {miniPossible(t.id, t.km).text}</td></tr>
-                const b = transitFare('bus', t.km), v = transitFare('van', t.km); return <tr key={t.id}><th>{t.name.replace(' City', '')}</th><td>{t.km}</td><td>₱{b.student}–{b.adult}</td><td>₱{v.student}–{v.adult}</td></tr> })}</tbody>
+                const b = transitFare('bus', t.km, t.id), v = transitFare('van', t.km, t.id); return <tr key={t.id}><th>{t.name.replace(' City', '')}</th><td>{t.km}</td><td>₱{b.student}–{b.adult}</td><td>₱{v.student}–{v.adult}</td></tr> })}</tbody>
             </table>
           </div>
           <p className="hint">Hours: bus {TRANSIT.bus.firstText} to {TRANSIT.bus.lastText}, van {TRANSIT.van.firstText} to {TRANSIT.van.lastText}, mini bus {TRANSIT.mini.firstText} to {TRANSIT.mini.lastText}. First number is the student fare.</p>

@@ -349,9 +349,10 @@ export const osmDirections = (from, to) =>
 
 // ---------- Buses, vans and mini buses ----------
 // REPORTED by riders: hours, and these fares.
+// The thirteen towns in TOWN_FARES (below) have the fares the user supplied. Before that, riders reported:
 //   Big bus to Davao City (73.2 km): ₱200, or ₱140 for a student. Vans save about ₱15 on the same trip.
 //   Mini bus to Kapatagan (33.4 km): ₱80 to ₱100 for a student.
-// Everything else is CALCULATED from those: the fare grows with the distance, rounded to the nearest ₱5.
+// Anything not listed is still CALCULATED from those: the fare grows with the distance, rounded to the nearest ₱5.
 const round5 = (n) => Math.round(n / 5) * 5
 const DAVAO_KM = 73.2
 const KAPATAGAN_KM = 33.4
@@ -366,7 +367,16 @@ export const TRANSIT = {
 // { adult, student } for a trip of `km`. Students, seniors and PWD get the discount.
 // Which fare column a passenger pays on a bus, van or mini bus: students, seniors and PWD get the discount.
 export const transitKind = (passengerId) => (!passengerId || passengerId === 'adult' ? 'adult' : 'student')
-export function transitFare(mode, km) {
+// Fixed fares from Bansalan (adult, in pesos) given by the user, for the big bus, the van and the mini bus. Students, seniors and PWD pay 20% less
+// (adult x 0.80). Towns not in this list still use the distance-based estimate below.
+export const TOWN_FARES = {
+  davao: { bus: 205, van: 220, mini: 190 }, cotabato: { bus: 425, van: 475, mini: 400 }, gensan: { bus: 425, van: 465, mini: 400 }, malalag: { bus: 115, van: 130, mini: 105 },
+  sulop: { bus: 55, van: 65, mini: 50 }, kidapawan: { bus: 275, van: 300, mini: 260 }, padada: { bus: 50, van: 55, mini: 45 }, 'santa-cruz': { bus: 125, van: 140, mini: 115 },
+  kapatagan: { bus: 160, van: 185, mini: 150 }, digos: { bus: 35, van: 50, mini: 30 }, hagonoy: { bus: 50, van: 55, mini: 45 }, matanao: { bus: 50, van: 55, mini: 45 }, magsaysay: { bus: 70, van: 80, mini: 65 },
+}
+export function transitFare(mode, km, townId) {
+  const fixed = TOWN_FARES[townId]?.[mode]
+  if (fixed) return { adult: fixed, student: Math.round(fixed * 0.8) }
   const bus = { adult: Math.max(15, round5((200 / DAVAO_KM) * km)), student: Math.max(10, round5((140 / DAVAO_KM) * km)) }
   if (mode === 'bus') return bus
   if (mode === 'van') {
@@ -405,13 +415,13 @@ export const transitModesForTown = (id) => {
 // A mini bus fare is never fixed, so it always says "ask the conductor". The possible fare is only a guide:
 // the reported ₱80 to ₱100 for students to Kapatagan, and an estimate scaled from it for the other towns.
 export const miniPossible = (townId, km) => {
-  const g = TOWN_RIDES[townId]?.guide
-  const f = transitFare('mini', km)
+  const g = TOWN_FARES[townId]?.mini ? null : TOWN_RIDES[townId]?.guide // a fare we were given beats the old rider guess
+  const f = transitFare('mini', km, townId)
   return { student: g ? g.student : [f.student, f.student], regular: f.adult, text: g ? `students ₱${g.student[0]}–${g.student[1]}` : `₱${f.student}–${f.adult}` }
 }
 export const townFareText = (t) => {
   if (!isCity(t)) return 'Ask the conductor'
-  const f = transitFare('bus', t.km)
+  const f = transitFare('bus', t.km, t.id)
   return `₱${f.student}–${f.adult}`
 }
 
