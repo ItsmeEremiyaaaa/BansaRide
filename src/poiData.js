@@ -299,7 +299,7 @@ export const geoPois = [
  },
  {
   "id": "poi-kate-s-hotel",
-  "name": "Kate's Hotel",
+  "name": "Kate's Mini Hotel",
   "kind": "Hotel",
   "sub": "hotel",
   "lat": 6.78631,
