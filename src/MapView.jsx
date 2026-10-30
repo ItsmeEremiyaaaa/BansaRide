@@ -115,6 +115,8 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   const routeFit = useRef('') // which route the view was last fitted to
   const routeRef = useRef(null) // the route now drawn
   const moodRef = useRef(mood)
+  const pickRef = useRef(onPick)
+  pickRef.current = onPick
   const clickRef = useRef(onMapClick)
   useEffect(() => { clickRef.current = onMapClick }, [onMapClick])
   useEffect(() => {
@@ -191,7 +193,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     markers.forEach((k, i) => {
       const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), title: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
       mk.addTo(cluster && k.kind !== 'sel' && !k.night ? group : layer.current) // night spots are never folded into a group, so they stand out // the place you picked is never folded away
-      if (onPick && k.id) mk.on('click', () => onPick(k.id))
+      if (k.id) mk.on('click', () => pickRef.current?.(k.id))
       pts.push([k.lat, k.lon])
     })
     if (me) {
@@ -214,7 +216,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
       if (fit && pts.length > 1) m.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [40, 70], paddingBottomRight: [40, 70], maxZoom: 17, animate: false })
       else if (fit && pts.length === 1) m.setView(pts[0], zoom, { animate: false })
     }
-  }, [route, routeColor, markers, me, onPick, zoom, fit, links, draft])
+  }, [route, routeColor, markers, me, zoom, fit, links, draft]) // onPick is read from a ref, so a new function never redraws the pins
 
   useEffect(() => {
     if (focus && map.current) {

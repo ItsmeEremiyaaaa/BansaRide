@@ -454,16 +454,10 @@ const nightStations = [
 stations.push(...nightStations)
 
 const CENTER = () => placeById('market')
-const farFromCenter = (s) => {
-  const p = stationPlace(s), c = CENTER()
-  return !!(p && c && Math.hypot((p.lat - c.lat) * 111000, (p.lon - c.lon) * 110000) > 3000)
-}
 // state: 'open' | 'few' | 'closed' | 'unknown'
 export function standNow(s, h = bansalanClock()) {
   const s0 = { state: 'open', label: 'Drivers are around' }
   if (s.night) return inRange(h, 22, 4) ? { state: 'few', label: 'A few BTODA stay here tonight', until: hm(4) } : { state: 'closed', label: 'Night spot: only from 10 PM to 4 AM', back: hm(22) }
-  if (s.type === 'motor') return { state: 'unknown', label: 'Hours not confirmed' }
-  if (farFromCenter(s)) return { state: 'unknown', label: 'Far from the town centre: hours not confirmed, ask first' }
   const place = s.placeId ? placeById(s.placeId) : null
   const id = s.placeId ?? ''
   if (id === 'smcb' || id === 'um') return inRange(h, 4, 20) ? { state: 'open', label: h >= 18 ? 'Classes run until 8 PM: drivers stay here' : s0.label, until: hm(20) } : { state: 'closed', label: 'No drivers: classes ended at 8 PM', back: hm(4) }
