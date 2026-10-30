@@ -6,12 +6,15 @@ import { layers as baseLayers } from '@protomaps/basemaps'
 import { Protocol } from 'pmtiles'
 import { moodFlavor } from './mapStyle'
 import { bansalanTiles } from './localTiles'
+import { bounds } from './boundary'
 
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
 let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
+// the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
+const LIMIT = [[bounds[0][1] - 0.01, bounds[0][0] - 0.01], [bounds[1][1] + 0.01, bounds[1][0] + 0.01]]
 const TINT = { vehicle: '#E8A100', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
@@ -75,7 +78,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       layers: [{ id: 'bg', type: 'background', paint: { 'background-color': moodFlavor(latest.current.mood).background } }, ...baseLayers('p', moodFlavor(latest.current.mood)).filter((l) => l.type !== 'symbol'),
       ],
     }
-    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, attributionControl: false })
+    const map = new maplibregl.Map({ container: box.current, style, center: [center[1], center[0]], zoom: 17, pitch, bearing, maxPitch: 75, maxBounds: LIMIT, minZoom: 10.5, attributionControl: false })
     mapRef.current = map
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: false }), 'top-right')
     let youDot
