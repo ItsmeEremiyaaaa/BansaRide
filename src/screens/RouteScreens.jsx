@@ -320,12 +320,12 @@ export function MapScreen() {
     <div className="mapfill">
       {view3d && (
         <Suspense fallback={<div className="map3d loading">Loading 3D…</div>}>
-          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} onPick={onPick} />
+          <Map3D center={focusPt ?? (sel ? [p.lat, p.lon] : me ?? start)} me={me} markers={markers.filter((k) => k.kind !== 'place' || k.id === sel)} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} onPick={onPick} />
         </Suspense>
       )}
       {!view3d && (
       <MapView markers={markers} center={start} focus={focus} zoom={15} fit={false} me={me} onPick={onPick} links={links} draft={draft} route={sel && ride?.path ? ride.path : undefined} routeColor={routeColor({ vehicle: ride?.vehicle })} fitRoute
-        onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 98) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
+        onMapClick={adding ? setDraft : undefined} cluster offsetY={cardH ? Math.round((cardH + 124) / 2) : 0} zoomControl label="Map of waiting spots and places in Bansalan" />
       )}
       <button className="map-search" onClick={() => setFinding(true)} aria-label="Search a street or place on the map">
         <Icon name="search" /><span className={sel ? '' : 'ph'}>{sel ? p.name : 'Search a street or place'}</span>
