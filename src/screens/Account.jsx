@@ -42,49 +42,51 @@ export default function Account() {
         <section className="card form">
           <h2 className="sec">Your discount</h2>
           {a.discount && mine
-            ? <p className="row-sub"><Tag>{a.verified ? 'Verified' : 'On this phone only'}</Tag> {mine.label} fare is shown everywhere. Rizal costs ₱{fareFor(3.7, mine.id)}.</p>
+            ? <div className="acct-status"><Tag>{a.verified ? 'Verified' : 'On this phone only'}</Tag><p>{mine.label} fare is shown everywhere. Rizal costs <b>₱{fareFor(3.7, mine.id)}</b>.</p></div>
             : <p className="row-sub">Students, senior citizens and PWD pay less. Sign in and tell us who you are to see your own fare on every route, bus and van. You can still use the whole app as a guest.</p>}
         </section>
 
         {a.configured && !a.user && (
-          <form className="card form" onSubmit={send}>
+          <form className="card form acct-form" onSubmit={send}>
             <h2 className="sec">Sign in with your email</h2>
             {sent ? (
               <p className="hint"><Icon name="check" className="inline" /> Check your email for the link. Open it on this phone and you are signed in and verified.</p>
             ) : (
               <>
-                <label className="lbl" htmlFor="em">Email</label>
-                <input id="em" className="boxed input" type="email" autoComplete="email" inputMode="email" placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <div className="acct-field">
+                  <label className="lbl" htmlFor="em">Email</label>
+                  <input id="em" className="boxed input" type="email" autoComplete="email" inputMode="email" placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
                 <button className="btn" disabled={busy}><Icon name="check" />{busy ? 'Sending…' : 'Send me a sign-in link'}</button>
               </>
             )}
           </form>
         )}
         {!a.configured && <p className="hint">Sign-in is not switched on yet. You can still set who you are below. It stays on this phone and is not verified.</p>}
-        {a.user && <p className="row-sub"><Tag>{a.verified ? 'Email verified' : 'Email not verified'}</Tag> {a.user.email}</p>}
+        {a.user && <div className="acct-email"><Tag>{a.verified ? 'Email verified' : 'Email not verified'}</Tag><span>{a.user.email}</span></div>}
 
         {(!a.configured || a.user) && (
-          <section className="card form">
+          <section className="card form acct-form">
             {a.user && (
-              <div>
+              <div className="acct-field">
                 <label className="lbl" htmlFor="dn">Your display name</label>
                 <input id="dn" className="boxed input" maxLength="20" autoComplete="nickname" placeholder="Shown with your fare reports and tips" value={draft.displayName ?? ''} onChange={(e) => set({ displayName: e.target.value })} />
                 <p className="hint">3 to 20 letters or numbers. No # or @, no links, and no rude words. This is the only thing other people see.</p>
               </div>
             )}
-            <h2 className="sec">Who is riding?</h2>
+            <h2 className="sec acct-sec">Who is riding?</h2>
             <div className="chips wrap" role="group" aria-label="Passenger type">
               {KINDS.map((k) => <button key={k.id} className="chip" aria-pressed={draft.passenger === k.id} onClick={() => set({ passenger: k.id })}>{k.label}</button>)}
             </div>
             {kind.student && (
-              <div>
+              <div className="acct-field">
                 <label className="lbl" htmlFor="school">What school do you go to?</label>
                 <input id="school" className="boxed input" list="schools" placeholder="Type or choose your school" value={draft.school} onChange={(e) => set({ school: e.target.value })} />
                 <datalist id="schools">{schools.map((s) => <option key={s} value={s} />)}</datalist>
               </div>
             )}
             {kind.needsId && (
-              <div>
+              <div className="acct-field">
                 <label className="lbl" htmlFor="idt">Which government ID do you have?</label>
                 <div className="select-wrap boxed">
                   <select id="idt" value={draft.idType} onChange={(e) => set({ idType: e.target.value })}>
@@ -100,7 +102,7 @@ export default function Account() {
           </section>
         )}
 
-        {a.user && <button className="btn secondary" onClick={() => a.signOut().then(() => say('Signed out.'))}>Sign out</button>}
+        {a.user && <button className="btn secondary acct-out" onClick={() => a.signOut().then(() => say('Signed out.'))}>Sign out</button>}
         <p className="hint">The app keeps only your email, who you are, your school or the kind of ID. Prices shown are estimates. The driver sets the real price.</p>
       </div>
     </>
