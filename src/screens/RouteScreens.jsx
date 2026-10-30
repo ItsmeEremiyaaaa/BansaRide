@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, CountUp, Trike, Moto, YHeader } from '../components'
+import { useApp, BackButton, Icon, RouteRow, Tag, StatusTag, StandPill, ClosedNotice, CountUp, Trike, Moto, YHeader } from '../components'
 import MapView from '../MapView'
 import { lazy, Suspense } from 'react'
 const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
@@ -17,7 +17,7 @@ import { routeBetween } from '../data'
 import Feedback from '../Feedback'
 import { useAuth } from '../auth'
 import { MINI_PLACES, refineRoute, routeColor } from '../data'
-import { places, placeById, poiById, pois, POI_KINDS, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
+import { standNow, placeStandNow, standActive, places, placeById, poiById, pois, POI_KINDS, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
 
 const metersBetween = (a, b) => Math.round(Math.hypot((a[0] - b[0]) * 111000, (a[1] - b[1]) * 110000))
 export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m} m`)
@@ -259,6 +259,8 @@ export function MapScreen() {
   const from = routes.filter((r) => r.from === p.id)
   const here = stationsAt(p.id)
   const spot = waitingSpots[p.id]
+  const standState = placeStandNow(p.id) // drivers around now, a few, closed, or hours not known
+  const nearOpen = standState?.state === 'closed' && me ? nearestStands(me, 1, 'toda')[0] : null
   const dist = me ? metersBetween(me, [p.lat, p.lon]) : null
   const start = useMemo(() => [p.lat, p.lon], []) // eslint-disable-line react-hooks/exhaustive-deps
   const isStreet = p.kind === 'Street'
@@ -270,13 +272,15 @@ export function MapScreen() {
     ...places.filter((x) => x.kind !== 'Street' || x.id === sel || waitingSpots[x.id]).map((x) => ({
       id: x.id, lat: x.lat, lon: x.lon, title: x.name,
       kind: x.id === sel ? 'sel' : waitingSpots[x.id] ? 'spot' : 'place',
+      closed: placeStandNow(x.id)?.state === 'closed',
       // the Bus Terminal shows a bus and the Public Market a mini bus (they wait there); other spots show the pedicab or motorcycle
       glyph: x.kind === 'Terminal' ? 'bus' : x.id === 'market' ? 'mini' : waitingSpots[x.id] ? (stationsAt(x.id).length > 0 && stationsAt(x.id).every((s) => s.type === 'motor') ? 'moto' : 'vehicle') : x.kind === 'Street' ? null : x.kind,
       label: x.id === sel && x.kind !== 'Barangay' && x.kind !== 'Sitio' ? shortName(x.id) : '',
     })),
     ...pois.filter((x) => poiKinds.includes(x.kind) || x.id === sel).map((x) => ({ id: x.id, lat: x.lat, lon: x.lon, title: x.name, kind: x.id === sel ? 'sel' : 'place', label: x.id === sel ? x.name : '', glyph: x.kind })),
-    ...stations.filter((s) => !s.placeId && s.pos).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle' })),
-  ], [sel, poiKinds])
+    // night spots (7-Eleven, the hotel) only show while some BTODA stay there; other stands fade when nobody is around
+    ...stations.filter((s) => !s.placeId && s.pos && (!s.night || standActive(s))).map((s) => ({ id: s.id, lat: s.pos.lat, lon: s.pos.lon, title: s.name, kind: 'spot', label: '', glyph: s.type === 'motor' ? 'moto' : 'vehicle', closed: standNow(s).state === 'closed' })),
+  ], [sel, poiKinds, look.tick])
   const ride = useRideFromMe(sel ? me : null, sel ? p : null) // the ride from where you are to the picked place
   // pressing the location button always wins, even while a route is shown
   const focus = useMemo(() => focusPt ?? (ride?.path?.length ? null : sel ? [p.lat, p.lon] : null), [p, focusPt, sel, ride?.path?.length]) // the route fits the view itself
@@ -391,6 +395,7 @@ export function MapScreen() {
           <div className="mapcard-top">
             <div>
               <div className="mapcard-tags">
+                {standState && <StandPill now={standState} />}
                 {spot ? <Tag tone="gold">Waiting spot</Tag> : <Tag tone="grey">{p.kind}</Tag>}
                 {spot && spot.status !== 'confirmed' && <StatusTag status={spot.status} />}
               </div>
@@ -402,7 +407,8 @@ export function MapScreen() {
               <button className="icon-btn flat" aria-label="Close" onClick={() => { setCard(false); setSel(null); setFocusPt(null); setMore(false) }}><Icon name="close" /></button>
             </span>
           </div>
-          {me && <FromYou ride={ride} me={me} destId={p.id} compact />}
+          <ClosedNotice now={standState} near={nearOpen} onNear={() => nearOpen && goFromMap('station', { id: nearOpen.station.id })} />
+          {me && <div className={standState?.state === 'closed' ? 'dimmed' : ''} aria-disabled={standState?.state === 'closed'}><FromYou ride={ride} me={me} destId={p.id} compact /></div>}
           <button className="mapcard-more" aria-expanded={more} onClick={() => setMore((v) => !v)}>{more ? 'Hide rides and drivers' : 'Show rides and drivers'}<Icon name="chevron" className={more ? 'up' : 'down'} /></button>
           {more && (<>
           {nearMe && (
@@ -498,7 +504,7 @@ export function Place() {
               {here.map((s) => (
                 <button key={s.id} className="stand-card" onClick={() => go('station', { id: s.id })}>
                   <span className={'ico ' + (s.type === 'motor' ? 'green' : 'gold')}><Icon name={s.type === 'motor' ? 'moto' : 'vehicle'} /></span>
-                  <span className="row-main"><b>{s.name}</b><span className="row-sub">{s.type === 'motor' ? 'Motorcycles for the mountain areas' : 'Tricycle and pedicab group'}</span></span>
+                  <span className="row-main"><b>{s.name}</b><span className="row-sub">{s.type === 'motor' ? 'Motorcycles for the mountain areas' : 'Tricycle and pedicab group'}</span><StandPill s={s} /></span>
                   <Icon name="chevron" className="chev" />
                 </button>
               ))}

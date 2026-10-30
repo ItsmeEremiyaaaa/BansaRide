@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { shortName, vehicleLabel, fareText } from './data'
+import { shortName, vehicleLabel, fareText, standNow } from './data'
+import { useLook } from './mood'
 
 export const Ctx = createContext(null)
 export const useApp = () => useContext(Ctx)
@@ -205,6 +206,24 @@ export function CountUp({ value }) {
   return <>{calm ? value : n}</>
 }
 
+// Whether drivers are around right now at a stand (by Bansalan time). Re-checks every minute.
+const NOW_LABEL = { open: 'Drivers around', few: 'A few around', closed: 'Closed now', unknown: 'Hours not confirmed' }
+export function StandPill({ s, now }) {
+  useLook() // re-draws as the clock moves
+  const n = now ?? standNow(s)
+  return <span className={'stand-pill ' + n.state} title={n.label}><i aria-hidden="true" />{NOW_LABEL[n.state]}</span>
+}
+// A clear "closed" notice with the reason, when it opens again, and the nearest stand that has drivers.
+export function ClosedNotice({ now, near, onNear }) {
+  if (!now || now.state !== 'closed') return null
+  return (
+    <div className="closed-notice" role="status">
+      <b>Closed now</b>
+      <span>{now.label}{now.back ? '. Back at ' + now.back : ''}</span>
+      {near && <button className="closed-near" onClick={onNear}>Nearest with drivers: {near.station.name} · {near.meters} m<Icon name="chevron" className="chev" /></button>}
+    </div>
+  )
+}
 // How sure we are about a waiting spot or group.
 export const StatusTag = ({ status }) => (status === 'confirmed' ? <Tag tone="green">Confirmed</Tag> : status === 'reported' ? <Tag tone="gold">Reported by riders</Tag> : <Tag>To confirm</Tag>)
 export const Tag = ({ children, tone = 'amber' }) => <span className={`tag ${tone}`}>{children}</span>
