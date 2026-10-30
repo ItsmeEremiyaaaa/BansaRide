@@ -12,7 +12,8 @@ const save = () => { try { localStorage.setItem(KEY, JSON.stringify({ mode: stat
 export const timeMood = (ms = Date.now()) => {
   const d = new Date(ms + 8 * 3600 * 1000) // Bansalan time (UTC+8)
   const h = d.getUTCHours() + d.getUTCMinutes() / 60
-  return h >= 5 && h < 8 ? 'morning' : h >= 8 && h < 16.5 ? 'day' : h >= 16.5 && h < 18.5 ? 'evening' : 'night'
+  // night 6:30 PM to 4:30 AM, dawn (blue hour) to 6, morning to 9, day to 3 PM, golden hour to 5:30, then the short evening glow
+  return h >= 4.5 && h < 6 ? 'dawn' : h >= 6 && h < 9 ? 'morning' : h >= 9 && h < 15 ? 'day' : h >= 15 && h < 17.5 ? 'golden' : h >= 17.5 && h < 18.5 ? 'evening' : 'night'
 }
 // rain from the free Open-Meteo forecast (no key). It needs a signal; offline it keeps the last answer.
 const THUNDER = new Set([95, 96, 99]) // thunderstorm codes
@@ -43,7 +44,7 @@ export const setLook = (mode, rainPick) => { if (mode) state.mode = mode; if (ra
 const snap = () => state
 const sub = (l) => { listeners.add(l); return () => listeners.delete(l) }
 
-// { mood: 'morning'|'day'|'evening'|'night', rain: boolean, mode, rainPick, auto: the time-of-day mood }
+// { mood: 'dawn'|'morning'|'day'|'golden'|'evening'|'night', rain: boolean, mode, rainPick, auto: the time-of-day mood }
 export function useLook() {
   useEffect(start, [])
   const s = useSyncExternalStore(sub, snap)

@@ -151,17 +151,29 @@ const ROADS = (fill, minorFill, casing, majorFill, highway, highwayCasing) => ({
 })
 export const PALETTES = {
   day: { flavor: MAPS, roads: { minor: '#ffffff', minorLine: '#d9d4c8', major: '#ffffff', majorLine: '#cfc9bb', highway: '#fbd48b', highwayLine: '#dba452', path: '#fbfaf6', pathLine: '#dedad0' }, dark: false },
+  // dawn: the blue hour before sunrise (deep navy to royal blue)
+  dawn: {
+    flavor: mix(MAPS, { background: '#16206b', earth: '#16206b', park_a: '#17407f', park_b: '#153a76', wood_a: '#153a76', wood_b: '#12326a', scrub_a: '#17407f', scrub_b: '#153a76', water: '#1045b8', buildings: '#232f8c', hospital: '#3a3a96', school: '#2a3896', industrial: '#1b2678', pedestrian: '#1b2678', sand: '#22308a', beach: '#22308a', boundaries: '#4a63c4', ...LABEL('#e3e9ff', '#16206b') }),
+    roads: { minor: '#2f48a8', minorLine: '#16206b', major: '#3b57bc', majorLine: '#16206b', highway: '#6b85e4', highwayLine: '#16206b', path: '#26399a', pathLine: '#16206b' }, dark: true, lamps: 0.6,
+  },
+  // morning: mist over the fields, soft gold, cream and sage
   morning: {
-    flavor: mix(MAPS, { background: '#f7efdc', earth: '#f7efdc', park_a: '#d2ecb4', park_b: '#c4e5a6', wood_a: '#c4e5a6', wood_b: '#b6dc98', water: '#b4dcf2', buildings: '#eadfc6', ...LABEL('#6b5f4a', '#fff8e8') }),
-    roads: { minor: '#fffaf0', minorLine: '#e0d4bd', major: '#fffaf0', majorLine: '#d6c8ae', highway: '#ffd98f', highwayLine: '#e0b060', path: '#fdf6e8', pathLine: '#e6dcc6' }, dark: false,
+    flavor: mix(MAPS, { background: '#f3ead0', earth: '#f3ead0', park_a: '#cfdcbd', park_b: '#c3d3b0', wood_a: '#c3d3b0', wood_b: '#b8c8b8', water: '#b9d0d2', buildings: '#e6d6ae', ...LABEL('#5e4a22', '#f8f1dc') }),
+    roads: { minor: '#fffaea', minorLine: '#e3d2a4', major: '#fff3cf', majorLine: '#d9c28a', highway: '#fedb8a', highwayLine: '#e5b05a', path: '#faf1d6', pathLine: '#e6d8b0' }, dark: false,
+  },
+  // afternoon golden hour: warm oranges and cream
+  golden: {
+    flavor: mix(MAPS, { background: '#ffe3a8', earth: '#ffe3a8', park_a: '#dfe09a', park_b: '#d3d68c', wood_a: '#d3d68c', wood_b: '#c6cb7e', water: '#f0bd8c', buildings: '#ffcb82', hospital: '#ffc198', school: '#ffd98a', ...LABEL('#6b3d0f', '#fff9dc') }),
+    roads: { minor: '#fff6d2', minorLine: '#ecc07a', major: '#ffe19a', majorLine: '#e3a850', highway: '#ff9f3d', highwayLine: '#c87420', path: '#ffeebb', pathLine: '#ecc888' }, dark: false, lamps: 0.35,
   },
   evening: {
     flavor: mix(MAPS, { background: '#e6cdbd', earth: '#e6cdbd', park_a: '#a9bd96', park_b: '#9db38b', wood_a: '#9db38b', wood_b: '#8fa77e', water: '#8aa9d1', buildings: '#c9a692', hospital: '#e8bdb4', school: '#e3c9a0', ...LABEL('#4a3328', '#f6e4d6') }),
     roads: { minor: '#fff0dc', minorLine: '#c9a98f', major: '#ffe6c6', majorLine: '#b99372', highway: '#ffc46b', highwayLine: '#c98a3c', path: '#f7e3cf', pathLine: '#c9a98f' }, dark: false, lamps: 0.7,
   },
+  // night: moonlight over dark trees (silver greys and dusky indigo)
   night: {
-    flavor: mix(MAPS, { background: '#151c30', earth: '#151c30', park_a: '#1b3631', park_b: '#18302b', wood_a: '#18302b', wood_b: '#152a26', scrub_a: '#1a3430', scrub_b: '#17302c', water: '#1f3a66', buildings: '#262f4c', hospital: '#3a2a3c', school: '#2f2c46', industrial: '#1b2238', pedestrian: '#1b2238', sand: '#222a42', beach: '#222a42', boundaries: '#44507a', ...LABEL('#dbe3f7', '#151c30') }),
-    roads: { minor: '#323d5e', minorLine: '#1d2540', major: '#3d4a72', majorLine: '#1d2540', highway: '#5a5368', highwayLine: '#1d2540', path: '#2a3452', pathLine: '#1d2540' }, dark: true, lamps: 1,
+    flavor: mix(MAPS, { background: '#1e1f38', earth: '#1e1f38', park_a: '#1a2236', park_b: '#171e32', wood_a: '#171e32', wood_b: '#12182a', scrub_a: '#1a2236', scrub_b: '#171e32', water: '#3c4468', buildings: '#303358', hospital: '#3f3b5e', school: '#34375c', industrial: '#232540', pedestrian: '#232540', sand: '#2a2c4a', beach: '#2a2c4a', boundaries: '#6b6b8f', ...LABEL('#d6d7df', '#1e1f38') }),
+    roads: { minor: '#3c4468', minorLine: '#232540', major: '#54546c', majorLine: '#232540', highway: '#6b6b8f', highwayLine: '#232540', path: '#2f3256', pathLine: '#232540' }, dark: true, lamps: 1,
   },
 }
 

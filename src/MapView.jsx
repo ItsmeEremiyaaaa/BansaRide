@@ -14,7 +14,7 @@ const PAD = 0.012
 const LIMITS = L.latLngBounds([bounds[0][0] - PAD, bounds[0][1] - PAD], [bounds[1][0] + PAD, bounds[1][1] + PAD]) // the whole of Bansalan: the furthest zoom-out shows exactly this
 // the map may be moved a little past the south edge, so a place near it can be lifted above the card at the bottom
 const PAN_LIMITS = L.latLngBounds([bounds[0][0] - 0.06, bounds[0][1] - 0.06], [bounds[1][0] + 0.06, bounds[1][1] + 0.06]) // a little of the neighbouring land can be seen
-const EDGE_COLOR = { morning: '#f4b400', day: '#f4b400', evening: '#ffb13b', night: '#ffd66b' }
+const EDGE_COLOR = { dawn: '#ffd66b', morning: '#f4b400', day: '#f4b400', golden: '#e08a1e', evening: '#ffb13b', night: '#ffd66b' }
 // (kept for reference) Outside Bansalan there is no map. It is a calm backdrop in the colors of the moment, with a soft pattern (little leaves by day,
 // stars at night) and a golden dotted border like the app's signboards, so the edge looks designed, not blank.
 const SURROUND = {
