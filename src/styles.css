@@ -1207,3 +1207,8 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .ask-slim { display: grid; grid-template-columns: 30px minmax(0, 1fr) 18px; gap: 8px; align-items: center; text-align: left; padding: 8px 12px; background: #dff5e8; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); font-size: 13px; line-height: 1.3; }
 .ask-slim svg.ico-art { width: 30px; height: 21px; }
 .ask-slim .chev { width: 16px; height: 16px; }
+
+/* no scrollbar on the map card: it would squeeze the header out of line; the card is dragged down to dismiss */
+.mapcard { scrollbar-width: none; touch-action: pan-y; }
+.mapcard::-webkit-scrollbar { display: none; }
+.mapcard-top { cursor: grab; }
