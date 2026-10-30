@@ -21,7 +21,7 @@ import { routeBetween } from '../data'
 import Feedback from '../Feedback'
 import { useAuth } from '../auth'
 import { MINI_PLACES, refineRoute, routeColor } from '../data'
-import { standNow, placeStandNow, standActive, places, placeById, poiById, pois, POI_KINDS, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
+import { motorPossible, standNow, placeStandNow, standActive, places, placeById, poiById, pois, POI_KINDS, nearestPlace, shortName, routes, stations, stationsAt, stationPlace, stationById, nearestStand, nearestStands, bearingTo, compassName, walkMinutes, waitingSpots, vehicleLabel, fareText, fareFor, PASSENGERS, FARE_NOTE } from '../data'
 
 const metersBetween = (a, b) => Math.round(Math.hypot((a[0] - b[0]) * 111000, (a[1] - b[1]) * 110000))
 export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m} m`)
@@ -429,7 +429,7 @@ export function MapScreen() {
               {from.slice(0, 2).map((r) => (
                 <button key={r.id} className="row-item compact" onClick={() => go('route', { id: r.id })}>
                   <span className="row-main"><span className="row-title">To {shortName(r.to)}</span><span className="row-sub">{vehicleLabel(r.vehicle)} · {r.km} km · ~{r.minutes} min</span></span>
-                  {r.fare === null ? <Tag>Ask driver</Tag> : <span className="price">{fareText(r)}</span>}<Icon name="chevron" className="chev" />
+                  {r.fare === null ? <span className="price" title="Ask the driver">~{motorPossible(r.km)}</span> : <span className="price">{fareText(r)}</span>}<Icon name="chevron" className="chev" />
                 </button>
               ))}
               {from.length > 2 && <p className="hint tight-hint">+{from.length - 2} more routes from here. See Routes.</p>}
