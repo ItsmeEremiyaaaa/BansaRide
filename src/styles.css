@@ -1212,3 +1212,7 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .mapcard { scrollbar-width: none; touch-action: pan-y; }
 .mapcard::-webkit-scrollbar { display: none; }
 .mapcard-top { cursor: grab; }
+
+/* a clear gap between the map card and the tab bar */
+.mapcard { bottom: calc(112px + env(safe-area-inset-bottom, 0px)); max-height: 48%; }
+.mapcard.slim.here { bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
