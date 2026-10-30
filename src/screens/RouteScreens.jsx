@@ -242,7 +242,8 @@ export function MapScreen() {
   const cardRef = useCallback((el) => {
     if (!el) { setCardH(0); return }
     setCardH(el.offsetHeight)
-    new ResizeObserver(() => setCardH(el.offsetHeight)).observe(el)
+    // opening or closing "rides and drivers" must not move the map: only the collapsed card's height is used for centring
+    new ResizeObserver(() => { if (!el.querySelector('.mapcard-more[aria-expanded="true"]')) setCardH(el.offsetHeight) }).observe(el)
   }, [])
   const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
