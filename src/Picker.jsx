@@ -1,11 +1,13 @@
 import { track } from './track'
 import { useEffect, useRef, useState } from 'react'
-import { Icon } from './components'
-import { places, routeBetween, fareText } from './data'
+import { Icon, useApp } from './components'
+import { places, routeBetween, fareText, metersBetween, fmtDist } from './data'
 
 // A full-screen list to pick a pickup point or a destination. Type to search.
 export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe }) {
   const [q, setQ] = useState('')
+  const { loc } = useApp()
+  const me = loc.state === 'ok' ? loc.ll : null // when we know where you are, the nearest places come first
   const input = useRef(null)
 
   useEffect(() => {
@@ -17,10 +19,14 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
 
   const term = q.trim().toLowerCase()
   const list = places.filter((p) => [p.name, p.kind, p.also ?? ''].some((x) => x.toLowerCase().includes(term)))
+  const dist = (p) => (me ? metersBetween(me, [p.lat, p.lon]) : null)
+  const byNear = (items) => (me ? [...items].sort((a, b) => dist(a) - dist(b)) : items)
+  const near = me && !term ? byNear(places.filter((p) => p.kind !== 'Sitio')).slice(0, 6) : []
   const groups = [
-    ['Barangays and sitios', list.filter((p) => p.kind === 'Barangay' || p.kind === 'Sitio')],
-    ['Places', list.filter((p) => p.kind !== 'Barangay' && p.kind !== 'Sitio' && p.kind !== 'Street')],
-    ['Streets', list.filter((p) => p.kind === 'Street')],
+    ...(near.length ? [['Near you', near]] : []),
+    ['Barangays and sitios', byNear(list.filter((p) => p.kind === 'Barangay' || p.kind === 'Sitio'))],
+    ['Places', byNear(list.filter((p) => p.kind !== 'Barangay' && p.kind !== 'Sitio' && p.kind !== 'Street'))],
+    ['Streets', byNear(list.filter((p) => p.kind === 'Street'))],
   ].filter(([, items]) => items.length > 0)
 
   return (
@@ -56,7 +62,7 @@ export default function Picker({ title, otherId, selectedId, onPick, onClose, al
                 return (
                   <button key={p.id} className="pick-row rise" style={{ '--i': i }} disabled={disabled} aria-current={p.id === selectedId ? 'true' : undefined} onClick={() => onPick(p.id)}>
                     <span className={'ico ' + (p.kind === 'Barangay' || p.kind === 'Sitio' ? 'gold' : 'blue')}><Icon name={p.kind === 'Barangay' || p.kind === 'Sitio' ? 'town' : p.kind === 'Street' ? 'road' : 'pin'} /></span>
-                    <span className="row-main"><span className="row-title">{p.name}</span><span className="row-sub">{p.kind}{p.also ? ` · also ${p.also}` : ''}</span></span>
+                    <span className="row-main"><span className="row-title">{p.name}</span><span className="row-sub">{p.kind}{me ? ` · ${fmtDist(dist(p))} from you` : ''}{p.also ? ` · also ${p.also}` : ''}</span></span>
                     {otherId && !same && (hit ? (hit.route.fare === null ? <span className="row-sub">Ask driver</span> : <span className="price small">{fareText(hit.route)}</span>) : <span className="row-sub">No route yet</span>)}
                     {p.id === selectedId && <Icon name="check" className="chev" />}
                   </button>
