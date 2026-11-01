@@ -30,7 +30,7 @@ export async function refreshLive() {
     supabase.from('app_settings').select('value').eq('key', 'fares').maybeSingle(),
     supabase.from('stand_edits').select('station_id, name, landmark, contact_name, contact_phone, verified, suspended, members'),
     supabase.rpc('approved_spots'),
-    supabase.from('announcements').select('id, title, body, tone, lat, lon, ends_at, rain_only, created_at').order('created_at', { ascending: false }).limit(10),
+    supabase.from('announcements').select('id, title, body, tone, lat, lon, ends_at, rain_only, created_at').eq('active', true).order('created_at', { ascending: false }).limit(10),
   ])
   // a part that is not set up in the database yet keeps its last good copy
   const next = {
