@@ -2281,3 +2281,9 @@ html.lite .cloud { display: none; }
 .tpop.wx-heat .tpop-title { color: #c2410c; }
 .tpop.wx-danger { background: #fef3f2; border-color: #b42318; }
 .tpop.wx-danger .tpop-title { color: #b42318; }
+
+/* ---- Checks after the full test pass ---- */
+.sheet { grid-template-columns: minmax(0, 1fr); } /* a wide child no longer pushes the whole sheet past the screen (stand page on a 320px phone) */
+@media (pointer: coarse) { .chip, .chip.small { min-height: 44px; } .link-btn { min-height: 44px; } } /* finger-sized chips and links on a phone */
+.where-title.ph { font-size: clamp(20px, 6.2vw, 28px); } /* "Choose a destination" fits on one line on a 360px phone */
+@media (max-width: 400px) { .yhead h1 { font-size: 26px; white-space: normal; overflow: visible; } } /* long titles such as "Visiting Bansalan" wrap instead of ending in "..." */

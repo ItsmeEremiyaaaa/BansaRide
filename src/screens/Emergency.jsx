@@ -1,5 +1,5 @@
 import { BackButton, Icon, YHeader } from '../components'
-import Notices from '../Notices'
+import Notices, { useNotices } from '../Notices'
 
 // Numbers that work all over the Philippines. Local numbers (police, hospital, fire station, MDRRMO) are not listed until they are confirmed.
 const NUMBERS = [
@@ -8,6 +8,7 @@ const NUMBERS = [
 ]
 
 export default function Emergency() {
+  const [notices] = useNotices()
   return (
     <>
       <YHeader title="Emergency" back={<BackButton to="menu" />} />
@@ -21,7 +22,7 @@ export default function Emergency() {
             </div>
           ))}
         </section>
-        <h2 className="sec">Notices from the BansaRide team</h2>
+        {notices.length > 0 && <h2 className="sec">Notices from the BansaRide team</h2>}
         <Notices />
         <p className="hint">Typhoon, flood and road notices appear here and on the map. Bansalan police, hospital and fire station numbers are not listed yet because they are not confirmed.</p>
       </div>
