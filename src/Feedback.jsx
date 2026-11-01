@@ -97,6 +97,7 @@ export default function Feedback({ scope, fare = false }) {
           <div className="cta-row"><button className="btn" disabled={busy}><Icon name="check" />Post</button><button type="button" className="btn secondary" onClick={() => setMode(null)}>Cancel</button></div>
         </form>
       )}
+      {fare && scope.routeId && <button className="btn secondary" onClick={() => go('report', { id: scope.routeId })}><Icon name="alert" />Fare not right? Tell us what you paid</button>}
     </section>
   )
 }
