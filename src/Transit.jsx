@@ -1,4 +1,4 @@
-import { Bus, Van, Icon, useApp } from './components'
+import { Bus, Van, Mini, Icon, useApp } from './components'
 import { useAuth } from './auth'
 import { TRANSIT, miniPossible, transitFare, transitStatus, transitKind } from './data'
 
@@ -13,7 +13,7 @@ export default function Transit({ modes, km, townId }) {
         const m = TRANSIT[id]
         const fare = transitFare(id, km, townId)
         const s = transitStatus(m)
-        const Art = id === 'van' ? Van : Bus
+        const Art = id === 'van' ? Van : id === 'mini' ? Mini : Bus
         const tone = id === 'mini' ? 'm-mini' : ''
         return (
           <div className="transit-row" key={id}>

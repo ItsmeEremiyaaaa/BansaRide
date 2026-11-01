@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BackButton, Bus, Van, YHeader, useApp } from '../components'
+import { BackButton, Bus, Van, Mini, YHeader, useApp } from '../components'
 import { TRANSIT } from '../data'
 import { pushState, setAlerts, disableAlerts, savedModes, testAlert } from '../push'
 import { isNative } from '../native'
@@ -46,7 +46,7 @@ export default function Notifications() {
           <h2 className="sec">Which rides?</h2>
           {MODES.map((id) => {
             const m = TRANSIT[id]
-            const Art = id === 'van' ? Van : Bus
+            const Art = id === 'van' ? Van : id === 'mini' ? Mini : Bus
             return (
               <button type="button" key={id} className="alert-row" aria-pressed={picked.includes(id)} onClick={() => toggle(id)}>
                 <Art className={id === 'mini' ? 'm-mini' : ''} width={56} height={38} />

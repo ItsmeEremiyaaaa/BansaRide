@@ -14,7 +14,7 @@ import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
 let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href
-const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
+const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'mini', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
 const LIMIT = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
 // only street names that belong to Bansalan are written (the same rule as the flat map)

@@ -41,7 +41,7 @@ const GLYPHS = {
 }
 const TONES = { Pending: '#f79009', Notice: '#c9282a', Hotel: '#7c4dff', Food: '#e8590c', Bank: '#0b7285', Pharmacy: '#e03131', Gas: '#495057', moto: '#067647', School: '#1560f0', Hospital: '#e5322d', Market: '#f08a24', Government: '#475467', Terminal: '#1f7a8c', Store: '#b7791f', Barangay: '#2f8f5b', Sitio: '#2f8f5b' }
 // Waiting spots and terminals use the real vehicle drawings (from the app's art sheet), with no circle behind them.
-const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'bus', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' } // the last four are the app's own place icons
+const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'mini', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' } // the last four are the app's own place icons
 // The pins drop in once when the map opens. After that, redrawing them (closing a card, picking a place) must not replay the drop,
 // or every icon seems to vanish and come back.
 let settled = false
