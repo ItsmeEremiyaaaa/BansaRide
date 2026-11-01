@@ -5,7 +5,8 @@ import { lazy, Suspense } from 'react'
 const NO_LINKS = []
 const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
 // 3D needs WebGL2 and a newer engine than the flat map; an old phone keeps the flat map (no 3D button) instead of a blank screen
-const can3D = (() => { try { new Function('let a;a??=1;a?.b;class A{static{}}'); return !!document.createElement('canvas').getContext('webgl2') } catch { return false } })()
+const can3D = !lite && (() => { try { new Function('let a;a??=1;a?.b;class A{static{}}'); return !!document.createElement('canvas').getContext('webgl2') } catch { return false } })()
+import { lite } from '../lite'
 import Picker from '../Picker'
 import Transit from '../Transit'
 import { shareText, speak } from '../speech'
@@ -367,7 +368,7 @@ export function MapScreen() {
 
   return (
     <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' + (look.level >= 2 ? ' strong' : '') : '')}>
-      <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />
+      {!lite && <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />}
       <Notices variant="slim" onShow={(n) => setFocusPt([n.lat, n.lon])} />
       <WeatherChip weather={look.weather} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}

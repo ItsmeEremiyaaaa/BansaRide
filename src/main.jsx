@@ -8,6 +8,7 @@ import './liveData' // the admin's saved changes (fares, BTODA groups, spots) ap
 import App from './App.jsx'
 import { AuthProvider } from './auth'
 import { isNative } from './native'
+import './lite' // marks a weak phone before the first screen is drawn
 
 // Saves the app on the phone so it keeps working without signal. Only in the real build: while developing, an old
 // saved copy used to hide new changes, so any saved copy is removed and the page reloads once.
