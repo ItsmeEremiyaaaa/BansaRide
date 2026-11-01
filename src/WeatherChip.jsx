@@ -26,7 +26,7 @@ export function WeatherPill() {
   return <span className="wx-pill"><WeatherIcon code={weather.code} night={mood === 'night'} size={20} /><b>{weather.temp}°</b></span>
 }
 
-export default function WeatherChip({ weather }) {
+export default function WeatherChip({ weather, high = false }) { // high: in 3D there are no zoom buttons, so the button moves up to the top left
   const [open, setOpen] = useState(false)
   useExclusive('weather', open, () => setOpen(false))
   // a tap anywhere else closes it
@@ -40,7 +40,7 @@ export default function WeatherChip({ weather }) {
   if (!weather) return null
   const [word] = WORDS(weather.code)
   return (
-    <div className="wx">
+    <div className={'wx' + (high ? ' high' : '')}>
       <button className="wx-chip" aria-expanded={open} onClick={() => setOpen((v) => !v)} aria-label={`Weather in Bansalan: ${weather.temp} degrees, ${word}. Tap for details.`}>
         <WeatherIcon code={weather.code} night={night} size={28} />
       </button>
