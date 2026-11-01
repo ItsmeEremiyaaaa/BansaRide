@@ -11,7 +11,7 @@ export default function Report() {
   const r = routes.find((x) => x.id === params.id)
   const p = placeById(params.id)
   const about = r ? `${shortName(r.from)} to ${shortName(r.to)}` : p ? p.name : ''
-  const [kind, setKind] = useState(KINDS[0])
+  const [kind, setKind] = useState(r ? 'Real fare I paid' : KINDS[0]) // opened from a route's "Fare not right?" button
   const [where, setWhere] = useState(about)
   const [what, setWhat] = useState('')
 

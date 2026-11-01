@@ -10,6 +10,7 @@ import { DriversList, Station } from './screens/Drivers'
 import Menu from './screens/Menu'
 import Account from './screens/Account'
 import Report from './screens/Report'
+import Emergency from './screens/Emergency'
 import Notifications from './screens/Notifications'
 import RideAlertPop from './TransitPop'
 import { clearMapMemo } from './mapMemo'
@@ -17,7 +18,7 @@ import { refreshLive, onLive, liveVersion } from './liveData'
 import { FareSheet, Visitor, Poster, HowTo } from './screens/Sheets'
 import Onboarding, { ONBOARDED } from './screens/Onboarding'
 
-const SCREENS = { home: Home, routes: RoutesList, route: RouteScreen, map: MapScreen, place: Place, town: Town, towns: TownsList, fares: Fares, drivers: DriversList, station: Station, menu: Menu, account: Account, report: Report, notify: Notifications, howto: HowTo, farelist: FareSheet, visitor: Visitor, poster: Poster }
+const SCREENS = { home: Home, routes: RoutesList, route: RouteScreen, map: MapScreen, place: Place, town: Town, towns: TownsList, fares: Fares, drivers: DriversList, station: Station, menu: Menu, account: Account, report: Report, emergency: Emergency, notify: Notifications, howto: HowTo, farelist: FareSheet, visitor: Visitor, poster: Poster }
 const TABS = [
   { key: 'home', icon: 'tabHome' },
   { key: 'routes', icon: 'tabRoutes' },
@@ -25,7 +26,7 @@ const TABS = [
   { key: 'drivers', icon: 'tabTrike' },
   { key: 'fares', icon: 'tabFare' },
 ]
-const TAB_OF = { menu: 'home', account: 'home', report: 'home', notify: 'home', howto: 'home', farelist: 'fares', visitor: 'home', poster: 'drivers', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
+const TAB_OF = { menu: 'home', account: 'home', report: 'home', emergency: 'home', notify: 'home', howto: 'home', farelist: 'fares', visitor: 'home', poster: 'drivers', drivers: 'drivers', station: 'drivers', home: 'home', town: 'home', towns: 'home', routes: 'routes', route: 'routes', place: 'routes', map: 'map', fares: 'fares' }
 
 // The app always opens on the map: a plain start (no screen in the address) or a start on Home goes to the map.
 // A link to a particular screen (a station, a route) still opens that screen.

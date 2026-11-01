@@ -29,6 +29,7 @@ export default function Menu() {
       { icon: 'clock', tone: 'orange', name: 'Ride alerts', detail: 'A notice 30 minutes before the first ride and 1 hour before the last ride of the bus, van and mini bus', to: ['notify'] },
       { icon: 'info', tone: 'blue', name: 'How it works', detail: 'Six short steps: map, search, who to ask, prices, buses and alerts', to: ['howto'] },
       { icon: 'town', tone: 'green', name: 'Visiting Bansalan', detail: 'First time here? Where to arrive, where tricycles wait and what to expect', to: ['visitor'] },
+      { icon: 'phone', tone: 'red', name: 'Emergency', detail: 'Call 911 or the Red Cross, and see typhoon, flood and road notices', to: ['emergency'] },
       { icon: 'alert', tone: 'red', name: 'Report a problem', detail: 'Wrong fare, place, time or number? Tell us so we can fix it', to: ['report'] },
       { icon: 'drivers', tone: 'blue', name: 'Account and discount', detail: 'Students, seniors and PWD: sign in to see your own fare everywhere', to: ['account'] },
     ] },
