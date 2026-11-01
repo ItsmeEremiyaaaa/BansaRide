@@ -8,6 +8,21 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <script>
+      // Android app only: if the app does not start, say why on the screen (and which WebView it runs on) instead of a blank page.
+      (function () {
+        var C = window.Capacitor
+        if (!(C && C.isNativePlatform && C.isNativePlatform())) return
+        var show = function (m) {
+          var d = document.getElementById('boot-error')
+          if (!d) { d = document.createElement('pre'); d.id = 'boot-error'; d.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;margin:0;padding:24px;background:#fff;color:#b42318;font:13px monospace;white-space:pre-wrap;overflow:auto'; document.documentElement.appendChild(d) }
+          d.textContent += m + '\n\n'
+        }
+        window.addEventListener('error', function (e) { show('Error: ' + (e.message || '') + ' ' + ((e.target && (e.target.src || e.target.href)) || e.filename || '') + ':' + (e.lineno || '')) }, true)
+        window.addEventListener('unhandledrejection', function (e) { show('Promise: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)) })
+        setTimeout(function () { var r = document.getElementById('root'); if (r && !r.children.length) show('The app did not start.\n' + navigator.userAgent) }, 8000)
+      })()
+    </script>
     <title>BansaRide</title>
   </head>
   <body>
