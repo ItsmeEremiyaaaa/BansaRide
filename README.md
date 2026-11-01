@@ -37,6 +37,8 @@ Riders can turn on a notice 30 minutes before the first ride and 1 hour before t
 
 Optional usage counts: run `supabase/stats.sql`.
 
+Admin website: run `supabase/admin.sql` and then `supabase/manage.sql`. Last of all, run `supabase/hardening.sql` (it limits flooding of the inbox, the counts and the ride-alert list, and must come after `push.sql`, `stats.sql` and `admin.sql`).
+
 ## What is real and what is not
 
 | Item | Status |
