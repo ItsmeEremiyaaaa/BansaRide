@@ -1462,10 +1462,10 @@ html[data-text='large'] .row-item > .tag, html[data-text='xlarge'] .row-item > .
 .where-top { gap: 8px; }
 .note > .wicon { width: 28px; height: 28px; }
 
-/* weather button: just the icon, under the map buttons */
-.wx { top: auto; left: auto; right: 12px; position: absolute; margin-top: 0; top: calc(12px + 4 * 52px + 8px + env(safe-area-inset-top, 0px)); }
+/* weather button: just the icon, under the zoom buttons (top left) */
+.wx { top: auto; right: auto; left: 10px; position: absolute; margin-top: 0; top: calc(4px + 10px + 82px + 8px + env(safe-area-inset-top, 0px)); }
 .wx-chip { width: 44px; height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
-.wx-card { position: absolute; right: 0; top: 52px; width: min(290px, calc(100vw - 40px)); }
+.wx-card { position: absolute; left: 0; right: auto; top: 52px; width: min(290px, calc(100vw - 40px)); }
 
 /* clouds over the map */
 .clouds { position: absolute; inset: 0; z-index: 1045; pointer-events: none; overflow: hidden; }
