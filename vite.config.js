@@ -64,6 +64,9 @@ export default defineConfig({
   ],
   // two pages: the rider app and the admin website (bansalanride.netlify.app/admin/)
   build: {
+    // Vite's default (Chrome 111+) leaves newer syntax as it is, so a phone with an old Android System WebView shows a blank screen.
+    // 73 is the oldest engine the app's own code (Object.fromEntries) runs on.
+    target: 'chrome73',
     rollupOptions: {
       input: { main: 'index.html', admin: 'admin/index.html' },
       // only the admin page's own code is named 'adminpage', so the code both pages share is still saved for offline use
