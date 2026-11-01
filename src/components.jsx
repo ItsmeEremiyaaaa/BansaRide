@@ -160,6 +160,45 @@ export function Defs() {
           <circle cx="314" cy="220" r="7" fill="#98a2b3" strokeWidth="3"/>
           </g>
       </symbol>
+      <symbol id="mini" viewBox="0 0 420 290">
+          <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M30 74 Q30 56 50 56 H320 Q352 56 370 84 L396 130 V198 Q396 216 378 216 H46 Q30 216 30 200 Z" fill="#FFFFFF"/>
+          <rect x="120" y="40" width="150" height="16" rx="7" fill="#fff"/>
+          <path d="M46 74 H294 V132 H46 Z" fill="#1f2937" strokeLinejoin="miter"/>
+          <path d="M104 74 V132 M162 74 V132 M220 74 V132" stroke="#fff" strokeWidth="8" fill="none" strokeLinecap="butt"/>
+          <path d="M300 70 H338 V204 H300 Z" fill="#fff"/>
+          <rect x="308" y="80" width="22" height="52" rx="4" fill="#1f2937" strokeWidth="3"/>
+          <path d="M346 72 H362 Q374 72 382 92 L392 132 H346 Z" fill="#1f2937"/>
+          <path d="M30 152 H396 V172 H30 Z" style={{ fill: 'var(--vc, #1F7A8C)' }}/>
+          <path d="M388 60 Q408 58 408 84 V106" fill="none" strokeWidth="9"/>
+          <path d="M388 60 Q408 58 408 84 V106" fill="none" stroke="#fff" strokeWidth="3"/>
+          <rect x="384" y="176" width="20" height="16" rx="5" fill="#e4e7ec" strokeWidth="4"/>
+          <path d="M66 218 Q66 176 112 176 Q158 176 158 218 Z" fill="#2a2d34"/>
+          <path d="M270 218 Q270 176 316 176 Q362 176 362 218 Z" fill="#2a2d34"/>
+          <circle cx="112" cy="220" r="38" fill="#111"/>
+          <circle cx="112" cy="220" r="29" fill="#e4e7ec" stroke="none"/>
+          <path d="M112 220 L139.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L131.1 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L112.0 247.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L92.9 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L85.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L92.9 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L112.0 193.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 220 L131.1 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="112" cy="220" r="7" fill="#98a2b3" strokeWidth="3"/>
+          <circle cx="316" cy="220" r="38" fill="#111"/>
+          <circle cx="316" cy="220" r="29" fill="#e4e7ec" stroke="none"/>
+          <path d="M316 220 L343.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L335.1 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L316.0 247.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L296.9 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L289.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L296.9 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L316.0 193.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M316 220 L335.1 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="316" cy="220" r="7" fill="#98a2b3" strokeWidth="3"/>
+          </g>
+      </symbol>
       <symbol id="van" viewBox="0 0 420 290">
           <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
           <path d="M30 80 Q30 54 56 52 H270 Q292 52 308 70 L330 100 L376 118 Q398 124 398 146 V200 H30 Z" fill="#FFFFFF"/>
@@ -256,6 +295,7 @@ const art = (id, label, mode) => ({ className, width = 128, height = 88 }) => (
 )
 export const Bus = art('bus', 'BansaRide bus', 'm-bus')
 export const Van = art('van', 'BansaRide van', 'm-van')
+export const Mini = art('mini', 'BansaRide mini bus', 'm-mini')
 
 export const Trike = ({ className, width = 128, height = 88 }) => (
   <svg className={'m-vehicle ' + (className ?? '')} viewBox="0 0 420 290" width={width} height={height} role="img" aria-label="BansaRide tricycle"><use href="#trike" /></svg>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bus, Van } from './components'
+import { Bus, Van, Mini } from './components'
 import { TRANSIT, ALERT_FIRST_BEFORE, ALERT_LAST_BEFORE } from './data'
 
 // The animated pop-up for the two ride alerts, for every big bus, van and mini bus: the first ride is about to start
@@ -80,7 +80,7 @@ export default function RideAlertPop() {
     )
   }
   const { m, kind } = alert
-  const Art = m.id === 'van' ? Van : Bus
+  const Art = m.id === 'van' ? Van : m.id === 'mini' ? Mini : Bus
   const text = kind === 'first'
     ? `The first ${m.label.toLowerCase()} leaves at ${m.firstText}, in ${ALERT_FIRST_BEFORE} minutes.`
     : `The last ${m.label.toLowerCase()} leaves at ${m.lastText}, in 1 hour. Do not get stranded.`
