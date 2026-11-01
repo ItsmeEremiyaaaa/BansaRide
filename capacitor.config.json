@@ -1,0 +1,15 @@
+{
+  "appId": "ph.bansaride.app",
+  "appName": "BansaRide",
+  "webDir": "dist",
+  "backgroundColor": "#F4B400",
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "native",
+      "initialViewportFitValueHint": "cover"
+    }
+  }
+}
