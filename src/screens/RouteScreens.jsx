@@ -370,7 +370,7 @@ export function MapScreen() {
     <div className={'mapfill mood-' + look.mood + (look.rain ? ' rainy' + (look.level >= 2 ? ' strong' : '') : '')}>
       {!lite && <CloudOverlay cover={look.weather?.cloud ?? 0} night={look.mood === 'night'} />}
       <Notices variant="slim" onShow={(n) => setFocusPt([n.lat, n.lon])} />
-      <WeatherChip weather={look.weather} />
+      <WeatherChip weather={look.weather} high={view3d} />
       {look.rain && <RainOverlay night={look.mood === 'night'} level={look.level} thunder={look.thunder} />}
       {(view3d || shown3d) && (
         <Suspense fallback={null}>

@@ -2287,3 +2287,4 @@ html.lite .cloud { display: none; }
 @media (pointer: coarse) { .chip, .chip.small { min-height: 44px; } .link-btn { min-height: 44px; } } /* finger-sized chips and links on a phone */
 .where-title.ph { font-size: clamp(20px, 6.2vw, 28px); } /* "Choose a destination" fits on one line on a 360px phone */
 @media (max-width: 400px) { .yhead h1 { font-size: 26px; white-space: normal; overflow: visible; } } /* long titles such as "Visiting Bansalan" wrap instead of ending in "..." */
+.wx.high { top: calc(14px + env(safe-area-inset-top, 0px)); } /* the weather button in 3D, where there are no zoom buttons above it */

@@ -413,7 +413,8 @@ export function ClosedNotice({ now, near, onNear }) {
   )
 }
 // How sure we are about a waiting spot or group.
-export const StatusTag = ({ status }) => (status === 'confirmed' ? <Tag tone="green">Confirmed</Tag> : status === 'reported' ? <Tag tone="gold">Reported by riders</Tag> : <Tag>To confirm</Tag>)
+// spot: on a driver group's page the tag is about the waiting spot, not the group name (that has its own tag)
+export const StatusTag = ({ status, spot = false }) => (status === 'confirmed' ? <Tag tone="green">{spot ? 'Spot confirmed' : 'Confirmed'}</Tag> : status === 'reported' ? <Tag tone="gold">{spot ? 'Spot reported by riders' : 'Reported by riders'}</Tag> : <Tag>{spot ? 'Spot to confirm' : 'To confirm'}</Tag>)
 export const Tag = ({ children, tone = 'amber' }) => <span className={`tag ${tone}`}>{children}</span>
 
 export function RouteRow({ route, onOpen, isSaved, index = 0 }) {

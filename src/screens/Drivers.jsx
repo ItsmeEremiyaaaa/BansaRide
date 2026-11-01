@@ -143,7 +143,7 @@ export function Station() {
             <div className="sign-tags">
               <span className="place-kind">{kindLabel(s)}</span>
               {stationVerified(s) && <span className="place-kind ok">Verified by BTODA</span>}
-              <StatusTag status={stationStatus(s)} />
+              <StatusTag status={stationStatus(s)} spot />
               {s.source === 'generated' && <span className="place-kind">Group name to confirm</span>}
               {s.pos?.approx && <span className="place-kind">Approximate position</span>}
             </div>
