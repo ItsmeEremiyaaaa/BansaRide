@@ -64,8 +64,24 @@ const pin = (cls0, label, i, glyph, tone) => {
   })
 }
 
+// Brings a set of points (the route, and where you are) into the free part of the map above the card: the zoom and centre are
+// worked out here, so the near end of a long trip is never left behind the card.
+function fitAbove(m, pts, coverPx) {
+  if (!pts.length) return
+  const b = L.latLngBounds(pts)
+  const size = m.getSize(), top = 84, bottom = size.y - coverPx - 40
+  const regH = Math.max(120, bottom - top), regW = size.x - 72
+  const n = b.getNorth(), so = b.getSouth(), e = b.getEast(), w = b.getWest()
+  const cosl = Math.cos(((n + so) / 2) * Math.PI / 180)
+  const mpp = (Math.max(((n - so) * 111000) / regH, ((e - w) * 110500) / regW) || 1) * 1.08
+  const z = Math.min(17, Math.max(m.getMinZoom(), Math.log2((156543.034 * cosl) / mpp)))
+  const per = (156543.034 * cosl) / 2 ** z
+  const shift = size.y / 2 - (top + bottom) / 2
+  m.setView([(n + so) / 2 - (shift * per) / 111000, (e + w) / 2], Math.floor(z * 4) / 4, { animate: true })
+}
+
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
-const above = (m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
+const above =(m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
 export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null, selGlyph = null }) {
   const el = useRef(null)
