@@ -1,5 +1,5 @@
 // The small details card shown when the pointer rests on a pin (mouse or pen): name, what it is, if drivers are around, how far.
-const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
+export const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
 export const canHover = () => typeof matchMedia === 'function' && matchMedia('(hover: hover)').matches
 export function pinTipHtml(k, me) {
   if (!k?.title) return ''

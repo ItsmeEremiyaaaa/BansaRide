@@ -32,7 +32,7 @@ function StationRow({ s, onOpen, index }) {
 
 // Driver groups (BTODA) and motorcycles stands.
 export function DriversList() {
-  const { go, loc, t } = useApp()
+  const { go, loc } = useApp()
   const me = loc?.state === 'ok' ? loc.ll : null
   const [q, setQ] = useState('')
   const [kind, setKind] = useState('All')
@@ -103,7 +103,7 @@ export function DriversList() {
 
 // One group: where it waits, where it goes, how to get there.
 export function Station() {
-  const { go, params, loc, retryLocation, t } = useApp()
+  const { go, params, loc, retryLocation, say, t } = useApp()
   const look = useLook()
   const s = stationById(params.id) ?? stations[0]
   const p = stationPlace(s)

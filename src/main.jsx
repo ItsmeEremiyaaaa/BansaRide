@@ -6,6 +6,7 @@ import '@fontsource-variable/baloo-2'
 import './styles.css'
 import './liveData' // the admin's saved changes (fares, BTODA groups, spots) apply before the first screen
 import App from './App.jsx'
+import ErrorBoundary from './ErrorBoundary'
 import { AuthProvider } from './auth'
 import { isNative } from './native'
 import './lite' // marks a weak phone before the first screen is drawn
@@ -25,8 +26,10 @@ else if ('serviceWorker' in navigator) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )

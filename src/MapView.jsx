@@ -7,7 +7,7 @@ import { moodRules } from './mapStyle'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from './boundary'
-import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
+import { esc, pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
 // The map is limited to Bansalan, Davao del Sur: it cannot be panned away, and everything outside the
 // real municipal border is dimmed. Barangay names show from zoom 13.
@@ -50,7 +50,7 @@ const pin = (cls0, label, i, glyph, tone) => {
   if (ART[glyph]) {
     return L.divIcon({
       className: 'pin-wrap',
-      html: `<span class="pin art ${cls} ${glyph}" style="animation-delay:${Math.min(i, 12) * 45}ms"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#${ART[glyph]}" /></svg></span>${label ? `<span class="pin-label">${label}</span>` : ''}`,
+      html: `<span class="pin art ${cls} ${glyph}" style="animation-delay:${Math.min(i, 12) * 45}ms"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#${ART[glyph]}" /></svg></span>${label ? `<span class="pin-label">${esc(label)}</span>` : ''}`,
       iconSize: [0, 0],
     })
   }
@@ -59,7 +59,7 @@ const pin = (cls0, label, i, glyph, tone) => {
   const inner = g ? `<svg viewBox="0 0 24 24" aria-hidden="true">${g}</svg>` : ''
   return L.divIcon({
     className: 'pin-wrap',
-    html: `<span class="pin ${cls}${g ? ' g' : ''}" style="${style}">${inner}</span>${label ? `<span class="pin-label">${label}</span>` : ''}`,
+    html: `<span class="pin ${cls}${g ? ' g' : ''}" style="${style}">${inner}</span>${label ? `<span class="pin-label">${esc(label)}</span>` : ''}`,
     iconSize: [0, 0],
   })
 }
