@@ -1,4 +1,5 @@
 import { supabase } from './auth'
+import { isNative } from './native'
 
 // Ride alerts: a phone asks to be told 30 minutes before the first ride and 1 hour before the last ride of the big bus,
 // van and mini bus. The phone's push address goes to Supabase; a scheduled job there sends the alerts.
@@ -6,7 +7,7 @@ const KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY
 const TOKEN_KEY = 'bansaride.push.token'
 const MODES_KEY = 'bansaride.push.modes'
 
-export const pushSupported = () => !!(KEY && supabase && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window)
+export const pushSupported = () => !!(!isNative && KEY && supabase && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window)
 
 const toBytes = (b64) => {
   const pad = '='.repeat((4 - (b64.length % 4)) % 4)

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import { isNative, NATIVE_LOGIN_URL } from './native'
 
 // Accounts are optional. A guest can use the whole app. A signed-in, verified student, senior or PWD gets their own
 // discounted fare everywhere. We keep only the passenger type, the school or the kind of ID. No photos, no ID numbers.
@@ -44,13 +45,20 @@ export function AuthProvider({ children }) {
     }
     supabase.auth.getSession().then(({ data }) => sync(data.session))
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => { sync(session) })
-    return () => sub.subscription.unsubscribe()
+    // In the Android app the sign-in email link opens ph.bansaride.app://login?code=...; the app finishes the sign-in with it.
+    let off = null
+    if (isNative) {
+      import('@capacitor/app').then(({ App }) => App.addListener('appUrlOpen', ({ url }) => {
+        try { const code = new URL(url).searchParams.get('code'); if (code) supabase.auth.exchangeCodeForSession(code) } catch { /* not a sign-in link */ }
+      })).then((h) => { off = h }, () => {})
+    }
+    return () => { sub.subscription.unsubscribe(); off?.remove() }
   }, [])
 
   // An email link signs in and verifies the email at the same time.
   const sendLink = useCallback(async (email) => {
     if (!supabase) return { error: 'Sign-in is not switched on yet.' }
-    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + window.location.pathname } })
+    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: isNative ? NATIVE_LOGIN_URL : window.location.origin + window.location.pathname } })
     // Supabase sends only a few sign-in emails an hour; say so plainly instead of its technical message
     if (error && /rate limit|too many/i.test(error.message)) return { error: 'Too many sign-in emails were sent just now. Use the link already in your email, or try again in about an hour.' }
     return { error: error?.message ?? null }

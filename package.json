@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "android:sync": "vite build && node scripts/prepare-native.mjs && cap sync android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.0",
     "@fontsource-variable/baloo-2": "^5.3.0",
     "@fontsource-variable/nunito": "^5.3.0",
     "@protomaps/basemaps": "^5.7.2",
@@ -24,6 +28,8 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vite-pwa/assets-generator": "^2.0.0",

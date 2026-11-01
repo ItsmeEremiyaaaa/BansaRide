@@ -1,0 +1,68 @@
+# Builds the BansaRide Android app (APK). Run it from GitHub: Actions > Android APK > Run workflow.
+# The finished APK is on that run's page, under "Artifacts".
+name: Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['app-v*']
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      VITE_VAPID_PUBLIC_KEY: ${{ secrets.VITE_VAPID_PUBLIC_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the app settings are there
+        run: |
+          missing=0
+          for v in VITE_SUPABASE_URL VITE_SUPABASE_ANON_KEY; do
+            if [ -z "${!v}" ]; then
+              echo "::error::The secret $v is missing. Add it in GitHub: Settings > Secrets and variables > Actions > New repository secret (the value is in your .env.local file)."
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - run: npm ci
+
+      # builds the website, trims it for the app, and copies it into the Android project
+      - run: npm run android:sync
+
+      # The test APK is signed with a key that Android makes on the first build. GitHub keeps it between builds (outside your
+      # code), so each new APK installs over the last one. If GitHub clears it after a week without a build, uninstall once.
+      - name: Keep the signing key between builds
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: bansaride-android-signing-key-v1
+
+      - name: Build the APK
+        working-directory: android
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BansaRide-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BansaRide</string>
+    <string name="title_activity_main">BansaRide</string>
+    <string name="package_name">ph.bansaride.app</string>
+    <string name="custom_url_scheme">ph.bansaride.app</string>
+</resources>
