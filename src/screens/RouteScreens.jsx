@@ -4,6 +4,8 @@ import MapView from '../MapView'
 import { lazy, Suspense } from 'react'
 const NO_LINKS = []
 const Map3D = lazy(() => import('../Map3D')) // the 3D engine loads only when you switch to 3D
+// 3D needs WebGL2 and a newer engine than the flat map; an old phone keeps the flat map (no 3D button) instead of a blank screen
+const can3D = (() => { try { new Function('let a;a??=1;a?.b;class A{static{}}'); return !!document.createElement('canvas').getContext('webgl2') } catch { return false } })()
 import Picker from '../Picker'
 import Transit from '../Transit'
 import { shareText, speak } from '../speech'
@@ -255,7 +257,7 @@ export function MapScreen() {
   }, [])
   const [poiKinds, setPoiKinds] = useState(memo?.poiKinds ?? []) // shops, hotels... switched on for the map
   const [filterOpen, setFilterOpen] = useState(false)
-  const [view3d, setView3dRaw] = useState(() => sessionStorage.getItem('bansaride.view3d') === '1') // stays 3D when you come back from a stand or place page
+  const [view3d, setView3dRaw] = useState(() => can3D && sessionStorage.getItem('bansaride.view3d') === '1') // stays 3D when you come back from a stand or place page
   const setView3d = (f) => setView3dRaw((v) => { const n = typeof f === 'function' ? f(v) : f; try { sessionStorage.setItem('bansaride.view3d', n ? '1' : '0') } catch { /* optional */ } return n })
   const look = useLook()
   // Switching 2D <-> 3D is a crossfade: the map being left stays under the new one until the fade is finished, so nothing blank shows.
@@ -396,7 +398,7 @@ export function MapScreen() {
         </>
       )}
       <div className="float r col">
-        <button className={'icon-btn view-btn' + (view3d ? ' on' : '')} aria-pressed={view3d} aria-label={view3d ? 'Back to the flat map' : 'Show the 3D map'} onClick={() => setView3d((v) => !v)}>{view3d ? '2D' : '3D'}</button>
+        {can3D && <button className={'icon-btn view-btn' + (view3d ? ' on' : '')} aria-pressed={view3d} aria-label={view3d ? 'Back to the flat map' : 'Show the 3D map'} onClick={() => setView3d((v) => !v)}>{view3d ? '2D' : '3D'}</button>}
         <button className="icon-btn" aria-label="Show my location" onClick={() => locate()}><Icon name="locate" /></button>
         <button className={'icon-btn' + (poiKinds.length ? ' on' : '')} aria-expanded={filterOpen} aria-haspopup="dialog" aria-label={`Filter: show shops, hotels and more${poiKinds.length ? `, ${poiKinds.length} on` : ''}`} onClick={() => setFilterOpen((v) => !v)}><Icon name="filter" />{poiKinds.length > 0 && <i className="icon-badge">{poiKinds.length}</i>}</button>
         <button className={'icon-btn' + (adding ? ' on' : '')} aria-pressed={adding} aria-label="Add a waiting spot" onClick={() => { setAdding((v) => !v); setDraft(null); setCard(false) }}><Icon name="plus" /></button>
