@@ -34,6 +34,7 @@ Riders can turn on a notice 30 minutes before the first ride and 1 hour before t
 3. Add three secrets (Edge Functions > Secrets): `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` (an email). Create the key pair with `npx web-push generate-vapid-keys`. Never commit the private key.
 4. Put the same public key in `.env.local` and in the host's environment variables as `VITE_VAPID_PUBLIC_KEY`.
 5. Schedule it: Integrations > Cron > new job, every 5 minutes (`*/5 * * * *`), run the Edge Function `send-ride-alerts`.
+6. Weather notices when the app is closed (rain, storm, very hot, dangerous heat): run `supabase/weather-alerts.sql`, then deploy `send-ride-alerts` again. Riders pick "Weather" on the Ride alerts screen. Check the rules with `npm test`.
 
 Optional usage counts: run `supabase/stats.sql`.
 
