@@ -10,109 +10,194 @@ export function Defs() {
   return (
     <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
       <defs>
-        <clipPath id="cabin"><path d="M98 80 H262 V212 H74 V160 Z" /></clipPath>
-        <clipPath id="cab2"><path d="M262 80 L318 76 L342 172 V212 H262 Z" /></clipPath>
         <pattern id="folk" width="40" height="10" patternUnits="userSpaceOnUse">
           <polygon points="0,10 10,0 20,10" fill="#E5322D" />
           <polygon points="20,10 30,0 40,10" fill="#1F7A8C" />
         </pattern>
       </defs>
       <symbol id="trike" viewBox="0 0 420 290">
-        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
-          <g transform="translate(26 74)">
-            <path d="M26 0 C 48 22 54 62 26 100 C -2 62 4 22 26 0 Z" fill="#E5322D" />
-            <path d="M8 34 L26 50 L44 34 M8 56 L26 72 L44 56" fill="none" stroke="#fff" strokeWidth="6" />
-            <path d="M12 18 L26 30 L40 18" fill="none" stroke="#1F7A8C" strokeWidth="5" />
+          <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M228 158 H300 L306 218 H228 Z" fill="#2a2d34"/>
+          <path d="M238 150 Q264 134 292 150 V164 H238 Z" fill="#111"/>
+          <path d="M248 156 H284" stroke="#fff" strokeWidth="3" fill="none"/>
+          <path d="M354 238 L344 142" strokeWidth="8" fill="none"/>
+          <path d="M266 138 L324 130 L338 148 L328 220 L266 220 Z" fill="#2F8FD8"/>
+          <path d="M38 116 Q38 106 50 106 H252 V216 H38 Z" style={{ fill: 'var(--vc, #FFFFFF)' }}/>
+          <path d="M38 180 H252" fill="none" strokeWidth="3"/>
+          <rect x="29" y="152" width="9" height="16" rx="3" fill="#E5322D" strokeWidth="3"/>
+          <path d="M60 124 H176 Q190 124 190 138 V172 H60 Z" fill="#1f3b52"/>
+          <path d="M60 158 H190" stroke="#2F8FD8" strokeWidth="13" strokeLinecap="butt" fill="none"/>
+          <rect x="204" y="128" width="32" height="44" rx="16" fill="#1f3b52"/>
+          <path d="M294 102 L342 96 L358 132 L322 138 Z" fill="#d6ecf9"/>
+          <path d="M332 140 L352 126" strokeWidth="7" fill="none"/>
+          <circle cx="354" cy="124" r="6" fill="#2a2d34" strokeWidth="3"/>
+          <circle cx="358" cy="160" r="11" fill="#fff"/>
+          <path d="M30 98 Q30 82 52 80 L338 68 Q364 66 366 82 V90 Q366 98 354 98 L56 110 Q30 112 30 98 Z" fill="#2a2d34"/>
+          <path d="M56 93 L338 80 M56 101 L338 88" stroke="#4b5160" strokeWidth="3" fill="none"/>
+          <path d="M338 68 L364 60 L378 76 L366 88 Z" fill="#5BB8E8"/>
+          <path d="M72 218 Q72 178 122 178 Q172 178 172 218 Z" fill="#2a2d34"/>
+          <circle cx="122" cy="236" r="40" fill="#111"/>
+          <circle cx="122" cy="236" r="31" fill="#e4e7ec" stroke="none"/>
+          <path d="M122 236 L151.0 236.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L142.5 256.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L122.0 265.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L101.5 256.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L93.0 236.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L101.5 215.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L122.0 207.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M122 236 L142.5 215.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="122" cy="236" r="8" fill="#E5322D" strokeWidth="3"/>
+          <circle cx="352" cy="238" r="40" fill="#111"/>
+          <circle cx="352" cy="238" r="31" fill="#e4e7ec" stroke="none"/>
+          <path d="M352 238 L381.0 238.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L372.5 258.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L352.0 267.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L331.5 258.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L323.0 238.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L331.5 217.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L352.0 209.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M352 238 L372.5 217.5" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="352" cy="238" r="8" fill="#98a2b3" strokeWidth="3"/>
+          <path d="M318 220 Q352 182 386 220" fill="none" stroke="#2a2d34" strokeWidth="9"/>
           </g>
-          <circle cx="120" cy="234" r="52" fill="#111" />
-          <circle cx="120" cy="234" r="44" fill="#fff" stroke="none" />
-          <circle cx="120" cy="234" r="28" fill="none" stroke="#E5322D" strokeWidth="30" strokeDasharray="10.99 10.99" />
-          <circle cx="120" cy="234" r="28" fill="none" stroke="#F4B400" strokeWidth="30" strokeDasharray="10.99 10.99" strokeDashoffset="10.99" />
-          <circle cx="120" cy="234" r="14" fill="#F4B400" />
-          <circle cx="120" cy="234" r="5" fill="#fff" strokeWidth="3" />
-          <circle cx="338" cy="238" r="40" fill="#111" />
-          <circle cx="338" cy="238" r="32" fill="#fff" stroke="none" />
-          <circle cx="338" cy="238" r="19" fill="none" stroke="#F4B400" strokeWidth="12" strokeDasharray="7 7.1" />
-          <circle cx="338" cy="238" r="10" fill="#1F7A8C" strokeWidth="3" />
-          <g clipPath="url(#cabin)" stroke="none">
-            <rect x="70" y="76" width="200" height="136" style={{ fill: 'var(--vc, #FFFFFF)' }} />
-            <circle cx="160" cy="118" r="30" fill="#E5322D" /><circle cx="160" cy="118" r="22" fill="#F4B400" />
-            <circle cx="160" cy="118" r="14" fill="#E5322D" /><circle cx="160" cy="118" r="6" fill="#F4B400" />
-            <polygon points="98,80 114,80 106,96" fill="#1F7A8C" /><polygon points="114,80 130,80 122,96" fill="#E5322D" />
-            <polygon points="130,80 146,80 138,96" fill="#1F7A8C" /><polygon points="178,80 194,80 186,96" fill="#E5322D" />
-            <polygon points="194,80 210,80 202,96" fill="#1F7A8C" />
-            <rect x="70" y="150" width="200" height="18" fill="#E5322D" /><rect x="70" y="168" width="200" height="16" fill="#7FB8C9" />
-            <rect x="70" y="184" width="200" height="14" fill="#F4B400" /><rect x="70" y="198" width="200" height="14" fill="#1F7A8C" />
-            <polygon points="90,198 104,212 118,198" fill="#fff" /><polygon points="130,198 144,212 158,198" fill="#fff" /><polygon points="170,198 184,212 198,198" fill="#fff" />
-          </g>
-          <rect x="206" y="84" width="42" height="124" fill="#fff" />
-          <path d="M206 168 H250" stroke="#1F7A8C" strokeWidth="9" fill="none" />
-          <g clipPath="url(#cab2)" stroke="none"><rect x="262" y="70" width="90" height="150" style={{ fill: 'var(--vc, #E5322D)' }} /><rect x="262" y="190" width="90" height="22" fill="#1F7A8C" /></g>
-          <polygon points="296,112 314,142 296,172 278,142" fill="#F4B400" strokeWidth="4" />
-          <path d="M68 210 Q120 156 172 210 L158 214 Q120 182 84 216 Z" fill="#1F7A8C" />
-          <path d="M298 224 Q338 188 380 224 L368 226 Q338 202 310 226 Z" fill="#1F7A8C" />
-          <path d="M352 178 L340 238" strokeWidth="7" fill="none" />
-          <rect x="346" y="150" width="26" height="28" rx="7" fill="#fff" /><rect x="354" y="130" width="10" height="16" rx="3" fill="#1F7A8C" />
-          <path d="M66 62 Q66 50 82 50 L336 42 Q352 42 352 54 Q352 64 336 64 L88 72 Q66 72 66 62 Z" fill="#fff" />
-          <path d="M96 58 H320" stroke="#1F7A8C" strokeWidth="4" fill="none" />
-        </g>
       </symbol>
       <symbol id="moto" viewBox="0 0 420 290">
-        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
-          <circle cx="92" cy="226" r="48" fill="#111" /><circle cx="92" cy="226" r="40" fill="#fff" stroke="none" />
-          <circle cx="92" cy="226" r="24" fill="none" stroke="#E5322D" strokeWidth="24" strokeDasharray="9.4 9.4" />
-          <circle cx="92" cy="226" r="24" fill="none" stroke="#F4B400" strokeWidth="24" strokeDasharray="9.4 9.4" strokeDashoffset="9.4" />
-          <circle cx="92" cy="226" r="11" fill="#1F7A8C" strokeWidth="3" />
-          <circle cx="334" cy="226" r="48" fill="#111" /><circle cx="334" cy="226" r="40" fill="#fff" stroke="none" />
-          <circle cx="334" cy="226" r="24" fill="none" stroke="#E5322D" strokeWidth="24" strokeDasharray="9.4 9.4" />
-          <circle cx="334" cy="226" r="24" fill="none" stroke="#F4B400" strokeWidth="24" strokeDasharray="9.4 9.4" strokeDashoffset="9.4" />
-          <circle cx="334" cy="226" r="11" fill="#1F7A8C" strokeWidth="3" />
-          <path d="M334 226 L302 150 L276 112" fill="none" strokeWidth="9" />
-          <path d="M302 150 L318 108 H350" fill="none" strokeWidth="8" />
-          <rect x="336" y="92" width="32" height="22" rx="8" fill="#F4B400" />
-          <circle cx="368" cy="112" r="11" fill="#fff" />
-          <path d="M92 226 L150 168 H238 L270 226" style={{ fill: 'var(--vc, #E5322D)' }} />
-          <path d="M150 168 L120 118 H214 L238 168 Z" fill="#F4B400" />
-          <polygon points="136,128 150,128 143,142" fill="#1F7A8C" /><polygon points="150,128 164,128 157,142" fill="#E5322D" /><polygon points="164,128 178,128 171,142" fill="#1F7A8C" />
-          <rect x="158" y="176" width="86" height="26" rx="8" fill="#1F7A8C" />
-          <path d="M238 168 H286 Q300 168 296 180 L282 202 H244 Z" fill="#fff" />
-          <path d="M120 118 H286 Q296 118 296 128 Q296 138 286 138 H128 Q114 138 120 118 Z" fill="#fff" />
-          <path d="M60 110 Q60 92 80 92 H132 Q150 92 150 110 V122 H60 Z" fill="#E5322D" />
-          <path d="M44 232 Q74 206 106 224" fill="none" stroke="#1F7A8C" strokeWidth="7" />
-          <g transform="translate(40 40)">
-            <path d="M20 40 Q10 4 52 6 Q96 4 84 40 Q92 70 52 74 Q12 70 20 40 Z" fill="#F2D49B" />
-            <path d="M36 12 Q52 24 68 12" fill="none" strokeWidth="5" />
-            <path d="M16 46 H88" stroke="#E5322D" strokeWidth="8" fill="none" />
-            <path d="M16 46 H88" stroke="#fff" strokeWidth="2.5" strokeDasharray="6 6" fill="none" />
-            <rect x="34" y="22" width="36" height="16" rx="4" fill="#fff" strokeWidth="3" /><path d="M40 30 H64" stroke="#1F7A8C" strokeWidth="4" fill="none" />
+          <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <circle cx="96" cy="226" r="48" fill="#111"/>
+          <circle cx="96" cy="226" r="40" fill="#e4e7ec" stroke="none"/>
+          <path d="M96 226 L134.0 226.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L130.2 242.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L119.7 255.7" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L104.5 263.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L87.5 263.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L72.3 255.7" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L61.8 242.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L58.0 226.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L61.8 209.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L72.3 196.3" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L87.5 189.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L104.5 189.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L119.7 196.3" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M96 226 L130.2 209.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <circle cx="96" cy="226" r="9" fill="#98a2b3" strokeWidth="3"/>
+          <path d="M112 198 H214 Q224 198 224 208 Q224 218 214 218 H112 Q102 218 102 208 Q102 198 112 198 Z" fill="#1d1d22"/>
+          <path d="M172 200 H214 L226 216 H172 Z" fill="#d0d5dd" strokeWidth="3"/>
+          <path d="M36 176 Q62 150 100 164 L128 172 L112 186 Q80 170 52 192 Z" fill="#1d1d22"/>
+          <path d="M24 134 H72 M30 134 V152" fill="none" stroke="#98a2b3" strokeWidth="5"/>
+          <rect x="32" y="150" width="10" height="16" rx="3" fill="#E5322D" strokeWidth="3"/>
+          <rect x="232" y="148" width="46" height="34" fill="#c9ced6"/>
+          <path d="M240 148 V182 M250 148 V182 M260 148 V182 M270 148 V182" stroke="#98a2b3" strokeWidth="3" fill="none"/>
+          <path d="M214 182 H282 V214 H214 Z" fill="#c9ced6"/>
+          <circle cx="244" cy="198" r="10" fill="#1d1d22" strokeWidth="3"/>
+          <path d="M140 152 L226 152 L232 192 L158 200 Z" fill="#1d1d22"/>
+          <path d="M164 172 H208" stroke="#fff" strokeWidth="4" fill="none"/>
+          <path d="M50 142 Q50 128 68 126 H196 Q222 126 232 140 L226 152 H68 Q50 152 50 142 Z" fill="#1d1d22"/>
+          <path d="M194 116 Q236 98 284 112 L296 146 H214 Z" fill="#111"/>
+          <path d="M214 126 Q250 114 286 124" stroke="#fff" strokeWidth="3" fill="none"/>
+          <path d="M218 134 Q252 123 290 134" style={{ stroke: 'var(--vc, #B3202A)' }} strokeWidth="7" fill="none"/>
+          <path d="M334 226 L308 128" strokeWidth="9" fill="none"/>
+          <circle cx="334" cy="226" r="48" fill="#111"/>
+          <circle cx="334" cy="226" r="40" fill="#e4e7ec" stroke="none"/>
+          <path d="M334 226 L372.0 226.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L368.2 242.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L357.7 255.7" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L342.5 263.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L325.5 263.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L310.3 255.7" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L299.8 242.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L296.0 226.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L299.8 209.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L310.3 196.3" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L325.5 189.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L342.5 189.0" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L357.7 196.3" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <path d="M334 226 L368.2 209.5" stroke="#98a2b3" strokeWidth="1.8" fill="none"/>
+          <circle cx="334" cy="226" r="9" fill="#98a2b3" strokeWidth="3"/>
+          <path d="M292 190 Q336 156 384 190 L380 200 Q336 174 298 202 Z" style={{ fill: 'var(--vc, #B3202A)' }}/>
+          <path d="M308 128 L292 104 H318" fill="none" strokeWidth="7"/>
+          <path d="M298 104 L304 70" fill="none" strokeWidth="4"/>
+          <ellipse cx="306" cy="62" rx="7" ry="11" fill="#d0d5dd" strokeWidth="3"/>
+          <path d="M318 78 Q348 66 366 82 L360 122 H320 Z" fill="#1d1d22"/>
+          <path d="M328 90 L352 86 L348 112 L328 112 Z" style={{ fill: 'var(--vc, #B3202A)' }} strokeWidth="3"/>
+          <circle cx="364" cy="124" r="7" fill="#F4B400" strokeWidth="3"/>
           </g>
-          <path d="M122 120 L88 108 M122 128 L88 138" fill="none" strokeWidth="6" />
-        </g>
       </symbol>
       <symbol id="bus" viewBox="0 0 420 290">
-        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
-          <rect x="24" y="52" width="372" height="170" rx="26" style={{ fill: 'var(--vc, #F4B400)' }} />
-          <rect x="24" y="150" width="372" height="26" fill="#E5322D" /><rect x="24" y="176" width="372" height="18" fill="#1F7A8C" />
-          <path d="M24 194 H396 V196 Q396 222 370 222 H50 Q24 222 24 196 Z" fill="#fff" />
-          <rect x="46" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="108" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="170" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="232" y="74" width="52" height="62" rx="6" fill="#bfe3ee" /><rect x="294" y="74" width="52" height="62" rx="6" fill="#bfe3ee" />
-          <path d="M338 70 H372 Q384 70 384 84 V136 H338 Z" fill="#bfe3ee" />
-          <polygon points="46,58 62,58 54,70" fill="#E5322D" /><polygon points="62,58 78,58 70,70" fill="#1F7A8C" /><polygon points="78,58 94,58 86,70" fill="#E5322D" />
-          <rect x="130" y="34" width="150" height="26" rx="8" fill="#fff" /><path d="M146 47 H264" stroke="#E5322D" strokeWidth="6" fill="none" />
-          <rect x="378" y="190" width="22" height="14" rx="5" fill="#fff" />
-          <circle cx="110" cy="228" r="36" fill="#111" /><circle cx="110" cy="228" r="29" fill="#fff" stroke="none" /><circle cx="110" cy="228" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="110" cy="228" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="110" cy="228" r="8" fill="#1F7A8C" strokeWidth="3" /><circle cx="310" cy="228" r="36" fill="#111" /><circle cx="310" cy="228" r="29" fill="#fff" stroke="none" /><circle cx="310" cy="228" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="310" cy="228" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="310" cy="228" r="8" fill="#1F7A8C" strokeWidth="3" />
-        </g>
+          <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M26 62 Q26 46 44 46 H336 Q372 46 388 82 L398 124 V198 Q398 216 380 216 H44 Q26 216 26 198 Z" fill="#F3E7CB"/>
+          <rect x="128" y="30" width="150" height="18" rx="7" fill="#fff"/>
+          <path d="M46 66 H326 V132 H46 Z" fill="#1f2937" strokeLinejoin="miter"/>
+          <path d="M338 66 H368 Q380 66 386 86 L392 132 H338 Z" fill="#1f2937"/>
+          <path d="M100 66 V132 M154 66 V132 M208 66 V132 M262 66 V132" stroke="#F3E7CB" strokeWidth="9" fill="none" strokeLinecap="butt"/>
+          <path d="M60 74 L88 74 L66 124 L60 124 Z" fill="#fff" fillOpacity=".18" stroke="none"/>
+          <path d="M26 146 H306 L326 164 H398 V188 H26 Z" style={{ fill: 'var(--vc, #C8372D)' }}/>
+          <path d="M300 66 V214" strokeWidth="3" fill="none"/>
+          <rect x="380" y="168" width="22" height="14" rx="5" fill="#fff" strokeWidth="4"/>
+          <rect x="394" y="70" width="14" height="38" rx="7" fill="#4b57c9"/>
+          <path d="M68 218 Q68 176 114 176 Q160 176 160 218 Z" fill="#2a2d34"/>
+          <path d="M268 218 Q268 176 314 176 Q360 176 360 218 Z" fill="#2a2d34"/>
+          <circle cx="114" cy="220" r="38" fill="#111"/>
+          <circle cx="114" cy="220" r="29" fill="#e4e7ec" stroke="none"/>
+          <path d="M114 220 L141.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L133.1 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L114.0 247.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L94.9 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L87.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L94.9 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L114.0 193.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M114 220 L133.1 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="114" cy="220" r="7" fill="#98a2b3" strokeWidth="3"/>
+          <circle cx="314" cy="220" r="38" fill="#111"/>
+          <circle cx="314" cy="220" r="29" fill="#e4e7ec" stroke="none"/>
+          <path d="M314 220 L341.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L333.1 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L314.0 247.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L294.9 239.1" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L287.0 220.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L294.9 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L314.0 193.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M314 220 L333.1 200.9" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="314" cy="220" r="7" fill="#98a2b3" strokeWidth="3"/>
+          </g>
       </symbol>
       <symbol id="van" viewBox="0 0 420 290">
-        <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
-          <path d="M26 206 V92 Q26 66 52 66 H262 Q286 66 300 88 L352 150 Q384 156 394 176 V206 Z" style={{ fill: 'var(--vc, #E5322D)' }} />
-          <path d="M26 150 H394 V176 H26 Z" fill="#F4B400" /><path d="M26 176 H394 V192 H26 Z" fill="#1F7A8C" />
-          <rect x="46" y="84" width="62" height="52" rx="6" fill="#bfe3ee" /><rect x="118" y="84" width="62" height="52" rx="6" fill="#bfe3ee" /><rect x="190" y="84" width="62" height="52" rx="6" fill="#bfe3ee" />
-          <path d="M262 84 H284 L332 140 H262 Z" fill="#bfe3ee" />
-          <polygon points="46,70 62,70 54,82" fill="#fff" /><polygon points="62,70 78,70 70,82" fill="#F4B400" /><polygon points="78,70 94,70 86,82" fill="#fff" />
-          <rect x="376" y="168" width="22" height="16" rx="5" fill="#fff" />
-          <path d="M26 192 H394 V198 Q394 214 378 214 H42 Q26 214 26 198 Z" fill="#fff" />
-          <circle cx="110" cy="220" r="36" fill="#111" /><circle cx="110" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="110" cy="220" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="110" cy="220" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="110" cy="220" r="8" fill="#1F7A8C" strokeWidth="3" /><circle cx="310" cy="220" r="36" fill="#111" /><circle cx="310" cy="220" r="29" fill="#fff" stroke="none" /><circle cx="310" cy="220" r="17" fill="none" stroke="#E5322D" strokeWidth="14" strokeDasharray="8.9 8.9" /><circle cx="310" cy="220" r="17" fill="none" stroke="#F4B400" strokeWidth="14" strokeDasharray="8.9 8.9" strokeDashoffset="8.9" /><circle cx="310" cy="220" r="8" fill="#1F7A8C" strokeWidth="3" />
-        </g>
+          <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M30 80 Q30 54 56 52 H270 Q292 52 308 70 L330 100 L376 118 Q398 124 398 146 V200 H30 Z" fill="#FFFFFF"/>
+          <rect x="46" y="76" width="112" height="54" rx="8" fill="#33475b"/>
+          <path d="M102 76 V130" stroke="#fff" strokeWidth="5" fill="none"/>
+          <rect x="172" y="76" width="92" height="54" rx="8" fill="#33475b"/>
+          <path d="M278 78 H304 L328 106 H278 Z" fill="#33475b"/>
+          <path d="M168 70 V196 M272 70 V196" strokeWidth="3" fill="none"/>
+          <path d="M246 146 h12" strokeWidth="6" fill="none"/>
+          <path d="M30 150 H398 V166 H30 Z" style={{ fill: 'var(--vc, #1560F0)' }}/>
+          <path d="M356 168 H404 Q406 198 394 202 H346 Z" fill="#1d2939"/>
+          <rect x="386" y="126" width="14" height="16" rx="4" fill="#cfe9f7" strokeWidth="4"/>
+          <rect x="332" y="96" width="14" height="18" rx="4" fill="#111" strokeWidth="3"/>
+          <path d="M66 202 Q66 170 112 170 Q158 170 158 202 Z" fill="#2a2d34"/>
+          <path d="M276 202 Q276 170 322 170 Q368 170 368 202 Z" fill="#2a2d34"/>
+          <circle cx="112" cy="212" r="36" fill="#111"/>
+          <circle cx="112" cy="212" r="27" fill="#e4e7ec" stroke="none"/>
+          <path d="M112 212 L137.0 212.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L129.7 229.7" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L112.0 237.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L94.3 229.7" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L87.0 212.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L94.3 194.3" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L112.0 187.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M112 212 L129.7 194.3" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="112" cy="212" r="7" fill="#98a2b3" strokeWidth="3"/>
+          <circle cx="322" cy="212" r="36" fill="#111"/>
+          <circle cx="322" cy="212" r="27" fill="#e4e7ec" stroke="none"/>
+          <path d="M322 212 L347.0 212.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L339.7 229.7" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L322.0 237.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L304.3 229.7" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L297.0 212.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L304.3 194.3" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L322.0 187.0" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <path d="M322 212 L339.7 194.3" stroke="#98a2b3" strokeWidth="2.5" fill="none"/>
+          <circle cx="322" cy="212" r="7" fill="#98a2b3" strokeWidth="3"/>
+          </g>
       </symbol>
       <symbol id="i-barangay" viewBox="0 0 420 290">
         <g stroke="#111" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round">
