@@ -3,6 +3,7 @@ import { BackButton, Bus, Van, Mini, YHeader, useApp } from '../components'
 import { TRANSIT } from '../data'
 import { pushState, setAlerts, disableAlerts, savedModes, testAlert } from '../push'
 import { isNative } from '../native'
+import WeatherIcon from '../WeatherIcon'
 
 const hhmm = (min) => { const h = Math.floor(min / 60), m = min % 60; return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}` }
 const MODES = ['bus', 'van', 'mini']
@@ -35,7 +36,7 @@ export default function Notifications() {
     <>
       <YHeader title="Ride alerts" back={<BackButton to="menu" />} />
       <div className="body">
-        <p className="lede">Get a notice 30 minutes before the first ride and 1 hour before the last ride, even when the app is closed. Pick the rides you use.</p>
+        <p className="lede">Get a notice 30 minutes before the first ride and 1 hour before the last ride, and when it rains or is very hot, even when the app is closed. Pick what you want.</p>
 
         {state === 'unsupported' && isNative && <div className="note static"><span><b>Pop-up alerts only, for now</b><span className="row-sub">While the app is open you still get the pop-up 30 minutes before the first ride and 1 hour before the last ride. Alerts when the app is closed work in the website version at bansalanride.netlify.app.</span></span></div>}
         {state === 'unsupported' && !isNative && <div className="note static"><span><b>Not available here</b><span className="row-sub">This phone or browser cannot receive alerts, or alerts are not switched on for this app yet. On iPhone, add the app to the Home Screen first.</span></span></div>}
@@ -43,7 +44,7 @@ export default function Notifications() {
         {state === 'blocked' && <div className="note static"><span><b>Alerts are blocked</b><span className="row-sub">Allow notifications for BansaRide in the phone or browser settings, then come back.</span></span></div>}
 
         <section className="card form">
-          <h2 className="sec">Which rides?</h2>
+          <h2 className="sec">Which alerts?</h2>
           {MODES.map((id) => {
             const m = TRANSIT[id]
             const Art = id === 'van' ? Van : id === 'mini' ? Mini : Bus
@@ -58,6 +59,14 @@ export default function Notifications() {
               </button>
             )
           })}
+          <button type="button" className="alert-row" aria-pressed={picked.includes('weather')} onClick={() => toggle('weather')}>
+            <WeatherIcon code={1} size={40} />
+            <span className="alert-text">
+              <b>Weather</b>
+              <span className="row-sub">A notice when it rains (slippery mountain roads) and when it is very hot, once a day each</span>
+            </span>
+            <span className="switch" aria-hidden="true"><i /></span>
+          </button>
           <button className="btn" disabled={busy || ['unsupported', 'no-sw', 'checking'].includes(state)} onClick={save}>{busy ? 'Saving…' : state === 'on' ? 'Save my choice' : 'Turn on alerts'}</button>
           {state === 'on' && (
             <div className="cta-row">

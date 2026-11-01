@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "test": "node --test scripts/weather-alert.test.mjs",
     "preview": "vite preview",
     "android:sync": "vite build && node scripts/prepare-native.mjs && cap sync android"
   },

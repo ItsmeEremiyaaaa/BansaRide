@@ -1,0 +1,104 @@
+{
+  "note": "A real answer from api.open-meteo.com for Bansalan (four models, forecast_hours=1), saved 2026-11-01 as test data.",
+  "hourly": {
+    "time": [
+      "2026-11-01T14:00"
+    ],
+    "temperature_2m_ecmwf_ifs025": [
+      24.4
+    ],
+    "apparent_temperature_ecmwf_ifs025": [
+      30
+    ],
+    "relative_humidity_2m_ecmwf_ifs025": [
+      95
+    ],
+    "precipitation_ecmwf_ifs025": [
+      0.2
+    ],
+    "weather_code_ecmwf_ifs025": [
+      51
+    ],
+    "cloud_cover_ecmwf_ifs025": [
+      36
+    ],
+    "wind_speed_10m_ecmwf_ifs025": [
+      1.6
+    ],
+    "wind_direction_10m_ecmwf_ifs025": [
+      297
+    ],
+    "temperature_2m_gfs_seamless": [
+      23.4
+    ],
+    "apparent_temperature_gfs_seamless": [
+      27.5
+    ],
+    "relative_humidity_2m_gfs_seamless": [
+      89
+    ],
+    "precipitation_gfs_seamless": [
+      0
+    ],
+    "weather_code_gfs_seamless": [
+      3
+    ],
+    "cloud_cover_gfs_seamless": [
+      89
+    ],
+    "wind_speed_10m_gfs_seamless": [
+      3.3
+    ],
+    "wind_direction_10m_gfs_seamless": [
+      311
+    ],
+    "temperature_2m_icon_seamless": [
+      24.2
+    ],
+    "apparent_temperature_icon_seamless": [
+      29.6
+    ],
+    "relative_humidity_2m_icon_seamless": [
+      95
+    ],
+    "precipitation_icon_seamless": [
+      0.7
+    ],
+    "weather_code_icon_seamless": [
+      80
+    ],
+    "cloud_cover_icon_seamless": [
+      70
+    ],
+    "wind_speed_10m_icon_seamless": [
+      2.6
+    ],
+    "wind_direction_10m_icon_seamless": [
+      286
+    ],
+    "temperature_2m_gem_seamless": [
+      24.9
+    ],
+    "apparent_temperature_gem_seamless": [
+      28.8
+    ],
+    "relative_humidity_2m_gem_seamless": [
+      89
+    ],
+    "precipitation_gem_seamless": [
+      0.4
+    ],
+    "weather_code_gem_seamless": [
+      51
+    ],
+    "cloud_cover_gem_seamless": [
+      68
+    ],
+    "wind_speed_10m_gem_seamless": [
+      11.2
+    ],
+    "wind_direction_10m_gem_seamless": [
+      269
+    ]
+  }
+}
