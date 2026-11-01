@@ -4,9 +4,15 @@ import { isNative, NATIVE_LOGIN_URL } from './native'
 
 // Accounts are optional. A guest can use the whole app. A signed-in, verified student, senior or PWD gets their own
 // discounted fare everywhere. We keep only the passenger type, the school or the kind of ID. No photos, no ID numbers.
-const url = import.meta.env.VITE_SUPABASE_URL
-const anon = import.meta.env.VITE_SUPABASE_ANON_KEY
-export const supabase = url && anon ? createClient(url, anon, { auth: { flowType: 'pkce', persistSession: true, detectSessionInUrl: true } }) : null
+// A build setting pasted as "NAME=value", or with a stray space, must not crash the whole app: it is cleaned, and a value that
+// still does not work just switches accounts off.
+const clean = (v) => String(v ?? '').trim().replace(/^[A-Z_]+=/, '')
+const url = clean(import.meta.env.VITE_SUPABASE_URL)
+const anon = clean(import.meta.env.VITE_SUPABASE_ANON_KEY)
+export const supabase = (() => {
+  if (!url || !anon) return null
+  try { return createClient(url, anon, { auth: { flowType: 'pkce', persistSession: true, detectSessionInUrl: true } }) } catch { return null }
+})()
 
 export const GOV_IDS = ['PhilSys National ID', 'Senior Citizen (OSCA) ID', 'PWD ID', "Driver's license", 'Passport', 'UMID', 'SSS ID', 'PRC ID', "Voter's ID", 'Postal ID', 'Other government ID']
 export const KINDS = [
