@@ -2268,3 +2268,16 @@ body.aw-body .aw-content, body.aw-body .aw-content.aw-overview { grid-template-c
 /* ---- Weak phones (see lite.js): a calmer app, nothing that moves or blurs for its own sake ---- */
 html.lite *, html.lite *::before, html.lite *::after { animation: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 html.lite .cloud { display: none; }
+
+/* weather notices in the pop-up: rain, storm, a very hot day and dangerous heat */
+.tpop.wx .tpop-moon { display: grid; place-items: center; }
+.tpop.wx .tpop-text em { color: var(--ink2); font-size: 13px; white-space: normal; }
+.tpop.wx-rain { background: #eef4ff; border-color: #2563eb; }
+.tpop.wx-rain .tpop-title { color: #1d4ed8; }
+.tpop.wx-storm { background: #1e2a4a; color: #fff; border-color: #93c5fd; }
+.tpop.wx-storm .tpop-title { color: #93c5fd; }
+.tpop.wx-storm .tpop-text em { color: #dbe3f7; }
+.tpop.wx-heat { background: #fff7ed; border-color: #ea580c; }
+.tpop.wx-heat .tpop-title { color: #c2410c; }
+.tpop.wx-danger { background: #fef3f2; border-color: #b42318; }
+.tpop.wx-danger .tpop-title { color: #b42318; }
