@@ -5,7 +5,7 @@ import { places, pois } from '../../data/data'
 // Only names that belong to Bansalan are written on the map: the barangays, sitios, streets and places the app knows.
 // The neighbouring towns and roads outside the border keep their lines but lose their names.
 const KNOWN = new Set(['bansalan', ...places.map((p) => p.name), ...pois.map((p) => p.name)].map((n) => String(n).toLowerCase()))
-const labelRules = (...args) => rawLabelRules(...args).map((r) => ({ ...r, filter: (z, f) => (!r.filter || r.filter(z, f)) && (!f.props?.name || KNOWN.has(String(f.props.name).toLowerCase())) }))
+const labelRules = (...args: Parameters<typeof rawLabelRules>) => rawLabelRules(...args).map((r) => ({ ...r, filter: (z, f) => (!r.filter || r.filter(z, f)) && (!f.props?.name || KNOWN.has(String(f.props.name).toLowerCase())) }))
 
 // The BansaRide "signboard" map: warm paper ground, dark road outlines like the app's cards, yellow main roads, blue rivers,
 // green parks, tan buildings and bold dark street names. Change the colors here.

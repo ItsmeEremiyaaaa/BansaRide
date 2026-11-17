@@ -79,7 +79,12 @@ export const rideMinutes = (km, vehicle) => {
   if (vehicle === 'Motor') return Math.max(3, Math.round((Math.min(km, 5) / 25 + Math.max(0, km - 5) / 16) * 60))
   return Math.max(2, Math.round((km / 18) * 60) + 1)
 }
-export const routes = [...geoRoutes, ...geoStreetRoutes, ...geoUplandRoutes].map((r) => ({
+// A ride between two places. `via` and `exact` are set later for routes joined through a hub.
+export type Route = {
+  id: string; from: string; to: string; vehicle: string; km: number; path: number[][]
+  minutes: number; fare: number | null; fareMin: number | null; via?: string; exact?: any
+}
+export const routes: Route[] = [...geoRoutes, ...geoStreetRoutes, ...geoUplandRoutes].map((r) => ({
   ...r,
   minutes: rideMinutes(r.km, r.vehicle),
   fare: r.vehicle === 'Motor' ? null : estimateFare(r.km), // adult fare
@@ -164,7 +169,14 @@ const otherStreetSpots = places.filter((p) => p.kind === 'Street' && !listedStre
   id: `spot-${p.id}`, type: 'toda', placeId: p.id, name: `${p.name} waiting spot`, alias: '',
   source: 'generated', landmark: p.note ?? '', confirmed: false, contact: null, members: [], streetSpot: true, needsLocation: false,
 }))
-export const stations = [
+// A waiting spot or driver group. Spots come from several sources with different extra fields.
+// shortcut: extra fields are typed loosely (index signature); list them when the station data settles.
+export type Station = {
+  id: string; type: string; placeId: string | null; name: string; alias?: string; source: string
+  pos?: { lat: number; lon: number; approx?: boolean }; streetSpot?: boolean; riderSpot?: boolean; verified?: boolean
+  night?: any; serves?: { label: string; note?: string; routeId?: string }[]; [key: string]: any
+}
+export const stations: Station[] = [
   ...todaStations,
   ...osmStations,
   ...streetSpots,
@@ -307,7 +319,7 @@ export const compassName = (deg) => ['north', 'northeast', 'east', 'southeast', 
 export const walkMinutes = (m) => Math.max(1, Math.round(m / 80)) // about 80 m a minute
 export const fmtDist = (m) => (m >= 1000 ? `${(m / 1000).toFixed(1)} km` : `${m} m`)
 // The closest waiting spots to a point (a person), nearest first.
-export function nearestStands(ll, count = 3, type) {
+export function nearestStands(ll: number[], count = 3, type?: string) {
   return stations
     .filter((s) => (!type || s.type === type) && stationPlace(s) && (s.type !== 'toda' || standActive(s))) // only drivers who are around now
     .map((s) => { const p = stationPlace(s); return { station: s, place: p, meters: metersBetween(ll, [p.lat, p.lon]), bearing: bearingTo(ll, [p.lat, p.lon]) } })
@@ -466,10 +478,10 @@ const inRange = (h, a, b) => (a <= b ? h >= a && h < b : h >= a || h < b)
 // Night spots (10 PM to 4 AM): some BTODA stay at the 7-Eleven and at the hotel across from the warehouse.
 // The hotel across from the warehouse is Kate's Mini Hotel.
 const poiPos = (id) => { const p = geoPois.find((x) => x.id === id); return p ? { lat: p.lat, lon: p.lon, approx: false } : null }
-const nightStations = [
+const nightStations: Station[] = ([
   ['night-711', '7-Eleven night spot', 'Some BTODA stay here from 10 PM to 4 AM', poiPos('poi-7-eleven')],
   ['night-hotel', "Kate's Mini Hotel night spot", 'Across the warehouse. Some BTODA stay here from 10 PM to 4 AM', poiPos('poi-kate-s-hotel')],
-].filter((x) => x[3]).map(([id, name, landmark, pos]) => ({
+] as [string, string, string, ReturnType<typeof poiPos>][]).filter((x) => x[3]).map(([id, name, landmark, pos]) => ({
   id, type: 'toda', placeId: null, pos, name, alias: '', source: 'reported', landmark, confirmed: false, contact: null, members: [], night: true, streetSpot: true,
 }))
 stations.push(...nightStations)
@@ -494,14 +506,14 @@ export function standNow(s, h = bansalanClock()) {
   return { state: 'closed', label: 'No BTODA on the streets after 8 PM', back: hm(4) }
 }
 // The state of a place's tricycle stands: the best of them (if any one has drivers around, the place is not closed).
-export function placeStandNow(placeId, h) {
+export function placeStandNow(placeId: string, h?: ReturnType<typeof bansalanClock>) {
   const list = stationsAt(placeId).filter((s) => s.type === 'toda')
   if (!list.length) return null
   const all = list.map((s) => ({ ...standNow(s, h), station: s }))
   return all.find((x) => x.state === 'open') ?? all.find((x) => x.state === 'few') ?? all.find((x) => x.state === 'unknown') ?? all[0]
 }
 // Is the stand worth showing on the map and suggesting as the nearest?
-export const standActive = (s, h) => standNow(s, h).state !== 'closed'
+export const standActive = (s: Station, h?: ReturnType<typeof bansalanClock>) => standNow(s, h).state !== 'closed'
 
 // ---------- settings the admin can change (fares, BTODA groups, approved spots) ----------
 // The app starts with the values written above. The admin website saves changes in the database; the app downloads them,

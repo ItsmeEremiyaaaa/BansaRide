@@ -1,7 +1,7 @@
-import { Component } from 'react'
+import { Component, type ReactNode } from 'react'
 
 // Without this, one error while drawing any screen removes the whole app and leaves a white page.
-export default class ErrorBoundary extends Component {
+export default class ErrorBoundary extends Component<{ children?: ReactNode }, { failed: boolean }> {
   state = { failed: false }
   static getDerivedStateFromError() { return { failed: true } }
   render() {

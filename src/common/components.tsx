@@ -2,6 +2,12 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { shortName, vehicleLabel, fareText, standNow, motorPossible } from '../data/data'
 import { useLook } from '../modules/weather/mood'
 
+type Route = import('../data/data').Route
+type Stand = import('../data/data').Station
+type StandNow = { state: string; label: string }
+type ReactNode = import('react').ReactNode
+type CSSProperties = import('react').CSSProperties
+
 export const Ctx = createContext(null)
 export const useApp = () => useContext(Ctx)
 
@@ -290,18 +296,19 @@ export function Defs() {
   )
 }
 
-const art = (id, label, mode) => ({ className, width = 128, height = 88 }) => (
+type ArtProps = { className?: string; width?: number; height?: number }
+const art = (id: string, label: string, mode: string) => ({ className, width = 128, height = 88 }: ArtProps) => (
   <svg className={(mode ? mode + ' ' : '') + (className ?? '')} viewBox="0 0 420 290" width={width} height={height} role="img" aria-label={label}><use href={'#' + id} /></svg>
 )
 export const Bus = art('bus', 'BansaRide bus', 'm-bus')
 export const Van = art('van', 'BansaRide van', 'm-van')
 export const Mini = art('mini', 'BansaRide mini bus', 'm-mini')
 
-export const Trike = ({ className, width = 128, height = 88 }) => (
+export const Trike = ({ className, width = 128, height = 88 }: ArtProps) => (
   <svg className={'m-vehicle ' + (className ?? '')} viewBox="0 0 420 290" width={width} height={height} role="img" aria-label="BansaRide tricycle"><use href="#trike" /></svg>
 )
 
-export const Moto = ({ className, width = 128, height = 88 }) => (
+export const Moto = ({ className, width = 128, height = 88 }: ArtProps) => (
   <svg className={'m-moto ' + (className ?? '')} viewBox="0 0 420 290" width={width} height={height} role="img" aria-label="Farm motorcycle with a load"><use href="#moto" /></svg>
 )
 
@@ -361,14 +368,14 @@ const ICONS = {
 }
 
 const ICON_ART = {"vehicle":"trike","moto":"moto","bus":"bus","van":"van","barangay":"i-barangay","sitio":"i-sitio","place":"i-place","street":"i-street"}
-export const Icon = ({ name, filled, className }) =>
+export const Icon = ({ name, filled, className }: { name: string; filled?: boolean; className?: string; style?: CSSProperties }) =>
   ICON_ART[name] ? (
     <svg className={'ico-art m-' + name + ' ' + (className ?? '')} viewBox="0 0 420 290" aria-hidden="true"><use href={'#' + ICON_ART[name]} /></svg>
   ) : (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true" style={filled ? { fill: '#F4B400', stroke: '#B7791F' } : undefined}>{ICONS[name]}</svg>
   )
 
-export const BackButton = ({ to, params }) => {
+export const BackButton = ({ to, params }: { to?: string; params?: object }) => {
   const { back } = useApp()
   return (
     <button className="icon-btn" aria-label="Back" onClick={() => back(to, params)}><Icon name="back" /></button>
@@ -396,7 +403,7 @@ export function CountUp({ value }) {
 
 // Whether drivers are around right now at a stand (by Bansalan time). Re-checks every minute.
 const NOW_LABEL = { open: 'Drivers around', few: 'A few around', closed: 'Closed now', unknown: 'Hours not confirmed' }
-export function StandPill({ s, now }) {
+export function StandPill({ s, now }: { s?: Stand; now?: StandNow }) {
   useLook() // re-draws as the clock moves
   const n = now ?? standNow(s)
   return <span className={'stand-pill ' + n.state} title={n.label}><i aria-hidden="true" />{NOW_LABEL[n.state]}</span>
@@ -417,7 +424,7 @@ export function ClosedNotice({ now, near, onNear }) {
 export const StatusTag = ({ status, spot = false }) => (status === 'confirmed' ? <Tag tone="green">{spot ? 'Spot confirmed' : 'Confirmed'}</Tag> : status === 'reported' ? <Tag tone="gold">{spot ? 'Spot reported by riders' : 'Reported by riders'}</Tag> : <Tag>{spot ? 'Spot to confirm' : 'To confirm'}</Tag>)
 export const Tag = ({ children, tone = 'amber' }) => <span className={`tag ${tone}`}>{children}</span>
 
-export function RouteRow({ route, onOpen, isSaved, index = 0 }) {
+export function RouteRow({ route, onOpen, isSaved, index = 0 }: { route: Route; onOpen: (id: string) => void; isSaved?: boolean; index?: number }) {
   const moto = route.vehicle === 'Motor'
   return (
     <button className="row-item line rise" style={{ '--i': index }} onClick={() => onOpen(route.id)}>
@@ -436,7 +443,7 @@ export function RouteRow({ route, onOpen, isSaved, index = 0 }) {
 }
 
 // Yellow rounded header sheet used at the top of list screens (title, optional back button, search field).
-export function YHeader({ title, back, children }) {
+export function YHeader({ title, back, children }: { title: string; back?: ReactNode; children?: ReactNode }) {
   const { t } = useApp()
   return (
     <header className="yhead">

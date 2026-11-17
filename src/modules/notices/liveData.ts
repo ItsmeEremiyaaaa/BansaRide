@@ -8,10 +8,10 @@ const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) ?? {} } 
 const write = (v) => { try { localStorage.setItem(KEY, JSON.stringify(v)) } catch { /* storage is optional */ } }
 
 let state = read()
-const listeners = new Set()
+const listeners = new Set<(version: number) => void>()
 let version = 0
 export const liveVersion = () => version
-export const onLive = (f) => { listeners.add(f); return () => listeners.delete(f) }
+export const onLive = (f: (version: number) => void) => { listeners.add(f); return () => listeners.delete(f) }
 
 function apply(v) {
   try { applyFareSettings(v.fares) } catch { /* keep the built-in fares */ }

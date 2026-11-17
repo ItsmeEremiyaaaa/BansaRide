@@ -59,12 +59,12 @@ export default function App() {
   const [saved, setSaved] = useStored('bansaride-saved', [])
   const [recent, setRecent] = useStored('bansaride-recent', [])
   const [toast, setToast] = useState('')
-  const timer = useRef()
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const pos = useRef(window.history.state?.i ?? 0)
   const online = useOnline()
 
   // Live location for the whole app: it keeps updating while the app is open, so distances change as you walk.
-  const [loc, setLoc] = useState({ state: 'finding' }) // finding | ok | outside | denied | off
+  const [loc, setLoc] = useState<{ state: string; ll?: number[]; accuracy?: number }>({ state: 'finding' }) // finding | ok | outside | denied | off
   const watch = useRef(null)
   const lastFix = useRef(null)
   const startWatch = useCallback(() => {
@@ -109,7 +109,7 @@ export default function App() {
 
   // mode: false = open a screen on top (pushed); true = switch to the root of a tab; 'replace' = swap this screen
   // for another one at the same place (for example choosing another town) without adding to the history.
-  const go = useCallback((name, params = {}, mode = false) => {
+  const go = useCallback((name: string, params: Record<string, any> = {}, mode: boolean | 'replace' = false) => {
     const cur = window.history.state ?? { i: pos.current, d: 0, from: '' }
     const hash = hashOf(name, params)
     const here = window.location.hash || '#/home'

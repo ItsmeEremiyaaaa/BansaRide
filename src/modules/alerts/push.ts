@@ -24,7 +24,7 @@ const token = () => {
 export const savedModes = () => { try { return JSON.parse(localStorage.getItem(MODES_KEY)) ?? [] } catch { return [] } }
 
 // the app's service worker only exists in the real build, so wait a moment for it
-const registration = () => Promise.race([navigator.serviceWorker.ready, new Promise((_, no) => setTimeout(() => no(new Error('no-sw')), 4000))])
+const registration = (): Promise<ServiceWorkerRegistration> => Promise.race([navigator.serviceWorker.ready, new Promise<never>((_, no) => setTimeout(() => no(new Error('no-sw')), 4000))])
 
 export async function pushState() {
   if (!pushSupported()) return 'unsupported'

@@ -10,20 +10,26 @@ import { bounds } from '../../data/boundary'
 import { places } from '../../data/data'
 import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
+type Map3DProps = {
+  center?: LatLon; me?: LatLon | null; markers?: any[]; route?: number[][]; routeColor?: string; offsetY?: number; pitch?: number; bearing?: number
+  onPick?: (id: string) => void; mood?: string; links?: any[]; target?: any; selKind?: string; onReady?: () => void; leaving?: boolean
+}
+type LatLon = number[] // [lat, lon]
+
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip
 // (one layer of icons, not hundreds of page elements), so it stays smooth. Street names are left out (they need font files).
 let registered = false
 const FILE = () => new URL(`${import.meta.env.BASE_URL}bansalan.pmtiles`, window.location.href).href
 const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'mini', van: 'van', Barangay: 'i-barangay', Sitio: 'i-sitio', Street: 'i-street', Place: 'i-place' }
 // the 3D map stays inside the Bansalan border (a sliver of margin so the edge is not cut)
-const LIMIT = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
+const LIMIT: [[number, number], [number, number]] = [[bounds[0][1] - 0.14, bounds[0][0] - 0.14], [bounds[1][1] + 0.14, bounds[1][0] + 0.14]]
 // only street names that belong to Bansalan are written (the same rule as the flat map)
 const NAMES = [...new Set(places.filter((p) => p.kind === 'Street').map((p) => p.name))]
 const ease = (t) => 1 - Math.pow(1 - t, 3) // starts quick, lands softly
 const TINT = { vehicle: '#FFFFFF', moto: '#067647', bus: '#E5322D', mini: '#1F7A8C', van: '#1560F0' }
 
 // a small picture of one of the app's own vehicle drawings, ready to use as a map icon
-const vehicleImage = (kind) => new Promise((resolve) => {
+const vehicleImage = (kind: string) => new Promise<HTMLImageElement | null>((resolve) => {
   const sym = document.getElementById(ART[kind])
   if (!sym) { resolve(null); return }
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 290" width="96" height="66"><style>*{--vc:${TINT[kind]}}</style>${sym.innerHTML}</svg>`
@@ -34,18 +40,18 @@ const vehicleImage = (kind) => new Promise((resolve) => {
 })
 
 const kindOf = (k) => (k.kind === 'sel' ? 'sel' : ART[k.glyph] ? k.glyph : k.kind === 'spot' ? 'vehicle' : 'dot')
-const geo = (markers) => ({
+const geo = (markers: any[]): GeoJSON.FeatureCollection => ({
   type: 'FeatureCollection',
   features: markers.map((k) => ({ type: 'Feature', properties: { id: k.id, kind: kindOf(k), sel: k.kind === 'sel', closed: !!k.closed, hu: !!k.hoursUnknown, title: k.title ?? '', sub: k.sub ?? '', lat: k.lat, lon: k.lon, spot: k.kind === 'spot' }, geometry: { type: 'Point', coordinates: [k.lon, k.lat] } })),
 })
-const line = (path) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
+const line = (path: number[][] | null): GeoJSON.Feature => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: (path ?? []).map(([la, lo]) => [lo, la]) } })
 
-export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle', onReady, leaving = false }) {
+export default function Map3D({ center, me, markers = [], route, routeColor = '#E8A100', offsetY = 0, pitch = 60, bearing = -20, onPick, mood = 'day', links = [], target = null, selKind = 'vehicle', onReady, leaving = false }: Map3DProps) {
   const box = useRef(null)
   const mapRef = useRef(null)
   const ready = useRef(false)
   const tipRef = useRef(null)
-  const latest = useRef({})
+  const latest = useRef<Map3DProps>({})
   latest.current = { markers, route, routeColor, onPick, offsetY, mood, links, center, me, target, selKind }
 
   const apply = () => {
@@ -111,7 +117,7 @@ export default function Map3D({ center, me, markers = [], route, routeColor = '#
       maplibregl.setWorkerUrl(workerUrl) // bundled with the app so it works offline
       registered = true
     }
-    const style = {
+    const style: maplibregl.StyleSpecification = {
       version: 8,
       glyphs: `${new URL(import.meta.env.BASE_URL, window.location.href).href}fonts/{fontstack}/{range}.pbf`, // saved with the app, so names work offline
       sources: { p: { type: 'vector', url: `pmtiles://${FILE()}`, maxzoom: 15 } },

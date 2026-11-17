@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "typecheck": "tsc --noEmit",
     "test": "node --test scripts/weather-alert.test.mjs",
     "preview": "vite preview",
     "android:sync": "vite build && node scripts/prepare-native.mjs && cap sync android"
@@ -31,11 +32,14 @@
   "devDependencies": {
     "@capacitor/assets": "^4.0.0",
     "@capacitor/cli": "^8.6.0",
+    "@types/leaflet": "^1.9.20",
+    "@types/leaflet.markercluster": "^1.5.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vite-pwa/assets-generator": "^2.0.0",
     "@vitejs/plugin-react": "^6.1.2",
     "oxlint": "^1.89.0",
+    "typescript": "^5.9.3",
     "vite": "^8.3.5",
     "vite-plugin-pwa": "^2.0.0",
     "web-push": "^3.6.7"

@@ -70,7 +70,7 @@ export default function Account() {
             {a.user && (
               <div className="acct-field">
                 <label className="lbl" htmlFor="dn">Your display name</label>
-                <input id="dn" className="boxed input" maxLength="20" autoComplete="nickname" placeholder="Shown with your fare reports and tips" value={draft.displayName ?? ''} onChange={(e) => set({ displayName: e.target.value })} />
+                <input id="dn" className="boxed input" maxLength={20} autoComplete="nickname" placeholder="Shown with your fare reports and tips" value={draft.displayName ?? ''} onChange={(e) => set({ displayName: e.target.value })} />
                 <p className="hint">3 to 20 letters or numbers. No # or @, no links, and no rude words. This is the only thing other people see.</p>
               </div>
             )}

@@ -2,9 +2,11 @@ import { Icon, useApp } from '../../common/components'
 import { useAuth } from '../auth/auth'
 import { motorPossible, pesoRange, PASSENGERS, fareFor, walkMinutes, fmtDist, nearestStands, compassName, routes, stationsAt, stationConfirmed, placeById, shortName } from '../../data/data'
 
+type LatLon = number[] // [lat, lon]
+
 
 // Motorcycles have no fixed fare. This says where to ask: the motorcycle stand nearest to you, and the route they take.
-export function AskDriver({ me, destId, compact, km }) {
+export function AskDriver({ me, destId, compact, km }: { me: LatLon | null; destId: string; compact?: boolean; km?: number }) {
   const { go } = useApp()
   // the motorcycles stay at the Public Market: prefer the confirmed stand over generic map entries
   const stands = me ? nearestStands(me, 8, 'motor') : []
@@ -40,7 +42,7 @@ export function AskDriver({ me, destId, compact, km }) {
 }
 
 // "From you": how far this place is from where you are, what a ride there costs, and how long it takes.
-export default function FromYou({ ride, me, destId, compact }) {
+export default function FromYou({ ride, me, destId, compact }: { ride: any; me: LatLon | null; destId: string; compact?: boolean }) {
   const { online } = useApp()
   const { discount } = useAuth()
   if (!ride) return null

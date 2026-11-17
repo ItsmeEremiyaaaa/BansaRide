@@ -94,8 +94,8 @@ export default function AdminMap() {
           <form className="adm-card awm-form" onSubmit={postNotice}>
             <header className="awm-head"><b>New announcement</b><button type="button" className="icon-btn flat" aria-label="Cancel" onClick={stopNotice}><Icon name="close" /></button></header>
             <p className="adm-meta">{draft ? `Pinned at ${draft[0].toFixed(5)}, ${draft[1].toFixed(5)}` : 'Tap the map to pin where it is.'}</p>
-            <label className="awx-field"><span>Title</span><input maxLength="80" value={nf.title} onChange={(e) => setNf((x) => ({ ...x, title: e.target.value }))} placeholder="Road closed for the fiesta" autoFocus /></label>
-            <label className="awx-field"><span>Details</span><textarea rows="3" maxLength="400" value={nf.body} onChange={(e) => setNf((x) => ({ ...x, body: e.target.value }))} placeholder="What riders should know, and what to do" /></label>
+            <label className="awx-field"><span>Title</span><input maxLength={80} value={nf.title} onChange={(e) => setNf((x) => ({ ...x, title: e.target.value }))} placeholder="Road closed for the fiesta" autoFocus /></label>
+            <label className="awx-field"><span>Details</span><textarea rows={3} maxLength={400} value={nf.body} onChange={(e) => setNf((x) => ({ ...x, body: e.target.value }))} placeholder="What riders should know, and what to do" /></label>
             <div className="awx-tone" role="radiogroup" aria-label="Kind">
               {[['info', 'Info'], ['warn', 'Caution'], ['danger', 'Danger']].map(([k, l]) => <label key={k} className={'tone-' + k}><input type="radio" name="awm-tone" value={k} checked={nf.tone === k} onChange={() => setNf((x) => ({ ...x, tone: k }))} />{l}</label>)}
             </div>
@@ -110,7 +110,7 @@ export default function AdminMap() {
             <p className="adm-meta">{picked.lat.toFixed(5)}, {picked.lon.toFixed(5)}</p>
             {picked.type === 'pending' && (
               <>
-                <label className="aw-field"><span>Name shown on the map</span><input className="boxed input" maxLength="60" value={name} onChange={(e) => setName(e.target.value)} /></label>
+                <label className="aw-field"><span>Name shown on the map</span><input className="boxed input" maxLength={60} value={name} onChange={(e) => setName(e.target.value)} /></label>
                 <div className="adm-actions">
                   <button className="btn sm ok" onClick={() => act(() => approveSpot(picked.m.id, name || 'Waiting spot'), 'Approved. It shows on the map for everyone.')}>Approve, show on map</button>
                   <button className="btn secondary sm" onClick={() => act(() => setInboxStatus(picked.m.id, 'dismissed'), 'Spot rejected')}>Reject</button>

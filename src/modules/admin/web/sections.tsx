@@ -10,14 +10,14 @@ export const routeName = (id) => { const r = routes.find((x) => x.id === id); re
 export const aboutPost = (p) => (p.route_id ? routeName(p.route_id) : p.place_id ? placeById(p.place_id)?.name ?? p.place_id : stationById(p.station_id)?.name ?? p.station_id)
 
 // a list that loads itself, with a retry
-export function useData(load, deps) {
-  const [state, setState] = useState({ data: null, error: '' })
+export function useData(load: () => Promise<any>, deps: unknown[]) {
+  const [state, setState] = useState<{ data: any; error: string }>({ data: null, error: '' })
   const run = useCallback(() => {
     setState((s) => ({ ...s, error: '' }))
     load().then((data) => setState({ data, error: '' }), (e) => setState({ data: null, error: e.message }))
   }, deps) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { run() }, [run])
-  return [state, run]
+  return [state, run] as const
 }
 
 export function Problem({ error, retry }) {
@@ -53,7 +53,7 @@ export function Overview() {
     ['Posts', data.posts, `${data.hidden} hidden`],
     ['Ride alerts on', data.push, 'phones'],
   ]
-  const discount = Object.entries(data.discount ?? {})
+  const discount = Object.entries(data.discount ?? {}) as [string, number][]
   const total = discount.reduce((t, [, n]) => t + n, 0) || 1
   return (
     <div className="awx-overview">
@@ -147,7 +147,7 @@ export function Words() {
   return (
     <div className="awx-words">
       <form className="awx-panel awx-inline" onSubmit={add}>
-        <label className="awx-field grow"><span>Block a word in names and comments</span><input value={word} maxLength="30" onChange={(e) => setWord(e.target.value)} placeholder="Word to block" autoComplete="off" /></label>
+        <label className="awx-field grow"><span>Block a word in names and comments</span><input value={word} maxLength={30} onChange={(e) => setWord(e.target.value)} placeholder="Word to block" autoComplete="off" /></label>
         <label className="awx-check"><input type="checkbox" checked={whole} onChange={(e) => setWhole(e.target.checked)} />Whole word only</label>
         <button className="awb primary">Add word</button>
       </form>

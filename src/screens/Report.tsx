@@ -38,11 +38,11 @@ export default function Report() {
           </div>
           <div>
             <label className="lbl" htmlFor="rw">Which route, place or driver?</label>
-            <input id="rw" className="boxed input" maxLength="80" placeholder="For example: Bansalan to Rizal" value={where} onChange={(e) => setWhere(e.target.value)} />
+            <input id="rw" className="boxed input" maxLength={80} placeholder="For example: Bansalan to Rizal" value={where} onChange={(e) => setWhere(e.target.value)} />
           </div>
           <div>
             <label className="lbl" htmlFor="rt">What is wrong, and what is right?</label>
-            <textarea id="rt" className="boxed input" rows="4" maxLength="300" placeholder="For example: the student fare is 20, not 30" value={what} onChange={(e) => setWhat(e.target.value)} />
+            <textarea id="rt" className="boxed input" rows={4} maxLength={300} placeholder="For example: the student fare is 20, not 30" value={what} onChange={(e) => setWhat(e.target.value)} />
           </div>
           <button className="btn" onClick={send}><Icon name="check" />Send report</button>
           <p className="hint">Do not add anyone's private details. The report has no name or account, only what you type.</p>

@@ -16,7 +16,7 @@ export function useNotices() {
 }
 
 // variant 'card' (Home: every notice in full) or 'slim' (Map: the newest one, tap to read it all)
-export default function Notices({ variant = 'card', onShow }) {
+export default function Notices({ variant = 'card', onShow }: { variant?: string; onShow?: (notice: { lat: number; lon: number }) => void }) {
   const [list, close] = useNotices()
   const [open, setOpen] = useState(false)
   if (!list.length) return null

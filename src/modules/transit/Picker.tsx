@@ -10,7 +10,7 @@ import { offlineRide } from './rideFromMe'
 const squash = (t) => String(t ?? '').toLowerCase().replace(/seven/g, '7').replace(/eleven/g, '11').replace(/[^a-z0-9]+/g, '')
 const matches = (fields, q) => { const a = q.trim().toLowerCase(); const b = squash(q); return fields.some((f) => { const x = String(f ?? ''); return x.toLowerCase().includes(a) || (b.length >= 2 && squash(x).includes(b)) }) }
 
-export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe, withPois, withTowns }) {
+export default function Picker({ title, otherId, selectedId, onPick, onClose, allowMe, withPois, withTowns }: { title: string; otherId?: string; selectedId?: string; onPick: (id: string) => void; onClose: () => void; allowMe?: boolean; withPois?: boolean; withTowns?: boolean }) {
   const [q, setQ] = useState('')
   const { loc } = useApp()
   const me = loc.state === 'ok' ? loc.ll : null // when we know where you are, the nearest places come first

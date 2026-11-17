@@ -162,7 +162,7 @@ export function Fares() {
   const trip = fromId === 'me'
     ? (me ? fromMe : fallback && { km: fallback.route.km, minutes: fallback.route.minutes, vehicle: fallback.route.vehicle, exact: true, fallback: true })
     : poiTrip ? { km: poiTrip.km, minutes: poiTrip.minutes, vehicle: poiTrip.vehicle, exact: false }
-    : between && { km: between.route.km, minutes: between.route.minutes, vehicle: between.route.vehicle, exact: !between.route.via || between.route.exact }
+    : between && { km: between.route.km, minutes: between.route.minutes, vehicle: between.route.vehicle, exact: !between.route.via || (between.route as import('../data/data').Route).exact }
   const motor = trip?.vehicle === 'Motor'
   const km = trip?.km ?? 0
   const fromName = fromId === 'me' ? 'My location' : placeById(fromId)?.name

@@ -9,6 +9,15 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { boundary, bounds, barangays } from '../../data/boundary'
 import { esc, pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
+type MapViewProps = {
+  route?: number[][]; routeColor?: string; markers?: any[]; focus?: any; center?: LatLon; zoom?: number; fit?: boolean; me?: LatLon | null
+  onPick?: (id: string) => void; label?: string; zoomControl?: boolean; preview?: boolean; links?: any[]; draft?: any
+  onMapClick?: (ll: LatLon) => void; offsetY?: number; cluster?: boolean; fitRoute?: boolean; mood?: string; selId?: string | null; selGlyph?: any
+}
+type LatLon = number[] // [lat, lon]
+// Leaflet keeps unknown marker options, so the cluster can read these back.
+type PinOptions = L.MarkerOptions & { closed?: boolean; stand?: boolean; hoursKnown?: boolean }
+
 // The map is limited to Bansalan, Davao del Sur: it cannot be panned away, and everything outside the
 // real municipal border is dimmed. Barangay names show from zoom 13.
 const PAD = 0.012
@@ -45,7 +54,7 @@ const ART = { vehicle: 'trike', moto: 'moto', bus: 'bus', mini: 'mini', van: 'va
 // The pins drop in once when the map opens. After that, redrawing them (closing a card, picking a place) must not replay the drop,
 // or every icon seems to vanish and come back.
 let settled = false
-const pin = (cls0, label, i, glyph, tone) => {
+const pin = (cls0: string, label: string, i: number, glyph?: string | null, tone?: string) => {
   const cls = settled ? cls0 + ' still' : cls0
   if (ART[glyph]) {
     return L.divIcon({
@@ -83,7 +92,7 @@ function fitAbove(m, pts, coverPx) {
 // The map centre that puts `ll` dy pixels above the middle of the screen, so a card at the bottom does not cover it.
 const above =(m, ll, zoom, dy) => (dy ? m.unproject(m.project(ll, zoom).add([0, dy]), zoom) : L.latLng(ll))
 
-export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null, selGlyph = null }) {
+export default function MapView({ route, routeColor = '#1560F0', markers = [], focus, center, zoom = 16, fit = true, me, onPick, label, zoomControl = false, preview = false, links = [], draft, onMapClick, offsetY = 0, cluster = false, fitRoute = false, mood = 'day', selId = null, selGlyph = null }: MapViewProps) {
   const el = useRef(null)
   const map = useRef(null)
   const layer = useRef(null)
@@ -126,14 +135,14 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
   useEffect(() => {
     // `preview` makes a quiet picture-only map (used behind the Home header)
     const still = preview ? { dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false } : {}
-    const m = L.map(el.current, { zoomControl: false, zoomSnap: 0.25, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView(center ?? [6.7875, 125.2118], zoom)
+    const m = L.map(el.current, { zoomControl: false, zoomSnap: 0.25, attributionControl: !preview, maxBounds: PAN_LIMITS, maxBoundsViscosity: 1, minZoom: 11, ...still }).setView((center ?? [6.7875, 125.2118]) as L.LatLngTuple, zoom)
     // press and hold a pin (touch) to see its details card
     { let timer = null, sx = 0, sy = 0, open = null, closeT = null
       const c = m.getContainer()
       const stop = () => { clearTimeout(timer); timer = null }
       c.addEventListener('pointerdown', (e) => {
         if (e.pointerType === 'mouse') return
-        const k = e.target.closest?.('.leaflet-marker-icon')?._tip
+        const k = (e.target as any).closest?.('.leaflet-marker-icon')?._tip
         if (!k?.title || k.kind === 'sel') return
         sx = e.clientX; sy = e.clientY; clearTimeout(closeT)
         timer = setTimeout(() => { markHold(); open = L.tooltip({ direction: 'top', offset: [0, -16], className: 'pin-tip', opacity: 1 }).setLatLng([k.lat, k.lon]).setContent(pinTipHtml(k, meRef.current)).openOn(m) }, HOLD_MS)
@@ -152,8 +161,8 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     // Only Bansalan is shown: everything outside the border is a plain blank color (no map, no grey overlay, no dotted barrier),
     // with just a thin soft edge so you can see where the municipality ends.
     // the real map shows around Bansalan too; a dotted golden line with a soft white edge marks where the municipality ends
-    L.polygon(boundary[0], { color: '#ffffff', weight: 6, opacity: 0.7, fill: false, interactive: false }).addTo(m)
-    edge.current = L.polygon(boundary[0], { color: EDGE_COLOR[moodRef.current] ?? '#f4b400', weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
+    L.polygon(boundary[0] as L.LatLngExpression[], { color: '#ffffff', weight: 6, opacity: 0.7, fill: false, interactive: false }).addTo(m)
+    edge.current = L.polygon(boundary[0] as L.LatLngExpression[], { color: EDGE_COLOR[moodRef.current] ?? '#f4b400', weight: 3, dashArray: '1 8', lineCap: 'round', fill: false, interactive: false }).addTo(m)
     const names = L.layerGroup(barangays.map((b) => L.marker([b.lat, b.lon], {
       interactive: false, keyboard: false, zIndexOffset: -500,
       icon: L.divIcon({ className: 'brgy-wrap', html: `<span class="brgy">${b.name}</span>`, iconSize: [0, 0] }),
@@ -189,8 +198,8 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     layer.current.clearLayers()
     const pts = []
     if (route?.length) {
-      L.polyline(route, { color: '#ffffff', weight: 11, opacity: 0.95, lineCap: 'round', lineJoin: 'round' }).addTo(layer.current)
-      const line = L.polyline(route, { color: routeColor, weight: 6, lineCap: 'round', lineJoin: 'round', className: 'route-draw' }).addTo(layer.current)
+      L.polyline(route as L.LatLngExpression[], { color: '#ffffff', weight: 11, opacity: 0.95, lineCap: 'round', lineJoin: 'round' }).addTo(layer.current)
+      const line = L.polyline(route as L.LatLngExpression[], { color: routeColor, weight: 6, lineCap: 'round', lineJoin: 'round', className: 'route-draw' }).addTo(layer.current)
       line.getElement()?.setAttribute('pathLength', '1') // lets CSS draw the line from start to end
       pts.push(...route)
     }
@@ -202,7 +211,7 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
     const picked = selId && markers.find((k) => k.id === selId)
     if (picked) { const big = L.marker([picked.lat, picked.lon], { icon: pin('sel', picked.label || picked.title || '', 0, selGlyph ?? picked.glyph ?? (picked.kind === 'spot' ? 'vehicle' : null), TONES[selGlyph ?? picked.glyph]), keyboard: false, zIndexOffset: 900 }).addTo(layer.current); big.on('click', () => pickRef.current?.(picked.id)) }
     if (me) {
-      L.marker(me, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i><svg viewBox="0 0 40 52" width="38" height="49" aria-hidden="true"><path d="M20 50C20 50 3 31 3 19a17 17 0 0 1 34 0c0 12-17 31-17 31Z" fill="#1560f0" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="15" r="5.2" fill="#fff"/><path d="M10.5 29c0-5.6 4.2-9 9.5-9s9.5 3.4 9.5 9c-2.4 1.9-5.7 3-9.5 3s-7.1-1.1-9.5-3Z" fill="#fff"/></svg></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
+      L.marker(me as L.LatLngTuple, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="you-pin"><i></i><svg viewBox="0 0 40 52" width="38" height="49" aria-hidden="true"><path d="M20 50C20 50 3 31 3 19a17 17 0 0 1 34 0c0 12-17 31-17 31Z" fill="#1560f0" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="15" r="5.2" fill="#fff"/><path d="M10.5 29c0-5.6 4.2-9 9.5-9s9.5 3.4 9.5 9c-2.4 1.9-5.7 3-9.5 3s-7.1-1.1-9.5-3Z" fill="#fff"/></svg></span>', iconSize: [0, 0] }), interactive: false, keyboard: false, zIndexOffset: 1000 }).addTo(layer.current)
       if (fit) pts.push(me)
     }
     // a route that is given with fitRoute is brought fully into the part of the map above the card
@@ -232,13 +241,13 @@ export default function MapView({ route, routeColor = '#1560F0', markers = [], f
         // crowded pins (a dozen stands on one corner) fold into one numbered badge that opens as you zoom in
     const group = cluster ? L.markerClusterGroup({
       maxClusterRadius: 46, showCoverageOnHover: false, spiderfyOnMaxZoom: true, disableClusteringAtZoom: 18, animate: false, animateAddingMarkers: false,
-      iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster${(() => { const known = c.getAllChildMarkers().filter((x) => x.options.stand && x.options.hoursKnown); return known.length > 0 && known.every((x) => x.options.closed) })() ? ' closed' : ''}"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
+      iconCreateFunction: (c) => L.divIcon({ className: 'cluster-wrap', html: `<span class="cluster${(() => { const known = c.getAllChildMarkers().filter((x) => (x.options as PinOptions).stand && (x.options as PinOptions).hoursKnown); return known.length > 0 && known.every((x) => (x.options as PinOptions).closed) })() ? ' closed' : ''}"><svg viewBox="0 0 420 290" aria-hidden="true"><use href="#trike" /></svg><b>${c.getChildCount()}</b></span>`, iconSize: [52, 40] }),
     }).addTo(pinLayer.current) : null
     markersRef.current.forEach((k, i) => {
-      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), alt: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown })
+      const mk = L.marker([k.lat, k.lon], { icon: pin(k.kind + (k.closed ? ' closed' : ''), k.label, i, k.glyph ?? (k.kind === 'spot' ? 'vehicle' : null), TONES[k.glyph]), alt: k.title ?? k.label, keyboard: true, closed: !!k.closed, stand: k.kind === 'spot', hoursKnown: !k.hoursUnknown } as PinOptions)
       mk.addTo(cluster && k.kind !== 'sel' && !k.night ? group : pinLayer.current) // night spots are never folded into a group, so they stand out
       if (k.id) mk.on('click', () => { if (!justHeld()) pickRef.current?.(k.id) })
-      mk.on('add', () => { const e = mk.getElement(); if (e) e._tip = k })
+      mk.on('add', () => { const e = mk.getElement(); if (e) (e as any)._tip = k })
       if (k.title && k.kind !== 'sel' && canHover()) mk.bindTooltip(() => pinTipHtml(k, meRef.current), { direction: 'top', offset: [0, -16], className: 'pin-tip', opacity: 1 })
     })
 

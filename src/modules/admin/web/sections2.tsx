@@ -11,18 +11,18 @@ import { Problem, Empty, Loading, when, who, aboutPost } from './sections'
 // Inbox, BTODA groups, fares, accounts and announcements for the admin website.
 const CENTER = [6.7869, 125.2105]
 
-function useLoad(load, deps) {
-  const [s, set] = useState({ data: null, error: '' })
+function useLoad(load: () => Promise<any>, deps: unknown[]) {
+  const [s, set] = useState<{ data: any; error: string }>({ data: null, error: '' })
   const [n, setN] = useState(0)
   useEffect(() => { let on = true; set((x) => ({ ...x, error: '' })); load().then((data) => on && set({ data, error: '' }), (e) => on && set({ data: null, error: e.message })); return () => { on = false } }, [...deps, n]) // eslint-disable-line react-hooks/exhaustive-deps
-  return [s, () => setN((x) => x + 1)]
+  return [s, () => setN((x) => x + 1)] as const
 }
 function useAct(after) {
   const { say } = useApp()
   return async (fn, msg) => { try { await fn(); if (msg) say(msg); after?.() } catch (e) { say(/suspended/.test(e.message) ? 'That account is suspended.' : e.message) } }
 }
 
-export function SpotMap({ lat, lon, onPick, height = 220 }) {
+export function SpotMap({ lat, lon, onPick, height = 220 }: { lat: number; lon: number; onPick?: (ll: number[]) => void; height?: number }) {
   const markers = useMemo(() => (lat != null ? [{ id: 'x', lat, lon, kind: 'spot', label: '', title: 'Here' }] : []), [lat, lon])
   const center = useMemo(() => (lat != null ? [lat, lon] : CENTER), [lat, lon])
   return (
@@ -82,7 +82,7 @@ export function Inbox() {
               {cur.kind === 'spot' && cur.about && <p className="awx-muted">{cur.about}</p>}
               {cur.body && <p className="awx-quote">{cur.body}</p>}
               {cur.lat != null && <SpotMap lat={cur.lat} lon={cur.lon} height={260} />}
-              {cur.kind === 'spot' && status === 'new' && <label className="awx-field"><span>Name riders will see</span><input maxLength="60" value={name} onChange={(e) => setName(e.target.value)} /></label>}
+              {cur.kind === 'spot' && status === 'new' && <label className="awx-field"><span>Name riders will see</span><input maxLength={60} value={name} onChange={(e) => setName(e.target.value)} /></label>}
               <div className="awx-actions">
                 {cur.kind === 'spot' && status === 'new' && <button className="awb go" onClick={() => act(() => approveSpot(cur.id, name || 'Waiting spot'), 'Approved. It shows on the map for everyone.')}><Icon name="check" />Approve and show on map</button>}
                 {cur.kind === 'spot' && status === 'approved' && <button className="awb ghost" onClick={() => act(() => setInboxStatus(cur.id, 'dismissed'), 'Taken off the map')}>Take off the map</button>}
@@ -124,13 +124,13 @@ function GroupForm({ s, edit, onSaved }) {
     <div className="awx-form">
       {p && <SpotMap lat={p.lat} lon={p.lon} height={170} />}
       <h3>Details</h3>
-      <label className="awx-field"><span>Name</span><input maxLength="60" value={f.name} onChange={set('name')} /></label>
-      <label className="awx-field"><span>Where they wait</span><input maxLength="120" value={f.landmark} onChange={set('landmark')} placeholder="Beside the church, in front of 7-Eleven…" /></label>
+      <label className="awx-field"><span>Name</span><input maxLength={60} value={f.name} onChange={set('name')} /></label>
+      <label className="awx-field"><span>Where they wait</span><input maxLength={120} value={f.landmark} onChange={set('landmark')} placeholder="Beside the church, in front of 7-Eleven…" /></label>
       <label className="awx-check"><input type="checkbox" checked={f.verified} onChange={set('verified')} />Verified by BTODA (green badge)</label>
       <h3>Contact for the Call button</h3>
       <div className="awx-row2">
-        <label className="awx-field"><span>Person</span><input maxLength="40" value={f.contact_name} onChange={set('contact_name')} placeholder="President or a driver" /></label>
-        <label className="awx-field"><span>Number</span><input inputMode="tel" maxLength="13" value={f.contact_phone} onChange={set('contact_phone')} placeholder="09171234567" /></label>
+        <label className="awx-field"><span>Person</span><input maxLength={40} value={f.contact_name} onChange={set('contact_name')} placeholder="President or a driver" /></label>
+        <label className="awx-field"><span>Number</span><input inputMode="tel" maxLength={13} value={f.contact_phone} onChange={set('contact_phone')} placeholder="09171234567" /></label>
       </div>
       <p className="awx-muted small">Everyone sees this number. Only add it with the person's permission.</p>
       <h3>Members · {f.members.length}</h3>
@@ -144,13 +144,13 @@ function GroupForm({ s, edit, onSaved }) {
         ))}
       </ul>
       <form className="awx-inline" onSubmit={(e) => { e.preventDefault(); const n = newMember.trim(); if (n.length < 2) return; setF((x) => ({ ...x, members: [...x.members, { name: n, suspended: false }] })); setNewMember('') }}>
-        <label className="awx-field grow"><span className="sr-only">Member name</span><input maxLength="40" value={newMember} onChange={(e) => setNewMember(e.target.value)} placeholder="Add a member's name" /></label>
+        <label className="awx-field grow"><span className="sr-only">Member name</span><input maxLength={40} value={newMember} onChange={(e) => setNewMember(e.target.value)} placeholder="Add a member's name" /></label>
         <button className="awb ghost">Add member</button>
       </form>
       <div className={'awx-danger-zone' + (f.suspended ? ' on' : '')}>
         <label className="awx-check"><input type="checkbox" checked={f.suspended} onChange={set('suspended')} /><b>Suspend this group</b></label>
         <p className="awx-muted small">A suspended group is hidden from riders until you restore it.</p>
-        {f.suspended && <label className="awx-field"><span>Reason (only admins see it)</span><input maxLength="120" value={f.suspend_note} onChange={set('suspend_note')} /></label>}
+        {f.suspended && <label className="awx-field"><span>Reason (only admins see it)</span><input maxLength={120} value={f.suspend_note} onChange={set('suspend_note')} /></label>}
       </div>
       <div className="awx-drawer-foot"><button className="awb go" onClick={save}><Icon name="check" />Save changes</button></div>
     </div>
@@ -396,8 +396,8 @@ export function Notices() {
       {writing && (
         <Drawer title="New announcement" sub="Riders see it on Home and as a banner on the map" onClose={() => setWriting(false)}>
           <form className="awx-form" onSubmit={post}>
-            <label className="awx-field"><span>Title</span><input maxLength="80" value={f.title} onChange={set('title')} placeholder="Muddy road to Balutakay" autoFocus /></label>
-            <label className="awx-field"><span>Details</span><textarea rows="3" maxLength="400" value={f.body} onChange={set('body')} placeholder="What riders should know, and what to do" /></label>
+            <label className="awx-field"><span>Title</span><input maxLength={80} value={f.title} onChange={set('title')} placeholder="Muddy road to Balutakay" autoFocus /></label>
+            <label className="awx-field"><span>Details</span><textarea rows={3} maxLength={400} value={f.body} onChange={set('body')} placeholder="What riders should know, and what to do" /></label>
             <div className="awx-tone" role="radiogroup" aria-label="Kind">
               {Object.entries(TONE).map(([k, l]) => <label key={k} className={'tone-' + k}><input type="radio" name="tone" value={k} checked={f.tone === k} onChange={set('tone')} />{l}</label>)}
             </div>

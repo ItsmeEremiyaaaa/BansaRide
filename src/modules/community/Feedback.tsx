@@ -6,7 +6,7 @@ import { checkComment } from './moderation'
 import { loadPosts, addPost, deletePost, reportPost, friendly } from './posts'
 
 const ago = (iso) => {
-  const m = Math.max(1, Math.round((Date.now() - new Date(iso)) / 60000))
+  const m = Math.max(1, Math.round((Date.now() - new Date(iso).getTime()) / 60000))
   return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`
 }
 const label = (id) => PASSENGERS.find((p) => p.id === id)?.short ?? id
@@ -92,7 +92,7 @@ export default function Feedback({ scope, fare = false }) {
         </form>
       ) : (
         <form className="post-form" onSubmit={sendComment}>
-          <textarea className="boxed input" rows="3" maxLength="140" placeholder="A short tip for other riders" value={text} onChange={(e) => setText(e.target.value)} aria-label="Your tip" />
+          <textarea className="boxed input" rows={3} maxLength={140} placeholder="A short tip for other riders" value={text} onChange={(e) => setText(e.target.value)} aria-label="Your tip" />
           <span className="row-sub">{text.length}/140 · posted as {a.profile.displayName}</span>
           <div className="cta-row"><button className="btn" disabled={busy}><Icon name="check" />Post</button><button type="button" className="btn secondary" onClick={() => setMode(null)}>Cancel</button></div>
         </form>

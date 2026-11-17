@@ -5,7 +5,7 @@ import '@fontsource-variable/nunito'
 import '@fontsource-variable/baloo-2'
 import './styles.css'
 import './modules/notices/liveData' // the admin's saved changes (fares, BTODA groups, spots) apply before the first screen
-import App from './App.jsx'
+import App from './App'
 import ErrorBoundary from './common/ErrorBoundary'
 import { AuthProvider } from './modules/auth/auth'
 import { isNative } from './common/native'
