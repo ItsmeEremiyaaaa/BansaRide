@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { BackButton, Icon, YHeader, useApp } from '../components'
-import { placeById, routes, shortName } from '../data'
-import { sendToInbox } from '../admin'
+import { BackButton, Icon, YHeader, useApp } from '../common/components'
+import { placeById, routes, shortName } from '../data/data'
+import { sendToInbox } from '../modules/admin/admin'
 
 const KINDS = ['Missing place or waiting spot', 'Real fare I paid', 'Wrong fare', 'Wrong place or waiting spot', 'Wrong time or hours', 'Wrong driver or contact', 'Something else']
 

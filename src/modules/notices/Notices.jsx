@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Icon } from './components'
+import { Icon } from '../../common/components'
 import { announcements } from './liveData'
-import { useLook } from './mood'
+import { useLook } from '../weather/mood'
 
 // Announcements from the BansaRide team (posted on the admin website). A rider can close one; it stays closed on this phone.
 const KEY = 'bansaride.notices.closed.v1'

@@ -1,4 +1,4 @@
-import { supabase } from './auth'
+import { supabase } from '../auth/auth'
 
 // Counts what people open and search for, so the app maker can see what to improve first. Nothing personal is kept:
 // no name, no email, no account, no location. Only the kind of event, a route or search word, and the day.

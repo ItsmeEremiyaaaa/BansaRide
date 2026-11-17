@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Icon, Trike, Bus } from '../components'
-import { useAuth } from '../auth'
-import { translate } from '../i18n'
-import { fareFor } from '../data'
+import { Icon, Trike, Bus } from '../common/components'
+import { useAuth } from '../modules/auth/auth'
+import { translate } from '../common/i18n'
+import { fareFor } from '../data/data'
 
 export const ONBOARDED = 'bansaride.onboarded.v1'
 

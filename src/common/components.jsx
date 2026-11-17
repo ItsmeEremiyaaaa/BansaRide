@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { shortName, vehicleLabel, fareText, standNow, motorPossible } from './data'
-import { useLook } from './mood'
+import { shortName, vehicleLabel, fareText, standNow, motorPossible } from '../data/data'
+import { useLook } from '../modules/weather/mood'
 
 export const Ctx = createContext(null)
 export const useApp = () => useContext(Ctx)

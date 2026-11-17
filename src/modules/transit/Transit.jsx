@@ -1,6 +1,6 @@
-import { Bus, Van, Mini, Icon, useApp } from './components'
-import { useAuth } from './auth'
-import { TRANSIT, miniPossible, transitFare, transitStatus, transitKind } from './data'
+import { Bus, Van, Mini, Icon, useApp } from '../../common/components'
+import { useAuth } from '../auth/auth'
+import { TRANSIT, miniPossible, transitFare, transitStatus, transitKind } from '../../data/data'
 
 // Bus, van and mini bus for a trip of `km`: hours, whether it runs now, and the fare for a regular rider and a student.
 export default function Transit({ modes, km, townId }) {

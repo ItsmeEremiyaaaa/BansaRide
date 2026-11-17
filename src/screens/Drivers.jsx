@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
-import { useApp, BackButton, Icon, RouteRow, StatusTag, StandPill, ClosedNotice, YHeader, Trike, Moto } from '../components'
-import MapView from '../MapView'
-import Feedback from '../Feedback'
-import { standNow, nearestStands, stations, stationById, stationStatus, stationVerified, stationPlace, routes, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data'
+import { useApp, BackButton, Icon, RouteRow, StatusTag, StandPill, ClosedNotice, YHeader, Trike, Moto } from '../common/components'
+import MapView from '../modules/map/MapView'
+import Feedback from '../modules/community/Feedback'
+import { standNow, nearestStands, stations, stationById, stationStatus, stationVerified, stationPlace, routes, metersBetween, bearingTo, compassName, walkMinutes, walkRoute } from '../data/data'
 import { fmtDist } from './RouteScreens'
-import { useLook } from '../mood'
+import { useLook } from '../modules/weather/mood'
 
 const kindLabel = (s) => (s.type === 'motor' ? 'Motorcycles' : 'Tricycle / pedicab')
 const formatPhone = (n) => n.replace(/^(\d{4})(\d{3})(\d{4})$/, '$1 $2 $3')

@@ -1,4 +1,4 @@
-import { supabase } from './auth'
+import { supabase } from '../auth/auth'
 
 // Everything the admin screen reads and changes. The database checks that the person is an admin for every call
 // (see supabase/admin.sql), so these do nothing for anyone else.

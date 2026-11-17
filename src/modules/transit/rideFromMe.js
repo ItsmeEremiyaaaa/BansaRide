@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { nearestPlace, metersBetween, routes, rideMinutes } from './data'
+import { nearestPlace, metersBetween, routes, rideMinutes } from '../../data/data'
 
 // What a ride from where you stand to a place would be: distance, time and the road to draw.
 // Offline it uses the routes saved in the app. Online it asks the road router for the exact road and remembers the answer.

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import QRCode from 'qrcode'
-import { BackButton, Icon, Trike, YHeader, useApp } from '../components'
-import { PASSENGERS, fareFor, towns, transitFare, miniPossible, isCity, TRANSIT, popularRoutes, shortName, stationById, stationPlace, stations } from '../data'
+import { BackButton, Icon, Trike, YHeader, useApp } from '../common/components'
+import { PASSENGERS, fareFor, towns, transitFare, miniPossible, isCity, TRANSIT, popularRoutes, shortName, stationById, stationPlace, stations } from '../data/data'
 
 const KMS = [0.5, 1, 2, 3, 4, 5, 7, 10]
 const SHORT = { elementary: 'Elem', highschool: 'HS', college: 'Col', senior: 'Sen', pwd: 'PWD', adult: 'Adult' } // short so all six fit on a phone

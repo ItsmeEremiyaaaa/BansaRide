@@ -1,4 +1,4 @@
-// Builds src/geo.js: real place coordinates (OpenStreetMap) and real road routes (OSRM).
+// Builds src/data/geo.js: real place coordinates (OpenStreetMap) and real road routes (OSRM).
 // Run once with: node scripts/build-geo.mjs   (needs internet). Output is committed so the app works offline.
 // To add a destination: add it to `places` (copy its coordinates from OpenStreetMap) and to `routes`, then re-run.
 import { writeFileSync } from 'node:fs'
@@ -75,5 +75,5 @@ export const geoPlaces = ${JSON.stringify(places, null, 2)}
 
 export const geoRoutes = ${JSON.stringify(out)}
 `
-writeFileSync(new URL('../src/geo.js', import.meta.url), file)
-console.log('wrote src/geo.js')
+writeFileSync(new URL('../src/data/geo.js', import.meta.url), file)
+console.log('wrote src/data/geo.js')

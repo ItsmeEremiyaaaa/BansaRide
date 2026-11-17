@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bus, Van, Mini } from './components'
-import WeatherIcon from './WeatherIcon'
-import { useLook } from './mood'
-import { TRANSIT, ALERT_FIRST_BEFORE, ALERT_LAST_BEFORE } from './data'
+import { Bus, Van, Mini } from '../../common/components'
+import WeatherIcon from '../weather/WeatherIcon'
+import { useLook } from '../weather/mood'
+import { TRANSIT, ALERT_FIRST_BEFORE, ALERT_LAST_BEFORE } from '../../data/data'
 
 // The animated pop-up for the two ride alerts, for every big bus, van and mini bus: the first ride is about to start
 // (30 minutes before) and the last ride is about to leave (1 hour before). It drops in from the top while the app is

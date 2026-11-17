@@ -1,6 +1,6 @@
 import { LIGHT } from '@protomaps/basemaps'
 import { labelRules as rawLabelRules, paintRules } from 'protomaps-leaflet'
-import { places, pois } from './data'
+import { places, pois } from '../../data/data'
 
 // Only names that belong to Bansalan are written on the map: the barangays, sitios, streets and places the app knows.
 // The neighbouring towns and roads outside the border keep their lines but lose their names.

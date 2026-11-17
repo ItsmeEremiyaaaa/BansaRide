@@ -1,5 +1,5 @@
-import { supabase } from './auth'
-import { isNative } from './native'
+import { supabase } from '../auth/auth'
+import { isNative } from '../../common/native'
 
 // Ride alerts: a phone asks to be told 30 minutes before the first ride and 1 hour before the last ride of the big bus,
 // van and mini bus. The phone's push address goes to Supabase; a scheduled job there sends the alerts.

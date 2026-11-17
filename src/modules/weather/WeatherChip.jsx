@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import WeatherIcon from './WeatherIcon'
 import { useLook } from './mood'
-import { useExclusive } from './popover'
+import { useExclusive } from '../../common/popover'
 
 // Real-time weather for Bansalan (Open-Meteo, refreshed every 10 minutes while there is a signal).
 const WORDS = (code) => {

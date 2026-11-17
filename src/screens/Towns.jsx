@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import Picker from '../Picker'
-import { AskDriver } from '../FromYou'
-import { useRideFromMe } from '../rideFromMe'
-import { useApp, BackButton, Icon, Tag, YHeader } from '../components'
-import Transit from '../Transit'
-import { useAuth } from '../auth'
-import { speak } from '../speech'
-import { offlineRide } from '../rideFromMe'
-import { TOWN_FARES, pesoRange, towns, routes, placeById, poiById, routeBetween, FARE_NOTE, PASSENGERS, fareFor, transitModesForTown, transitFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data'
+import Picker from '../modules/transit/Picker'
+import { AskDriver } from '../modules/transit/FromYou'
+import { useRideFromMe } from '../modules/transit/rideFromMe'
+import { useApp, BackButton, Icon, Tag, YHeader } from '../common/components'
+import Transit from '../modules/transit/Transit'
+import { useAuth } from '../modules/auth/auth'
+import { speak } from '../common/speech'
+import { offlineRide } from '../modules/transit/rideFromMe'
+import { TOWN_FARES, pesoRange, towns, routes, placeById, poiById, routeBetween, FARE_NOTE, PASSENGERS, fareFor, transitModesForTown, transitFare, townFareText, miniPossible, isCity, TOWN_RIDES } from '../data/data'
 
 // Official seals of the towns we have a picture for (kept in public/seals). Other towns show the plain town icon.
 const SEALS = new Set(['magsaysay', 'matanao', 'hagonoy', 'digos', 'kiblawan', 'kapatagan', 'santa-cruz', 'padada', 'malalag', 'sulop', 'kidapawan', 'davao', 'gensan', 'cotabato'])

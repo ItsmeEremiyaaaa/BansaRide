@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Ctx, Defs, Icon, Trike } from '../components'
-import { useAuth } from '../auth'
+import { Ctx, Defs, Icon, Trike } from '../../../common/components'
+import { useAuth } from '../../auth/auth'
 import { checkAdmin, loadOverview } from '../admin'
 import { Overview, Posts, Words } from './sections'
 import { Inbox, Groups, Fares, Users, Notices } from './sections2'

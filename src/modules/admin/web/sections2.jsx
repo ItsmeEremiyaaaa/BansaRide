@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Icon, useApp } from '../components'
-import MapView from '../MapView'
-import { stations, stationPlace, towns, fareSettings, applyFareSettings, fareFor, transitFare, PASSENGERS } from '../data'
+import { Icon, useApp } from '../../../common/components'
+import MapView from '../../map/MapView'
+import { stations, stationPlace, towns, fareSettings, applyFareSettings, fareFor, transitFare, PASSENGERS } from '../../../data/data'
 import {
   loadInbox, setInboxStatus, removeInbox, approveSpot, loadApprovedSpots, loadStandEdits, saveStandEdit, loadFares, saveFares,
   loadUsers, suspendUser, restoreUser, loadUserPosts, loadNotices, saveNotice, removeNotice,

@@ -1,4 +1,4 @@
-import { supabase } from './auth'
+import { supabase } from '../auth/auth'
 
 // Fare reports and short comments, kept in Supabase. Names and text are filtered here and again in the database.
 const COLUMN = { routeId: 'route_id', placeId: 'place_id', stationId: 'station_id' }

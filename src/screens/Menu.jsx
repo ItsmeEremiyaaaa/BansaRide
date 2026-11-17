@@ -1,5 +1,5 @@
-import { useApp, BackButton, Icon, Trike, YHeader } from '../components'
-import { places, routes, stations, towns } from '../data'
+import { useApp, BackButton, Icon, Trike, YHeader } from '../common/components'
+import { places, routes, stations, towns } from '../data/data'
 
 // The full menu: every part of the app with what is inside it, plus how the data works.
 export default function Menu() {

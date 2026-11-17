@@ -4,12 +4,12 @@ import { registerSW } from 'virtual:pwa-register'
 import '@fontsource-variable/nunito'
 import '@fontsource-variable/baloo-2'
 import './styles.css'
-import './liveData' // the admin's saved changes (fares, BTODA groups, spots) apply before the first screen
+import './modules/notices/liveData' // the admin's saved changes (fares, BTODA groups, spots) apply before the first screen
 import App from './App.jsx'
-import ErrorBoundary from './ErrorBoundary'
-import { AuthProvider } from './auth'
-import { isNative } from './native'
-import './lite' // marks a weak phone before the first screen is drawn
+import ErrorBoundary from './common/ErrorBoundary'
+import { AuthProvider } from './modules/auth/auth'
+import { isNative } from './common/native'
+import './common/lite' // marks a weak phone before the first screen is drawn
 
 // Saves the app on the phone so it keeps working without signal. Only in the real build: while developing, an old
 // saved copy used to hide new changes, so any saved copy is removed and the page reloads once.

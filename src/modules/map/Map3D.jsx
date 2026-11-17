@@ -6,8 +6,8 @@ import { layers as baseLayers } from '@protomaps/basemaps'
 import { Protocol } from 'pmtiles'
 import { moodFlavor } from './mapStyle'
 import { bansalanTiles } from './localTiles'
-import { bounds } from './boundary'
-import { places } from './data'
+import { bounds } from '../../data/boundary'
+import { places } from '../../data/data'
 import { pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
 // Tilted view of Bansalan from the same offline map file and colors as the flat map. Pins are drawn by the graphics chip

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Icon, useApp } from '../components'
-import { routes, placeById, stationById, shortName, PASSENGERS } from '../data'
+import { Icon, useApp } from '../../../common/components'
+import { routes, placeById, stationById, shortName, PASSENGERS } from '../../../data/data'
 import { loadOverview, loadPosts, setPostStatus, removePost, loadWords, addWord, removeWord, loadInbox } from '../admin'
 
 // Sections of the BansaRide admin website (admin/index.html). Only admins get data: the database checks every call.

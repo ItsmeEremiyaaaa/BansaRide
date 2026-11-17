@@ -1,8 +1,8 @@
-import { track } from './track'
+import { track } from '../analytics/track'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Icon, useApp } from './components'
-import { motorPossible, pesoRange, places, pois, towns, townAsksFare, townFareText, miniPossible, isCity, POI_KINDS, routeBetween, fareText, metersBetween, fmtDist, fareFor } from './data'
+import { Icon, useApp } from '../../common/components'
+import { motorPossible, pesoRange, places, pois, towns, townAsksFare, townFareText, miniPossible, isCity, POI_KINDS, routeBetween, fareText, metersBetween, fmtDist, fareFor } from '../../data/data'
 import { offlineRide } from './rideFromMe'
 
 // A full-screen list to pick a pickup point or a destination. Type to search.

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
-import { isNative, NATIVE_LOGIN_URL } from './native'
+import { isNative, NATIVE_LOGIN_URL } from '../../common/native'
 
 // Accounts are optional. A guest can use the whole app. A signed-in, verified student, senior or PWD gets their own
 // discounted fare everywhere. We keep only the passenger type, the school or the kind of ID. No photos, no ID numbers.

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { BackButton, Bus, Van, Mini, YHeader, useApp } from '../components'
-import { TRANSIT } from '../data'
-import { pushState, setAlerts, disableAlerts, savedModes, testAlert } from '../push'
-import { isNative } from '../native'
-import WeatherIcon from '../WeatherIcon'
+import { BackButton, Bus, Van, Mini, YHeader, useApp } from '../common/components'
+import { TRANSIT } from '../data/data'
+import { pushState, setAlerts, disableAlerts, savedModes, testAlert } from '../modules/alerts/push'
+import { isNative } from '../common/native'
+import WeatherIcon from '../modules/weather/WeatherIcon'
 
 const hhmm = (min) => { const h = Math.floor(min / 60), m = min % 60; return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}` }
 const MODES = ['bus', 'van', 'mini']

@@ -6,7 +6,7 @@ import { bansalanTiles } from './localTiles'
 import { moodRules } from './mapStyle'
 import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
-import { boundary, bounds, barangays } from './boundary'
+import { boundary, bounds, barangays } from '../../data/boundary'
 import { esc, pinTipHtml, canHover, HOLD_MS, markHold, justHeld } from './pinTip'
 
 // The map is limited to Bansalan, Davao del Sur: it cannot be panned away, and everything outside the

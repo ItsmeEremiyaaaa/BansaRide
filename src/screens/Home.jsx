@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react'
-import { useApp, Trike, Moto, Icon, RouteRow } from '../components'
-import { useStored } from '../hooks'
-import MapView from '../MapView'
-import Picker from '../Picker'
-import InstallPrompt from '../InstallPrompt'
-import Clock from '../Clock'
-import Notices from '../Notices'
-import { useLook } from '../mood'
-import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist, bansalanClock } from '../data'
+import { useApp, Trike, Moto, Icon, RouteRow } from '../common/components'
+import { useStored } from '../common/hooks'
+import MapView from '../modules/map/MapView'
+import Picker from '../modules/transit/Picker'
+import InstallPrompt from '../common/InstallPrompt'
+import Clock from '../modules/weather/Clock'
+import Notices from '../modules/notices/Notices'
+import { useLook } from '../modules/weather/mood'
+import { places, placeById, shortName, routes, routeBetween, bestRouteFrom, nearestPlace, popularRoutes, towns, fareText, nearestStands, compassName, walkMinutes, fmtDist, bansalanClock } from '../data/data'
 
 const TRY = ['rizal', 'market', 'dolo', 'libertad']
 const countBy = (f) => routes.filter(f).length

@@ -1,5 +1,5 @@
-import { supabase } from './auth'
-import { applyFareSettings, applyStandData } from './data'
+import { supabase } from '../auth/auth'
+import { applyFareSettings, applyStandData } from '../../data/data'
 
 // What the admin changes from the admin website: fares, BTODA groups and members, approved waiting spots and announcements.
 // The last copy is kept on the phone, so it is used at once (and offline); a fresh copy is fetched when there is a signal.

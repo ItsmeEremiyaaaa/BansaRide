@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Icon, useApp } from './components'
-import { useAuth } from './auth'
-import { PASSENGERS } from './data'
+import { Icon, useApp } from '../../common/components'
+import { useAuth } from '../auth/auth'
+import { PASSENGERS } from '../../data/data'
 import { checkComment } from './moderation'
 import { loadPosts, addPost, deletePost, reportPost, friendly } from './posts'
 

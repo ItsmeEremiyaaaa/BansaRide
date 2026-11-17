@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { BackButton, Icon, Tag, YHeader, useApp } from '../components'
-import { useAuth, KINDS, GOV_IDS } from '../auth'
-import { places, PASSENGERS, fareFor } from '../data'
-import { checkName } from '../moderation'
-import { friendly } from '../posts'
+import { BackButton, Icon, Tag, YHeader, useApp } from '../common/components'
+import { useAuth, KINDS, GOV_IDS } from '../modules/auth/auth'
+import { places, PASSENGERS, fareFor } from '../data/data'
+import { checkName } from '../modules/community/moderation'
+import { friendly } from '../modules/community/posts'
 
 const schools = places.filter((p) => p.kind === 'School').map((p) => p.name)
 

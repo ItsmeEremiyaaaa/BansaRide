@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/nunito'
 import '@fontsource-variable/baloo-2'
-import '../styles.css'
-import { AuthProvider } from '../auth'
+import '../../../styles.css'
+import { AuthProvider } from '../../auth/auth'
 import AdminApp from './AdminApp'
 
 // The BansaRide admin website (bansalanride.netlify.app/admin/). It is not part of the rider app and is never saved

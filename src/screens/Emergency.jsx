@@ -1,5 +1,5 @@
-import { BackButton, Icon, YHeader } from '../components'
-import Notices, { useNotices } from '../Notices'
+import { BackButton, Icon, YHeader } from '../common/components'
+import Notices, { useNotices } from '../modules/notices/Notices'
 
 // Numbers that work all over the Philippines, then Bansalan's own. The Bansalan numbers are the ones the Municipality of Bansalan
 // publishes at bansalan.gov.ph/emergency-contact-hotlines (copied 2026-11-02, not checked by calling): check them again now and then.
