@@ -368,11 +368,11 @@ const ICONS = {
 }
 
 const ICON_ART = {"vehicle":"trike","moto":"moto","bus":"bus","van":"van","barangay":"i-barangay","sitio":"i-sitio","place":"i-place","street":"i-street"}
-export const Icon = ({ name, filled, className }: { name: string; filled?: boolean; className?: string; style?: CSSProperties }) =>
+export const Icon = ({ name, filled, className, style }: { name: string; filled?: boolean; className?: string; style?: CSSProperties }) =>
   ICON_ART[name] ? (
-    <svg className={'ico-art m-' + name + ' ' + (className ?? '')} viewBox="0 0 420 290" aria-hidden="true"><use href={'#' + ICON_ART[name]} /></svg>
+    <svg className={'ico-art m-' + name + ' ' + (className ?? '')} viewBox="0 0 420 290" aria-hidden="true" style={style}><use href={'#' + ICON_ART[name]} /></svg>
   ) : (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" style={filled ? { fill: '#F4B400', stroke: '#B7791F' } : undefined}>{ICONS[name]}</svg>
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" style={filled ? { fill: '#F4B400', stroke: '#B7791F', ...style } : style}>{ICONS[name]}</svg>
   )
 
 export const BackButton = ({ to, params }: { to?: string; params?: object }) => {
