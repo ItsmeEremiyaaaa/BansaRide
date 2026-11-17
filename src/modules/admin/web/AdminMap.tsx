@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Icon, useApp } from '../../../common/components'
 import MapView from '../../map/MapView'
-import Map3D from '../../map/Map3D'
+const Map3D = lazy(() => import('../../map/Map3D')) // the 3D engine loads only when the admin switches to 3D
 import { useLook } from '../../weather/mood'
 import { stations, stationPlace } from '../../../data/data'
 import { loadInbox, approveSpot, setInboxStatus, loadApprovedSpots, loadStandEdits, loadNotices, saveNotice, removeNotice } from '../admin'
@@ -75,7 +75,7 @@ export default function AdminMap() {
     <div className="awm">
       <div className="awm-map">
         {three
-          ? <Map3D key={look.mood} mood={look.mood} center={focus ?? CENTER} markers={markers} onPick={pick} pitch={55} />
+          ? <Suspense fallback={null}><Map3D key={look.mood} mood={look.mood} center={focus ?? CENTER} markers={markers} onPick={pick} pitch={55} /></Suspense>
           : <MapView mood={look.mood} markers={markers} center={CENTER} zoom={15} fit={false} focus={focus} onPick={pick} selId={sel} cluster zoomControl draft={placing ? draft : null} onMapClick={placing ? setDraft : undefined} label="Admin map of Bansalan" />}
         {placing && <div className="awm-hint">{draft ? 'Pinned. Tap again to move it.' : 'Tap the map where the announcement is'}</div>}
         <div className="awm-tools">

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import QRCode from 'qrcode'
 import { BackButton, Icon, Trike, YHeader, useApp } from '../common/components'
 import { PASSENGERS, fareFor, towns, transitFare, miniPossible, isCity, TRANSIT, popularRoutes, shortName, stationById, stationPlace, stations } from '../data/data'
 
@@ -102,7 +101,7 @@ export function Poster() {
   const p = stationPlace(s)
   const [svg, setSvg] = useState('')
   const url = `${window.location.origin}/#/station/${s.id}`
-  useEffect(() => { QRCode.toString(url, { type: 'svg', margin: 1, width: 280, errorCorrectionLevel: 'M' }).then(setSvg) }, [url])
+  useEffect(() => { import('qrcode').then(({ default: QRCode }) => QRCode.toString(url, { type: 'svg', margin: 1, width: 280, errorCorrectionLevel: 'M' })).then(setSvg) }, [url]) // the QR maker loads only when this sheet opens
   return (
     <>
       <YHeader title="Poster" back={<BackButton to="station" params={{ id: s.id }} />} />
